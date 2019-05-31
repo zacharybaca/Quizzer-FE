@@ -1,18 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-
 import "./styles.css";
-
 // build out our class here.
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = { 
-    message: "Hello from Labs 13- Quizer App!!"
-};  }
-  render() {
-  return <div>{this.state.message}</div>;
-}
+function App() {
+  // Declare a new state variable, which we'll call "name"
+  const [name, setName] = useState("Quizzer App");
+
+  return (
+    <div>
+      <p>{name}</p>
+    </div>
+  );
 }
 
 const rootElement = document.getElementById("root");
