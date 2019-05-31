@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{10:function(e,n,t){},11:function(e,n,t){"use strict";t.r(n);var r=t(0),a=t.n(r),c=t(2),u=t.n(c),o=(t(10),t(3));var l=function(){var e=Object(r.useState)("Quizzer App"),n=Object(o.a)(e,2),t=n[0];return n[1],a.a.createElement("div",null,a.a.createElement("p",null,t))},i=document.getElementById("root");u.a.render(a.a.createElement(l,null),i)},4:function(e,n,t){e.exports=t(11)}},[[4,1,2]]]);
-//# sourceMappingURL=main.83af1fd6.chunk.js.map
