@@ -6,7 +6,7 @@ function App() {
   const [name, setName] = useState("Quizzer App");
 
   return (
-    <div>
+    <div className="App">
       <p>{name}</p>
     </div>
   );
