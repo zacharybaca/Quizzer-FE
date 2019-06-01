@@ -7,7 +7,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   //takes place instead of componentDidMount
-  useEffect(async () => {
+  useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
         "https://labs13-quizzer.herokuapp.com/api/users"
