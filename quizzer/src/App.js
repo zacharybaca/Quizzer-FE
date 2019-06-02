@@ -23,7 +23,10 @@ function App() {
       <p>{name}</p>
       {users.map(user => (
         <li key={user.id}>
-          <p>{user.name}</p>
+          <p>Name: {user.name}</p>
+          <p>Email: {user.email}</p>
+          <p>Username: {user.username}</p>
+          <p>Account: {user.role}</p>
         </li>
       ))}
     </div>
