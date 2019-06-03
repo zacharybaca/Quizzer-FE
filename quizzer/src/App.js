@@ -7,7 +7,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   //takes place instead of componentDidMount
-  useEffect(async () => {
+  useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
         "https://labs13-quizzer.herokuapp.com/api/users"
@@ -23,7 +23,10 @@ function App() {
       <p>{name}</p>
       {users.map(user => (
         <li key={user.id}>
-          <p>{user.name}</p>
+          <p>Name: {user.name}</p>
+          <p>Email: {user.email}</p>
+          <p>Username: {user.username}</p>
+          <p>Account: {user.role}</p>
         </li>
       ))}
     </div>
