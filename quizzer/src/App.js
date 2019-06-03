@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { GoogleLogin } from "react-google-login";
+import { GoogleLogout } from "react-google-login";
 import "./App.css";
 
 function App() {
@@ -18,9 +20,22 @@ function App() {
     fetchData();
   }, []);
 
+  const responseGoogle = response => {
+    console.log(response.tokenId);
+  };
+
   return (
     <div className="App">
       <p>{name}</p>
+      <GoogleLogin
+        clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={"single_host_origin"}
+      />
+      <GoogleLogout buttonText="Logout" />
+
       {users.map(user => (
         <li key={user.id}>
           <p>Name: {user.name}</p>
