@@ -20,11 +20,8 @@ function App() {
     fetchData();
   }, []);
 
-  const responseGoogle = async response => {
-    const token = response.tokenId;
-    const endpoint = "link";
-    const res = await axios(endpoint, { Authorization: token });
-    console.log("res", res);
+  const responseGoogle = response => {
+    console.log(response.tokenId);
   };
 
   return (
