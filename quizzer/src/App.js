@@ -25,6 +25,8 @@ function App () {
     const endpoint = "link";
     const res = await axios(endpoint, { Authorization: token });
     console.log("res", res);
+  const responseGoogle = response => {
+    console.log(response.tokenId);
   };
   
   return (
