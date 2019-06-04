@@ -3,13 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "auth0-js": "^9.10.4",
     "axios": "^0.19.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+<<<<<<< HEAD
     "react-scripts": "3.0.1",
     "prop-types": "^15.6.2",
     "react-fontawesome": "^1.6.1",
     "socket.io-client": "^2.1.1"
+=======
+    "react-google-login": "^5.0.4",
+    "react-scripts": "3.0.1"
+>>>>>>> cb397a5dfd20e3701c2843cc00c47e329b41fce6
   },
   "scripts": {
     "start": "react-scripts start",
