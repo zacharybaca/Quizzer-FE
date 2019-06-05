@@ -32,7 +32,10 @@ class CheckoutForm extends React.Component {
     // You can also use createToken to create tokens.
     // See our tokens documentation for more:
     // https://stripe.com/docs/stripe-js/reference#stripe-create-token
-    this.props.stripe.createToken({});
+    this.props.stripe.createToken({})
+      .then(({token}) => {
+      console.log('Received Stripe token:', token);
+    })
     // token type can optionally be inferred if there is only one one Element
     // with which to create tokens
     // this.props.stripe.createToken({name: 'Jenny Rosen'});
