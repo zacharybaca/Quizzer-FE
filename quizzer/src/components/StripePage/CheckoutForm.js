@@ -6,7 +6,7 @@ import {injectStripe} from 'react-stripe-elements';
 import CardSection from './CardSection';
 
 class CheckoutForm extends React.Component {
-    // handleSubmit(ev) {
+    // add constructor?
 
   handleSubmit = (ev) => {
     // We don't want to let default form submission happen here, which would refresh the page.
@@ -22,6 +22,8 @@ class CheckoutForm extends React.Component {
         console.log('Received Stripe PaymentMethod:', paymentMethod);
       });
 
+      
+
     // You can also use handleCardPayment with the Payment Intents API automatic confirmation flow.
     // See our handleCardPayment documentation for more:
     // https://stripe.com/docs/stripe-js/reference#stripe-handle-card-payment
@@ -35,6 +37,18 @@ class CheckoutForm extends React.Component {
     this.props.stripe.createToken({})
       .then(({token}) => {
       console.log('Received Stripe token:', token);
+        
+      fetch('/api/customer/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: token.id
+        })
+      }).then((res) => res.json()).then((response) => {
+        console.log('response', response)
+      });
     })
     // token type can optionally be inferred if there is only one one Element
     // with which to create tokens
