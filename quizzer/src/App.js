@@ -11,6 +11,7 @@ import Student from './components/student';
 import Teacher from './components/teacher';
 
 import StripePage from '../src/components/StripePage/StripePage'
+// import Step2Page from './components/Step2/Step2Page';
 
 
 const Homepage = styled.div`
@@ -59,7 +60,8 @@ function App () {
     </div>
 
         {/* <Route extact path="/" component={Home}/> */}
-        <Route extact path="/step1" component={StripePage}/>
+        <Route extact path='/step1' component={StripePage}/>
+        {/* <Route extact path='/step2' component={Step2Page}/> */}
 
 
 

@@ -38,7 +38,7 @@ class CheckoutForm extends React.Component {
       .then(({token}) => {
       console.log('Received Stripe token:', token);
         
-      fetch('/api/customer/create', {
+      fetch('http://localhost:8000/api/stripe/customer/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
