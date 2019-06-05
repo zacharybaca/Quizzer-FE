@@ -18,16 +18,17 @@ const Homepage = styled.div`
 `;
 function App() {
   const responseGoogle = response => {
+    localStorage.setItem("token", response.Zi.id_token);
     axios
-      .post("http://localhost:8000/api/auth/login", response)
+      .post("http://localhost:8000/api/auth/login", response, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
       .then(res => {
         console.log(res);
       })
       .catch(err => {
-        console.log("error");
+        console.log(err);
       });
-
-    localStorage.setItem("token", response.Zi.access_token);
   };
 
   return (
