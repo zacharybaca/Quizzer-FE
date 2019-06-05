@@ -11,9 +11,7 @@ function App() {
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios(
-        "https://labs13-quizzer.herokuapp.com/api/users"
-      );
+      const result = await axios("https://localhost:8000/api/users");
       //setting database data to state with hooks
       setUsers(result.data);
     };
@@ -21,7 +19,16 @@ function App() {
   }, []);
 
   const responseGoogle = response => {
-    console.log(response.tokenId);
+    axios
+      .post("http://localhost:8000/api/auth/login", response.Zi.access_token)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log("error");
+      });
+
+    localStorage.setItem("token", response.Zi.access_token);
   };
 
   return (
