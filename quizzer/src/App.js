@@ -1,26 +1,25 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
 import { GoogleLogout } from "react-google-login";
-import "./App.css";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 
+import User from "./components/user";
+import Student from "./components/student";
+import Teacher from "./components/teacher";
+
+const Homepage = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding-top: 20px;
+`;
 function App() {
-  const [name] = useState("Quizzer App");
-  const [users, setUsers] = useState([]);
-
-  //takes place instead of componentDidMount
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("https://localhost:8000/api/users");
-      //setting database data to state with hooks
-      setUsers(result.data);
-    };
-    fetchData();
-  }, []);
-
   const responseGoogle = response => {
     axios
-      .post("http://localhost:8000/api/auth/login", response.Zi.access_token)
+      .post("http://localhost:8000/api/auth/login", response)
       .then(res => {
         console.log(res);
       })
@@ -32,26 +31,28 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <p>{name}</p>
-      <GoogleLogin
-        clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
-      <GoogleLogout buttonText="Logout" />
-
-      {users.map(user => (
-        <li key={user.id}>
-          <p>Name: {user.name}</p>
-          <p>Email: {user.email}</p>
-          <p>Username: {user.username}</p>
-          <p>Account: {user.role}</p>
-        </li>
-      ))}
-    </div>
+    <Router>
+      <div className="App">
+        <GoogleLogin
+          clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+        <GoogleLogout buttonText="Logout" />
+      </div>
+      <div>
+        <Homepage>
+          <Link to="/users">Users</Link>
+          <Link to="/students">Students</Link>
+          <Link to="/teachers">Teachers</Link>
+        </Homepage>
+        <Route path="/users" component={User} />
+        <Route path="/students" component={Student} />
+        <Route path="/teachers" component={Teacher} />
+      </div>
+    </Router>
   );
 }
 
