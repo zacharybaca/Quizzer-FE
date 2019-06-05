@@ -7,23 +7,23 @@ class Step2Page extends Component {
         super(props);
 
         this.state = {
-            coupon: '',
+            // coupon: '',
             currentPlan: 'bronze',
         };
+    
+
+        // this.onCouponChange = this.onCouponChange.bind(this);
     }
 
-        this.onCouponChange = this.onCouponChange.bind(this);
-    }
-
-    onCouponChange(event) {
-        this.setState({
-            coupon: event.target.value,
-        });
-    }
+    // onCouponChange(event) {
+    //     this.setState({
+    //         coupon: event.target.value,
+    //     });
+    // }
     
     render() {
         const {
-            coupon,
+            // coupon,
             currentPlan,
         } = this.state;
 
@@ -31,14 +31,14 @@ class Step2Page extends Component {
 
         return (
         <div>
-            <div>
+            {/* <div>
                 <input
                 type="text"
                 placeholder="Coupon"
                 value={coupon}
                 onChange={this.onCouponChange}
                 />
-            </div>
+            </div> */}
             <div>
                 <h2>Plans</h2>
                 {
