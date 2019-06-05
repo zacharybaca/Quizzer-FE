@@ -10,6 +10,9 @@ import User from './components/user';
 import Student from './components/student';
 import Teacher from './components/teacher';
 
+import StripePage from '../src/components/StripePage/StripePage'
+
+
 const Homepage = styled.div`
   display: flex;
   flex-direction: row;
@@ -43,6 +46,7 @@ function App () {
       />
       <GoogleLogout buttonText="Logout" />
     </div>  
+
     <div>
       <Homepage>
         <Link to ='/users'>Users</Link>
@@ -53,6 +57,12 @@ function App () {
         <Route path='/students' component={Student} />
         <Route path='/teachers' component={Teacher} /> 
     </div>
+
+        {/* <Route extact path="/" component={Home}/> */}
+        <Route extact path="/step1" component={StripePage}/>
+
+
+
     </Router>
   );
 }
