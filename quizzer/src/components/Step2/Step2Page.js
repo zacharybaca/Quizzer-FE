@@ -37,8 +37,8 @@ class Step2Page extends Component {
             coupon
         } = this.state;
 
-        // in the BE it's /api/customer/subscribe ....check that: 
-        fetch('http://localhost:8000/api/stripe/customer/subscribe', {
+      // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
+      fetch('http://localhost:8000/api/stripe/customer/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

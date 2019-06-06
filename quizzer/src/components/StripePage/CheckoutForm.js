@@ -37,7 +37,8 @@ class CheckoutForm extends React.Component {
     this.props.stripe.createToken({})
       .then(({token}) => {
       console.log('Received Stripe token:', token);
-        
+     
+      // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/create
       fetch('http://localhost:8000/api/stripe/customer/create', {
         method: 'POST',
         headers: {
