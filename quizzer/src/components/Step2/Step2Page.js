@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 // this is where customer selects a Plan
+// TODO decide if we have different plans "bronze, silver, gold"
+// if yes then add "silver, gold" to dashboard
 class Step2Page extends Component {
     constructor(props) {
         super(props);
@@ -13,6 +15,8 @@ class Step2Page extends Component {
 
         this.onCouponChange = this.onCouponChange.bind(this);
         this.switchPlan = this.switchPlan.bind(this);
+        this.nextStep = this.nextStep.bind(this);
+
     }
 
     onCouponChange(event) {
@@ -25,6 +29,10 @@ class Step2Page extends Component {
         this.setState({
          currentPlan,
         });
+    }
+
+    nextStep() {
+
     }
     
     render() {
@@ -51,7 +59,7 @@ class Step2Page extends Component {
             </div>
             <div>
                 <h2>Plans</h2>
-                {
+                {  
                     (plans).map((plan) => {
                         if (currentPlan == plan) {
                         return (
@@ -76,9 +84,11 @@ class Step2Page extends Component {
                      )
                     })
                 }
-                            </div>
-                            </div>
-
+            </div>
+        <div>
+            <button onClick={this.nextStep} >Next</button>
+            </div>
+        </div>
         );
     }
 }
