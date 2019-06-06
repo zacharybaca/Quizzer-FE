@@ -1,44 +1,54 @@
 import React, { Component } from 'react';
 
 // this is where customer selects a Plan
-
 class Step2Page extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            // coupon: '',
+            coupon: '',
             currentPlan: 'bronze',
         };
     
 
-        // this.onCouponChange = this.onCouponChange.bind(this);
+        this.onCouponChange = this.onCouponChange.bind(this);
+        this.switchPlan = this.switchPlan.bind(this);
     }
 
-    // onCouponChange(event) {
-    //     this.setState({
-    //         coupon: event.target.value,
-    //     });
-    // }
+    onCouponChange(event) {
+        this.setState({
+            coupon: event.target.value,
+        });
+    }
+
+    switchPlan(currentPlan) {
+        this.setState({
+         currentPlan,
+        });
+    }
     
     render() {
         const {
-            // coupon,
+            coupon,
             currentPlan,
         } = this.state;
+
+        console.log('coupon', coupon);
+        console.log('currentPlan', currentPlan);
+
 
         const plans = ['bronze', 'silver', 'gold'];
 
         return (
         <div>
-            {/* <div>
+            <div>
                 <input
                 type="text"
                 placeholder="Coupon"
                 value={coupon}
                 onChange={this.onCouponChange}
                 />
-            </div> */}
+            </div>
             <div>
                 <h2>Plans</h2>
                 {
@@ -49,6 +59,7 @@ class Step2Page extends Component {
                                style={{
                                 backgroundColor: '#d8d8d8',
                             }}
+                            onClick={() => this.switchPlan(plan)}
                             >
                                 {plan}
                                 </button>
@@ -57,7 +68,7 @@ class Step2Page extends Component {
                       return (
                         <button
                            style={{
-                            backgroundColor: '#ff',
+                            backgroundColor: '#ffffff',
                         }}
                         >
                             {plan}
