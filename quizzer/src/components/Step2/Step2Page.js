@@ -32,7 +32,24 @@ class Step2Page extends Component {
     }
 
     nextStep() {
+        const {
+            currentPlan, 
+            coupon
+        } = this.state;
 
+        // in the BE it's /api/customer/subscribe ....check that: 
+        fetch('http://localhost:8000/api/stripe/customer/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          plan: currentPlan, 
+          coupon: coupon
+        })
+      }).then((res) => res.json()).then((response) => {
+        console.log('response', response)
+      });
     }
     
     render() {
