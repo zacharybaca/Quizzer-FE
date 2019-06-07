@@ -23,7 +23,7 @@ function App() {
   const responseGoogle = response => {
     localStorage.setItem("token", response.Zi.id_token);
     axios
-      .post("http://localhost:8000/api/auth/login", response, {
+      .post("http://labs13-quizzer.herokuapp.com/api/auth/login", response, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
