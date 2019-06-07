@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
 import { GoogleLogout } from "react-google-login";
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import styled from 'styled-components';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import styled from "styled-components";
 
-import User from './components/user';
-import Student from './components/student';
-import Teacher from './components/teacher';
+import User from "./components/user";
+import Student from "./components/student";
+import Teacher from "./components/teacher";
 
-import StripePage from '../src/components/StripePage/StripePage'
-import Step2Page from './components/Step2/Step2Page';
-
+import StripePage from "../src/components/StripePage/StripePage";
+import Step2Page from "./components/Step2/Step2Page";
 
 const Homepage = styled.div`
   display: flex;
@@ -20,54 +19,50 @@ const Homepage = styled.div`
   justify-content: space-evenly;
   padding-top: 20px;
 `;
-
-function App () {
-  const name = 'Quizzer App';
-  
-  // const responseGoogle = async response => {
-  //   const token = response.tokenId;
-  //   const endpoint = "link";
-  //   const res = await axios(endpoint, { Authorization: token });
-  //   console.log("res", res);
-
+function App() {
   const responseGoogle = response => {
-    console.log(response.tokenId);
+    localStorage.setItem("token", response.Zi.id_token);
+    axios
+      .post("http://localhost:8000/api/auth/login", response, {
+        headers: { Authorization: localStorage.getItem("token") }
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
-  
+
   return (
     <Router>
-    <div className="App">
-      <p>{name}</p>
-      <GoogleLogin
-      clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
-      buttonText="Login"
-      onSuccess={responseGoogle}
-      onFailure={responseGoogle}
-      cookiePolicy={"single_host_origin"}
-      />
-      <GoogleLogout buttonText="Logout" />
-    </div>  
+      <div className="App">
+        <GoogleLogin
+          clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+        <GoogleLogout buttonText="Logout" />
+      </div>
 
-    <div>
-      <Homepage>
-        <Link to ='/users'>Users</Link>
-        <Link to ='/students'>Students</Link>
-        <Link to ='/teachers'>Teachers</Link>
-      </Homepage>
-        <Route path='/users' component={User} />
-        <Route path='/students' component={Student} />
-        <Route path='/teachers' component={Teacher} /> 
-    </div>
+      <div>
+        <Homepage>
+          <Link to="/users">Users</Link>
+          <Link to="/students">Students</Link>
+          <Link to="/teachers">Teachers</Link>
+        </Homepage>
+        <Route path="/users" component={User} />
+        <Route path="/students" component={Student} />
+        <Route path="/teachers" component={Teacher} />
+      </div>
 
-        {/* <Route extact path="/" component={Home}/> */}
-        <Route exact path='/step1' component={StripePage}/>
-        <Route exact path='/step2' component={Step2Page}/>
-
-
-
+      {/* <Route extact path="/" component={Home}/> */}
+      <Route exact path="/step1" component={StripePage} />
+      <Route exact path="/step2" component={Step2Page} />
     </Router>
   );
 }
-    
+
 export default App;
-    
