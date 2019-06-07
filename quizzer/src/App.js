@@ -60,8 +60,8 @@ function App () {
     </div>
 
         {/* <Route extact path="/" component={Home}/> */}
-        <Route extact path='/step1' component={StripePage}/>
-        <Route extact path='/step2' component={Step2Page}/>
+        <Route exact path='/step1' component={StripePage}/>
+        <Route exact path='/step2' component={Step2Page}/>
 
 
 
