@@ -24,7 +24,7 @@ function App() {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
     axios
-      .post("http://labs13-quizzer.herokuapp.com/api/auth/login", response, {
+      .post("https://labs13-quizzer.herokuapp.com/api/auth/login", response, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
