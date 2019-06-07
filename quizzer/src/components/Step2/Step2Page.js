@@ -32,7 +32,26 @@ class Step2Page extends Component {
     }
 
     nextStep() {
+        const {
+            currentPlan, 
+            coupon
+        } = this.state;
 
+      // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
+    //   fetch('http://localhost:8000/api/stripe/customer/subscribe', {
+        
+    fetch('https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          plan: currentPlan, 
+          coupon: coupon
+        })
+      }).then((res) => res.json()).then((response) => {
+        console.log('response', response)
+      });
     }
     
     render() {
