@@ -21,6 +21,7 @@ const Homepage = styled.div`
 `;
 function App() {
   const responseGoogle = response => {
+    console.log(response.Zi.id_token);
     localStorage.setItem("token", response.Zi.id_token);
     axios
       .post("http://labs13-quizzer.herokuapp.com/api/auth/login", response, {
@@ -38,7 +39,7 @@ function App() {
     <Router>
       <div className="App">
         <GoogleLogin
-          clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
+          clientId="577740416033-pdp5vg3nk3r0o0hvs3nl2ipae4ggr92i.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={responseGoogle}
           onFailure={responseGoogle}
