@@ -37,7 +37,6 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <p>{name}</p>
         <GoogleLogin
           clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
           buttonText="Login"
