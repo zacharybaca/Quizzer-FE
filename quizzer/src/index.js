@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import StripePage from '../src/components/StripePage/StripePage'
+import Step2Page from '../src/components/Step2/Step2Page'
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
