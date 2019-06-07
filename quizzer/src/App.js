@@ -10,6 +10,9 @@ import User from "./components/user";
 import Student from "./components/student";
 import Teacher from "./components/teacher";
 
+import StripePage from "../src/components/StripePage/StripePage";
+import Step2Page from "./components/Step2/Step2Page";
+
 const Homepage = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,6 +37,7 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <p>{name}</p>
         <GoogleLogin
           clientId="577740416033-5o653e0h7poma6p0qnhdmptir1gneqo6.apps.googleusercontent.com"
           buttonText="Login"
@@ -43,6 +47,7 @@ function App() {
         />
         <GoogleLogout buttonText="Logout" />
       </div>
+
       <div>
         <Homepage>
           <Link to="/users">Users</Link>
@@ -53,6 +58,10 @@ function App() {
         <Route path="/students" component={Student} />
         <Route path="/teachers" component={Teacher} />
       </div>
+
+      {/* <Route extact path="/" component={Home}/> */}
+      <Route exact path="/step1" component={StripePage} />
+      <Route exact path="/step2" component={Step2Page} />
     </Router>
   );
 }
