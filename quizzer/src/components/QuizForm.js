@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDom from 'react-dom';
+import React, { useState } from 'react';
 
-class QuizForm extends React.Component {
-    super() {
-        state = {
+function QuizForm() {
+    const [questions, setQuestions] = useState([
+        {
 
         }
-    }
+    ]);
+    return (
+        <div className="quizform">
+            <div className="questions">
+                
+            </div>
+        </div>
+    )
 }
+
 
 export default QuizForm;
