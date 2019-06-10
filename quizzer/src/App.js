@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import User from "./components/user";
+import Login from "./components/Login/Login";
 import Student from "./components/student";
 import Teacher from "./components/teacher";
 
@@ -20,32 +21,10 @@ const Homepage = styled.div`
   padding-top: 20px;
 `;
 function App() {
-  const responseGoogle = response => {
-    console.log(response.Zi.id_token);
-    localStorage.setItem("token", response.Zi.id_token);
-    axios
-      .post("http://labs13-quizzer.herokuapp.com/api/auth/login", response, {
-        headers: { Authorization: localStorage.getItem("token") }
-      })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   return (
     <Router>
       <div className="App">
-        <GoogleLogin
-          clientId="577740416033-pdp5vg3nk3r0o0hvs3nl2ipae4ggr92i.apps.googleusercontent.com"
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={"single_host_origin"}
-        />
-        <GoogleLogout buttonText="Logout" />
+        <Route exact path="/login" component={Login} />
       </div>
 
       <div>
