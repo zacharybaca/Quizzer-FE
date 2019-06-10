@@ -25,14 +25,13 @@ function Login() {
         <h2 className="log-in">Login</h2>
         <GoogleLogin
           clientId="577740416033-jql0lb7lggi3u373nc7hqu5i0hgu68ge.apps.googleusercontent.com"
-          buttonText="Sign In With Google"
-          icon={true}
           render={renderProps => (
             <button
               className="text state"
               onClick={renderProps.onClick}
               disabled={renderProps.disabled}
             >
+              <i className="fab fa-google margin" />
               Sign In With Google
             </button>
           )}
