@@ -7,6 +7,14 @@ class Quiz extends React.Component {
         currentQuestion: 0,
         options: []
       }
-  }
+  
 
+  render() {
+    return (
+      <div className="App">
+            Quiz
+            </div>
+    )
+  }
+}
 export default MainQuiz;
