@@ -80,7 +80,7 @@ class Step2Page extends Component {
                 <h2>Plans</h2>
                 {  
                     (plans).map((plan) => {
-                        if (currentPlan == plan) {
+                        if (currentPlan === plan) {
                         return (
                             <button
                                style={{
