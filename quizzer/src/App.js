@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ReactDOM from 'react-dom';
 import "./App.css";
-import axios from "axios";
-import { GoogleLogin } from "react-google-login";
-import { GoogleLogout } from "react-google-login";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
-
 import User from "./components/user";
 import Login from "./components/Login/Login";
+import Choose from "./components/InfoComponents/Choose";
 import Student from "./components/student";
-import Quiz from './components/Quiz/Quiz'
-import QuizData from './components/Quiz/QuizData'
 import Teacher from "./components/teacher";
-import QuizForm from './components/QuizForm/QuizForm';
-
-
+import Protected from "./components/Protected/Protected";
+import QuizForm from "./components/QuizForm/QuizForm";
 
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
+import Quiz from './components/Quiz/Quiz'
+import QuizData from './components/Quiz/QuizData'
 
 const Homepage = styled.div`
   display: flex;
@@ -40,17 +36,15 @@ function App() {
           <Link to="/teachers">Teachers</Link>
           <Link to="/quizzes">Quizzes</Link>
           <Link to="/quiz">Take Quiz</Link>
-          {/* <Link to="/step1">Check Out</Link> */}
-          {/* <Link to="/step2"></Link> */}
-
-
 
         </Homepage>
-        <Route path="/users" component={User} />
-        <Route path="/students" component={Student} />
-        <Route path="/quiz" component={Quiz} />
-        <Route path="/teachers" component={Teacher} />
-        <Route exact path="/quizzes" component={QuizForm} />
+        <Protected exact path="/choose" component={Choose} />
+        <Protected exact path="/users" component={User} />
+        <Protected exact path="/students" component={Student} />
+        <Protected exact path="/teachers" component={Teacher} />
+        <Protected exact path="/quizzes" component={QuizForm} />
+        <Protected exact path="/quiz" component={Quiz} />
+
       </div>
 
       {/* <Route extact path="/" component={Home}/> */}

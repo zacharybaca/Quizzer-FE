@@ -44,10 +44,14 @@
 }
 .text {
   height: 44px;
-  width: 216px;
+  width: 316px;
+  display: flex;
   color: #ffffff;
   font-family: "Open Sans";
   font-size: 18px;
   font-weight: bold;
-  line-height: 24px;
+  line-height: 18px;
+}
+.margin {
+  padding-right: 10px;
 }
