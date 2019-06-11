@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -12,6 +13,8 @@ import QuizForm from "./components/QuizForm/QuizForm";
 
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
+import Quiz from './components/Quiz/Quiz'
+import QuizData from './components/Quiz/QuizData'
 
 const Homepage = styled.div`
   display: flex;
@@ -32,12 +35,16 @@ function App() {
           <Link to="/students">Students</Link>
           <Link to="/teachers">Teachers</Link>
           <Link to="/quizzes">Quizzes</Link>
+          <Link to="/quiz">Take Quiz</Link>
+
         </Homepage>
         <Protected exact path="/choose" component={Choose} />
         <Protected exact path="/users" component={User} />
         <Protected exact path="/students" component={Student} />
         <Protected exact path="/teachers" component={Teacher} />
         <Protected exact path="/quizzes" component={QuizForm} />
+        <Protected exact path="/quiz" component={Quiz} />
+
       </div>
 
       {/* <Route extact path="/" component={Home}/> */}
