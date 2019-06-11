@@ -37,7 +37,7 @@ function App() {
         <Protected exact path="/users" component={User} />
         <Protected exact path="/students" component={Student} />
         <Protected exact path="/teachers" component={Teacher} />
-        <Protected exact path="/quizzes" component={QuizForm} />
+        <Route exact path="/quizzes" component={QuizForm} />
       </div>
 
       {/* <Route extact path="/" component={Home}/> */}

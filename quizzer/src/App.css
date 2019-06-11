@@ -36,7 +36,7 @@
 .logo {
   height: 32px;
   width: 103px;
-  color: #FFFFFF;
+  color: grey;
   font-family: "Open Sans";
   font-size: 24px;
   font-weight: bold;
@@ -67,4 +67,24 @@ border: solid black 8px;
     border-radius: 4px;
     margin-left: 24px;
     margin-top: 16px;
+}
+
+.quizzes-folder {
+    height: 70px;
+    width: 184px;
+    border-radius: 4px;
+    border: solid black 3px;
+    
+}
+
+.label-text {
+    height: 20px;
+    width: 156px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    margin-left: 70px;
+    margin-top: 4px;
 }
