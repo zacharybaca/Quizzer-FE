@@ -39,6 +39,12 @@ function App() {
           <Link to="/students">Students</Link>
           <Link to="/teachers">Teachers</Link>
           <Link to="/quizzes">Quizzes</Link>
+          <Link to="/quiz">Take Quiz</Link>
+          <Link to="/step1">Check Out</Link>
+          {/* <Link to="/step2"></Link> */}
+
+
+
         </Homepage>
         <Route path="/users" component={User} />
         <Route path="/students" component={Student} />
