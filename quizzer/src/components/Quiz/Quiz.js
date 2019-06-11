@@ -30,7 +30,7 @@ class Quiz extends React.Component {
   render() {
     return (
       <div className="App">
-            {this.state.currentQuestion}
+            {this.state.questions}
             </div>
     )
   }
