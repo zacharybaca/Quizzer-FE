@@ -26,6 +26,12 @@ class Quiz extends React.Component {
       this.loadQuiz();
     }
     
+    nextQuestionHandler = () => {
+      this.setState({
+        currentQuestion: this.state.currentQuestion + 1
+      })
+      console.log(this.state.currentQuestion)
+    }
 
   render() {
     const {questions, options} = this.state;
@@ -35,11 +41,14 @@ class Quiz extends React.Component {
               {options.map(option => (
               <p
                 key={option.id}
-                // className={} 
+                className="ui floaating message" 
                 >
                 {option}
               </p>
             ))}
+            <button
+              onClick={this.nextQuestionHandler}
+            >Next</button>
             </div>
     )
   }
