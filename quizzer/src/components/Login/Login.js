@@ -1,18 +1,19 @@
-import React, { useState, setState } from "react";
+import React from "react";
 import "./login.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
 
-function Login() {
+function Login(props) {
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
     axios
-      .post("https://labs13-quizzer.herokuapp.com/api/auth/login", response, {
+      .post("http://localhost:8000/api/auth/login", response, {
         headers: { Authorization: localStorage.getItem("token") }
       })
       .then(res => {
-        console.log(res);
+        props.history.push("/choose");
+        console.log("ran");
       })
       .catch(err => {
         console.log(err);
