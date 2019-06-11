@@ -7,6 +7,8 @@ class Quiz extends React.Component {
         userAnswer: null,
         currentQuestion: 0,
         options: [],
+        quizEnd: false,
+        score: 0,
         // correct_answer: [],
         // incorrect_answers: [],
       }
@@ -54,8 +56,26 @@ class Quiz extends React.Component {
       })
     }
 
+    finishHandler = () => {
+      if(this.state.currentQuestion === QuizData.length - 1) {
+        this.setState({
+          quizEnd: true
+        })
+      }
+    }
+
   render() {
-    const {questions, options, currentQuestion, userAnswer} = this.state;
+    const {questions, options, currentQuestion, userAnswer, quizEnd} = this.state;
+    
+      if(quizEnd) {
+        return (
+          <div>
+            <h2>Completed Quiz</h2>
+          </div>
+        )
+      }
+
+    
     return (
       <div className="App">
             <h2>{questions}</h2>
@@ -70,9 +90,18 @@ class Quiz extends React.Component {
                 {option}
               </p>
             ))}
+
+            {currentQuestion < QuizData.length - 1 && 
+
             <button
               onClick={this.nextQuestionHandler}
             >Next</button>
+            }
+          {currentQuestion ===  QuizData.length - 1 &&
+          <button
+            onClick={this.finishHandler}
+          >Finish</button>
+          }
             </div>
     )
   }
