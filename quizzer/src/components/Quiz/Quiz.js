@@ -47,6 +47,13 @@ class Quiz extends React.Component {
       }
     }
 
+    //check answer
+    checkAnswer = answer => {
+      this.setState({
+        userAnswer: answer
+      })
+    }
+
   render() {
     const {questions, options, currentQuestion, userAnswer} = this.state;
     return (
@@ -57,7 +64,9 @@ class Quiz extends React.Component {
               <p key={option.id}
                 className={`ui floating message
                   ${userAnswer === option ? "selected" : null}
-                  `}>
+                  `}
+                  onClick={() => this.checkAnswer(option)}
+                  >
                 {option}
               </p>
             ))}
