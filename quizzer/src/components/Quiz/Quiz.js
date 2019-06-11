@@ -28,11 +28,23 @@ class Quiz extends React.Component {
     
 
   render() {
+    const {questions, options} = this.state;
     return (
       <div className="App">
-            {this.state.questions}
+            {questions}
+              {options.map(option => (
+              <p
+                key={option.id}
+                // className={} 
+                >
+                {option}
+              </p>
+            ))}
             </div>
     )
   }
 }
 export default Quiz;
+
+
+

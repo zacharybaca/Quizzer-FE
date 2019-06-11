@@ -40,7 +40,7 @@ function App() {
           <Link to="/teachers">Teachers</Link>
           <Link to="/quizzes">Quizzes</Link>
           <Link to="/quiz">Take Quiz</Link>
-          <Link to="/step1">Check Out</Link>
+          {/* <Link to="/step1">Check Out</Link> */}
           {/* <Link to="/step2"></Link> */}
 
 
