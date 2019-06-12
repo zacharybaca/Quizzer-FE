@@ -31,13 +31,13 @@ class Quiz extends React.Component {
     
     nextQuestionHandler = () => {
       // console.log('test')
-    const { userAnswer, answer, score } = this.state;
+    const { userAnswer, answers, score } = this.state;
       this.setState({
         currentQuestion: this.state.currentQuestion + 1
       })
       console.log(this.state.currentQuestion)
       // increment the score if answer is correct
-      if(userAnswer === answer){
+      if(userAnswer === answers){
         this.setState({
           score: score + 1
         })
@@ -85,9 +85,9 @@ class Quiz extends React.Component {
             <p>The Correct Answer's were: </p>
             <ul>
               {QuizData.map((item, index) => (
-                  <li className="ui floating message options" key={index}>
-                   {item.answer}
-                  ></li> 
+                  <li className="ui floating message options" key={index}
+                  >{item.answer} 
+                  </li> 
               ))}
             </ul>
           </div>
