@@ -16,7 +16,7 @@ function Login(props) {
         }
       )
       .then(res => {
-        props.history.push("/choose");
+        props.history.push("/teachersDashboard");
         console.log("ran");
       })
       .catch(err => {
@@ -35,7 +35,7 @@ function Login(props) {
         }
       )
       .then(res => {
-        props.history.push("/choose");
+        props.history.push("/studentsDashboard");
         console.log("ran");
       })
       .catch(err => {
