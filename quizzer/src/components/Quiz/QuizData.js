@@ -16,28 +16,35 @@ export const QuizData = [
     // change these to back ticks ` 
     {
     "id": 2,
-    "category": "Science",
-    "type": "multiple",
-    "difficulty": "easy",
-    "question": "What is the chemical formula for water?",
-    "correct_answer": "H2O",
-    "incorrect_answers": "{\"H2O2\",\"H30\",\"HO2\"}",
+    "category": `Science`,
+    "type": `multiple`,
+    "difficulty": `easy`,
+    "question": [`What is the chemical formula for water?`],
+    "correct_answer": `H2O`,
+    "incorrect_answers": [`H2O2`,`H30`,`HO2`],
     "points": 1,
-    "options": "{\"H2O2\",\"H30\",\"HO2\"}",
-    "answer": "H2O",
-    "questions": "What is the chemical formula for water?",
+    "options": [`H2O2`,`H30`,`HO2`, `H2O`],
+    "answer": `H2O`,
+    "questions": [`What is the chemical formula for water?`],
     },
 
-    // {
-    // "id": 3,
-    // "category": "English",
-    // "type": "multiple",
-    // "difficulty": "medium",
-    // "question": "Which of these is a correlative conjunction function?",
-    // "correct_answer": "Neither/nor",
-    // "incorrect_answers": "{\"After\",\"Since\",\"Although\"}",
-    // "points": 2
-    // },
+    {
+    "id": 3,
+    "category": `English`,
+    "type": `multiple`,
+    "difficulty": `medium`,
+    "question": [`Which of these is a correlative conjunction function?`],
+    "correct_answer": `Neither-nor`,
+    "incorrect_answers": [`After`,`Since`,`Although`],
+    "points": 2,
+    "options": [`After`,`Neither-nor`,`Since`,`Although`],
+
+    "answer": [`Neither-nor`],
+    "questions": [`Which of these is a correlative conjunction function?`],
+
+    },
+
+
     // {
     // "id": 4,
     // "category": "History",

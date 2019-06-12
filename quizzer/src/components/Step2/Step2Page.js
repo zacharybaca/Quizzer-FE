@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-// this is where customer selects a Plan
-// TODO decide if we have different plans "bronze, silver, gold"
-// if yes then add "silver, gold" to dashboard
+// this is where customer selects a Plan via Stripe
 class Step2Page extends Component {
     constructor(props) {
         super(props);
