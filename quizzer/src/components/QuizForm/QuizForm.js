@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './Header';
 import SideBarNav from './SideBarNav';
+import AddQuiz from './AddQuiz';
 
 
 function QuizForm() {
@@ -18,6 +19,7 @@ function QuizForm() {
         <div className="quizform">
             <Header />
             <SideBarNav />
+            <AddQuiz />
             
         </div>
     )
