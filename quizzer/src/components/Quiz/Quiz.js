@@ -10,13 +10,15 @@ class Quiz extends React.Component {
         quizEnd: false,
         score: 0,
         disabled: true,
+        // correct_answer: [],
+        // incorrect_answers: [],
       }
   
       loadQuiz = () => {
           const {currentQuestion} = this.state;
           this.setState(() => {
             return {
-              question: QuizData[currentQuestion].question,
+              questions: QuizData[currentQuestion].Q_content,
               options: QuizData[currentQuestion].options,
               answers: QuizData[currentQuestion].correct_answer
         }
@@ -49,7 +51,7 @@ class Quiz extends React.Component {
         this.setState(() => {
           return {
             disabled: true,
-            question: QuizData[currentQuestion].question,
+            questions: QuizData[currentQuestion].Q_content,
             options: QuizData[currentQuestion].options,
             answers: QuizData[currentQuestion].correct_answer
           }
@@ -74,7 +76,7 @@ class Quiz extends React.Component {
     }
 
   render() {
-    const {question, options, currentQuestion, userAnswer, quizEnd} = this.state;
+    const {questions, options, currentQuestion, userAnswer, quizEnd} = this.state;
     
       if(quizEnd) {
         return (
@@ -95,7 +97,7 @@ class Quiz extends React.Component {
     
     return (
       <div className="App">
-            <h2>{question}</h2>
+            <h2>{questions}</h2>
             <span> {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}</span>
               {options.map(option => (
               <p key={option.id}
@@ -124,6 +126,5 @@ class Quiz extends React.Component {
   }
 }
 export default Quiz;
-
 
 
