@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import Choose from "./components/InfoComponents/Choose";
 import Student from "./components/student";
 import Teacher from "./components/teacher";
+import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
+import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 
@@ -39,6 +41,16 @@ function App() {
           </Homepage>
         ) : null}
 
+        <Protected
+          exact
+          path="/studentsDashboard"
+          component={StudentsDashboard}
+        />
+        <Protected
+          exact
+          path="/teachersDashboard"
+          component={TeachersDashboard}
+        />
         <Protected exact path="/choose" component={Choose} />
         <Protected exact path="/users" component={User} />
         <Protected exact path="/students" component={Student} />
