@@ -4,13 +4,13 @@ export const QuizData = [
     "category": `Math`,
     "type": `multiple`,
     "difficulty": `medium`,
-    "question": [`What is the square route of 256?`],
+    "Q_content": [`What is the square route of 256?`],
     "correct_answer": `16`,
     "incorrect_answers": [`12`,`14`,`15`],
     "points": 2,
     "options": [`12`,`14`,`15`,`16`],
-    "answer": `16`,
-    "questions": [`What is the square route of 256?`],
+    // "answer": `16`,
+    // "questions": [`What is the square route of 256?`],
     },
     
     // change these to back ticks ` 
@@ -19,13 +19,13 @@ export const QuizData = [
     "category": `Science`,
     "type": `multiple`,
     "difficulty": `easy`,
-    "question": [`What is the chemical formula for water?`],
+    "Q_content": [`What is the chemical formula for water?`],
     "correct_answer": `H2O`,
     "incorrect_answers": [`H2O2`,`H30`,`HO2`],
     "points": 1,
     "options": [`H2O2`,`H30`,`HO2`, `H2O`],
-    "answer": `H2O`,
-    "questions": [`What is the chemical formula for water?`],
+    // "answer": `H2O`,
+    // "questions": [`What is the chemical formula for water?`],
     },
 
     {
@@ -33,15 +33,13 @@ export const QuizData = [
     "category": `English`,
     "type": `multiple`,
     "difficulty": `medium`,
-    "question": [`Which of these is a correlative conjunction function?`],
-    "correct_answer": `Neither-nor`,
+    "Q_content": [`Which of these is a correlative conjunction function?`],
+    "correct_answer": [`Neither-nor`],
     "incorrect_answers": [`After`,`Since`,`Although`],
     "points": 2,
     "options": [`After`,`Neither-nor`,`Since`,`Although`],
-
-    "answer": [`Neither-nor`],
-    "questions": [`Which of these is a correlative conjunction function?`],
-
+    // "answer": [`Neither-nor`],
+    // "questions": [`Which of these is a correlative conjunction function?`],
     },
 
 
