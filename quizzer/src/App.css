@@ -5,19 +5,18 @@
   font-family: sans-serif;
   text-align: center;
 
-    font-family: sans-serif;
-    text-align: center;
-  }
+  font-family: sans-serif;
+  text-align: center;
+}
 
-  .selected {
-    background: linear-gradient(to right, #74ebd5, #acb6e5) !important;
-  }
+.selected {
+  background: linear-gradient(to right, #74ebd5, #acb6e5) !important;
+}
 
-  .options {
+.options {
   cursor: pointer;
   border: 2px solid black;
   padding: 10px;
->>>>>>> 73d7542e88475e6c691ffa9ccbd796106c7055c2
 }
 
 .App-logo {
@@ -93,25 +92,24 @@
   line-height: 32px;
   text-align: center;
 }
-  
-.quizzes-folder {
-    height: 80px;
-    width: 184px;
-    border-radius: 4px;
-    border: solid black 3px;
 
+.quizzes-folder {
+  height: 80px;
+  width: 184px;
+  border-radius: 4px;
+  border: solid black 3px;
 }
 
 .label-text {
-    height: 20px;
-    width: 156px;
-    color: #000000;
-    font-family: "Open Sans";
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 24px;
-    margin-left: 70px;
-    margin-top: 4px;
+  height: 20px;
+  width: 156px;
+  color: #000000;
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 24px;
+  margin-left: 70px;
+  margin-top: 4px;
 }
 
 .quiz-name-section {
@@ -120,7 +118,6 @@
   align-items: center;
   margin-top: -900px;
   margin-left: 700px;
-
 }
 
 .quizform {
@@ -129,21 +126,21 @@
 }
 
 .text-box {
-    height: 44px;
-    width: 288px;
+  height: 44px;
+  width: 288px;
 }
 
 .add-quiz-label {
-    height: 20px;
-    width: 544px;
-    color: #000000;
-    font-family: "Open Sans";
-    font-size: 14px;
-    font-weight: bold;
-    line-height: 20px;
+  height: 20px;
+  width: 544px;
+  color: #000000;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
 }
 
 .add-quiz-text-box {
-    height: 92px;
-    width: 544px;
+  height: 92px;
+  width: 544px;
 }

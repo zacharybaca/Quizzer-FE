@@ -18,9 +18,9 @@ class Quiz extends React.Component {
           const {currentQuestion} = this.state;
           this.setState(() => {
             return {
-              questions: QuizData[currentQuestion].question,
+              questions: QuizData[currentQuestion].Q_content,
               options: QuizData[currentQuestion].options,
-              answers: QuizData[currentQuestion].answer
+              answers: QuizData[currentQuestion].correct_answer
         }
       })
     }
@@ -51,18 +51,18 @@ class Quiz extends React.Component {
         this.setState(() => {
           return {
             disabled: true,
-            questions: QuizData[currentQuestion].question,
+            questions: QuizData[currentQuestion].Q_content,
             options: QuizData[currentQuestion].options,
-            answers: QuizData[currentQuestion].answer
+            answers: QuizData[currentQuestion].correct_answer
           }
         })
       }
     }
 
     //check answer
-    checkAnswer = answer => {
+    checkAnswer = correct_answer => {
       this.setState({
-        userAnswer: answer,
+        userAnswer: correct_answer,
         disabled: false,
       })
     }
@@ -86,7 +86,7 @@ class Quiz extends React.Component {
             <ul>
               {QuizData.map((item, index) => (
                   <li className="ui floating message options" key={index}
-                  >{item.answer} 
+                  >{item.correct_answer} 
                   </li> 
               ))}
             </ul>
@@ -126,6 +126,5 @@ class Quiz extends React.Component {
   }
 }
 export default Quiz;
-
 
 
