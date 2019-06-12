@@ -73,7 +73,7 @@ border: solid black 8px;
 }
 
 .quizzes-folder {
-    height: 70px;
+    height: 80px;
     width: 184px;
     border-radius: 4px;
     border: solid black 3px;
@@ -90,4 +90,38 @@ border: solid black 8px;
     line-height: 24px;
     margin-left: 70px;
     margin-top: 4px;
+}
+
+.quiz-name-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -900px;
+  margin-left: 700px;
+  
+}
+
+.quizform {
+  width: 960px;
+  height: 960px;
+}
+
+.text-box {
+    height: 44px;
+    width: 288px;
+}
+
+.add-quiz-label {
+    height: 20px;
+    width: 544px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+
+.add-quiz-text-box {
+    height: 92px;
+    width: 544px;
 }
