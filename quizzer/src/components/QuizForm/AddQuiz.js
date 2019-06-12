@@ -1,6 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function AddQuiz() {
+    const [quiz, setQuiz] = useState({
+        "id": null,
+        "category": "",
+        "type": "",
+        "difficulty": "",
+        "question": "",
+        "correct_answer": "",
+        "incorrect_answers": "",
+        "points": null,
+        "options": [],
+        "answer": "",
+        "questions": ""
+    })
     return (
         <div>
             <div className="quiz-name-section">
