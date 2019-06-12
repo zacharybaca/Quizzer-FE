@@ -9,6 +9,7 @@ class Quiz extends React.Component {
         options: [],
         quizEnd: false,
         score: 0,
+        disabled: true,
         // correct_answer: [],
         // incorrect_answers: [],
       }
@@ -29,10 +30,18 @@ class Quiz extends React.Component {
     }
     
     nextQuestionHandler = () => {
+      // console.log('test')
+    const { userAnswer, answer, score } = this.state;
       this.setState({
         currentQuestion: this.state.currentQuestion + 1
       })
       console.log(this.state.currentQuestion)
+      // increment the score if answer is correct
+      if(userAnswer === answer){
+        this.setState({
+          score: score + 1
+        })
+      }
     }
     
     // updates the component
@@ -41,6 +50,7 @@ class Quiz extends React.Component {
       if(this.state.currentQuestion !== prevState.currentQuestion) {
         this.setState(() => {
           return {
+            disabled: true,
             questions: QuizData[currentQuestion].question,
             options: QuizData[currentQuestion].options,
             answers: QuizData[currentQuestion].answer
@@ -52,7 +62,8 @@ class Quiz extends React.Component {
     //check answer
     checkAnswer = answer => {
       this.setState({
-        userAnswer: answer
+        userAnswer: answer,
+        disabled: false,
       })
     }
 
@@ -70,7 +81,15 @@ class Quiz extends React.Component {
       if(quizEnd) {
         return (
           <div>
-            <h2>Completed Quiz</h2>
+            <h2>Completed Quiz final score is {this.state.score} points</h2>
+            <p>The Correct Answer's were: </p>
+            <ul>
+              {QuizData.map((item, index) => (
+                  <li className="ui floating message options" key={index}>
+                   {item.answer}
+                  ></li> 
+              ))}
+            </ul>
           </div>
         )
       }
@@ -92,8 +111,8 @@ class Quiz extends React.Component {
             ))}
 
             {currentQuestion < QuizData.length - 1 && 
-
             <button
+            disabled={this.state.disabled}
               onClick={this.nextQuestionHandler}
             >Next</button>
             }
