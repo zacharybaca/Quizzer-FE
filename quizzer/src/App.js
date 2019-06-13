@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -8,6 +8,8 @@ import Login from "./components/Login/Login";
 import Choose from "./components/InfoComponents/Choose";
 import Student from "./components/student";
 import Teacher from "./components/teacher";
+import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
+import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 
@@ -20,8 +22,11 @@ import getQuiz from './components/Quiz/getQuiz'
 const Homepage = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  padding-top: 20px;
+  justify-content: flex-start;
+  padding-top: 15px;
+  height: 64px;
+  width: 100%;
+  background-color: #363648;
 `;
 function App() {
   return (
@@ -31,21 +36,28 @@ function App() {
       </div>
 
       <div>
-        <Homepage>
-          <Link to="/users">Users</Link>
-          <Link to="/students">Students</Link>
-          <Link to="/teachers">Teachers</Link>
-          <Link to="/quizzes">Quizzes</Link>
-          <Link to="/quiz">Take Quiz</Link>
+        {localStorage.getItem("token") ? (
+          <Homepage>
+            <h1 className="logo">Quizzer</h1>
+          </Homepage>
+        ) : null}
 
-        </Homepage>
+        <Protected
+          exact
+          path="/studentsDashboard"
+          component={StudentsDashboard}
+        />
+        <Protected
+          exact
+          path="/teachersDashboard"
+          component={TeachersDashboard}
+        />
         <Protected exact path="/choose" component={Choose} />
         <Protected exact path="/users" component={User} />
         <Protected exact path="/students" component={Student} />
         <Protected exact path="/teachers" component={Teacher} />
         <Protected exact path="/quizzes" component={QuizForm} />
         <Protected exact path="/quiz" component={Quiz} />
-
       </div>
 
       {/* <Route extact path="/" component={Home}/> */}
