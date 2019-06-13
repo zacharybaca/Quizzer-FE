@@ -16,8 +16,9 @@ import QuizForm from "./components/QuizForm/QuizForm";
 
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
-import Quiz from "./components/Quiz/Quiz";
-import QuizData from "./components/Quiz/QuizData";
+import Quiz from './components/Quiz/Quiz'
+import QuizData from './components/Quiz/QuizData'
+import getQuiz from './components/Quiz/getQuiz'
 
 const Homepage = styled.div`
   display: flex;
@@ -69,6 +70,8 @@ function App(props) {
       {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
       <Route exact path="/step2" component={Step2Page} />
+      <Route exact path="/getQuiz" component={Step2Page} />
+
     </>
   );
 }
