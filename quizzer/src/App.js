@@ -59,7 +59,7 @@ function App() {
         <Protected exact path="/quiz" component={Quiz} />
       </div>
 
-      {/* <Route extact path="/" component={Home}/> */}
+      {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
       <Route exact path="/step2" component={Step2Page} />
     </Router>
