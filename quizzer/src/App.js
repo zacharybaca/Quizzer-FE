@@ -10,6 +10,7 @@ import Student from "./components/student";
 import Teacher from "./components/teacher";
 import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
 import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
+import { GoogleLogout } from "react-google-login";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 
@@ -28,9 +29,14 @@ const Homepage = styled.div`
   width: 100%;
   background-color: #363648;
 `;
-function App() {
+function App(props) {
+  const logout = () => {
+    console.log("pressed");
+    localStorage.removeItem("token");
+    console.log(props);
+  };
   return (
-    <Router>
+    <>
       <div className="App">
         <Route exact path="/login" component={Login} />
       </div>
@@ -39,6 +45,7 @@ function App() {
         {localStorage.getItem("token") ? (
           <Homepage>
             <h1 className="logo">Quizzer</h1>
+            <button onClick={logout}>logout</button>
           </Homepage>
         ) : null}
 
@@ -60,12 +67,12 @@ function App() {
         <Protected exact path="/quiz" component={Quiz} />
       </div>
 
-      {/* <Route extact path="/" component={Home}/> */}
+      {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
       <Route exact path="/step2" component={Step2Page} />
-      <Route exact path="/getQuiz" component={getQuiz} />
+      <Route exact path="/getQuiz" component={Step2Page} />
 
-    </Router>
+    </>
   );
 }
 
