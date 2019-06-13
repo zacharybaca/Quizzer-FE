@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./login.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
 
 function Login(props) {
+  const [signedIn, setSignedIn] = useState();
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
@@ -16,8 +17,9 @@ function Login(props) {
         }
       )
       .then(res => {
+        localStorage.setItem("id", res.data[0].id);
+        setSignedIn(res.data.id);
         props.history.push("/teachersDashboard");
-        console.log("ran");
       })
       .catch(err => {
         console.log(err);
@@ -35,6 +37,7 @@ function Login(props) {
         }
       )
       .then(res => {
+        localStorage.setItem("id", res.data.id);
         props.history.push("/studentsDashboard");
         console.log("ran");
       })
