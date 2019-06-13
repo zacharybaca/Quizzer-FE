@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -22,6 +22,7 @@ import Quiz2 from "./components/Quiz/Quiz2";
 
 import QuizData from "./components/Quiz/QuizData";
 import QuizData2 from "./components/Quiz/QuizData2";
+import getQuiz from './components/Quiz/getQuiz'
 
 const Homepage = styled.div`
   display: flex;
@@ -79,6 +80,8 @@ function App(props) {
       {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
       <Route exact path="/step2" component={Step2Page} />
+      <Route exact path="/getQuiz" component={getQuiz} />
+
     </>
   );
 }

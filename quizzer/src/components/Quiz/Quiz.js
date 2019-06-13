@@ -11,8 +11,6 @@ class Quiz extends React.Component {
         quizEnd: false,
         score: 0,
         disabled: true,
-        // correct_answer: [],
-        // incorrect_answers: [],
       }
 
       loadQuiz = () => {
