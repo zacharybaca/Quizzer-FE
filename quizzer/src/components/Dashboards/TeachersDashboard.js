@@ -21,7 +21,7 @@ function TeacherDashboard(props) {
 
   return (
     <div>
-      {console.log(quizzes)}
+      <button>new quiz</button>
       <h1>dash</h1>
 
       {quizzes.length < 0 ? (
