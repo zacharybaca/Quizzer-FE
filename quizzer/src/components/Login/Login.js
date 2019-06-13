@@ -66,7 +66,7 @@ function Login(props) {
           />
         </div>
         <div>
-          <h2 className="log-in">Login as student</h2>
+          <h2 className="log-in">Login as Student</h2>
           <GoogleLogin
             clientId="577740416033-jql0lb7lggi3u373nc7hqu5i0hgu68ge.apps.googleusercontent.com"
             render={renderProps => (

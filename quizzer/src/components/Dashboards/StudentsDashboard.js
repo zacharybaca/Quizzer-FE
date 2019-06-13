@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import PropTypes from "prop-types";
 
-const StudentsDashboard = props => {
-  return <div />;
+function StudentsDashboard(props) {
+  const [quizzes, takeQuizzes] = useState([]);
+  //takes place instead of componentDidMount
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+          `https://labs13-quizzer.herokuapp.com/api/quiz/student/${localStorage.getItem(
+            "id"
+          )}/quizzes`
+      );
+      //setting database data to state with hooks
+      console.log(result.data);
+      takeQuizzes(result.data);
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+        {console.log(quizzes)}
+        <h1>Student DashBoard</h1>
+
+        {quizzes.length < 0 ? (
+            quizzes.map(user => (
+                <li>
+                    <p>quiz: {quizzes.name}</p>
+                </li>
+            ))
+        ) : (
+          <p>no quizzes taken</p>      
+        )}
+    </div>
+  );
 };
 
 export default StudentsDashboard;
