@@ -27,7 +27,7 @@ function StudentsDashboard(props) {
         {quizzes.length < 0 ? (
             quizzes.map(user => (
                 <li>
-                    <p>quiz: {quizzes.name}</p>
+                    <p>quiz</p>
                 </li>
             ))
         ) : (

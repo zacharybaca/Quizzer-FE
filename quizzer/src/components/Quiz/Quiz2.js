@@ -1,12 +1,11 @@
 import React from 'react';
-import QuizData from '../Quiz/QuizData';
+import QuizData2 from '../Quiz/QuizData2';
 
-//Noted issue Q'a start at 0 not 1 an thus points are only counted from 1 not 0
 
-class Quiz extends React.Component {
+class Quiz2 extends React.Component {
       state = {
         userAnswer: null,
-        currentQuestion: 0, 
+        currentQuestion: 0,
         options: [],
         quizEnd: false,
         score: 0,
@@ -14,14 +13,14 @@ class Quiz extends React.Component {
         // correct_answer: [],
         // incorrect_answers: [],
       }
-
+  
       loadQuiz = () => {
           const {currentQuestion} = this.state;
           this.setState(() => {
             return {
-              questions: QuizData[currentQuestion].Q_content,
-              options: QuizData[currentQuestion].options,
-              answers: QuizData[currentQuestion].correct_answer
+              questions: QuizData2[currentQuestion].Q_content,
+              options: QuizData2[currentQuestion].options,
+              answers: QuizData2[currentQuestion].correct_answer
         }
       })
     }
@@ -52,9 +51,9 @@ class Quiz extends React.Component {
         this.setState(() => {
           return {
             disabled: true,
-            questions: QuizData[currentQuestion].Q_content,
-            options: QuizData[currentQuestion].options,
-            answers: QuizData[currentQuestion].correct_answer
+            questions: QuizData2[currentQuestion].Q_content,
+            options: QuizData2[currentQuestion].options,
+            answers: QuizData2[currentQuestion].correct_answer
           }
         })
       }
@@ -69,7 +68,7 @@ class Quiz extends React.Component {
     }
 
     finishHandler = () => {
-      if(this.state.currentQuestion === QuizData.length - 1) {
+      if(this.state.currentQuestion === QuizData2.length - 1) {
         this.setState({
           quizEnd: true
         })
@@ -85,7 +84,7 @@ class Quiz extends React.Component {
             <h2>Completed Quiz final score is {this.state.score} points</h2>
             <p>The Correct Answer's were: </p>
             <ul>
-              {QuizData.map((item, index) => (
+              {QuizData2.map((item, index) => (
                   <li className="ui floating message options" key={index}
                   >{item.correct_answer} 
                   </li> 
@@ -99,7 +98,7 @@ class Quiz extends React.Component {
     return (
       <div className="App">
             <h2>{questions}</h2>
-            <span> {`Questions ${currentQuestion} out of ${QuizData.length - 1}`}</span>
+            <span> {`Questions ${currentQuestion} out of ${QuizData2.length - 1}`}</span>
               {options.map(option => (
               <p key={option.id}
                 className={`ui floating message
@@ -111,13 +110,13 @@ class Quiz extends React.Component {
               </p>
             ))}
 
-            {currentQuestion < QuizData.length - 1 && 
+            {currentQuestion < QuizData2.length - 1 && 
             <button
             disabled={this.state.disabled}
               onClick={this.nextQuestionHandler}
             >Next</button>
             }
-          {currentQuestion ===  QuizData.length - 1 &&
+          {currentQuestion ===  QuizData2.length - 1 &&
           <button
             onClick={this.finishHandler}
           >Finish</button>
@@ -126,6 +125,6 @@ class Quiz extends React.Component {
     )
   }
 }
-export default Quiz;
+export default Quiz2;
 
 

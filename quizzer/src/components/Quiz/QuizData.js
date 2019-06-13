@@ -1,4 +1,4 @@
-export const QuizData = [
+const QuizData = [
     {
     "id": 1,
     "category": `Math`,
@@ -114,4 +114,6 @@ export const QuizData = [
     // "points": 3
     // }
     
-]
+];
+
+export default QuizData;
