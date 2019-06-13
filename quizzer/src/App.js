@@ -18,10 +18,10 @@ import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
 import Quiz from "./components/Quiz/Quiz";
-import Quiz2 from "./components/Quiz/Quiz2";
+
 
 import QuizData from "./components/Quiz/QuizData";
-import QuizData2 from "./components/Quiz/QuizData2";
+
 import getQuiz from './components/Quiz/getQuiz'
 
 const Homepage = styled.div`
@@ -70,11 +70,8 @@ function App(props) {
         <Protected exact path="/quizzes" component={QuizForm} />
         
         <Protected exact path="/quiz" component={Quiz} />
-        <Protected exact path="/quiz2" component={Quiz2} />
-
         <Protected exact path="/quizData" component={QuizData} />
-        <Protected exact path="/quizData2" component={QuizData2} />
-
+     
       </div>
 
       {/* <Route exact path="/" component={Home}/> */}
