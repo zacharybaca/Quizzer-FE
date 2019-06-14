@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from 'react-router-dom';
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);

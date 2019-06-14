@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);

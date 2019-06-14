@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, /*useEffect*/ } from "react";
 import "./login.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
 
 function Login(props) {
-  const [signedIn, setSignedIn] = useState();
+  const [/*signedIn*/, setSignedIn] = useState();
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
