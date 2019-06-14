@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import CheckoutForm from '../StripePage/CheckoutForm';
+import { Link } from 'react-router-dom';
 
 // this is where customer selects a Plan via Stripe
 class Step2Page extends Component {
@@ -16,7 +15,6 @@ class Step2Page extends Component {
         this.onCouponChange = this.onCouponChange.bind(this);
         this.switchPlan = this.switchPlan.bind(this);
         this.nextStep = this.nextStep.bind(this);
-
     }
 
     onCouponChange(event) {
@@ -51,7 +49,7 @@ class Step2Page extends Component {
         })
       }).then((res) => res.json()).then((response) => {
         console.log('response', response)
-alert(`Thank you for selecting the ${this.state.currentPlan} plan for all your testing needs, its our best seller!` );        
+        alert(`Thank you for selecting the ${currentPlan} plan for all your testing needs, its our best seller!`);        
       });
     }
     
@@ -108,7 +106,6 @@ alert(`Thank you for selecting the ${this.state.currentPlan} plan for all your t
             <div>
                 <button onClick={this.nextStep} >Next</button>
                 <Link to='/step1' ><button>Back</button></Link>
-                <Route exact path='/step1' component={CheckoutForm} />
             </div>
         </div>
         );

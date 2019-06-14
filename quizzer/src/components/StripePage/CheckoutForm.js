@@ -3,8 +3,7 @@ import React from 'react';
 import {injectStripe} from 'react-stripe-elements';
 // import AddressSection from './AddressSection';
 import CardSection from './CardSection';
-import { Route, Link } from 'react-router-dom';
-import Step2Page from "../Step2/Step2Page";
+import { Link } from 'react-router-dom';
 
 class CheckoutForm extends React.Component {
 
@@ -79,7 +78,6 @@ class CheckoutForm extends React.Component {
         <CardSection />
         <button type="submit">Confirm order</button>
         <Link to='/step2' ><button>Next</button></Link>
-        <Route exact path='/step2' component={Step2Page} />
       </form>
     );
   

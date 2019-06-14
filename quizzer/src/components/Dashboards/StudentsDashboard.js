@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import PropTypes from "prop-types";
 
 function StudentsDashboard(props) {
@@ -21,14 +22,19 @@ function StudentsDashboard(props) {
 
   return (
     <div>
+      <button>
+        {" "}
+        <Link to="/quizzes">new quiz</Link>
+        
+      </button>
         {console.log(quizzes)}
         <h1>Student DashBoard</h1>
 
         {quizzes.length < 0 ? (
             quizzes.map(user => (
-                <li>
-                    <p>quiz</p>
-                </li>
+              <li>
+                <p>quiz</p>
+              </li>
             ))
         ) : (
           <p>no quizzes taken</p>      

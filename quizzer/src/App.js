@@ -13,15 +13,11 @@ import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
 import { GoogleLogout } from "react-google-login";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
-
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
 import Quiz from "./components/Quiz/Quiz";
-
-
 import QuizData from "./components/Quiz/QuizData";
-
 import getQuiz from './components/Quiz/getQuiz'
 
 const Homepage = styled.div`
