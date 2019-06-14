@@ -3,6 +3,8 @@ import React from 'react';
 import {injectStripe} from 'react-stripe-elements';
 // import AddressSection from './AddressSection';
 import CardSection from './CardSection';
+import { Route, Link } from 'react-router-dom';
+import Step2Page from "../Step2/Step2Page";
 
 class CheckoutForm extends React.Component {
 
@@ -50,6 +52,7 @@ class CheckoutForm extends React.Component {
         })
       }).then((res) => res.json()).then((response) => {
         console.log('response', response)
+        alert(`Thank you for doing business with us!` );
       });
     })
 
@@ -67,16 +70,19 @@ class CheckoutForm extends React.Component {
         name: 'Jenny Rosen',
       },
     });
-  };
+  }; 
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
-        <button>Confirm order</button>
+        <button type="submit">Confirm order</button>
+        <Link to='/step2' ><button>Next</button></Link>
+        <Route exact path='/step2' component={Step2Page} />
       </form>
     );
+  
   }
 }
 

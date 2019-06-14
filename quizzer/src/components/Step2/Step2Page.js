@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import CheckoutForm from '../StripePage/CheckoutForm';
 
 // this is where customer selects a Plan via Stripe
 class Step2Page extends Component {
@@ -35,7 +37,7 @@ class Step2Page extends Component {
             coupon
         } = this.state;
 
-      // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
+      // heroku: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
     //   fetch('http://localhost:8000/api/stripe/customer/subscribe', {
         
     fetch('https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe', {
@@ -49,6 +51,7 @@ class Step2Page extends Component {
         })
       }).then((res) => res.json()).then((response) => {
         console.log('response', response)
+alert(`Thank you for selecting the ${this.state.currentPlan} plan for all your testing needs, its our best seller!` );        
       });
     }
     
@@ -102,8 +105,10 @@ class Step2Page extends Component {
                     })
                 }
             </div>
-        <div>
-            <button onClick={this.nextStep} >Next</button>
+            <div>
+                <button onClick={this.nextStep} >Next</button>
+                <Link to='/step1' ><button>Back</button></Link>
+                <Route exact path='/step1' component={CheckoutForm} />
             </div>
         </div>
         );
@@ -111,3 +116,4 @@ class Step2Page extends Component {
 }
 
 export default Step2Page;
+
