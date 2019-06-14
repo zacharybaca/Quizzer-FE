@@ -27,10 +27,11 @@ function TeacherDashboard(props) {
         <Link to="/quizzes">new quiz</Link>
       </button>
       <h1>dash</h1>
-
-      {quizzes.length < 0 ? (
+      {console.log(quizzes.quizzes)}
+      {quizzes ? (
         quizzes.map(user => (
           <li>
+            {console.log("running")}
             <p>quiz</p>
           </li>
         ))
