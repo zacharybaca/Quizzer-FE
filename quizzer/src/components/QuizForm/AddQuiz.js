@@ -21,7 +21,7 @@ class AddQuiz extends React.Component {
 
         const teacher_id = localStorage.getItem("id");
         console.log(teacher_id);
-        axios.post(`http://localhost:8000/api/quiz/quizzes`, {
+        axios.post(`https://labs13-quizzer.herokuapp.com/api/quiz/quizzes`, {
             teacher_id
         },
         )
