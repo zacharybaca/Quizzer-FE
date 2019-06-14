@@ -10,7 +10,7 @@ function Login(props) {
     localStorage.setItem("token", response.Zi.id_token);
     axios
       .post(
-        "https://labs13-quizzer.herokuapp.com/api/auth//teacher/login",
+        "https://labs13-quizzer.herokuapp.com/api/auth/teacher/login",
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
