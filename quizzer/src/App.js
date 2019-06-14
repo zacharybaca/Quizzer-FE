@@ -16,6 +16,7 @@ import QuizForm from "./components/QuizForm/QuizForm";
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
+// import Quiz2 from "./components/Quiz/Quiz2";
 import Quiz from "./components/Quiz/Quiz";
 import QuizData from "./components/Quiz/QuizData";
 import getQuiz from './components/Quiz/getQuiz'
@@ -66,6 +67,7 @@ function App(props) {
         <Protected exact path="/quizzes" component={QuizForm} />
         
         <Protected exact path="/quiz" component={Quiz} />
+        
         <Protected exact path="/quizData" component={QuizData} />
      
       </div>

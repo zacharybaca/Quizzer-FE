@@ -58,7 +58,7 @@ class Quiz extends React.Component {
     nextQuestionHandler = () => {
       console.log('test')
     const { QuizData, currentQuestion, userAnswer, answers, score } = this.state;
-    const scoreTracker = score
+    let scoreTracker = score
     const questionCounter = currentQuestion + 1
     const choices= [QuizData[questionCounter].A, QuizData[questionCounter].B, QuizData[questionCounter].C, QuizData[questionCounter].D]
     console.log(choices, 'choices')

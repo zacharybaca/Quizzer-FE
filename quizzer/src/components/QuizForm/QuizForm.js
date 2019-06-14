@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Header from './Header';
 import SideBarNav from './SideBarNav';
 import AddQuiz from './AddQuiz';
+import AddQuestion from './AddQuestion';
 
 
 function QuizForm() {
@@ -11,7 +12,7 @@ function QuizForm() {
             <Header />
             <SideBarNav />
             <AddQuiz />
-            
+            <AddQuestion />
         </div>
     )
 }
