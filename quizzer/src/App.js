@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -13,11 +13,12 @@ import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
 import { GoogleLogout } from "react-google-login";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
-
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
-import Quiz from './components/Quiz/Quiz'
-import QuizData from './components/Quiz/QuizData'
+
+// import Quiz2 from "./components/Quiz/Quiz2";
+import Quiz from "./components/Quiz/Quiz";
+import QuizData from "./components/Quiz/QuizData";
 import getQuiz from './components/Quiz/getQuiz'
 
 const Homepage = styled.div`
@@ -64,13 +65,17 @@ function App(props) {
         <Protected exact path="/students" component={Student} />
         <Protected exact path="/teachers" component={Teacher} />
         <Protected exact path="/quizzes" component={QuizForm} />
+        
         <Protected exact path="/quiz" component={Quiz} />
+        
+        <Protected exact path="/quizData" component={QuizData} />
+     
       </div>
 
       {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
       <Route exact path="/step2" component={Step2Page} />
-      <Route exact path="/getQuiz" component={Step2Page} />
+      <Route exact path="/getQuiz" component={getQuiz} />
 
     </>
   );

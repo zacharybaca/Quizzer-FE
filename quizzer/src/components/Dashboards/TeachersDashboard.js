@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types"; 
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
@@ -21,7 +22,10 @@ function TeacherDashboard(props) {
 
   return (
     <div>
-      <button>new quiz</button>
+      <button>
+        {" "}
+        <Link to="/quizzes">new quiz</Link>
+      </button>
       <h1>dash</h1>
 
       {quizzes.length < 0 ? (
