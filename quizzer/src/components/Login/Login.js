@@ -17,8 +17,9 @@ function Login(props) {
         }
       )
       .then(res => {
-        localStorage.setItem("access_code", res.data[0].access_code);
-        localStorage.setItem("id", res.data[0].id);
+        console.log(res.data);
+        localStorage.setItem("access_code", res.data.access_code);
+        localStorage.setItem("id", res.data.id);
         setSignedIn(res.data.id);
         props.history.push("/teachersDashboard");
       })

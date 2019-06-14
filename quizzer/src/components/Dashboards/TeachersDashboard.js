@@ -21,8 +21,10 @@ function TeacherDashboard(props) {
     fetchData();
   }, []);
 
-  const access = () => {};
-  setAccessCode(localStorage.getItem("access_code"));
+  const access = () => {
+    setAccessCode(localStorage.getItem("access_code"));
+  };
+
   return (
     <div>
       <button>
