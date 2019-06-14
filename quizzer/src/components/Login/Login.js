@@ -10,15 +10,16 @@ function Login(props) {
     localStorage.setItem("token", response.Zi.id_token);
     axios
       .post(
-        "https://labs13-quizzer.herokuapp.com/api/auth//teacher/login",
+        "https://labs13-quizzer.herokuapp.com/api/auth/teacher/login",
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
         }
       )
       .then(res => {
-        localStorage.setItem("access_code", res.data[0].access_code);
-        localStorage.setItem("id", res.data[0].id);
+        console.log(res.data);
+        localStorage.setItem("access_code", res.data.access_code);
+        localStorage.setItem("id", res.data.id);
         setSignedIn(res.data.id);
         props.history.push("/teachersDashboard");
       })
