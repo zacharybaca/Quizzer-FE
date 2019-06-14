@@ -7,8 +7,11 @@ class AddQuiz extends React.Component {
         quiz_description: ''
     }
 
-    handleChange = event => {
+    addQuizName = event => {
         this.setState({ quiz_name: event.target.value });
+    }
+
+    addQuizDescription = event => {
         this.setState({ quiz_description: event.target.value});
     }
 
@@ -29,6 +32,10 @@ class AddQuiz extends React.Component {
                 console.log(res);
                 console.log(res.data);
             })
+            this.setState({
+                quiz_name: '',
+                quiz_description: ''
+            })
     }
 
         
@@ -40,12 +47,12 @@ render () {
                 <form onSubmit={this.handleSubmit}>
                     <label for="quiz-name">Quiz Name</label>
                     <br />
-                    <input className="text-box" type="text" value={this.state.quiz_name} onChange={this.handleChange} />
+                    <input className="text-box" type="text" value={this.state.quiz_name} onChange={this.addQuizName} />
                     <br />
                     <br />
                     <label className="add-quiz-label" for="quiz-description">Add Quiz Description</label>
                     <br />
-                    <input className="add-quiz-text-box" type="text" value={this.state.quiz_description} onChange={this.handleChange} />
+                    <input className="add-quiz-text-box" type="text" value={this.state.quiz_description} onChange={this.addQuizDescription} />
                     <br />
                     <button type="submit">Add Quiz</button>
                 </form>
