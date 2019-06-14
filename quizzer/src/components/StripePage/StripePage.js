@@ -1,5 +1,5 @@
 import React from 'react';
-// import {render} from 'react-dom';
+import {render} from 'react-dom';
 import {StripeProvider} from 'react-stripe-elements';
 
 import MyStoreCheckout from './MyStoreCheckout';

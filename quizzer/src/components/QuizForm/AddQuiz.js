@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-class AddQuiz extends React.Component {
+class AddQuiz extends React.Component { 
     state = {
         quiz_name: '',
         quiz_description: ''
