@@ -13,6 +13,7 @@ function TeacherDashboard(props) {
         `https://labs13-quizzer.herokuapp.com/api/quiz/teachers/${localStorage.getItem(
           "id"
         )}/quizzes`
+        
       );
       //setting database data to state with hooks
       console.log(result.data);
