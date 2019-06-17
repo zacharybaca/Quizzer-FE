@@ -45,7 +45,7 @@ function App(props) {
       <div>
         {localStorage.getItem("token") ? (
           <Homepage>
-            <h1 className="logo">Quizzer</h1>
+            <h1 className="logo">Quiz Dig</h1>
             <button onClick={logout}>logout</button>
           </Homepage>
         ) : null}
