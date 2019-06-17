@@ -30,8 +30,8 @@ function TeacherDashboard(props) {
       <button>
         {" "}
         <Link to="/quizzes">new quiz</Link>
-        <button onClick={access}>get access code</button>
       </button>
+      <button onClick={access}>get access code</button>
       <h1>dash</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
 
