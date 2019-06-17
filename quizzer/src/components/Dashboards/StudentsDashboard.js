@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 function StudentsDashboard(props) {
@@ -9,9 +9,9 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-          `${process.env.REACT_APP_BE_URL}/api/quiz/student/${localStorage.getItem(
-            "id"
-          )}/quizzes`
+        `${
+          process.env.REACT_APP_BE_URL
+        }/api/quiz/student/${localStorage.getItem("id")}/quizzes`
       );
       //setting database data to state with hooks
       console.log(result.data);
@@ -23,24 +23,23 @@ function StudentsDashboard(props) {
   return (
     <div>
       <button>
-        {" "}
-        <Link to="/Quiz">Take quiz</Link>
-        
+        <Link to="/quizzes">new quiz</Link>
+        <Link to="/addclass">Add Class</Link>
       </button>
-        {console.log(quizzes)}
-        <h1>Student DashBoard</h1>
+      {console.log(quizzes)}
+      <h1>Student DashBoard</h1>
 
-        {quizzes.length < 0 ? (
-            quizzes.map(user => (
-              <li>
-                <p>quiz</p>
-              </li>
-            ))
-        ) : (
-          <p>no quizzes taken</p>      
-        )}
+      {quizzes.length < 0 ? (
+        quizzes.map(user => (
+          <li>
+            <p>quiz</p>
+          </li>
+        ))
+      ) : (
+        <p>no quizzes taken</p>
+      )}
     </div>
   );
-};
+}
 
 export default StudentsDashboard;
