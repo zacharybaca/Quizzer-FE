@@ -42,7 +42,7 @@ class Quiz extends React.Component {
     componentDidMount() {
       // this.loadQuiz();
       axios
-      // .get(`${process.env.REACT_APP_BE_URL}localhost:8000`)
+      // // .get(`${process.env.REACT_APP_BE_URL}localhost:8000`)
       .get(`${process.env.REACT_APP_BE_URL}/api/quest/question`)
       .then(res => {
         const options= [res.data[0].A, res.data[0].B, res.data[0].C, res.data[0].D]
