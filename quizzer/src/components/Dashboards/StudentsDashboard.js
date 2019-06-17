@@ -9,9 +9,9 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://labs13-quizzer.herokuapp.com/api/quiz/student/${localStorage.getItem(
-          "id"
-        )}/quizzes`
+        `${
+          process.env.REACT_APP_BE_URL
+        }/api/quiz/student/${localStorage.getItem("id")}/quizzes`
       );
       //setting database data to state with hooks
       console.log(result.data);

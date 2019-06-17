@@ -64,10 +64,11 @@ class AddQuestion extends React.Component {
            points: this.state.points 
         };
 
-        const teacher_id = localStorage.getItem("id");
-        console.log(teacher_id);
+        const quiz_id = localStorage.getItem("id");
+        
+        console.log(quiz_id);
         axios.post(`https://labs13-quizzer.herokuapp.com/api/quest/question`, {
-            teacher_id
+            quiz_id
         },
         )
             .then(res => {
