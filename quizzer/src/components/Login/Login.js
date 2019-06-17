@@ -50,7 +50,8 @@ function Login(props) {
   return (
     <div className="background">
       <div className="box">
-        <h1 className="quizzer">Quizzer</h1>
+        <h1 className="quizzer">Quiz Dig</h1>
+
         <div>
           <h2 className="log-in">Login as Teacher</h2>
           <GoogleLogin
