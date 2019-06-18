@@ -59,7 +59,6 @@ class AddQuestion extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.state.quiz_id)}
         <div className="add-question">
           <form onSubmit={this.handleSubmit}>
             <label>Category</label>

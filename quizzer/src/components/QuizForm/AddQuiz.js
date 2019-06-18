@@ -25,7 +25,7 @@ class AddQuiz extends React.Component {
     };
 
     const teacher_id = localStorage.getItem("id");
-    console.log(teacher_id);
+
     axios
       .post(`http://localhost:8000/api/quiz/quizzes`, {
         teacher_id
@@ -34,8 +34,6 @@ class AddQuiz extends React.Component {
         this.setState({
           quiz_id: res.data.id
         });
-        console.log(res.data);
-        console.log(this.state.quiz_id);
       });
     this.setState({
       quiz_name: "",
@@ -71,7 +69,6 @@ class AddQuiz extends React.Component {
             <br />
             <button type="submit">Add Quiz</button>
           </form>
-          {console.log(this.state.quiz_id)}
         </div>
         {this.state.quiz_id !== null ? (
           <AddQuestion quizId={this.state.quiz_id} />

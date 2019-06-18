@@ -10,14 +10,13 @@ function TeacherDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://labs13-quizzer.herokuapp.com/api/quiz/teachers/${localStorage.getItem(
+        `http://localhost:8000/api/quiz/teachers/${localStorage.getItem(
           "id"
         )}/quizzes`
-        
       );
       //setting database data to state with hooks
       console.log(result.data);
-      setQuizzes(result.data);
+      setQuizzes(result.data.quizzes);
     };
     fetchData();
   }, []);
@@ -36,11 +35,9 @@ function TeacherDashboard(props) {
       <h1>dash</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
 
-      {console.log(quizzes.quizzes)}
       {quizzes.length > 0 ? (
         quizzes.map(user => (
           <li>
-            {console.log("running")}
             <p>quiz</p>
           </li>
         ))
