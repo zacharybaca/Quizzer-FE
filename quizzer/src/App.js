@@ -48,7 +48,7 @@ function App(props) {
       <div>
         {localStorage.getItem("token") ? (
           <Homepage>
-            <img src={logo} height="35" alt="Logo White" />
+            <img class="logo" src={logo} height="35" alt="Logo White" />
             {/* <h1 className="logo">Quiz Dig</h1> */}
             <button onClick={logout}>logout</button>
           </Homepage>
