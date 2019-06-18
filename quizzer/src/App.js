@@ -68,7 +68,7 @@ function App(props) {
         <Protected exact path="/teachers" component={Teacher} />
         <Protected exact path="/quizzes" component={QuizForm} />
 
-        <Protected exact path="/quiz" component={Quiz} />
+        <Protected exact path="/quiz/:id" component={Quiz} />
 
         <Protected exact path="/quizData" component={QuizData} />
       </div>
