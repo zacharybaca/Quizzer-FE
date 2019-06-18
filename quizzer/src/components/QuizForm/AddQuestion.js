@@ -2,17 +2,22 @@ import React from "react";
 import axios from "axios";
 
 class AddQuestion extends React.Component {
-  state = {
-    category: "",
-    type: "",
-    Q_content: "",
-    A: "",
-    B: "",
-    C: "",
-    D: "",
-    correct_answer: "",
-    points: ""
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      category: "",
+      type: "",
+      Q_content: "",
+      A: "",
+      B: "",
+      C: "",
+      D: "",
+      correct_answer: "",
+      points: "",
+      quiz_id: this.props.quizId
+    };
+  }
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
@@ -29,16 +34,12 @@ class AddQuestion extends React.Component {
       C: this.state.C,
       D: this.state.D,
       correct_answer: this.state.correct_answer,
-      points: this.state.points
+      points: this.state.points,
+      quiz_id: this.state.quiz_id
     };
 
-    const quiz_id = localStorage.getItem("id");
-
-    console.log(quiz_id);
     axios
-      .post(`https://labs13-quizzer.herokuapp.com/api/quest/question`, {
-        quiz_id
-      })
+      .post(`http://localhost:8000/api/quest/question`, question)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -58,6 +59,7 @@ class AddQuestion extends React.Component {
   render() {
     return (
       <div>
+        {console.log(this.state.quiz_id)}
         <div className="add-question">
           <form onSubmit={this.handleSubmit}>
             <label>Category</label>
