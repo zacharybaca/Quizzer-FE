@@ -52,7 +52,6 @@ function Login(props) {
     <div className="background">
       <div className="box">
       <img class="img" src={logo} height="35" alt="Logo White" />
-        {/* <h1 className="quizzer">Quiz Dig</h1> */}
 
         <div>
           <h2 className="log-in">Login as Teacher</h2>

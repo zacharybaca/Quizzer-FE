@@ -41,7 +41,6 @@ function App(props) {
   return (
     <>
       <div className="App">
-        {/* <img src={logo} height="35" alt="Logo White" /> */}
         <Route exact path="/login" component={Login} />
       </div>
 
@@ -49,7 +48,6 @@ function App(props) {
         {localStorage.getItem("token") ? (
           <Homepage>
             <img class="logo" src={logo} height="35" alt="Logo White" />
-            {/* <h1 className="logo">Quiz Dig</h1> */}
             <button onClick={logout}>logout</button>
           </Homepage>
         ) : null}
