@@ -21,6 +21,8 @@ import Quiz from "./components/Quiz/Quiz";
 import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
 
+import logo from './logowhite.svg';
+
 const Homepage = styled.div`
   display: flex;
   flex-direction: row;
@@ -39,13 +41,15 @@ function App(props) {
   return (
     <>
       <div className="App">
+        {/* <img src={logo} height="35" alt="Logo White" /> */}
         <Route exact path="/login" component={Login} />
       </div>
 
       <div>
         {localStorage.getItem("token") ? (
           <Homepage>
-            <h1 className="logo">Quiz Dig</h1>
+            <img src={logo} height="35" alt="Logo White" />
+            {/* <h1 className="logo">Quiz Dig</h1> */}
             <button onClick={logout}>logout</button>
           </Homepage>
         ) : null}

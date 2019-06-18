@@ -1,12 +1,9 @@
 .App {
-  /* text-align: center;
-  line-height: .5; */
-
   font-family: sans-serif;
   text-align: center;
-
-  font-family: sans-serif;
-  text-align: center;
+    
+    width: 157px;
+    background-color: #FFFFFF;
 }
 
 .selected {
