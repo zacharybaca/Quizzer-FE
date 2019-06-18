@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./studentDashboard.css";
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);
@@ -9,13 +10,13 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${
-          process.env.REACT_APP_BE_URL
-        }/api/quiz/student/${localStorage.getItem("id")}/quizzes`
+        `https://labs13-quizzer.herokuapp.com/api/quiz/student/${localStorage.getItem(
+          "id"
+        )}/quizzes`
       );
       //setting database data to state with hooks
       console.log(result.data);
-      takeQuizzes(result.data);
+      takeQuizzes(result.data.quizzes);
     };
     fetchData();
   }, []);
@@ -23,20 +24,21 @@ function StudentsDashboard(props) {
   return (
     <div>
       <button>
-        <Link to="/quizzes">new quiz</Link>
         <Link to="/addclass">Add Class</Link>
       </button>
       {console.log(quizzes)}
       <h1>Student DashBoard</h1>
 
-      {quizzes.length < 0 ? (
+      {quizzes.length > 0 ? (
         quizzes.map(user => (
-          <li>
+          <div key={user.id} className="box">
             <p>quiz</p>
-          </li>
+            <p>by: {user.name}</p>
+            <Link to={`quiz/${user.id}`}>take quiz</Link>
+          </div>
         ))
       ) : (
-        <p>no quizzes taken</p>
+        <p>no quizzes to complete</p>
       )}
     </div>
   );

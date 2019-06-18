@@ -39,7 +39,8 @@ function Login(props) {
         }
       )
       .then(res => {
-        localStorage.setItem("id", res.data.id);
+        console.log("hello", res.data[0]);
+        localStorage.setItem("id", res.data[0].id);
         props.history.push("/studentsDashboard");
         console.log("ran");
       })

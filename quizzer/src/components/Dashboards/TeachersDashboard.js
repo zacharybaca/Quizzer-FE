@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./teacherDashboard.css";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
@@ -37,9 +38,9 @@ function TeacherDashboard(props) {
 
       {quizzes.length > 0 ? (
         quizzes.map(user => (
-          <li>
+          <div key={user.id} className="box">
             <p>quiz</p>
-          </li>
+          </div>
         ))
       ) : (
         <p>no created quizzes</p>
