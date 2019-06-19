@@ -33,10 +33,9 @@ function App(props) {
   return (
     <>
       <div className="App">
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Login} />
       </div>
 
-      
         <Protected
           exact
           path="/studentsDashboard"
@@ -55,10 +54,8 @@ function App(props) {
 
       <Protected exact path="/quiz/:id" component={Quiz} />
 
-        <Protected exact path="/quizData" component={QuizData} />
+      <Protected exact path="/quizData" component={QuizData} />
      
-
-      {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
       <Route exact path="/step2" component={Step2Page} />
       <Route exact path="/getQuiz" component={getQuiz} />
