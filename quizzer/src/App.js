@@ -1,5 +1,5 @@
 import React from "react";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -20,6 +20,8 @@ import Step2Page from "./components/Step2/Step2Page";
 import Quiz from "./components/Quiz/Quiz";
 import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
+
+import logo from './logowhite.svg';
 
 const Homepage = styled.div`
   display: flex;
@@ -45,7 +47,7 @@ function App(props) {
       <div>
         {localStorage.getItem("token") ? (
           <Homepage>
-            <h1 className="logo">Quiz Dig</h1>
+            <img class="logo" src={logo} height="35" alt="Logo White" />
             <button onClick={logout}>logout</button>
           </Homepage>
         ) : null}

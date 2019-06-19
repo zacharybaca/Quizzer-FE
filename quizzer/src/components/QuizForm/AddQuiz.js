@@ -69,10 +69,14 @@ class AddQuiz extends React.Component {
             <br />
             <button type="submit">Add Quiz</button>
           </form>
+          <br />
+          
         </div>
-        {this.state.quiz_id !== null ? (
-          <AddQuestion quizId={this.state.quiz_id} />
-        ) : null}
+        <br />
+        <br />
+        <div className="main-question-container">
+            <button className="main-question-button">+ Add Main Question</button>
+        </div>
       </div>
     );
   }
