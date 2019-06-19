@@ -24,8 +24,9 @@ import getQuiz from "./components/Quiz/getQuiz";
 const Homepage = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   padding-top: 15px;
+  padding-right: 100px;
   height: 64px;
   width: 100%;
   background-color: #363648;
@@ -46,7 +47,7 @@ function App(props) {
         {localStorage.getItem("token") ? (
           <Homepage>
             <Link to ='/login'><h1 className="logo">Quiz Đig</h1></Link>
-            <button onClick={logout}>logout</button>
+            <Link to ='/login'><button onClick={logout}>logout</button></Link>
           </Homepage>
         ) : null}
 
