@@ -49,27 +49,27 @@ function App(props) {
             <button onClick={logout}>logout</button>
           </Homepage>
         ) : null}
-
-        <Protected
-          exact
-          path="/studentsDashboard"
-          component={StudentsDashboard}
-        />
-        <Protected
-          exact
-          path="/teachersDashboard"
-          component={TeachersDashboard}
-        />
-        <Protected exact path="/addclass" component={AccessCode} />
-        <Protected exact path="/users" component={User} />
-        <Protected exact path="/students" component={Student} />
-        <Protected exact path="/teachers" component={Teacher} />
-        <Protected exact path="/quizzes" component={QuizForm} />
-
-        <Protected exact path="/quiz/:id" component={Quiz} />
-
-        <Protected exact path="/quizData" component={QuizData} />
       </div>
+
+      <Protected
+        exact
+        path="/studentsDashboard"
+        component={StudentsDashboard}
+      />
+      <Protected
+        exact
+        path="/teachersDashboard"
+        component={TeachersDashboard}
+      />
+      <Protected exact path="/addclass" component={AccessCode} />
+      <Protected exact path="/users" component={User} />
+      <Protected exact path="/students" component={Student} />
+      <Protected exact path="/teachers" component={Teacher} />
+      <Protected exact path="/quizzes" component={QuizForm} />
+
+      <Protected exact path="/quiz/:id" component={Quiz} />
+
+      <Protected exact path="/quizData" component={QuizData} />
 
       {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
