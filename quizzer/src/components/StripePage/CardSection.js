@@ -1,6 +1,7 @@
 // CardSection.js
 import React from 'react';
 import {CardElement} from 'react-stripe-elements';
+import "./stripe.css";
 
 class CardSection extends React.Component {
   render() {
