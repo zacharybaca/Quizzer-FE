@@ -149,3 +149,19 @@
   margin-bottom: 200px;
   margin-left: 550px;
 }
+
+.main-question-container {
+  display: flex;
+  margin-bottom: -400px;
+  margin-left: 555px;
+}
+
+.main-question-button {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: gray;
+  height: 40px;
+  width: 224px;
+}
