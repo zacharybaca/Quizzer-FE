@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "auth0-js": "^9.10.4",
     "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-fontawesome": "^1.6.1",
@@ -16,6 +17,7 @@
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
     "react-stripe-elements": "^3.0.0",
+    "reactstrap": "^8.0.0",
     "styled-components": "^4.2.1"
   },
   "scripts": {
