@@ -73,7 +73,7 @@ class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form class="Checkout" onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
         <button type="submit">Confirm order</button>
