@@ -1,0 +1,15 @@
+
+.bradius {
+    border-radius: 50%;
+}
+
+
+.homepage{ 
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-top: 15px;
+    height: 64px;
+    width: 100%;
+    background-color: #363648;
+}

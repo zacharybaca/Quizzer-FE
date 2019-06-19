@@ -23,15 +23,7 @@ import getQuiz from "./components/Quiz/getQuiz";
 
 import logo from './logowhite.svg';
 
-const Homepage = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding-top: 15px;
-  height: 64px;
-  width: 100%;
-  background-color: #363648;
-`;
+
 function App(props) {
   const logout = () => {
     console.log("pressed");
@@ -44,14 +36,7 @@ function App(props) {
         <Route exact path="/login" component={Login} />
       </div>
 
-      <div>
-        {localStorage.getItem("token") ? (
-          <Homepage>
-            <img class="logo" src={logo} height="35" alt="Logo White" />
-            <button onClick={logout}>logout</button>
-          </Homepage>
-        ) : null}
-
+      
         <Protected
           exact
           path="/studentsDashboard"
@@ -71,7 +56,7 @@ function App(props) {
         <Protected exact path="/quiz/:id" component={Quiz} />
 
         <Protected exact path="/quizData" component={QuizData} />
-      </div>
+     
 
       {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
