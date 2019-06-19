@@ -1,5 +1,4 @@
 import React from "react";
-import AddQuestion from "./AddQuestion";
 import axios from "axios";
 
 class AddQuiz extends React.Component {
@@ -70,12 +69,11 @@ class AddQuiz extends React.Component {
             <button type="submit">Add Quiz</button>
           </form>
           <br />
-          
         </div>
         <br />
         <br />
         <div className="main-question-container">
-            <button className="main-question-button">+ Add Main Question</button>
+          <button className="main-question-button">+ Add Main Question</button>
         </div>
       </div>
     );
