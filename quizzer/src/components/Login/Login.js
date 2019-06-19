@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./login.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
+import logo from './logopurple.svg';
 
 function Login(props) {
   const [signedIn, setSignedIn] = useState();
@@ -51,7 +52,7 @@ function Login(props) {
   return (
     <div className="background">
       <div className="box">
-        <h1 className="quizzer">Quiz Đig</h1>
+      <img class="img" src={logo} height="35" alt="Logo White" />
 
         <div>
           <h2 className="log-in">Login as Teacher</h2>

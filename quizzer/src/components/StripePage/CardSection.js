@@ -5,7 +5,7 @@ import {CardElement} from 'react-stripe-elements';
 class CardSection extends React.Component {
   render() {
     return (
-      <label>
+      <label className="">
         Card details
         <CardElement style={{base: {fontSize: '18px'}}} />
       </label>

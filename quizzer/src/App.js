@@ -1,5 +1,5 @@
 import React from "react";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import "./App.css";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styled from "styled-components";
@@ -21,16 +21,9 @@ import Quiz from "./components/Quiz/Quiz";
 import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
 
-const Homepage = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-top: 15px;
-  padding-right: 100px;
-  height: 64px;
-  width: 100%;
-  background-color: #363648;
-`;
+import logo from './logowhite.svg';
+
+
 function App(props) {
   const logout = () => {
     console.log("pressed");
@@ -43,14 +36,7 @@ function App(props) {
         <Route exact path="/login" component={Login} />
       </div>
 
-      <div>
-        {localStorage.getItem("token") ? (
-          <Homepage>
-            <Link to ='/login'><h1 className="logo">Quiz Đig</h1></Link>
-            <Link to ='/login'><button onClick={logout}>logout</button></Link>
-          </Homepage>
-        ) : null}
-
+      
         <Protected
           exact
           path="/studentsDashboard"
@@ -67,10 +53,10 @@ function App(props) {
         <Protected exact path="/teachers" component={Teacher} />
         <Protected exact path="/quizzes" component={QuizForm} />
 
-        <Protected exact path="/quiz/:id" component={Quiz} />
+      <Protected exact path="/quiz/:id" component={Quiz} />
 
         <Protected exact path="/quizData" component={QuizData} />
-      </div>
+     
 
       {/* <Route exact path="/" component={Home}/> */}
       <Route exact path="/step1" component={StripePage} />
