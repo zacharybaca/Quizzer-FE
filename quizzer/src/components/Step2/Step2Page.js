@@ -63,7 +63,9 @@ class Step2Page extends Component {
         console.log('currentPlan', currentPlan);
 
 
-        const plans = ['bronze', 'silver', 'gold'];
+        const plans = ['bronze', 
+        // 'silver', 'gold'
+    ];
 
         return (
         <div>
@@ -83,6 +85,7 @@ class Step2Page extends Component {
                         return (
                             <button
                                style={{
+                                   // change color?
                                 backgroundColor: '#d8d8d8',
                             }}
                             onClick={() => this.switchPlan(plan)}
