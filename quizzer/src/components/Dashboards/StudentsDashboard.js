@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./studentDashboard.css";
+import StudentNavigation from './Navigation/StudentNavigation.js';
+
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);
@@ -22,9 +24,11 @@ function StudentsDashboard(props) {
   }, []);
 
   return (
+    <Fragment> 
     <div>
-      <button className='button'>
-        <Link  className='white' to="/addclass">Add Class</Link>
+      <StudentNavigation />
+      <button>
+        <Link to="/addclass">Add Class</Link>
       </button>
       {console.log(quizzes)}
       <h1>Student DashBoard</h1>
@@ -41,6 +45,7 @@ function StudentsDashboard(props) {
         <p>no quizzes to complete</p>
       )}
     </div>
+    </Fragment>
   );
 }
 
