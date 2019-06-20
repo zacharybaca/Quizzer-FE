@@ -22,14 +22,15 @@ class AddQuiz extends React.Component {
     event.preventDefault();
     const quiz = {
       quiz_name: this.state.quiz_name,
-      quiz_description: this.state.quiz_description
+      description: this.state.quiz_description,
+      teacher_id: localStorage.getItem("id")
     };
 
     const teacher_id = localStorage.getItem("id");
 
     axios
       .post(`https://labs13-quizzer.herokuapp.com/api/quiz/quizzes`, {
-        teacher_id
+        quiz
       })
       .then(res => {
         this.setState({

@@ -39,8 +39,9 @@ function TeacherDashboard(props) {
       {quizzes.length > 0 ? (
         quizzes.map(user => (
           <div key={user.id} className="box">
-            <p>quiz</p>
-            <Link to={`edit/quiz/${user.id}`}>edit quiz</Link>
+            <h3>{user.quiz_name}</h3>
+            <p>{user.description}</p>
+            <Link to={`edit/quiz/${user.quiz_id}`}>edit quiz</Link>
           </div>
         ))
       ) : (
