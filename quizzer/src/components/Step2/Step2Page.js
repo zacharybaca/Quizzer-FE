@@ -78,7 +78,7 @@ class Step2Page extends Component {
                 />
             </div>
             <div>
-                <h2>Plans</h2>
+                <h1>Plans</h1>
                 {  
                     (plans).map((plan) => {
                         if (currentPlan === plan) {
