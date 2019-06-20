@@ -29,12 +29,13 @@ function TeacherDashboard(props) {
   return (
     <div>
       <TeacherNavigation />
-      <button>
-        <Link to="/quizzes">new quiz</Link>
+      <button className='button'>
+        <Link className='white' to="/quizzes">new quiz</Link>
       </button>
-      <button onClick={access}>get access code</button>
+      <button class='button' onClick={access}>get access code</button>
       <h1>dash</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
+
 
       {quizzes.length > 0 ? (
         quizzes.map(user => (
