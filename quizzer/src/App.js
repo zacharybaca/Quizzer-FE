@@ -10,6 +10,7 @@ import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
 import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
+import EditQuiz from "./components/QuizForm/EditQuiz";
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
@@ -40,6 +41,7 @@ function App(props) {
       <Protected exact path="/students" component={Student} />
       <Protected exact path="/teachers" component={Teacher} />
       <Protected exact path="/quizzes" component={QuizForm} />
+      <Protected exact path="/edit/quiz/:id" component={EditQuiz} />
 
       <Protected exact path="/quiz/:id" component={Quiz} />
 

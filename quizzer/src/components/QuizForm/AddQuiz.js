@@ -1,11 +1,13 @@
 import React from "react";
 import axios from "axios";
+import AddQuestion from "./AddQuestion";
 
 class AddQuiz extends React.Component {
   state = {
     quiz_name: "",
     quiz_description: "",
-    quiz_id: null
+    quiz_id: null,
+    createQuestion: false
   };
 
   addQuizName = event => {
@@ -40,40 +42,54 @@ class AddQuiz extends React.Component {
     });
   };
 
+  openQuestion() {
+    this.setState({
+      createQuestion: true
+    });
+  }
+
   render() {
     return (
       <div>
-        <div className="quiz-name-section">
-          <form onSubmit={this.handleSubmit}>
-            <label for="quiz-name">Quiz Name</label>
+        {this.state.quiz_id === null ? (
+          <div>
+            <form onSubmit={this.handleSubmit}>
+              <label for="quiz-name">Quiz Name</label>
+              <br />
+              <input
+                className="text-box"
+                type="text"
+                value={this.state.quiz_name}
+                onChange={this.addQuizName}
+              />
+              <br />
+              <br />
+              <label className="add-quiz-label" for="quiz-description">
+                Add Quiz Description
+              </label>
+              <br />
+              <input
+                className="add-quiz-text-box"
+                type="text"
+                value={this.state.quiz_description}
+                onChange={this.addQuizDescription}
+              />
+              <br />
+              <button type="submit">Add Quiz</button>
+            </form>
             <br />
-            <input
-              className="text-box"
-              type="text"
-              value={this.state.quiz_name}
-              onChange={this.addQuizName}
-            />
-            <br />
-            <br />
-            <label className="add-quiz-label" for="quiz-description">
-              Add Quiz Description
-            </label>
-            <br />
-            <input
-              className="add-quiz-text-box"
-              type="text"
-              value={this.state.quiz_description}
-              onChange={this.addQuizDescription}
-            />
-            <br />
-            <button type="submit">Add Quiz</button>
-          </form>
+          </div>
+        ) : (
+          <></>
+        )}
+        <div>
           <br />
-        </div>
-        <br />
-        <br />
-        <div className="main-question-container">
-          <button className="main-question-button">+ Add Main Question</button>
+          <br />
+          <div className="main-question-container">
+            {this.state.quiz_id !== null ? (
+              <AddQuestion quizId={this.state.quiz_id} />
+            ) : null}
+          </div>
         </div>
       </div>
     );
