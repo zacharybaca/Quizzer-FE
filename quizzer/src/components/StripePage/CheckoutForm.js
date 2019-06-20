@@ -6,6 +6,7 @@ import CardSection from './CardSection';
 import { Link } from 'react-router-dom';
 import "./stripe.css";
 
+
 class CheckoutForm extends React.Component {
 
   handleSubmit = (ev) => {
