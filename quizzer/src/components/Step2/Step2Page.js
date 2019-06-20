@@ -83,7 +83,7 @@ class Step2Page extends Component {
                     (plans).map((plan) => {
                         if (currentPlan === plan) {
                         return (
-                            <button
+                            <button class="plan"
                                style={{
                                    // change color?
                                 backgroundColor: '#d8d8d8',

@@ -72,3 +72,7 @@
     -webkit-transition: all 150ms ease;
     transition: all 150ms ease;
   }
+
+  .plan {
+    border-radius: 4px;
+  }
