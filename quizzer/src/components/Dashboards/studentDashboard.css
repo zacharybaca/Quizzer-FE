@@ -1,8 +1,48 @@
+.title {
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.assigned-quizzes {
+  display: inline-block;
+  height: 232px;
+  width: 197px;
+  margin-left: 30px;
+  /* border: 1px solid red; */
+}
+
+.header {
+	height: 28px;
+	width: 171px;
+	color: #000000;
+	font-family: "Open Sans";
+	font-size: 20px;
+	font-weight: bold;
+  line-height: 28px;
+}
+
+.added-boxes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1%;
+  width: 660%;
+  /* border: 1px solid red; */
+}
+
 .box {
-  height: 184px;
+  height: 188px;
   width: 192px;
   border-radius: 4px;
+  margin: 15px 15px 15px 0;
   background-color: #ffffff;
+  /* border: 1px solid blue;     */
+}
+
+p {
+  line-height: .9;
+  font-size: 15px;
 }
 
 .button {
@@ -24,7 +64,7 @@
   text-decoration: none;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
-  margin-top: 10px;
+  margin: 10px 0 0 10px;
 }
 
 .white {
