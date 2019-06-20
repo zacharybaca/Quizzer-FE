@@ -19,6 +19,13 @@ import Quiz from "./components/Quiz/Quiz";
 import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
 
+<<<<<<< HEAD
+=======
+import logo from './logowhite.svg';
+
+
+
+>>>>>>> d0dc745059e7f55ac492a03d58198bab1e1b0be4
 function App(props) {
   return (
     <>

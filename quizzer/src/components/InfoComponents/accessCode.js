@@ -37,7 +37,7 @@ const AccessCode = props => {
           placeholder="enter access code..."
           name="access_code"
         />
-        <input type="submit" className="btn btn-primary" value="Submit" />
+        <input type="submit" className="button" value="Submit" />
       </form>
     </div>
   );
