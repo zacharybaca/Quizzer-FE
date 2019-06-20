@@ -4,7 +4,7 @@ import axios from "axios";
 class getQuiz extends Component {
   componentDidMount() {
     axios
-      .get("https://labs13-quizzer.herokuapp.com/api/quiz/quizzes")
+      .get(`${process.env.REACT_APP_BE_URL}/api/quiz/quizzes`)
       .then(response => console.log(response))
       .catch(err => console.log(err));
   }
