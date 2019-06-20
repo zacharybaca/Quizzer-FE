@@ -25,34 +25,36 @@ function StudentsDashboard(props) {
 
   return (
     <Fragment> 
-      <StudentNavigation />
-      <button>
-        <Link to="/addclass">Add Class</Link>
-      </button>
       <div>
-        {console.log(quizzes)}
-        <h1 className='title'>Student Đashboard</h1>  
-        <div className="assigned-quizzes">  
-          <div className="header"> 
-            Assigned Quizzes
-          </div>
-          <div className="added-boxes">
-            {quizzes.length > 0 ? (
-              quizzes.map(user => (
-                  <div key={user.id} className="box">
-                    <h5><strong>Quiz Name</strong></h5>
-                    <p>Assigned By: {user.name}</p>
-                    <p>10 Main Questions</p>
-                    <p>10 Remedial Questions</p>
-                    <Link to={`quiz/${user.id}`}>Take Quiz</Link>
-                  </div>  
-              ))
-            ) : (
-              <p>No quizzes at this time, try again later...</p>
-            )}
+        <StudentNavigation />
+        <button className='button'>
+          <Link  className='white' to="/addclass">Add Class</Link>
+        </button>
+        <div>
+          {console.log(quizzes)}
+          <h1 className='title'>Student Đashboard</h1>  
+          <div className="assigned-quizzes">  
+            <div className="header"> 
+              Assigned Quizzes
+            </div>
+            <div className="added-boxes">
+              {quizzes.length > 0 ? (
+                quizzes.map(user => (
+                    <div key={user.id} className="box">
+                      <h6><strong>Quiz Name</strong></h6>
+                      <p>Assigned By: {user.name}</p>
+                      <p>10 Main Questions</p>
+                      <p>10 Remedial Questions</p>
+                      <Link to={`quiz/${user.id}`}>Take Quiz</Link>
+                    </div>  
+                ))
+              ) : (
+                <p>No quizzes at this time, try again later...</p>
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      </div>  
     </Fragment>
   );
 }
