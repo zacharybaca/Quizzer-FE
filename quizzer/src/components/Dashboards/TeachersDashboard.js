@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import TeacherNavigation from "./Navigation/TeacherNavgation.js";
+import TeacherNavigation from "./Navigation/TeacherNavigation.js";
 import "./teacherDashboard.css";
 
 function TeacherDashboard(props) {
@@ -11,7 +11,7 @@ function TeacherDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${process.env.REACT_APP_BE_URL}/api/quiz/teachers/${localStorage.getItem(
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/teachers/${localStorage.getItem(
           "id"
         )}/quizzes`
       );

@@ -14,7 +14,7 @@ function Teacher() {
     useEffect(() => {
       const fetchData = async () => {
         const result = await axios(
-          `${process.env.REACT_APP_BE_URL}/api/profile/teacher`
+          `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/profile/teacher`
         );
         //setting database data to state with hooks
         setTeachers(result.data);

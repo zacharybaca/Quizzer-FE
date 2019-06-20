@@ -11,7 +11,7 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${process.env.REACT_APP_BE_URL}/api/quiz/student/${localStorage.getItem(
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/student/${localStorage.getItem(
           "id"
         )}/quizzes`
       );

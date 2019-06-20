@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import TeacherNavigation from "../Dashboards/Navigation/TeacherNavgation";
+import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
 import axios from "axios";
 
 const EditQuiz = props => {
@@ -15,7 +15,7 @@ const EditQuiz = props => {
       const { id } = props.match.params;
       console.log(id);
       const res = await axios(
-        `${process.env.REACT_APP_BE_URL}/api/quiz/quizzes/${id}`
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
       );
       //setting database data to state with hooks
       console.log("ran");
@@ -27,7 +27,7 @@ const EditQuiz = props => {
 
   const deleteQuiz = async () => {
     const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL}/api/quiz/quizzes/${quizId}`
+      `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
     );
   };
   return (
