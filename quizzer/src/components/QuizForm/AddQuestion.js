@@ -59,7 +59,7 @@ class AddQuestion extends React.Component {
   render() {
     return (
       <div>
-        <div className="add-question">
+        <div>
           <form onSubmit={this.handleSubmit}>
             <label>Category</label>
             <br />

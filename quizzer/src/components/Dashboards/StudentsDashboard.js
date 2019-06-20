@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import "./studentDashboard.css";
 import StudentNavigation from './Navigation/StudentNavigation.js';
 import { Button } from 'reactstrap';
