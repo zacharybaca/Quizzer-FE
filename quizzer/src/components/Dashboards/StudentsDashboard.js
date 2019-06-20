@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./studentDashboard.css";
 import StudentNavigation from './Navigation/StudentNavigation.js';
-
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);
@@ -12,7 +12,7 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://labs13-quizzer.herokuapp.com/quiz/student/${localStorage.getItem(
+        `https://labs13-quizzer.herokuapp.com/api/quiz/student/${localStorage.getItem(
           "id"
         )}/quizzes`
       );
@@ -25,26 +25,32 @@ function StudentsDashboard(props) {
 
   return (
     <Fragment> 
-    <div>
       <StudentNavigation />
       <button>
         <Link to="/addclass">Add Class</Link>
       </button>
-      {console.log(quizzes)}
-      <h1>Student DashBoard</h1>
-
-      {quizzes.length > 0 ? (
-        quizzes.map(user => (
-          <div key={user.id} className="box">
-            <p>quiz</p>
-            <p>by: {user.name}</p>
-            <Link to={`quiz/${user.id}`}>take quiz</Link>
+      <div>
+        {console.log(quizzes)}
+        <h1 className='title'>Student Đashboard</h1>  
+        <div className="assigned-quizzes">  
+          <div className="header"> 
+            Assigned Quizzes
           </div>
-        ))
-      ) : (
-        <p>no quizzes to complete</p>
-      )}
-    </div>
+            {quizzes.length > 0 ? (
+              quizzes.map(user => (
+                <div key={user.id} className="box">
+                  <h5><strong>Quiz Name</strong></h5>
+                  <p>Assigned By: {user.name}</p>
+                  <p>10 Main Questions</p>
+                  <p>10 Remedial Questions</p>
+                  <Link to={`quiz/${user.id}`}>Take Quiz</Link>
+                </div>
+              ))
+            ) : (
+              <p>No quizzes at this time, try again later...</p>
+            )}
+          </div>
+      </div>
     </Fragment>
   );
 }

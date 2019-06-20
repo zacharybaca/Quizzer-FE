@@ -36,18 +36,13 @@ class StudentNavigation extends React.Component {
               </div>
             ) : null}
              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className='bradius'>
-        <DropdownToggle caret>
-          Dropdown
-        </DropdownToggle>
+        <DropdownToggle caret></DropdownToggle>
         <DropdownMenu>
-            <DropdownItem header>Header</DropdownItem>
-             <DropdownItem onClick={this.logout}>Log Out</DropdownItem>
-            
+          <Link to = '/'> <DropdownItem onClick={this.logout}>Log Out</DropdownItem></Link>
         </DropdownMenu>
       </Dropdown>
-            
           </div>
-        )
+      )
     }  
    
 }
