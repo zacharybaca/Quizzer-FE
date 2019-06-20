@@ -38,7 +38,7 @@ class Step2Page extends Component {
       // heroku: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
     //   fetch('http://localhost:8000/api/stripe/customer/subscribe', {
         
-    fetch('https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe', {
+    fetch(`${process.env.REACT_APP_BE_URL}/api/stripe/customer/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

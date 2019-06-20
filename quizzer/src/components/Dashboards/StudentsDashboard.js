@@ -11,7 +11,7 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://labs13-quizzer.herokuapp.com/api/quiz/student/${localStorage.getItem(
+        `${process.env.REACT_APP_BE_URL}/api/quiz/student/${localStorage.getItem(
           "id"
         )}/quizzes`
       );
@@ -42,7 +42,7 @@ function StudentsDashboard(props) {
                   <div key={user.id} className="box">
                     {console.log(user)}
                     <h6>
-                      <strong>Quiz Name: {user.quiz_name}</strong>
+                      <strong>Quiz: {user.quiz_name}</strong>
                     </h6>
                     <p>Assigned By: {user.name}</p>
                     <p>Info: {user.description}</p>
