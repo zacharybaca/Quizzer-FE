@@ -36,20 +36,22 @@ function StudentsDashboard(props) {
           <div className="header"> 
             Assigned Quizzes
           </div>
+          <div className="added-boxes">
             {quizzes.length > 0 ? (
               quizzes.map(user => (
-                <div key={user.id} className="box">
-                  <h5><strong>Quiz Name</strong></h5>
-                  <p>Assigned By: {user.name}</p>
-                  <p>10 Main Questions</p>
-                  <p>10 Remedial Questions</p>
-                  <Link to={`quiz/${user.id}`}>Take Quiz</Link>
-                </div>
+                  <div key={user.id} className="box">
+                    <h5><strong>Quiz Name</strong></h5>
+                    <p>Assigned By: {user.name}</p>
+                    <p>10 Main Questions</p>
+                    <p>10 Remedial Questions</p>
+                    <Link to={`quiz/${user.id}`}>Take Quiz</Link>
+                  </div>  
               ))
             ) : (
               <p>No quizzes at this time, try again later...</p>
             )}
           </div>
+        </div>
       </div>
     </Fragment>
   );
