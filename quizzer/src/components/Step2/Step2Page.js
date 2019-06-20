@@ -107,8 +107,8 @@ class Step2Page extends Component {
                 }
             </div>
             <div>
-                <button onClick={this.nextStep} >Next</button>
-                <Link to='/step1' ><button>Back</button></Link>
+                <button class="button" onClick={this.nextStep} >Next</button>
+                <Link to='/step1' ><button class="button">Back</button></Link>
             </div>
         </div>
         );

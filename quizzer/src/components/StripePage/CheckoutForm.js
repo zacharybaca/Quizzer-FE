@@ -78,8 +78,8 @@ class CheckoutForm extends React.Component {
       <form class="Checkout" onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
-        <button type="submit">Confirm order</button>
-        <Link to='/step2' ><button>Next</button></Link>
+        <button class="button" type="submit">Confirm order</button>
+        <Link to='/step2' ><button class="button">Next</button></Link>
       </form>
     );
   
