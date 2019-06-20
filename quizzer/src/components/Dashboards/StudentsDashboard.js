@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./studentDashboard.css";
 import StudentNavigation from './Navigation/StudentNavigation.js';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);
@@ -45,7 +45,7 @@ function StudentsDashboard(props) {
                       <p>Assigned By: {user.name}</p>
                       <p>10 Main Questions</p>
                       <p>10 Remedial Questions</p>
-                      <Link to={`quiz/${user.id}`}>Take Quiz</Link>
+                      <Button color="purple"><Link to={`quiz/${user.id}`}><p>Take Quiz</p></Link></Button>
                     </div>  
                 ))
               ) : (

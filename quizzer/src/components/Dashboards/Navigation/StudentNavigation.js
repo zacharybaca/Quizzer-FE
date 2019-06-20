@@ -22,17 +22,18 @@ class StudentNavigation extends React.Component {
           dropdownOpen: !prevState.dropdownOpen
         }));
       }
+
      logout = () => {
         console.log("pressed");
         localStorage.clear();
-      };
+    };
+    
     render(){
         return(
             <div className='homepage'>
             {localStorage.getItem("token") ? (
               <div>
                 <Link to='/studentsDashboard'> <img class="logo" src={logo} height="35" alt="Logo White" /> </Link>
-               
               </div>
             ) : null}
              <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className='bradius'>
