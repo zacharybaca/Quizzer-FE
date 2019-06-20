@@ -25,10 +25,12 @@ function StudentsDashboard(props) {
 
   return (
     <Fragment> 
-    <div>
+          <div>
+
       <StudentNavigation />
-      <button>
-        <Link to="/addclass">Add Class</Link>
+
+      <button className='button'>
+        <Link  className='white' to="/addclass">Add Class</Link>
       </button>
       {console.log(quizzes)}
       <h1>Student DashBoard</h1>

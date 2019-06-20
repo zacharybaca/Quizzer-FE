@@ -4,6 +4,8 @@ import {injectStripe} from 'react-stripe-elements';
 // import AddressSection from './AddressSection';
 import CardSection from './CardSection';
 import { Link } from 'react-router-dom';
+import "./stripe.css";
+
 
 class CheckoutForm extends React.Component {
 
@@ -73,11 +75,11 @@ class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form class="Checkout" onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
-        <button type="submit">Confirm order</button>
-        <Link to='/step2' ><button>Next</button></Link>
+        <button class="button" type="submit">Confirm order</button>
+        <Link to='/step2' ><button class="button">Next</button></Link>
       </form>
     );
   

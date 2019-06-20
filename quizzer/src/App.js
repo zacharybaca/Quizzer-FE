@@ -24,6 +24,7 @@ import getQuiz from "./components/Quiz/getQuiz";
 import logo from './logowhite.svg';
 
 
+
 function App(props) {
   const logout = () => {
     console.log("pressed");
