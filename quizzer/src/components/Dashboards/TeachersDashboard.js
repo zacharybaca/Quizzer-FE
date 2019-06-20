@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import TeacherNavigation from "./Navigation/TeacherNavgation.js";
 import "./teacherDashboard.css";
 
 function TeacherDashboard(props) {
@@ -28,8 +28,8 @@ function TeacherDashboard(props) {
 
   return (
     <div>
+      <TeacherNavigation />
       <button>
-        {" "}
         <Link to="/quizzes">new quiz</Link>
       </button>
       <button onClick={access}>get access code</button>
@@ -39,7 +39,9 @@ function TeacherDashboard(props) {
       {quizzes.length > 0 ? (
         quizzes.map(user => (
           <div key={user.id} className="box">
-            <p>quiz</p>
+            <h3>{user.quiz_name}</h3>
+            <p>{user.description}</p>
+            <Link to={`edit/quiz/${user.quiz_id}`}>edit quiz</Link>
           </div>
         ))
       ) : (

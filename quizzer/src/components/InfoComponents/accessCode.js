@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
-import StudentNavigation from '../Dashboards/Navigation/StudentNavigation';
+import StudentNavigation from "../Dashboards/Navigation/StudentNavigation";
 
 const AccessCode = props => {
   const [formData, setFormData] = useState({
@@ -29,7 +28,7 @@ const AccessCode = props => {
   return (
     <div>
       <StudentNavigation />
-      {console.log('I am rendering')}
+      {console.log("I am rendering")}
       <form onSubmit={e => onSubmit(e)}>
         <input
           value={access_code}
