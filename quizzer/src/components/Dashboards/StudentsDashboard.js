@@ -2,8 +2,8 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "./studentDashboard.css";
-import StudentNavigation from './Navigation/StudentNavigation.js';
-import { Button } from 'reactstrap';
+import StudentNavigation from "./Navigation/StudentNavigation.js";
+import { Button } from "reactstrap";
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);
@@ -20,33 +20,40 @@ function StudentsDashboard(props) {
       takeQuizzes(result.data.quizzes);
     };
     fetchData();
-  }, []);
+  }, [takeQuizzes]);
 
   return (
-    <Fragment> 
+    <Fragment>
       <div>
         <StudentNavigation />
-        <button className='button'>
-          <Link  className='white' to="/addclass">Add Class</Link>
+        <button className="button">
+          <Link className="white" to="/addclass">
+            Add Class
+          </Link>
         </button>
         <div>
           {console.log(quizzes)}
-          <h1 className='title'>Student Đashboard</h1>  
-          <div className="assigned-quizzes">  
-            <div className="header"> 
-              Assigned Quizzes
-            </div>
+          <h1 className="title">Student Đashboard</h1>
+          <div className="assigned-quizzes">
+            <div className="header">Assigned Quizzes</div>
             <div className="added-boxes">
               {quizzes.length > 0 ? (
                 quizzes.map(user => (
-                    <div key={user.id} className="box">
-                      <h6><strong>Quiz Name: {user.quiz_name}</strong></h6>
-                      <p>Assigned By: {user.name}</p>
-                      <p>Info: {user.description}</p>
-                      <p>10 Main Questions</p>
-                      <p>10 Remedial Questions</p>
-                      <Button color="purple"><Link to={`quiz/${user.id}`}><p>Take Quiz</p></Link></Button>
-                    </div>  
+                  <div key={user.id} className="box">
+                    {console.log(user)}
+                    <h6>
+                      <strong>Quiz Name: {user.quiz_name}</strong>
+                    </h6>
+                    <p>Assigned By: {user.name}</p>
+                    <p>Info: {user.description}</p>
+                    <p>10 Main Questions</p>
+                    <p>10 Remedial Questions</p>
+                    <Button color="purple">
+                      <Link to={`quiz/${user.id}`}>
+                        <p>Take Quiz</p>
+                      </Link>
+                    </Button>
+                  </div>
                 ))
               ) : (
                 <p>No quizzes at this time, try again later...</p>
@@ -54,7 +61,7 @@ function StudentsDashboard(props) {
             </div>
           </div>
         </div>
-      </div>  
+      </div>
     </Fragment>
   );
 }
