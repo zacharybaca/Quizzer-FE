@@ -41,8 +41,9 @@ function StudentsDashboard(props) {
               {quizzes.length > 0 ? (
                 quizzes.map(user => (
                     <div key={user.id} className="box">
-                      <h6><strong>Quiz Name</strong></h6>
+                      <h6><strong>Quiz Name: {user.quiz_name}</strong></h6>
                       <p>Assigned By: {user.name}</p>
+                      <p>Info: {user.description}</p>
                       <p>10 Main Questions</p>
                       <p>10 Remedial Questions</p>
                       <Button color="purple"><Link to={`quiz/${user.id}`}><p>Take Quiz</p></Link></Button>
