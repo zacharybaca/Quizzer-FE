@@ -6,11 +6,12 @@ import "./EditQuiz.css";
 
 const EditQuiz = props => {
   const [componentData, setComponentData] = useState({
+    data: "",
     quizId: "",
     questionId: ""
   });
 
-  const { quizId } = componentData;
+  const { quizId, data } = componentData;
 
   //takes place instead of componentDidMount
   useEffect(() => {
@@ -25,6 +26,7 @@ const EditQuiz = props => {
 
       setComponentData({
         ...componentData,
+        data: res.data.quiz[0],
         quizId: res.data.quiz[0].quiz_id,
         questionId: res.data.quiz[0].id
       });
@@ -49,10 +51,23 @@ const EditQuiz = props => {
 
   return (
     <>
+      {console.log(data)}
       <TeacherNavigation />
       <div className="main">
         <div className="choices">
           <div>Please select one of the following choices</div>
+          {data.length > 0
+            ? data.map(question => (
+                <div>
+                  <p>{question.Q_content}</p>
+                  <p>{question.A}</p>
+                  <p>{question.B}</p>
+                  <p>{question.C}</p>
+                  <p>{question.D}</p>
+                </div>
+              ))
+            : null}
+
           <div>
             <button className="button" onClick={updateQuiz}>
               update quiz
