@@ -25,7 +25,9 @@ class AddQuestion extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  finish = () => <Redirect to="/teachersDashboard" />;
+  finish = () => {
+    this.props.history.push("/teachersDashboard");
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -53,8 +55,8 @@ class AddQuestion extends React.Component {
         console.log(res.data);
       });
     this.setState({
-      category: "",
-      type: "",
+      category: "Math",
+      type: 1,
       Q_content: "",
       A: "",
       B: "",
