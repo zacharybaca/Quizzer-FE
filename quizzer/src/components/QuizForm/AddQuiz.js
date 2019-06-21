@@ -29,9 +29,13 @@ class AddQuiz extends React.Component {
     const teacher_id = localStorage.getItem("id");
 
     axios
-      .post(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`, {
-        quiz
-      })
+      .post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`,
+        {
+          quiz
+        }
+      )
       .then(res => {
         this.setState({
           quiz_id: res.data.id
@@ -51,7 +55,7 @@ class AddQuiz extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="quizform">
         {this.state.quiz_id === null ? (
           <div>
             <form onSubmit={this.handleSubmit}>

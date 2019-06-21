@@ -88,11 +88,6 @@
   margin-left: 700px;
 }
 
-.quizform {
-  width: 960px;
-  height: 960px;
-}
-
 .text-box {
   height: 44px;
   width: 288px;
@@ -138,7 +133,7 @@ body,
 html {
   background-color: #f6f9fc;
   font-size: 18px;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
 }
 
 h1 {

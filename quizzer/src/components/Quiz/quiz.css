@@ -5,6 +5,7 @@
 }
 
 .selected {
+  color: #fff !important;
   background-color: #6772e5 !important;
 }
 

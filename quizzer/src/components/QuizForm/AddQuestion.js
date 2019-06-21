@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import "./addQuiz.css";
 
 class AddQuestion extends React.Component {
   constructor(props) {
@@ -39,7 +40,11 @@ class AddQuestion extends React.Component {
     };
 
     axios
-      .post(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quest/question`, question)
+      .post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quest/question`,
+        question
+      )
       .then(res => {
         console.log(res);
         console.log(res.data);
