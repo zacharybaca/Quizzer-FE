@@ -12,7 +12,7 @@ function Login(props) {
 
     axios
       .post(
-        `${process.env.REACT_APP_BE_URL}/api/auth/teacher/login`,
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/teacher/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
@@ -35,7 +35,7 @@ function Login(props) {
     console.log(process.env.REACT_APP_BE_URL);
     axios
       .post(
-        `${process.env.REACT_APP_BE_URL}/api/auth/student/login`,
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/student/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }

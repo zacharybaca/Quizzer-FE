@@ -38,7 +38,7 @@ class Step2Page extends Component {
       // heroku: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
     //   fetch('http://localhost:8000/api/stripe/customer/subscribe', {
         
-    fetch(`${process.env.REACT_APP_BE_URL}/api/stripe/customer/subscribe`, {
+    fetch(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/stripe/customer/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -107,8 +107,8 @@ class Step2Page extends Component {
                 }
             </div>
             <div>
-                <button class="button" onClick={this.nextStep} >Next</button>
-                <Link to='/step1' ><button class="button">Back</button></Link>
+                <button class="button" onClick={this.nextStep}>select</button>
+                <Link to='/step2' ><button class="button">next</button></Link>
             </div>
         </div>
         );

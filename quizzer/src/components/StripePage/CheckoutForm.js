@@ -43,7 +43,7 @@ class CheckoutForm extends React.Component {
       // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/create
       // fetch('http://localhost:8000/api/stripe/customer/create', {
     
-     fetch(`${process.env.REACT_APP_BE_URL}/api/stripe/customer/create`, {
+     fetch(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/stripe/customer/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ class CheckoutForm extends React.Component {
         {/* <AddressSection /> */}
         <CardSection />
         <button class="button" type="submit">Confirm order</button>
-        <Link to='/step2' ><button class="button">Next</button></Link>
+        <Link to='/step1' ><button class="button">back</button></Link>
       </form>
     );
   
