@@ -11,9 +11,9 @@ function TeacherDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${process.env.REACT_APP_BE_URL}/api/quiz/teachers/${localStorage.getItem(
-          "id"
-        )}/quizzes`
+        `${
+          process.env.REACT_APP_BE_URL
+        }/api/quiz/teachers/${localStorage.getItem("id")}/quizzes`
       );
       //setting database data to state with hooks
       console.log(result.data);
@@ -29,13 +29,16 @@ function TeacherDashboard(props) {
   return (
     <div>
       <TeacherNavigation />
-      <button className='button'>
-        <Link className='white' to="/quizzes">new quiz</Link>
+      <button className="button">
+        <Link className="white" to="/quizzes">
+          new quiz
+        </Link>
       </button>
-      <button class='button' onClick={access}>get access code</button>
+      <button className="button" onClick={access}>
+        get access code
+      </button>
       <h1>dash</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
-
 
       {quizzes.length > 0 ? (
         quizzes.map(user => (
