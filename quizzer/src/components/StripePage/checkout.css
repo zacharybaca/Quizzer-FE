@@ -1,0 +1,40 @@
+ .box2 {
+        height: 676px;
+        width: 384px;
+        border-radius: 4px;
+        background-color: #FFFFFF;
+    border: solid 1px black;
+}
+
+h6 {
+    height: 24px;
+    width: 304px;
+    color: #000000;
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+
+}
+
+
+
+/* .add-payment-option {
+	height: 24px;
+	width: 304px;
+	color: #000000;
+	font-family: "Open Sans";
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 24px;
+} */
+
+ /* .insideBox {
+	height: 596px;
+	width: 336px;
+	border: 1px solid #363648;
+	opacity: 0.05;
+    border-radius: 4px;
+    border: solid 1px red;
+
+}  */
