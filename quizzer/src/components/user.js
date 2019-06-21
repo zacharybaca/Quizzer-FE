@@ -14,7 +14,7 @@ function User() {
     useEffect(() => {
       const fetchData = async () => {
         const result = await axios(
-          `${process.env.REACT_APP_BE_URL}/api/users`
+          `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/users`
         );
         //setting database data to state with hooks
         setUsers(result.data);

@@ -29,7 +29,7 @@ class AddQuiz extends React.Component {
     const teacher_id = localStorage.getItem("id");
 
     axios
-      .post(`${process.env.REACT_APP_BE_URL}/api/quiz/quizzes`, {
+      .post(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`, {
         quiz
       })
       .then(res => {

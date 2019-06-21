@@ -3,6 +3,7 @@
   width: 192px;
   border-radius: 4px;
   background-color: #ffffff;
+  margin: 1%;
 }
 
 .button {
@@ -29,4 +30,32 @@
 
 .white {
   color: white;
+}
+
+.title {
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+}
+
+.p {
+  text-transform: uppercase;
+}
+
+.header {
+	height: 28px;
+	width: 309px;
+	color: #000000;
+	font-family: "Open Sans";
+	font-size: 20px;
+	font-weight: bold;
+  line-height: 28px;
+  padding: 1%;
+}
+
+.recently-administered-quizzes {
+  display: flex;
+	height: 215px;
+  width: 960px;
+  padding: 1%;
 }
