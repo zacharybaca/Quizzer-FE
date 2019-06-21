@@ -28,7 +28,7 @@ class Quiz extends React.Component {
     const remedial = [];
 
     axios
-      .get(`https://labs13-quizzer.herokuapp.com/api/quiz/quizzes/${id}`)
+      .get(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`)
       .then(res => {
         console.log(res);
         const options = [

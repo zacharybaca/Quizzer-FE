@@ -39,7 +39,7 @@ class AddQuestion extends React.Component {
     };
 
     axios
-      .post(`https://labs13-quizzer.herokuapp.com/api/quest/question`, question)
+      .post(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quest/question`, question)
       .then(res => {
         console.log(res);
         console.log(res.data);
@@ -59,7 +59,7 @@ class AddQuestion extends React.Component {
   render() {
     return (
       <div>
-        <div className="add-question">
+        <div>
           <form onSubmit={this.handleSubmit}>
             <label>Category</label>
             <br />

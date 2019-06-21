@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./login.css";
 import axios from "axios";
 import { GoogleLogin } from "react-google-login";
-import logo from './logopurple.svg';
+import logo from "./logopurple.svg";
 
 function Login(props) {
   const [signedIn, setSignedIn] = useState();
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
+
     axios
       .post(
-        "https://labs13-quizzer.herokuapp.com/api/auth/teacher/login",
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/teacher/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
@@ -31,17 +32,18 @@ function Login(props) {
   const responseGoogle1 = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
+    console.log(process.env.REACT_APP_BE_URL);
     axios
       .post(
-        "https://labs13-quizzer.herokuapp.com/api/auth/student/login",
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/student/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
         }
       )
       .then(res => {
-        console.log("hello", res.data[0]);
-        localStorage.setItem("id", res.data[0].id);
+        console.log("hello", res.data);
+        localStorage.setItem("id", res.data.id);
         props.history.push("/studentsDashboard");
         console.log("ran");
       })
@@ -52,7 +54,7 @@ function Login(props) {
   return (
     <div className="background">
       <div className="box">
-      <img class="img" src={logo} height="35" alt="Logo White" />
+        <img className="img" src={logo} height="35" alt="Logo White" />
 
         <div>
           <h2 className="log-in">Login as Teacher</h2>

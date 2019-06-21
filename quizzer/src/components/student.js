@@ -14,7 +14,7 @@ function Student() {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        "https://labs13-quizzer.herokuapp.com/api/profile/student"
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/profile/student`
       );
       //setting database data to state with hooks
       console.log("ran");

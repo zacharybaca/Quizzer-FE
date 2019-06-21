@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import TeacherNavigation from "./Navigation/TeacherNavigation.js";
 import "./teacherDashboard.css";
+import { Button } from "reactstrap";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
@@ -11,7 +12,7 @@ function TeacherDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://labs13-quizzer.herokuapp.com/api/quiz/teachers/${localStorage.getItem(
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/teachers/${localStorage.getItem(
           "id"
         )}/quizzes`
       );
@@ -28,23 +29,34 @@ function TeacherDashboard(props) {
 
   return (
     <div>
-      <button>
-        {" "}
-        <Link to="/quizzes">new quiz</Link>
+      <TeacherNavigation />
+      <button className='button'>
+        <Link className='white' to="/quizzes">new quiz</Link>
       </button>
-      <button onClick={access}>get access code</button>
-      <h1>dash</h1>
+   
+      <button class='button' onClick={access}>get access code</button>
+      <h1 className="title">Teacher Đashboard</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
-
+      <div className="header">Recently Administered Quizzes</div>
+      <div className="recently-administered-quizzes">
       {quizzes.length > 0 ? (
         quizzes.map(user => (
           <div key={user.id} className="box">
-            <p>quiz</p>
-          </div>
+          <h6 className="p">
+            <strong>{user.quiz_name}</strong>
+          </h6>
+            <p>{user.description}</p>
+            <Button color="purple">
+              <Link to={`edit/quiz/${user.quiz_id}`}>
+              <p className="p">edit quiz</p>
+              </Link>
+            </Button>
+            </div>
         ))
       ) : (
         <p>no created quizzes</p>
       )}
+      </div>
     </div>
   );
 }

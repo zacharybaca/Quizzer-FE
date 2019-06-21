@@ -1,10 +1,9 @@
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 import "./studentDashboard.css";
-import StudentNavigation from './Navigation/StudentNavigation.js';
-
+import StudentNavigation from "./Navigation/StudentNavigation.js";
+import { Button } from "reactstrap";
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState([]);
@@ -12,7 +11,7 @@ function StudentsDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `https://labs13-quizzer.herokuapp.com/quiz/student/${localStorage.getItem(
+        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/student/${localStorage.getItem(
           "id"
         )}/quizzes`
       );
@@ -21,31 +20,43 @@ function StudentsDashboard(props) {
       takeQuizzes(result.data.quizzes);
     };
     fetchData();
-  }, []);
+  }, [takeQuizzes]);
 
   return (
-    <Fragment> 
-    <div>
-      <StudentNavigation />
-      <button>
-        <Link to="/addclass">Add Class</Link>
-      </button>
-      {console.log(quizzes)}
-      <h1>Student DashBoard</h1>
-
-      {quizzes.length > 0 ? (
-        quizzes.map(user => (
-          <div key={user.id} className="box">
-            <p>quiz</p>
-            <p>by: {user.name}</p>
-            <Link to={`quiz/${user.id}`}>take quiz</Link>
+      <div>
+        <StudentNavigation />
+        <button className="button">
+          <Link className="white" to="/addclass">add class</Link>
+        </button>
+        <div>
+          {console.log(quizzes)}
+          <h1 className="title">Student Đashboard</h1>
+            <div className="header">Assigned Quizzes</div>
+            <div className="assigned-quizzes">
+              {quizzes.length > 0 ? (
+                quizzes.map(user => (
+                  <div key={user.id} className="box">
+                    {console.log(user)}
+                    <h6 className="p">
+                      <strong>{user.quiz_name}</strong>
+                    </h6>
+                    <p>Assigned By: {user.name}</p>
+                    <p>{user.description}</p>
+                    <p>10 Main Questions</p>
+                    <p>10 Remedial Questions</p>
+                    <Button color="purple">
+                      <Link to={`quiz/${user.id}`}>
+                        <p className="p">take quiz</p>
+                      </Link>
+                    </Button>
+                  </div>
+                ))
+              ) : (
+                <p>No quizzes at this time, try again later...</p>
+              )}
+            </div>
           </div>
-        ))
-      ) : (
-        <p>no quizzes to complete</p>
-      )}
-    </div>
-    </Fragment>
+        </div>
   );
 }
 

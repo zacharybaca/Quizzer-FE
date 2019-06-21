@@ -4,6 +4,8 @@ import {injectStripe} from 'react-stripe-elements';
 // import AddressSection from './AddressSection';
 import CardSection from './CardSection';
 import { Link } from 'react-router-dom';
+import "./stripe.css";
+
 
 class CheckoutForm extends React.Component {
 
@@ -41,7 +43,7 @@ class CheckoutForm extends React.Component {
       // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/create
       // fetch('http://localhost:8000/api/stripe/customer/create', {
     
-     fetch('https://labs13-quizzer.herokuapp.com/api/stripe/customer/create', {
+     fetch(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/stripe/customer/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -73,11 +75,11 @@ class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form class="Checkout" onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
-        <button type="submit">Confirm order</button>
-        <Link to='/step2' ><button>Next</button></Link>
+        <button class="button" type="submit">Confirm order</button>
+        <Link to='/step1' ><button class="button">back</button></Link>
       </form>
     );
   

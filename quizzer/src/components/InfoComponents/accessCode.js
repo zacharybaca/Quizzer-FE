@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
-import StudentNavigation from '../Dashboards/Navigation/StudentNavigation';
+import StudentNavigation from "../Dashboards/Navigation/StudentNavigation";
 
 const AccessCode = props => {
   const [formData, setFormData] = useState({
@@ -19,7 +18,7 @@ const AccessCode = props => {
     console.log("success");
 
     const res = await axios.post(
-      "https://labs13-quizzer.herokuapp.com/api/profile/addstudent",
+      `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/profile/addstudent`,
       formData
     );
     console.log(res);
@@ -29,7 +28,7 @@ const AccessCode = props => {
   return (
     <div>
       <StudentNavigation />
-      {console.log('I am rendering')}
+      {console.log("I am rendering")}
       <form onSubmit={e => onSubmit(e)}>
         <input
           value={access_code}
@@ -38,7 +37,7 @@ const AccessCode = props => {
           placeholder="enter access code..."
           name="access_code"
         />
-        <input type="submit" className="btn btn-primary" value="Submit" />
+        <input type="submit" className="button" value="Submit" />
       </form>
     </div>
   );

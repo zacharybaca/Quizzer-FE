@@ -1,11 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import logo from '../../../logowhite.svg';
-import styled from "styled-components";
-import { Link } from 'react-router-dom';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import './StudentNavigation.css';
-
+import logo from "../../../logowhite.svg";
+import { Link } from "react-router-dom";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from "reactstrap";
+import "./StudentNavigation.css";
 
 class StudentNavigation extends React.Component {
     constructor(props) {
@@ -22,32 +24,40 @@ class StudentNavigation extends React.Component {
           dropdownOpen: !prevState.dropdownOpen
         }));
       }
+
      logout = () => {
         console.log("pressed");
         localStorage.clear();
-      };
+    };
+    
     render(){
         return(
             <div className='homepage'>
             {localStorage.getItem("token") ? (
               <div>
-                <Link to='/studentsDashboard'> <img class="logo" src={logo} height="35" alt="Logo White" /> </Link>
-               
+                <Link to='/studentsDashboard'> 
+                {" "}
+                <img 
+                  className="logo" 
+                  src={logo} 
+                  height="35" 
+                  alt="Logo White" 
+                /> {" "}
+                </Link>
               </div>
             ) : null}
-             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} className='bradius'>
-        <DropdownToggle caret>
-          Dropdown
-        </DropdownToggle>
-        <DropdownMenu className='bradius'>
-            <DropdownItem header>Header</DropdownItem>
-             <DropdownItem onClick={this.logout}>Log Out</DropdownItem>
-            
-        </DropdownMenu>
-      </Dropdown>
-            
+
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
+            <DropdownToggle className='bradius'>
+              <DropdownMenu className="menu">
+                <Link to = '/'> 
+                  <div className="click" onClick={this.logout}>Log Out</div>
+                </Link>
+              </DropdownMenu>
+            </DropdownToggle>
+          </Dropdown>
           </div>
-        )
+      )
     }  
    
 }

@@ -38,7 +38,7 @@ class Step2Page extends Component {
       // heroku: https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe
     //   fetch('http://localhost:8000/api/stripe/customer/subscribe', {
         
-    fetch('https://labs13-quizzer.herokuapp.com/api/stripe/customer/subscribe', {
+    fetch(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/stripe/customer/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,7 +63,9 @@ class Step2Page extends Component {
         console.log('currentPlan', currentPlan);
 
 
-        const plans = ['bronze', 'silver', 'gold'];
+        const plans = ['bronze', 
+        // 'silver', 'gold'
+    ];
 
         return (
         <div>
@@ -76,13 +78,14 @@ class Step2Page extends Component {
                 />
             </div>
             <div>
-                <h2>Plans</h2>
+                <h1>Plans</h1>
                 {  
                     (plans).map((plan) => {
                         if (currentPlan === plan) {
                         return (
-                            <button
+                            <button class="plan"
                                style={{
+                                   // change color?
                                 backgroundColor: '#d8d8d8',
                             }}
                             onClick={() => this.switchPlan(plan)}
@@ -104,8 +107,8 @@ class Step2Page extends Component {
                 }
             </div>
             <div>
-                <button onClick={this.nextStep} >Next</button>
-                <Link to='/step1' ><button>Back</button></Link>
+                <button class="button" onClick={this.nextStep}>select</button>
+                <Link to='/step2' ><button class="button">next</button></Link>
             </div>
         </div>
         );
