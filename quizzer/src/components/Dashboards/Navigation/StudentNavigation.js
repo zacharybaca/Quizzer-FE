@@ -39,7 +39,7 @@ class StudentNavigation extends React.Component {
         <DropdownToggle caret>
           Dropdown
         </DropdownToggle>
-        <DropdownMenu>
+        <DropdownMenu className='bradius'>
             <DropdownItem header>Header</DropdownItem>
              <DropdownItem onClick={this.logout}>Log Out</DropdownItem>
             
