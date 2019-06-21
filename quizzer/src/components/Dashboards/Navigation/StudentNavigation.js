@@ -37,20 +37,25 @@ class StudentNavigation extends React.Component {
               <div>
                 <Link to='/studentsDashboard'> 
                 {" "}
-                <img class="logo" src={logo} height="35" alt="Logo White" /> {" "}
+                <img 
+                  className="logo" 
+                  src={logo} 
+                  height="35" 
+                  alt="Logo White" 
+                /> {" "}
                 </Link>
               </div>
             ) : null}
-              <Dropdown 
-                isOpen={this.state.dropdownOpen} 
-                toggle={this.toggle} 
-                className='bradius'
-              >
-        <DropdownToggle caret></DropdownToggle>
-        <DropdownMenu>
-          <Link to = '/'> <DropdownItem onClick={this.logout}>Log Out</DropdownItem></Link>
-        </DropdownMenu>
-      </Dropdown>
+
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
+            <DropdownToggle className='bradius'>
+              <DropdownMenu className="menu">
+                <Link to = '/'> 
+                  <div className="click" onClick={this.logout}>Log Out</div>
+                </Link>
+              </DropdownMenu>
+            </DropdownToggle>
+          </Dropdown>
           </div>
       )
     }  

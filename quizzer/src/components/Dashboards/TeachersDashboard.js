@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import TeacherNavigation from "./Navigation/TeacherNavigation.js";
 import "./teacherDashboard.css";
+import { Button } from "reactstrap";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
@@ -32,22 +33,30 @@ function TeacherDashboard(props) {
       <button className='button'>
         <Link className='white' to="/quizzes">new quiz</Link>
       </button>
+   
       <button class='button' onClick={access}>get access code</button>
-      <h1>dash</h1>
+      <h1 className="title">Teacher Đashboard</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
-
-
+      <div className="header">Recently Administered Quizzes</div>
+      <div className="recently-administered-quizzes">
       {quizzes.length > 0 ? (
         quizzes.map(user => (
           <div key={user.id} className="box">
-            <h3>{user.quiz_name}</h3>
+          <h6 className="p">
+            <strong>{user.quiz_name}</strong>
+          </h6>
             <p>{user.description}</p>
-            <Link to={`edit/quiz/${user.quiz_id}`}>edit quiz</Link>
-          </div>
+            <Button color="purple">
+              <Link to={`edit/quiz/${user.quiz_id}`}>
+              <p className="p">edit quiz</p>
+              </Link>
+            </Button>
+            </div>
         ))
       ) : (
         <p>no created quizzes</p>
       )}
+      </div>
     </div>
   );
 }

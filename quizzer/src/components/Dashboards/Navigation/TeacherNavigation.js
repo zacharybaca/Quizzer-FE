@@ -48,18 +48,12 @@ class TeacherNavigation extends Component {
 
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <DropdownToggle className="bradius">
-            <div
-              tag="span"
-              onClick={this.toggle}
-              data-toggle="dropdown"
-              aria-expanded={this.state.dropdownOpen}
-            />
+            <DropdownMenu className="menu">
+              <Link to = '/'> 
+                <div className="click" onClick={this.logout}>Log Out</div> 
+              </Link>
+            </DropdownMenu>
           </DropdownToggle>
-          <DropdownMenu className="menu">
-            <div className="click" onClick={this.logout}>
-              Log Out
-            </div>
-          </DropdownMenu>
         </Dropdown>
       </div>
     );

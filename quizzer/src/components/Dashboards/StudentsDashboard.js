@@ -23,34 +23,30 @@ function StudentsDashboard(props) {
   }, [takeQuizzes]);
 
   return (
-    <Fragment>
       <div>
         <StudentNavigation />
         <button className="button">
-          <Link className="white" to="/addclass">
-            Add Class
-          </Link>
+          <Link className="white" to="/addclass">add class</Link>
         </button>
         <div>
           {console.log(quizzes)}
           <h1 className="title">Student Đashboard</h1>
-          <div className="assigned-quizzes">
             <div className="header">Assigned Quizzes</div>
-            <div className="added-boxes">
+            <div className="assigned-quizzes">
               {quizzes.length > 0 ? (
                 quizzes.map(user => (
                   <div key={user.id} className="box">
                     {console.log(user)}
-                    <h6>
-                      <strong>Quiz: {user.quiz_name}</strong>
+                    <h6 className="p">
+                      <strong>{user.quiz_name}</strong>
                     </h6>
                     <p>Assigned By: {user.name}</p>
-                    <p>Info: {user.description}</p>
+                    <p>{user.description}</p>
                     <p>10 Main Questions</p>
                     <p>10 Remedial Questions</p>
                     <Button color="purple">
                       <Link to={`quiz/${user.id}`}>
-                        <p>Take Quiz</p>
+                        <p className="p">take quiz</p>
                       </Link>
                     </Button>
                   </div>
@@ -61,8 +57,6 @@ function StudentsDashboard(props) {
             </div>
           </div>
         </div>
-      </div>
-    </Fragment>
   );
 }
 
