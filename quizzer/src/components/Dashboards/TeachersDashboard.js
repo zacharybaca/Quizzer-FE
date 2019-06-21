@@ -41,9 +41,6 @@ function TeacherDashboard(props) {
         get access code
       </button>
 
-      <button class="button" onClick={access}>
-        get access code
-      </button>
       <h1 className="title">Teacher Đashboard</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
       <div className="header">Recently Administered Quizzes</div>

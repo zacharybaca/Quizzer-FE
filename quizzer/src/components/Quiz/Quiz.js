@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
-
+import StudentNavigation from "../Dashboards/Navigation/StudentNavigation.js";
+import "./quiz.css";
 //Noted issue Q'a start at 0 not 1 an thus points are only counted from 1 not 0
 
 class Quiz extends React.Component {
@@ -28,7 +29,10 @@ class Quiz extends React.Component {
     const remedial = [];
 
     axios
-      .get(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`)
+      .get(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
+      )
       .then(res => {
         console.log(res);
         const options = [
@@ -152,7 +156,7 @@ class Quiz extends React.Component {
       "=",
       this.state.questionCount
     );
-    if (this.state.currentQuestion + 1 === this.state.questionCount) {
+    if (this.state.currentQuestion === this.state.questionCount - 1) {
       this.setState({
         quizEnd: true
       });
@@ -173,6 +177,7 @@ class Quiz extends React.Component {
     if (quizEnd) {
       return (
         <div>
+          <StudentNavigation />
           <h2>Completed Quiz final score is {this.state.score} points</h2>
           <p>The Correct Answer's were: </p>
           <ul>
@@ -186,9 +191,13 @@ class Quiz extends React.Component {
       );
     }
     return (
-      <div className="App">
-        <h2>{questions}</h2>
-        <span> {`Questions ${currentQuestion} out of ${questionCount}`}</span>
+      <div>
+        <StudentNavigation />
+        <div className="align">
+          <h2>{questions}</h2>
+          <span> {`Questions ${currentQuestion} out of ${questionCount}`}</span>
+        </div>
+
         {options.map(option => (
           <p
             key={option.id}
@@ -203,6 +212,7 @@ class Quiz extends React.Component {
 
         {currentQuestion < questionCount - 1 && (
           <button
+            className="new"
             disabled={this.state.disabled}
             onClick={this.nextQuestionHandler}
           >
@@ -210,7 +220,9 @@ class Quiz extends React.Component {
           </button>
         )}
         {currentQuestion === questionCount - 1 && (
-          <button onClick={this.finishHandler}>Finish</button>
+          <button className="new" onClick={this.finishHandler}>
+            Finish
+          </button>
         )}
       </div>
     );
