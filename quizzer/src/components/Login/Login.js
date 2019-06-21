@@ -12,7 +12,8 @@ function Login(props) {
 
     axios
       .post(
-        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/teacher/login`,
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/auth/teacher/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
@@ -20,8 +21,8 @@ function Login(props) {
       )
       .then(res => {
         console.log(res.data);
-        localStorage.setItem("access_code", res.data.access_code);
-        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("access_code", res.data[0].access_code);
+        localStorage.setItem("id", res.data[0].id);
         setSignedIn(res.data.id);
         props.history.push("/teachersDashboard");
       })
@@ -35,7 +36,8 @@ function Login(props) {
     console.log(process.env.REACT_APP_BE_URL);
     axios
       .post(
-        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/student/login`,
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/auth/student/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
@@ -43,7 +45,7 @@ function Login(props) {
       )
       .then(res => {
         console.log("hello", res.data);
-        localStorage.setItem("id", res.data.id);
+        localStorage.setItem("id", res.data[0].id);
         props.history.push("/studentsDashboard");
         console.log("ran");
       })

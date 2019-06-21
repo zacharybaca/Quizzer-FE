@@ -12,13 +12,15 @@ function TeacherDashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios(
-        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/teachers/${localStorage.getItem(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env
+            .REACT_APP_BE_LOCAL}/api/quiz/teachers/${localStorage.getItem(
           "id"
         )}/quizzes`
       );
       //setting database data to state with hooks
       console.log(result.data);
-      setQuizzes(result.data.quizzes);
+      setQuizzes(result.data);
     };
     fetchData();
   }, []);
@@ -30,32 +32,36 @@ function TeacherDashboard(props) {
   return (
     <div>
       <TeacherNavigation />
-      <button className='button'>
-        <Link className='white' to="/quizzes">new quiz</Link>
+      <button className="button">
+        <Link className="white" to="/quizzes">
+          new quiz
+        </Link>
       </button>
-   
-      <button class='button' onClick={access}>get access code</button>
+      <button className="button" onClick={access}>
+        get access code
+      </button>
+
       <h1 className="title">Teacher Đashboard</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
       <div className="header">Recently Administered Quizzes</div>
       <div className="recently-administered-quizzes">
-      {quizzes.length > 0 ? (
-        quizzes.map(user => (
-          <div key={user.id} className="box">
-          <h6 className="p">
-            <strong>{user.quiz_name}</strong>
-          </h6>
-            <p>{user.description}</p>
-            <Button color="purple">
-              <Link to={`edit/quiz/${user.quiz_id}`}>
-              <p className="p">edit quiz</p>
-              </Link>
-            </Button>
+        {quizzes.length > 0 ? (
+          quizzes.map(user => (
+            <div key={user.id} className="box">
+              <h6 className="p">
+                <strong>{user.quiz_name}</strong>
+              </h6>
+              <p>{user.description}</p>
+              <Button color="purple">
+                <Link to={`edit/quiz/${user.id}`}>
+                  <p className="p">edit quiz</p>
+                </Link>
+              </Button>
             </div>
-        ))
-      ) : (
-        <p>no created quizzes</p>
-      )}
+          ))
+        ) : (
+          <p>no created quizzes</p>
+        )}
       </div>
     </div>
   );
