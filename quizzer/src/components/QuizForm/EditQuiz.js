@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
+
 import axios from "axios";
 import "./EditQuiz.css";
 
@@ -15,14 +16,13 @@ const EditQuiz = props => {
   useEffect(() => {
     const fetchData = async () => {
       const { id } = props.match.params;
-      console.log(id);
+
       const res = await axios(
         `${process.env.REACT_APP_BE_URL ||
           process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
       );
       //setting database data to state with hooks
-      console.log("ran");
-      console.log(res.data);
+
       setComponentData({
         ...componentData,
         quizId: res.data.quiz[0].quiz_id,
@@ -44,6 +44,7 @@ const EditQuiz = props => {
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
     );
+    props.history.push("/teachersDashboard");
   };
 
   return (

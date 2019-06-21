@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import AddQuestion from "./AddQuestion";
+import { Redirect } from "react-router-dom";
 
 class AddQuiz extends React.Component {
   state = {
@@ -59,7 +60,7 @@ class AddQuiz extends React.Component {
         {this.state.quiz_id === null ? (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label for="quiz-name">Quiz Name</label>
+              <label>Quiz Name</label>
               <br />
               <input
                 className="text-box"
@@ -69,9 +70,7 @@ class AddQuiz extends React.Component {
               />
               <br />
               <br />
-              <label className="add-quiz-label" for="quiz-description">
-                Add Quiz Description
-              </label>
+              <label className="add-quiz-label">Add Quiz Description</label>
               <br />
               <input
                 className="add-quiz-text-box"

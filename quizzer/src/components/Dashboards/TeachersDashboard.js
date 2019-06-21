@@ -20,7 +20,7 @@ function TeacherDashboard(props) {
       );
       //setting database data to state with hooks
       console.log(result.data);
-      setQuizzes(result.data.quizzes);
+      setQuizzes(result.data);
     };
     fetchData();
   }, []);
@@ -53,7 +53,7 @@ function TeacherDashboard(props) {
               </h6>
               <p>{user.description}</p>
               <Button color="purple">
-                <Link to={`edit/quiz/${user.quiz_id}`}>
+                <Link to={`edit/quiz/${user.id}`}>
                   <p className="p">edit quiz</p>
                 </Link>
               </Button>
