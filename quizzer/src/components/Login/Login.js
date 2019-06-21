@@ -9,6 +9,7 @@ function Login(props) {
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
+
     axios
       .post(
         `${process.env.REACT_APP_BE_URL}/api/auth/teacher/login`,
@@ -31,6 +32,7 @@ function Login(props) {
   const responseGoogle1 = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
+    console.log(process.env.REACT_APP_BE_URL);
     axios
       .post(
         `${process.env.REACT_APP_BE_URL}/api/auth/student/login`,
@@ -40,8 +42,8 @@ function Login(props) {
         }
       )
       .then(res => {
-        console.log("hello", res.data[0]);
-        localStorage.setItem("id", res.data[0].id);
+        console.log("hello", res.data);
+        localStorage.setItem("id", res.data.id);
         props.history.push("/studentsDashboard");
         console.log("ran");
       })
