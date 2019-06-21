@@ -18,7 +18,7 @@ const AccessCode = props => {
     console.log("success");
 
     const res = await axios.post(
-      "https://labs13-quizzer.herokuapp.com/api/profile/addstudent",
+      `${process.env.REACT_APP_BE_URL}/api/profile/addstudent`,
       formData
     );
     console.log(res);

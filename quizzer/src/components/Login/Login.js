@@ -11,7 +11,7 @@ function Login(props) {
     localStorage.setItem("token", response.Zi.id_token);
     axios
       .post(
-        "https://labs13-quizzer.herokuapp.com/api/auth/teacher/login",
+        `${process.env.REACT_APP_BE_URL}/api/auth/teacher/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
@@ -33,7 +33,7 @@ function Login(props) {
     localStorage.setItem("token", response.Zi.id_token);
     axios
       .post(
-        "https://labs13-quizzer.herokuapp.com/api/auth/student/login",
+        `${process.env.REACT_APP_BE_URL}/api/auth/student/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
