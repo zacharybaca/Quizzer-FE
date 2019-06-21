@@ -52,6 +52,7 @@ class TeacherNavigation extends Component {
               <Link to = '/'> 
                 <div className="click" onClick={this.logout}>Log Out</div> 
               </Link>
+              <Link className="click" to = '/step1'>Billing</Link>
             </DropdownMenu>
           </DropdownToggle>
         </Dropdown>

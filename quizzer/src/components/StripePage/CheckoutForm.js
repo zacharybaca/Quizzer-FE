@@ -79,7 +79,7 @@ class CheckoutForm extends React.Component {
         {/* <AddressSection /> */}
         <CardSection />
         <button class="button" type="submit">Confirm order</button>
-        <Link to='/step2' ><button class="button">Next</button></Link>
+        <Link to='/step1' ><button class="button">back</button></Link>
       </form>
     );
   
