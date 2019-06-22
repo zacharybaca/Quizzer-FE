@@ -34,8 +34,8 @@ function StudentsDashboard(props) {
       </button>
       <div>
         {console.log(quizzes)}
-        <h1 className="title">Student Đashboard</h1>
-        <div className="header">Assigned Quizzes</div>
+        <h1 className="header1">Student Đashboard</h1>
+        <div className="header2">Assigned Quizzes</div>
         <div className="assigned-quizzes">
           {quizzes.length > 0 ? (
             quizzes.map(user => (
@@ -56,7 +56,7 @@ function StudentsDashboard(props) {
               </div>
             ))
           ) : (
-            <p>No quizzes at this time, try again later...</p>
+            <p className="header3">No quizzes at this time, try again later...</p>
           )}
         </div>
       </div>

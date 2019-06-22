@@ -37,7 +37,7 @@ class TeacherNavigation extends Component {
             <Link to="/teachersDashboard">
               {" "}
               <img
-                className="logo moved"
+                className="logo"
                 src={logo}
                 height="35"
                 alt="Logo White"
