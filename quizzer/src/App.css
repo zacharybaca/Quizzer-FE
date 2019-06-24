@@ -5,6 +5,7 @@
   background-color: #ffffff;
 }
 
+
 .options {
   cursor: pointer;
   border: 2px solid black;
@@ -26,16 +27,11 @@
   color: #61dafb;
 }
 
-.logo {
-  height: 32px;
-  width: 199px;
-}
-
 .header {
   display: flex;
   align-items: center;
   height: 64px;
-  width: 1440px;
+  width: 1300px;  
 }
 
 .sidebar-nav {
@@ -59,7 +55,11 @@
   font-weight: bold;
   line-height: 32px;
   text-align: center;
+    margin-right: 800px;
+
 }
+
+
 
 .quizzes-folder {
   height: 80px;
@@ -174,3 +174,4 @@ button:hover {
   transform: translateY(-1px);
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
+

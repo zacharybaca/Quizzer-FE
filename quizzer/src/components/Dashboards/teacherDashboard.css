@@ -4,6 +4,8 @@
   border-radius: 4px;
   background-color: #ffffff;
   margin: 1%;
+  text-align: center;
+
 }
 
 .button {
@@ -36,21 +38,27 @@
   display: flex;
   font-weight: bold;
   justify-content: center;
+  margin: 20px 0;
 }
 
 .p {
   text-transform: uppercase;
 }
 
-.header {
-	height: 28px;
-	width: 309px;
-	color: #000000;
-	font-family: "Open Sans";
-	font-size: 20px;
-	font-weight: bold;
+.header1 {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  width: 1300px;  
+}
+
+.header2 {
+  color: #000000;
+	font-size: 20px; 
   line-height: 28px;
-  padding: 1%;
+  padding: 1%; 
+  padding-left: 500px;
+
 }
 
 .recently-administered-quizzes {
@@ -58,4 +66,11 @@
 	height: 215px;
   width: 960px;
   padding: 1%;
+  flex-direction: row-reverse;
+
+}
+
+.purple {
+  line-height: .5;
+  font-size: 15px;
 }
