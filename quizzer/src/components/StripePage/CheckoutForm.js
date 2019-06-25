@@ -57,6 +57,8 @@ class CheckoutForm extends React.Component {
         console.log('response', response)
         alert(`Thank you for doing business with us!` );
       });
+      console.log('here:', this.props)
+      //this.props.history.push('/teachersDashboard')
     })
 
     // token type can optionally be inferred if there is only one one Element
@@ -73,14 +75,18 @@ class CheckoutForm extends React.Component {
         name: 'Jenny Rosen',
       },
     });
+   
   }; 
+
 
   render() {
     return (
       <form class="Checkout" onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
+        <Link to="/teachersDashboard">
         <button class="button" type="submit">Confirm order</button>
+          </Link>
         <Link to='/step1' ><button class="button">back</button></Link>
       </form>
     );
