@@ -20,10 +20,11 @@ import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
 
 function App(props) {
+  //console.log(props)
   return (
     <>
       <div className="App">
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" render = {props => <Login {...props} history={props.history} />} />
       </div>
 
       <Protected

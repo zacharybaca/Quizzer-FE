@@ -3,15 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, withRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import history from './history';
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "../src/components/Step2/Step2Page";
-
+const AppwithRouter = withRouter(App)
 ReactDOM.render(
-  <Router>
-    <App />
+  <Router history={history}>
+    <AppwithRouter />
   </Router>,
   document.getElementById("root")
 );

@@ -7,12 +7,12 @@ import logo from "./logopurple.svg";
 function Login(props) {
   const [signedIn, setSignedIn] = useState();
   const responseGoogle = response => {
-    console.log(response);
+    //console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
 
     axios
       .post(
-        `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/teacher/login`,
+         `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/auth/teacher/login`,
         response,
         {
           headers: { Authorization: localStorage.getItem("token") }
@@ -23,10 +23,12 @@ function Login(props) {
         localStorage.setItem("access_code", res.data.access_code);
         localStorage.setItem("id", res.data.id);
         setSignedIn(res.data.id);
-        props.history.push("/teachersDashboard");
+        console.log(props)
+        props.history.push("/step1");
       })
       .catch(err => {
         console.log(err);
+
       });
   };
   const responseGoogle1 = response => {
