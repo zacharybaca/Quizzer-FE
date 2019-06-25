@@ -10,8 +10,13 @@ const EditQuiz = props => {
     quizId: "",
     questionId: ""
   });
+  const [quizInfo, setQuizInfo] = useState({
+    quiz_name: '' ,
+    description: '' 
+  })
 
   const { quizId, data } = componentData;
+  const {quiz_name, description} = quizInfo
 
   //takes place instead of componentDidMount
   useEffect(() => {
@@ -31,32 +36,39 @@ const EditQuiz = props => {
         quizId: res.data.quiz[0].quiz_id,
         questionId: res.data.quiz[0].id
       });
+      setQuizInfo({
+        ...quizInfo,
+        quiz_name: res.data.quiz[0].quiz_name,
+        description: res.data.quiz[0].description
+      })
     };
     fetchData();
   }, []);
 
-  // const updateQuiz = async () => {
-  //   const res = await axios.put(
-  //     `${process.env.REACT_APP_BE_URL ||
-  //       process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
-  //   );
-  // };
+  const updateQuiz = async () => {
+    const res = await axios.put(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
+    );
+  };
 
-  const updateQuiz = (quiz) => {
-    console.log(quiz);
-    axios
-      .put(`${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`, quiz)
-        .then(res => {
-          this.setState({
-            quiz: [...this.state.quiz, res.data]
-          });
-          this.props.history.push('/food-list');
-        });
-    //     .catch(err => {
-    //   console.log(err);
-    // });
-};
+  const onChange = e => setQuizInfo({...quizInfo, [e.target.name]: e.target.value})
+
+  // const updateQuiz = (quiz) => {
+  //   console.log(quiz);
+  //   axios
+  //     .put(`${process.env.REACT_APP_BE_URL ||
+  //       process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`, quiz)
+  //       .then(res => {
+  //         this.setState({
+  //           quiz: [quiz, res.data]
+  //         });
+  //         // this.props.history.push('/quiz');
+  //       });
+  //   //     .catch(err => {
+  //   //   console.log(err);
+  //   // });
+
 
   const deleteQuiz = async () => {
     const res = await axios.delete(
@@ -66,29 +78,49 @@ const EditQuiz = props => {
     props.history.push("/teachersDashboard");
   };
 
+  const onSubmit = async e => {
+    e.preventDefault();
+
+    const quizData = {
+      quiz_name,
+      description
+    }
+    const res = await axios.put(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`, quizData
+    );
+
+    console.log(res)
+  }
+
+
+ 
+
   return (
     <>
-      {console.log(data)}
+      {console.log('here',data)}
       <TeacherNavigation />
       <div className="main">
         <div className="choices">
-          <div>Please select one of the following choices</div>
-          {data.length > 0
-            ? data.map(question => (
-                <div>
-                  <p>{question.Q_content}</p>
-                  <p>{question.A}</p>
-                  <p>{question.B}</p>
-                  <p>{question.C}</p>
-                  <p>{question.D}</p>
-                </div>
-              ))
-            : null}
-
-          <div>
-            <button className="button" onClick={updateQuiz}>
+          
+          <form onSubmit={e => onSubmit(e)}>
+            <input 
+            name='quiz_name'
+            onChange={e => onChange(e)}
+            value={quiz_name}
+            type='text'/>
+             <input 
+             name='description'
+            value={description}
+            onChange={e => onChange(e)}
+            type='text'/>
+            <button type='submit' className="button" >
               update quiz
             </button>
+          </form>
+
+          <div>
+            
             <button className="button" onClick={deleteQuiz}>
               delete quiz
             </button>
