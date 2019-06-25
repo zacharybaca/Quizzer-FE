@@ -2,24 +2,14 @@
   font-family: sans-serif;
   text-align: center;
   width: 157px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
-.selected {
-  background: linear-gradient(to right, #74ebd5, #cb6e5) 
-  !important;
-}
 
 .options {
   cursor: pointer;
   border: 2px solid black;
   padding: 10px;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
 }
 
 .App-header {
@@ -37,25 +27,11 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.logo {
-  height: 32px;
-  width: 199px;
-}
-
 .header {
   display: flex;
   align-items: center;
   height: 64px;
-  width: 1440px;
+  width: 1300px;  
 }
 
 .sidebar-nav {
@@ -79,7 +55,11 @@
   font-weight: bold;
   line-height: 32px;
   text-align: center;
+    margin-right: 800px;
+
 }
+
+
 
 .quizzes-folder {
   height: 80px;
@@ -106,11 +86,6 @@
   align-items: center;
   margin-top: -900px;
   margin-left: 700px;
-}
-
-.quizform {
-  width: 960px;
-  height: 960px;
 }
 
 .text-box {
@@ -154,48 +129,49 @@
   width: 224px;
 }
 
-  body, html {
-    background-color: #f6f9fc;
-    font-size: 18px;
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-  }
-  
-  h1 {
-    color: #32325d;
-    font-weight: 400;
-    line-height: 50px;
-    font-size: 40px;
-    margin: 20px 0;
-    padding: 0;
-  }
-  
-  button {
-    white-space: nowrap;
-    border: 0;
-    outline: 0;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 14px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
-    color: #fff;
-    border-radius: 4px;
-    font-size: 15px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.025em;
-    background-color: #6772e5;
-    text-decoration: none;
-    -webkit-transition: all 150ms ease;
-    transition: all 150ms ease;
-    margin-top: 10px;
-  }
-  
-  button:hover {
-    color: #fff;
-    cursor: pointer;
-    background-color: #7795f8;
-    transform: translateY(-1px);
-    box-shadow: 0 7px 14px rgba(50, 50, 93, .10), 0 3px 6px rgba(0, 0, 0, .08);
-  }
-  
+body,
+html {
+  background-color: #f6f9fc;
+  font-size: 18px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+}
+
+h1 {
+  color: #32325d;
+  font-weight: 400;
+  line-height: 50px;
+  font-size: 40px;
+  margin: 20px 0;
+  padding: 0;
+}
+
+button {
+  white-space: nowrap;
+  border: 0;
+  outline: 0;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 14px;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  color: #fff;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  background-color: #6772e5;
+  text-decoration: none;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  color: #fff;
+  cursor: pointer;
+  background-color: #7795f8;
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+

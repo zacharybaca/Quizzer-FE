@@ -1,13 +1,15 @@
 import React from "react";
 import axios from "axios";
+import "./addQuiz.css";
+import { Redirect } from "react-router-dom";
 
 class AddQuestion extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      category: "",
-      type: "",
+      category: "Math",
+      type: 1,
       Q_content: "",
       A: "",
       B: "",
@@ -21,6 +23,10 @@ class AddQuestion extends React.Component {
 
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
+  };
+
+  finish = () => {
+    this.props.history.push("/teachersDashboard");
   };
 
   handleSubmit = event => {
@@ -39,14 +45,18 @@ class AddQuestion extends React.Component {
     };
 
     axios
-      .post(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quest/question`, question)
+      .post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quest/question`,
+        question
+      )
       .then(res => {
         console.log(res);
         console.log(res.data);
       });
     this.setState({
-      category: "",
-      type: "",
+      category: "Math",
+      type: 1,
       Q_content: "",
       A: "",
       B: "",
@@ -63,24 +73,32 @@ class AddQuestion extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <label>Category</label>
             <br />
-            <input
-              name="category"
-              className="text-box"
-              type="text"
+            <select
               value={this.state.category}
               onChange={this.onChange}
-            />
+              className="text-box"
+              name="category"
+            >
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="History">History</option>
+              <option value="Spanish">Spanish</option>
+            </select>
             <br />
             <br />
             <label>Type</label>
             <br />
-            <input
-              name="type"
-              className="text-box"
-              type="text"
+            <select
               value={this.state.type}
               onChange={this.onChange}
-            />
+              className="text-box"
+              name="type"
+            >
+              <option value={1}>Standard</option>
+              <option value={2}>Remedial</option>
+            </select>
+
             <br />
             <br />
             <label>Question</label>
@@ -161,6 +179,7 @@ class AddQuestion extends React.Component {
             <br />
             <button type="submit">Add Question</button>
           </form>
+          <button onClick={this.finish}>Complete Quiz</button>
         </div>
       </div>
     );
