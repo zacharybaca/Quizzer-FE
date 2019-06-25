@@ -26,7 +26,8 @@ function Folders(props) {
   const [dropdownFile, setDropDownFile] = useState(false);
   const [folderHolder, setFolders] = useState({
     folderName: "",
-    folders: []
+    folders: [],
+    quizzes: []
   });
 
   useEffect(() => {
@@ -38,7 +39,11 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-      setFolders({ folders: result.data });
+      console.log(result);
+      setFolders({
+        folders: result.data.folders,
+        quizzes: result.data.quizzes
+      });
     };
     fetchData();
   }, [setFolders]);
@@ -83,7 +88,7 @@ function Folders(props) {
     setModal(!modal);
   };
 
-  const { folders } = folderHolder;
+  const { folders, quizzes } = folderHolder;
 
   return (
     <div className="sidebar">
@@ -140,6 +145,7 @@ function Folders(props) {
           {folders.length > 0 ? (
             folders.map(folder => (
               <div key={folder.id}>
+                {console.log(folder)}
                 <ButtonDropdown
                   direction="right"
                   isOpen={dropdownFile}
@@ -152,12 +158,12 @@ function Folders(props) {
                     <FontAwesomeIcon icon={faFolder} /> {folder.folder_name}
                   </DropdownToggle>
                   <DropdownMenu>
-                    <DropdownItem>
-                      <p>add quiz</p>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <p>remove quiz</p>
-                    </DropdownItem>
+                    {console.log(quizzes)}
+                    {quizzes.map(quiz => (
+                      <DropdownItem>
+                        <p>{quiz.quiz_name}</p>
+                      </DropdownItem>
+                    ))}
                   </DropdownMenu>
                 </ButtonDropdown>
               </div>

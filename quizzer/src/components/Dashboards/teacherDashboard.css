@@ -64,3 +64,11 @@
 .dash {
   margin-left: 20rem;
 }
+
+.hidden {
+  display: none;
+}
+
+.hidden:hover {
+  display: block;
+}
