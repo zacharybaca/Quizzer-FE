@@ -41,9 +41,9 @@ function TeacherDashboard(props) {
         get access code
       </button>
 
-      <h1 className="title">Teacher Đashboard</h1>
+      <h1 className="header1">Teacher Đashboard</h1>
       {accessCode ? <h1>access code: {accessCode}</h1> : null}
-      <div className="header">Recently Administered Quizzes</div>
+      <div className="header2">Recently Administered Quizzes</div>
       <div className="recently-administered-quizzes">
         {quizzes.length > 0 ? (
           quizzes.map(user => (
@@ -54,7 +54,7 @@ function TeacherDashboard(props) {
               <p>{user.description}</p>
               <Button color="purple">
                 <Link to={`edit/quiz/${user.id}`}>
-                  <p className="p">edit quiz</p>
+                  <p className="purple">edit quiz</p>
                 </Link>
               </Button>
             </div>

@@ -7,11 +7,34 @@ class CardSection extends React.Component {
   render() {
     return (
       <label >
-        <h1>Card details</h1>
-        <CardElement style={{base: {fontSize: '16px'}}} />
+        <h2>Add payment Option</h2>
+        <CardElement 
+        style={{base: {fontSize: '16px'}}} />
       </label>
+      
     );
   }
 }
 
+
+
 export default CardSection;
+
+
+
+// original working
+// class CardSection extends React.Component {
+//   render() {
+//     return (
+//       <label >
+//         <h2>Add payment Option</h2>
+//         <CardElement 
+//         // className="box" 
+//         style={{base: {fontSize: '16px'}}} />
+//       </label>
+      
+//     );
+//   }
+// }
+
+// export default CardSection;
