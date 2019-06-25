@@ -24,6 +24,7 @@ const EditQuiz = props => {
       );
       //setting database data to state with hooks
 
+      // useState
       setComponentData({
         ...componentData,
         data: res.data.quiz[0],
@@ -34,12 +35,28 @@ const EditQuiz = props => {
     fetchData();
   }, []);
 
-  const updateQuiz = async () => {
-    const res = await axios.put(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quest/question/${quizId}`
-    );
-  };
+  // const updateQuiz = async () => {
+  //   const res = await axios.put(
+  //     `${process.env.REACT_APP_BE_URL ||
+  //       process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
+  //   );
+  // };
+
+  const updateQuiz = (quiz) => {
+    console.log(quiz);
+    axios
+      .put(`${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`, quiz)
+        .then(res => {
+          this.setState({
+            quiz: [...this.state.quiz, res.data]
+          });
+          this.props.history.push('/food-list');
+        });
+    //     .catch(err => {
+    //   console.log(err);
+    // });
+};
 
   const deleteQuiz = async () => {
     const res = await axios.delete(

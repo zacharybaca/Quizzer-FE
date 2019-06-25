@@ -19,6 +19,7 @@ function TeacherDashboard(props) {
         )}/quizzes`
       );
       //setting database data to state with hooks
+      console.log(result);
       console.log(result.data);
       setQuizzes(result.data);
     };
