@@ -6,6 +6,7 @@ import {
   DropdownMenu,
   DropdownItem,
   Modal,
+  Dropdown,
   ModalHeader,
   ModalBody
 } from "reactstrap";
@@ -22,6 +23,7 @@ function Folders(props) {
   // });
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
+  const [dropdownFile, setDropDownFile] = useState(false);
   const [folderHolder, setFolders] = useState({
     folderName: "",
     folders: []
@@ -36,9 +38,7 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result.data);
       setFolders({ folders: result.data });
-      console.log(folderHolder);
     };
     fetchData();
   }, [setFolders]);
@@ -119,14 +119,14 @@ function Folders(props) {
                     />
 
                     <button type="submit">Create</button>
-                    <button
-                      onClick={() => {
-                        setModal(!modal);
-                      }}
-                    >
-                      Cancel
-                    </button>
                   </form>
+                  <button
+                    onClick={() => {
+                      setModal(!modal);
+                    }}
+                  >
+                    Cancel
+                  </button>
                 </ModalBody>
               </Modal>
             </DropdownItem>
@@ -140,8 +140,26 @@ function Folders(props) {
           {folders.length > 0 ? (
             folders.map(folder => (
               <div key={folder.id}>
-                <FontAwesomeIcon icon={faAngleRight} />
-                <FontAwesomeIcon icon={faFolder} /> {folder.folder_name}
+                <ButtonDropdown
+                  direction="right"
+                  isOpen={dropdownFile}
+                  toggle={() => {
+                    setDropDownFile(!dropdownFile);
+                  }}
+                >
+                  <DropdownToggle>
+                    <FontAwesomeIcon icon={faAngleRight} />
+                    <FontAwesomeIcon icon={faFolder} /> {folder.folder_name}
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem>
+                      <p>add quiz</p>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <p>remove quiz</p>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </ButtonDropdown>
               </div>
             ))
           ) : (
