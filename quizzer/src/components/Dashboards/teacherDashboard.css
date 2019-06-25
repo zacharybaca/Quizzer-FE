@@ -59,3 +59,15 @@
   width: 960px;
   padding: 1%;
 }
+
+@media(max-width: 500px) {
+  .mobile {
+   background: #6772e5;
+  }
+}
+
+@media(min-width: 1000px) {
+  .mobile {
+    background: #008b8b;
+  }
+}

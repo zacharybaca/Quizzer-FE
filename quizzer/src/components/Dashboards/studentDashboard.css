@@ -6,7 +6,7 @@
 
 .assigned-quizzes {
   display: flex;
-  height: 232px;
+  height: auto;
   width: 960px;
   padding: 1%;
 }
@@ -63,4 +63,30 @@ p {
 
 .white {
   color: white;
+}
+
+@media(max-width: 500px) {
+  .mobile {
+   background: #6772e5;
+   display: flex;
+   height: 500%;
+   /* padding: 10%; */
+  }
+
+  .assigned-quizzes {
+    flex-direction: column;
+    padding-left: 120px;
+  }
+
+  .header {
+    justify-content: center;
+    margin-left: 70px;
+  }
+}
+
+@media(min-width: 1000px) {
+  .assigned-quizzes {
+    background: #008b8b;
+    flex-direction: row;
+  }
 }

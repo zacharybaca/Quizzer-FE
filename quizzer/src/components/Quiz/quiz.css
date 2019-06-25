@@ -16,3 +16,20 @@
   transform: translateY(-1px) !important;
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08) !important;
 }
+
+/* @media(max-width: 500px) {
+  .mobile {
+    text-align: center;
+    padding: 1%;
+    flex-direction: column;
+    background: #6772e5;
+  }
+} */
+
+@media(min-width: 1000px) {
+  .mobile {
+    text-align: center;
+    padding: 1%;
+    background: #7795f8;
+  }
+}

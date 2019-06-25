@@ -2,3 +2,29 @@
   padding-top: 5rem;
   padding-left: 5rem;
 }
+
+@media(max-width: 500px) {
+  .quizform, .text-box, .add-quiz-label, .add-quiz-text-box {
+    padding: 1%;
+    width: 90%;
+    text-align: center;
+    background: #6772e5;
+  }
+  .mobile, .Qmobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 95%;
+    padding: 1%;
+    text-align: center;
+    background: #6772e5;
+    margin-left: 10px;
+    border: 1px solid red;
+  }
+};
+
+@media(min-width: 1000px) {
+  .quizform {
+    background: #008b8b;
+  }
+};

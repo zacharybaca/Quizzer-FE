@@ -1,7 +1,6 @@
 import React from "react";
 import axios from "axios";
 import "./addQuiz.css";
-import { Redirect } from "react-router-dom";
 
 class AddQuestion extends React.Component {
   constructor(props) {
@@ -68,7 +67,7 @@ class AddQuestion extends React.Component {
   };
   render() {
     return (
-      <div>
+      <div className="Qmobile">
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>Category</label>

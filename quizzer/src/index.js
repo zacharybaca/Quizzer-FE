@@ -5,13 +5,29 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import styled from "styled-components";
 
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "../src/components/Step2/Step2Page";
 
+const Mobile = styled.div`
+  @media(max-width: 500px) {
+    .mobile {
+      background: #6772e5;
+    }
+  };
+  @media(min-width: 1000px) {
+    .mobile {
+      background: #008b8b;
+    }
+  };
+`;
+
 ReactDOM.render(
   <Router>
-    <App />
+    <Mobile>
+      <App />
+    </Mobile>
   </Router>,
   document.getElementById("root")
 );

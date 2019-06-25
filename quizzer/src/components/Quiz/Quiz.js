@@ -191,7 +191,7 @@ class Quiz extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="mobile">
         <StudentNavigation />
         <div className="align">
           <h2>{questions}</h2>

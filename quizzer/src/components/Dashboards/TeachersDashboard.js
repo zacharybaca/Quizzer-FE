@@ -30,7 +30,7 @@ function TeacherDashboard(props) {
   };
 
   return (
-    <div>
+    <div className="mobile">
       <TeacherNavigation />
       <button className="button">
         <Link className="white" to="/quizzes">

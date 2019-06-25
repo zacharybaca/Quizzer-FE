@@ -25,7 +25,7 @@ function StudentsDashboard(props) {
   }, [takeQuizzes]);
 
   return (
-    <div>
+    <div className="mobile">
       <StudentNavigation />
       <button className="button">
         <Link className="white" to="/addclass">
