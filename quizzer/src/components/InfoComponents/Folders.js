@@ -39,7 +39,7 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result);
+
       setFolders({
         folders: result.data.folders,
         quizzes: result.data.quizzes
@@ -73,17 +73,14 @@ function Folders(props) {
       teacher_id: localStorage.getItem("id"),
       folder_name: folderName
     };
-    console.log(folder);
+
     axios
       .post(
         `${process.env.REACT_APP_BE_URL ||
           process.env.REACT_APP_BE_LOCAL}/api/folder/add`,
         folder
       )
-      .then(res => {
-        console.log(res);
-        console.log(res.data);
-      });
+      .then(res => {});
 
     setModal(!modal);
   };
@@ -141,11 +138,9 @@ function Folders(props) {
       </div>
       <div>
         <div>
-          {console.log(folders)}
           {folders.length > 0 ? (
             folders.map(folder => (
               <div key={folder.id}>
-                {console.log(folder)}
                 <ButtonDropdown
                   direction="right"
                   isOpen={dropdownFile}
@@ -158,7 +153,6 @@ function Folders(props) {
                     <FontAwesomeIcon icon={faFolder} /> {folder.folder_name}
                   </DropdownToggle>
                   <DropdownMenu>
-                    {console.log(quizzes)}
                     {quizzes.map(quiz => (
                       <DropdownItem>
                         <p>{quiz.quiz_name}</p>
