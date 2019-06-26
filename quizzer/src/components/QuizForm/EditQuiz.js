@@ -15,19 +15,6 @@ const EditQuiz = props => {
     description: ""
   });
   // set the state for the Questions
-  const [questionInfo, setQuestionInfo] = useState({
-    id: "",
-    category: "",
-    type: "",
-    Q_content: "",
-    A: "",
-    B: "",
-    C: "",
-    D: "",
-    correct_answer: "",
-    points: "",
-    quiz_id: ""
-  });
 
   const [questionInfo, setQuestionInfo] = useState([]);
   const [Eachquestion, setQuestion] = useState({
@@ -127,18 +114,7 @@ const EditQuiz = props => {
 
     const quizData = {
       quiz_name,
-      description,
-      id,
-      category,
-      type,
-      Q_content,
-      A,
-      B,
-      C,
-      D,
-      correct_answer,
-      points,
-      quiz_id
+      description
     };
     const res = await axios.put(
       `${process.env.REACT_APP_BE_URL ||
@@ -189,90 +165,6 @@ const EditQuiz = props => {
             </button>
           </form>
 
-          {/* onSubmit form for Questions */}
-          <form onSubmit={e => onSubmit(e)}>
-            <input
-              name="id"
-              onChange={e => onChange(e)}
-              value={id}
-              type="text"
-            />
-            {/* <input
-             name='category'
-             onChange={e => onChange(e)}
-            value={category}
-            type='text'/> */}
-            {/* <input
-            name='type'
-            onChange={e => onChange(e)}
-            value={type}
-            type='text'/> */}
-
-            {/* <label>Category</label> */}
-            <br />
-            <select
-              value={category}
-              onChange={e => onChange(e)}
-              // onChange={this.onChange}
-              className="text-box"
-              name="category"
-            >
-              <option value="Math">Math</option>
-              <option value="Science">Science</option>
-              <option value="English">English</option>
-              <option value="History">History</option>
-              <option value="Spanish">Spanish</option>
-            </select>
-            <br />
-            <br />
-            <label>Type</label>
-            <br />
-            <select
-              value={type}
-              onChange={e => onChange(e)}
-              // onChange={this.onChange}
-              className="text-box"
-              name="type"
-            >
-              <option value={1}>Standard</option>
-              <option value={2}>Remedial</option>
-            </select>
-
-            <br />
-            <br />
-
-            <input
-              name="Q_content"
-              onChange={e => onChange(e)}
-              value={Q_content}
-              type="text"
-            />
-            <input name="A" onChange={e => onChange(e)} value={A} type="text" />
-            <input name="B" onChange={e => onChange(e)} value={B} type="text" />
-            <input
-              name="C"
-              onChange={e => onChange(e)}
-              value={id}
-              type="text"
-            />
-            <input name="D" onChange={e => onChange(e)} value={D} type="text" />
-            <input
-              name="correct_answer"
-              onChange={e => onChange(e)}
-              value={correct_answer}
-              type="text"
-            />
-            <input
-              name="points"
-              onChange={e => onChange(e)}
-              value={points}
-              type="text"
-            />
-
-            <button type="submit" className="button">
-              update quiz
-            </button>
-          </form>
           {console.log(Eachquestion, questionInfo)}
           {Eachquestion.length > 0
             ? Eachquestion.map(question => (
