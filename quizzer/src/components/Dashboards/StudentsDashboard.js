@@ -6,7 +6,7 @@ import StudentNavigation from "./Navigation/StudentNavigation.js";
 import { Button } from "reactstrap";
 
 function StudentsDashboard(props) {
-  const [quizzes, takeQuizzes] = useState([]);
+  const [quizzes, takeQuizzes] = useState({ completed: false });
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -56,7 +56,9 @@ function StudentsDashboard(props) {
               </div>
             ))
           ) : (
-            <p className="header3">No quizzes at this time, try again later...</p>
+            <p className="header3">
+              No quizzes at this time, try again later...
+            </p>
           )}
         </div>
       </div>
