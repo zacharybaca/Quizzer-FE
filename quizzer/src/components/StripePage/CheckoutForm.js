@@ -5,6 +5,8 @@ import {injectStripe} from 'react-stripe-elements';
 import CardSection from './CardSection';
 import { Link } from 'react-router-dom';
 import "./stripe.css";
+import "./checkout.css";
+
 
 
 class CheckoutForm extends React.Component {
