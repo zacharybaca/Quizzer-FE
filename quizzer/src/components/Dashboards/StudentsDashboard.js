@@ -7,6 +7,7 @@ import { Button } from "reactstrap";
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState({ completed: false });
+  const [completedQuizzes, setCompletedQuizzes] = useState([]);
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +21,7 @@ function StudentsDashboard(props) {
       //setting database data to state with hooks
       console.log(result.data);
       takeQuizzes(result.data.quizzes);
+      setCompletedQuizzes(result.data.completedQuizzes);
     };
     fetchData();
   }, [takeQuizzes]);
@@ -59,6 +61,21 @@ function StudentsDashboard(props) {
             <p className="header3">
               No quizzes at this time, try again later...
             </p>
+          )}
+        </div>
+        <div className="header2">Completed Quizzes</div>
+        <div className="assigned-quizzes">
+          {completedQuizzes.length > 0 ? (
+            completedQuizzes.map(user => (
+              <div key={user.id} className="box">
+                <h6 className="p">
+                  <strong>{user.quiz_name}</strong>
+                </h6>
+                <p>{user.description}</p>
+              </div>
+            ))
+          ) : (
+            <p className="header3">No quizzes completed</p>
           )}
         </div>
       </div>
