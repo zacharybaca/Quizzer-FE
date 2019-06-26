@@ -39,7 +39,7 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-
+      console.log(result.data);
       setFolders({
         folders: result.data.folders,
         quizzes: result.data.quizzes
@@ -61,6 +61,16 @@ function Folders(props) {
   //     modal: !modal
   //   });
   // };
+
+  const onDeleteClick = async id => {
+    console.log(id);
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
+    );
+
+    console.log(res);
+  };
 
   const onChanges = event =>
     setFolders({ ...folderHolder, [event.target.name]: event.target.value });
@@ -141,29 +151,29 @@ function Folders(props) {
           {folders.length > 0 ? (
             folders.map(folder => (
               <div key={folder.id}>
-                <ButtonDropdown
-                  direction="right"
-                  isOpen={dropdownFile}
-                  toggle={() => {
-                    setDropDownFile(!dropdownFile);
-                  }}
-                >
-                  <DropdownToggle>
-                    <FontAwesomeIcon icon={faAngleRight} />
-                    <FontAwesomeIcon icon={faFolder} /> {folder.folder_name}
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    {quizzes.map(quiz => (
-                      <DropdownItem>
-                        <p>{quiz.quiz_name}</p>
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </ButtonDropdown>
+                <button>{folder.folder_name}</button>
+
+                {quizzes.map(quiz =>
+                  quiz.folder_name === folder.folder_name ? (
+                    <div>
+                      {" "}
+                      <i
+                        className="fas fa-times"
+                        style={{
+                          cursor: "pointer",
+                          float: "right",
+                          color: "red"
+                        }}
+                        onClick={() => onDeleteClick(quiz.id)}
+                      />{" "}
+                      <p>{quiz.quiz_name}</p>
+                    </div>
+                  ) : null
+                )}
               </div>
             ))
           ) : (
-            <div>hi</div>
+            <div>no folders made</div>
           )}
         </div>
       </div>
