@@ -14,6 +14,20 @@ const EditQuiz = props => {
     quiz_name: '' ,
     description: '' 
   })
+  // set the state for the Questions
+  const [questionInfo, setQuestionInfo] = useState({
+    id: '' ,
+    category: '',
+    type: '' ,
+    Q_content: '',
+    A: '' ,
+    B: '',
+    C: '' ,
+    D: '',
+    correct_answer: '' ,
+    points: '',
+    quiz_id: '' ,
+  })
 
   const { quizId, data } = componentData;
   const {quiz_name, description} = quizInfo
