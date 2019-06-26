@@ -44,6 +44,8 @@ const EditQuiz = props => {
         `${process.env.REACT_APP_BE_URL ||
           process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
       );
+      
+      
       //setting database data to state with hooks
       // useState
       setComponentData({
@@ -167,16 +169,51 @@ const EditQuiz = props => {
             onChange={e => onChange(e)}
             value={id}
             type='text'/>
-             <input 
+             {/* <input 
              name='category'
              onChange={e => onChange(e)}
             value={category}
-            type='text'/>
-          <input 
+            type='text'/> */}
+          {/* <input 
             name='type'
             onChange={e => onChange(e)}
             value={type}
-            type='text'/>
+            type='text'/> */}
+
+{/* <label>Category</label> */}
+            <br />
+            <select
+              value={category}
+              onChange={e => onChange(e)}
+              // onChange={this.onChange}
+              className="text-box"
+              name="category"
+            >
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="History">History</option>
+              <option value="Spanish">Spanish</option>
+            </select>
+            <br />
+            <br />
+            <label>Type</label>
+            <br />
+            <select
+              value={type}
+              onChange={e => onChange(e)}
+              // onChange={this.onChange}
+              className="text-box"
+              name="type"
+            >
+              <option value={1}>Standard</option>
+              <option value={2}>Remedial</option>
+            </select>
+
+            <br />
+            <br />
+
+
           <input 
              name='Q_content'
              onChange={e => onChange(e)}
