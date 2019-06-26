@@ -161,7 +161,7 @@ const EditQuiz = props => {
                     value={question.category}
                     className="text-box"
                     name="category"
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                   >
                     <option value="Math">Math</option>
                     <option value="Science">Science</option>
@@ -174,7 +174,7 @@ const EditQuiz = props => {
                   <label>Type</label>
                   <br />
                   <select
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     value={question.type}
                     className="text-box"
                     name="type"
@@ -188,7 +188,7 @@ const EditQuiz = props => {
                   <label>Question</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="Q_content"
                     className="text-box"
                     type="text"
@@ -199,7 +199,7 @@ const EditQuiz = props => {
                   <label>A</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="A"
                     className="text-box"
                     type="text"
@@ -210,7 +210,7 @@ const EditQuiz = props => {
                   <label>B</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="B"
                     className="text-box"
                     type="text"
@@ -221,7 +221,7 @@ const EditQuiz = props => {
                   <label>C</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="C"
                     className="text-box"
                     type="text"
@@ -232,7 +232,7 @@ const EditQuiz = props => {
                   <label>D</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="D"
                     className="text-box"
                     type="text"
@@ -243,7 +243,7 @@ const EditQuiz = props => {
                   <label>Correct Answer</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="correct_answer"
                     className="text-box"
                     type="text"
@@ -254,7 +254,7 @@ const EditQuiz = props => {
                   <label>Points</label>
                   <br />
                   <input
-                    onChange={handleChanges}
+                    onChange={e => handleChanges(e)}
                     name="points"
                     className="text-box"
                     type="text"
