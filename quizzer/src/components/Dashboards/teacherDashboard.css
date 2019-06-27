@@ -4,8 +4,6 @@
   border-radius: 4px;
   background-color: #ffffff;
   margin: 1%;
-  text-align: center;
-
 }
 
 .button {
@@ -16,7 +14,7 @@
   height: 40px;
   line-height: 40px;
   padding: 0 14px;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, .11), 0 1px 3px rgba(0, 0, 0, .08);
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   color: #fff;
   border-radius: 4px;
   font-size: 15px;
@@ -38,33 +36,28 @@
   display: flex;
   font-weight: bold;
   justify-content: center;
-  margin: 20px 0;
 }
 
 .p {
   text-transform: uppercase;
 }
 
-.header1 {
-  display: flex;
-  align-items: center;
-  height: 64px;
-  width: 1300px;  
-}
-
-.header2 {
+.header {
+  height: 28px;
+  width: 309px;
   color: #000000;
-	font-size: 20px; 
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-weight: bold;
   line-height: 28px;
-  padding: 1%; 
-  padding-left: 500px;
-
+  padding: 1%;
 }
 
 .recently-administered-quizzes {
   display: flex;
-	height: 215px;
-  width: 960px;
+  height: 215px;
+  width: 100%;
+  flex-wrap: wrap;
   padding: 1%;
   flex-direction: row-reverse;
 }
@@ -85,4 +78,16 @@
     background: #008b8b;
   }
 
+}
+
+.dash {
+  margin-left: 20rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.hidden:hover {
+  display: block;
 }
