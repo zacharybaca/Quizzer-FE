@@ -101,7 +101,7 @@ class AddQuestion extends React.Component {
 
             <br />
             <br />
-            <label>Question</label>
+            <label className="question">Question</label>
             <br />
             <input
               name="Q_content"
