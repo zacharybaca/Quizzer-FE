@@ -106,10 +106,6 @@ function TeacherDashboard(props) {
           {quizzes.length > 0 ? (
             quizzes.map(user => (
               <div key={user.id} className="box">
-                <h6 className="p">
-                  <strong>{user.quiz_name}</strong>
-                </h6>
-                <p>{user.description}</p>
                 <ButtonDropdown
                   direction="right"
                   isOpen={dropdownOpen}
@@ -177,6 +173,10 @@ function TeacherDashboard(props) {
                     </DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
+                <h6 className="p">
+                  <strong>{user.quiz_name}</strong>
+                </h6>
+                <p>{user.description}</p>
               </div>
             ))
           ) : (

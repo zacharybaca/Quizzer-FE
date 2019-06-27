@@ -3,7 +3,6 @@
   width: 192px;
   border-radius: 4px;
   background-color: #ffffff;
-  margin: 1%;
 }
 
 .button {
@@ -38,8 +37,13 @@
   justify-content: center;
 }
 
+.btn-secondary {
+  background-color: white;
+}
+
 .p {
   text-transform: uppercase;
+  text-align: center;
 }
 
 .header {
@@ -50,7 +54,6 @@
   font-size: 20px;
   font-weight: bold;
   line-height: 28px;
-  padding: 1%;
 }
 
 .recently-administered-quizzes {

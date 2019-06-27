@@ -93,14 +93,17 @@ const EditQuiz = props => {
   const onChange = e =>
     setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
 
-  const handleChanges = (e, id) => {
-    Eachquestion.length > 0
-      ? Eachquestion.map(question => {
-          if (id === question.id) {
-            setQuestion({ ...question, [e.target.name]: e.target.value });
-          }
-        })
-      : setQuestion({ ...Eachquestion, [e.target.name]: e.target.value });
+  const handleChanges = (e, id, idx) => {
+    console.log("id given to handleChanges", id);
+    console.log("data", Eachquestion);
+
+    const array = Eachquestion;
+
+    array[idx][e.target.name] = e.target.value;
+
+    setQuestion([...array]);
+
+    console.log("changed data", Eachquestion);
   };
 
   // onSubmit Quiz & Questions
@@ -124,24 +127,19 @@ const EditQuiz = props => {
   const handleSubmit = async (e, id) => {
     e.preventDefault();
     console.log("question id", id);
-    questionInfo.map(question => {
+    Eachquestion.map(question => {
       if (question.id === id) {
-        console.log(question);
+        const res = axios.put(
+          `${process.env.REACT_APP_BE_URL ||
+            process.env.REACT_APP_BE_LOCAL}/api/quest/question/${id}`,
+          question
+        );
+
+        console.log(res);
+        props.history.push("/teachersDashboard");
       }
     });
-
-    const res = await axios.put(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quest/question/${id}`,
-      Eachquestion
-    );
-
-    console.log(res);
-    props.history.push("/teachersDashboard");
   };
-
-  console.log("questionInfo", questionInfo);
-  console.log("data", Eachquestion);
 
   return (
     <>
@@ -174,17 +172,22 @@ const EditQuiz = props => {
             />
           </h2>
           {showContactInfo
-            ? questionInfo.length > 0
-              ? questionInfo.map(question =>
+            ? Eachquestion.length > 0
+              ? Eachquestion.map((question, idx) =>
                   showContactInfo ? (
-                    <form onSubmit={e => handleSubmit(e, question.id)}>
-                      <label>Category</label>
+                    <form
+                      key={question.id}
+                      onSubmit={e => handleSubmit(e, question.id)}
+                    >
+                      <label>
+                        Category {console.log("data in form", question)}
+                      </label>
                       <br />
                       <select
-                        value={question.category}
+                        value={Eachquestion[idx].category}
                         className="text-box"
                         name="category"
-                        onChange={e => handleChanges(e, question.id)}
+                        onChange={e => handleChanges(e, question.id, idx)}
                       >
                         <option value="Math">Math</option>
                         <option value="Science">Science</option>
@@ -195,8 +198,10 @@ const EditQuiz = props => {
                       <br />
                       <br />
                       <label>Type</label>
+
                       <br />
                       <select
+                        onChange={e => handleChanges(e, question.id, idx)}
                         value={question.type}
                         className="text-box"
                         name="type"
@@ -207,20 +212,23 @@ const EditQuiz = props => {
 
                       <br />
                       <br />
-                      <label>Question</label>
+                      <label>
+                        Question{console.log("q_content", question.Q_content)}
+                      </label>
                       <br />
                       <input
                         name="Q_content"
                         className="text-box"
                         type="text"
-                        onChange={e => handleChanges(e, question.id)}
-                        value={question.Q_content}
+                        onChange={e => handleChanges(e, question.id, idx)}
+                        value={Eachquestion[idx].Q_content}
                       />
                       <br />
                       <br />
                       <label>A</label>
                       <br />
                       <input
+                        onChange={e => handleChanges(e, question.id, idx)}
                         name="A"
                         className="text-box"
                         type="text"
@@ -231,6 +239,7 @@ const EditQuiz = props => {
                       <label>B</label>
                       <br />
                       <input
+                        onChange={e => handleChanges(e, question.id, idx)}
                         name="B"
                         className="text-box"
                         type="text"
@@ -241,6 +250,7 @@ const EditQuiz = props => {
                       <label>C</label>
                       <br />
                       <input
+                        onChange={e => handleChanges(e, question.id, idx)}
                         name="C"
                         className="text-box"
                         type="text"
@@ -251,6 +261,7 @@ const EditQuiz = props => {
                       <label>D</label>
                       <br />
                       <input
+                        onChange={e => handleChanges(e, question.id, idx)}
                         name="D"
                         className="text-box"
                         type="text"
@@ -261,6 +272,7 @@ const EditQuiz = props => {
                       <label>Correct Answer</label>
                       <br />
                       <input
+                        onChange={e => handleChanges(e, question.id, idx)}
                         name="correct_answer"
                         className="text-box"
                         type="text"
@@ -271,6 +283,7 @@ const EditQuiz = props => {
                       <label>Points</label>
                       <br />
                       <input
+                        onChange={e => handleChanges(e, question.id, idx)}
                         name="points"
                         className="text-box"
                         type="text"

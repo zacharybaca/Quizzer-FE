@@ -2,3 +2,13 @@
   padding-top: 5rem;
   padding-left: 5rem;
 }
+
+label {
+  height: 20px;
+  width: 221.33px;
+  color: #000000;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+}
