@@ -60,7 +60,7 @@ class AddQuiz extends React.Component {
         {this.state.quiz_id === null ? (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label>Quiz Name</label>
+              <label className='label'>Quiz Name</label>
               <br />
               <input
                 className="text-box"

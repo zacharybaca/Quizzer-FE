@@ -2,3 +2,30 @@
   padding-top: 5rem;
   padding-left: 5rem;
 }
+
+.label {
+	height: 20px;
+	width: 117.39px;
+	color: #000000;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+.text-box {
+	height: 44px;
+	width: 288px;
+	border-radius: 4px;
+	background-color: #FFFFFF;
+}
+
+.add-quiz-text-box {
+	height: 92px;
+	width: 544px;
+	border-radius: 4px;	
+	background-color: #FFFFFF;
+	font-family: "Open Sans";	
+	font-size: 1.4rem;	
+	line-height: 20px;
+  }

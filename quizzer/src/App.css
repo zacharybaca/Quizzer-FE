@@ -103,10 +103,6 @@
   line-height: 20px;
 }
 
-.add-quiz-text-box {
-  height: 92px;
-  width: 544px;
-}
 
 .add-question {
   margin-bottom: 200px;
@@ -133,7 +129,7 @@ body,
 html {
   background-color: #f6f9fc;
   font-size: 18px;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
+  font-family: "open sans" !important;
 }
 
 h1 {
