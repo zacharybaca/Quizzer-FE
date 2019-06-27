@@ -17,6 +17,8 @@ const EditQuiz = props => {
   // set the state for the Questions
 
   const [questionInfo, setQuestionInfo] = useState([]);
+  const [showContactInfo, setShowContactInfo] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
   const [Eachquestion, setQuestion] = useState({
     category: "Math",
     type: 1,
@@ -32,6 +34,17 @@ const EditQuiz = props => {
 
   const { quizId, data, questionId } = componentData;
   const { quiz_name, description } = quizInfo;
+  const {
+    category,
+    type,
+    Q_content,
+    A,
+    B,
+    C,
+    D,
+    correct_answer,
+    points
+  } = Eachquestion;
 
   //takes place instead of componentDidMount
   useEffect(() => {
@@ -77,35 +90,17 @@ const EditQuiz = props => {
     fetchData();
   }, []);
 
-  // update Quiz title & description
-  const updateQuiz = async () => {
-    const res = await axios.put(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
-    );
-  };
-
   const onChange = e =>
     setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
 
-  // update Questions
-  const updateQuestion = async () => {
-    const res = await axios.put(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quest/question/${quizId}`
-    );
-  };
-  // const onChange = e => setQuestionInfo({...questionInfo, [e.target.name]: e.target.value});
-
-  const handleChanges = e =>
-    setQuestion({ ...Eachquestion, [e.target.name]: e.target.value });
-
-  const deleteQuiz = async () => {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
-    );
-    props.history.push("/teachersDashboard");
+  const handleChanges = (e, id) => {
+    Eachquestion.length > 0
+      ? Eachquestion.map(question => {
+          if (id === question.id) {
+            setQuestion({ ...question, [e.target.name]: e.target.value });
+          }
+        })
+      : setQuestion({ ...Eachquestion, [e.target.name]: e.target.value });
   };
 
   // onSubmit Quiz & Questions
@@ -123,27 +118,33 @@ const EditQuiz = props => {
     );
 
     console.log(res);
+    props.history.push("/teachersDashboard");
   };
 
   const handleSubmit = async (e, id) => {
     e.preventDefault();
+    console.log("question id", id);
+    questionInfo.map(question => {
+      if (question.id === id) {
+        console.log(question);
+      }
+    });
 
     const res = await axios.put(
       `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quest/questions/${id}`,
-      questionInfo
+        process.env.REACT_APP_BE_LOCAL}/api/quest/question/${id}`,
+      Eachquestion
     );
 
     console.log(res);
     props.history.push("/teachersDashboard");
   };
 
-  console.log(questionInfo);
+  console.log("questionInfo", questionInfo);
   console.log("data", Eachquestion);
 
   return (
     <>
-      {console.log("here", data)}
       <TeacherNavigation />
       <div className="main">
         <div className="choices">
@@ -164,127 +165,124 @@ const EditQuiz = props => {
               update quiz
             </button>
           </form>
+          <h2>
+            show questions
+            <i
+              onClick={() => setShowContactInfo(!showContactInfo)}
+              className="fas fa-sort-down"
+              style={{ cursor: "pointer" }}
+            />
+          </h2>
+          {showContactInfo
+            ? questionInfo.length > 0
+              ? questionInfo.map(question =>
+                  showContactInfo ? (
+                    <form onSubmit={e => handleSubmit(e, question.id)}>
+                      <label>Category</label>
+                      <br />
+                      <select
+                        value={question.category}
+                        className="text-box"
+                        name="category"
+                        onChange={e => handleChanges(e, question.id)}
+                      >
+                        <option value="Math">Math</option>
+                        <option value="Science">Science</option>
+                        <option value="English">English</option>
+                        <option value="History">History</option>
+                        <option value="Spanish">Spanish</option>
+                      </select>
+                      <br />
+                      <br />
+                      <label>Type</label>
+                      <br />
+                      <select
+                        value={question.type}
+                        className="text-box"
+                        name="type"
+                      >
+                        <option value={1}>Standard</option>
+                        <option value={2}>Remedial</option>
+                      </select>
 
-          {console.log(Eachquestion, questionInfo)}
-          {Eachquestion.length > 0
-            ? Eachquestion.map(question => (
-                <form onSubmit={e => handleSubmit(e, question.id)}>
-                  <label>Category</label>
-                  <br />
-                  <select
-                    value={question.category}
-                    className="text-box"
-                    name="category"
-                    onChange={e => handleChanges(e)}
-                  >
-                    <option value="Math">Math</option>
-                    <option value="Science">Science</option>
-                    <option value="English">English</option>
-                    <option value="History">History</option>
-                    <option value="Spanish">Spanish</option>
-                  </select>
-                  <br />
-                  <br />
-                  <label>Type</label>
-                  <br />
-                  <select
-                    onChange={e => handleChanges(e)}
-                    value={question.type}
-                    className="text-box"
-                    name="type"
-                  >
-                    <option value={1}>Standard</option>
-                    <option value={2}>Remedial</option>
-                  </select>
-
-                  <br />
-                  <br />
-                  <label>Question</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="Q_content"
-                    className="text-box"
-                    type="text"
-                    value={question.Q_content}
-                  />
-                  <br />
-                  <br />
-                  <label>A</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="A"
-                    className="text-box"
-                    type="text"
-                    value={question.A}
-                  />
-                  <br />
-                  <br />
-                  <label>B</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="B"
-                    className="text-box"
-                    type="text"
-                    value={question.B}
-                  />
-                  <br />
-                  <br />
-                  <label>C</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="C"
-                    className="text-box"
-                    type="text"
-                    value={question.C}
-                  />
-                  <br />
-                  <br />
-                  <label>D</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="D"
-                    className="text-box"
-                    type="text"
-                    value={question.D}
-                  />
-                  <br />
-                  <br />
-                  <label>Correct Answer</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="correct_answer"
-                    className="text-box"
-                    type="text"
-                    value={question.correct_answer}
-                  />
-                  <br />
-                  <br />
-                  <label>Points</label>
-                  <br />
-                  <input
-                    onChange={e => handleChanges(e)}
-                    name="points"
-                    className="text-box"
-                    type="text"
-                    value={question.points}
-                  />
-                  <br />
-                  <button type="submit">update Question</button>
-                </form>
-              ))
+                      <br />
+                      <br />
+                      <label>Question</label>
+                      <br />
+                      <input
+                        name="Q_content"
+                        className="text-box"
+                        type="text"
+                        onChange={e => handleChanges(e, question.id)}
+                        value={question.Q_content}
+                      />
+                      <br />
+                      <br />
+                      <label>A</label>
+                      <br />
+                      <input
+                        name="A"
+                        className="text-box"
+                        type="text"
+                        value={question.A}
+                      />
+                      <br />
+                      <br />
+                      <label>B</label>
+                      <br />
+                      <input
+                        name="B"
+                        className="text-box"
+                        type="text"
+                        value={question.B}
+                      />
+                      <br />
+                      <br />
+                      <label>C</label>
+                      <br />
+                      <input
+                        name="C"
+                        className="text-box"
+                        type="text"
+                        value={question.C}
+                      />
+                      <br />
+                      <br />
+                      <label>D</label>
+                      <br />
+                      <input
+                        name="D"
+                        className="text-box"
+                        type="text"
+                        value={question.D}
+                      />
+                      <br />
+                      <br />
+                      <label>Correct Answer</label>
+                      <br />
+                      <input
+                        name="correct_answer"
+                        className="text-box"
+                        type="text"
+                        value={question.correct_answer}
+                      />
+                      <br />
+                      <br />
+                      <label>Points</label>
+                      <br />
+                      <input
+                        name="points"
+                        className="text-box"
+                        type="text"
+                        value={question.points}
+                      />
+                      <br />
+                      <button type="submit">update Question</button>
+                    </form>
+                  ) : null
+                )
+              : null
             : null}
-
-          <div>
-            <button className="button" onClick={deleteQuiz}>
-              delete quiz
-            </button>
-          </div>
         </div>
       </div>
     </>
