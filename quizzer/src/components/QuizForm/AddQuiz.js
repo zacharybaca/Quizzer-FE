@@ -82,7 +82,7 @@ class AddQuiz extends React.Component {
                 onChange={this.addQuizDescription}
               />
               <br />
-              <button type="submit">Add Quiz</button>
+              <button className="submit-button" type="submit">Add Quiz</button>
             </form>
             <br />
           </div>

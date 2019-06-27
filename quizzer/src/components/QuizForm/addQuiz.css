@@ -1,15 +1,15 @@
 .quizform {
   padding-top: 5rem;
-  padding-left: 5rem;
-  margin-left: 288px;
+  padding-left: 3.2rem;
   margin-bottom: 40px;
-      padding-bottom: 40px;
-      border-bottom: 3px solid #e6ebf1;
-      width: 221.33px;
-      color: #000000;
-      font-size: 14px;
-      font-weight: bold;
-      line-height: 20px;
+  padding-bottom: 40px;
+  border-bottom: 3px solid #e6ebf1;
+  width: 221.33px;
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-left:256px;
 }
 
 .label {
@@ -37,6 +37,10 @@
 	font-family: "Open Sans";	
 	font-size: 1.4rem;	
 	line-height: 20px;
+  }
+
+  .submit-button {
+    margin-top:24px;
   }
 /* 
   .question {

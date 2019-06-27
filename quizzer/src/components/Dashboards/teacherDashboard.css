@@ -7,6 +7,10 @@
   box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
 }
 
+/* .box + .box {
+  margin: 0 16 0 16px;
+ } */
+
 .button {
   white-space: nowrap;
   border: 0;
@@ -26,8 +30,10 @@
   text-decoration: none;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
-  margin: 10px 0 0 10px;
+  margin: 14px 0 0 14px;
 }
+
+
 
 .white {
   color: white;
@@ -56,14 +62,13 @@
 
 .recently-administered-quizzes {
   display: flex;
-  height: 215px;
   width: 100%;
   flex-wrap: wrap;
-  padding: 1%;
+
 }
 
 .dash {
-  margin-left: 20rem;
+  margin-left: 256px;
 }
 
 .hidden {
