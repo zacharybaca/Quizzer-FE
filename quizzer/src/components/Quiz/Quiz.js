@@ -150,6 +150,12 @@ class Quiz extends React.Component {
   };
 
   finishHandler = () => {
+    const { id } = this.props.match.params;
+    const data = {
+      completed: true,
+      quiz_id: id,
+      student_id: localStorage.getItem("id")
+    };
     console.log(
       "finish quiz",
       this.state.currentQuestion,
@@ -157,6 +163,13 @@ class Quiz extends React.Component {
       this.state.questionCount
     );
     if (this.state.currentQuestion === this.state.questionCount - 1) {
+      axios
+        .post(
+          `${process.env.REACT_APP_BE_URL ||
+            process.env.REACT_APP_BE_LOCAL}/api/quiz/student/completedtest`,
+          data
+        )
+        .then(res => console.log(res));
       this.setState({
         quizEnd: true
       });
