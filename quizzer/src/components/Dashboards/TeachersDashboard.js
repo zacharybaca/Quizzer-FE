@@ -84,101 +84,102 @@ function TeacherDashboard(props) {
   };
 
   return (
-    <div className="mobile">
-    <>
-      <TeacherNavigation />
-      <div className="dash">
-        <Folders />
-
-        <button className="button" onClick={access}>
-          get access code
-        </button>
-
-        <h1 className="title">Teacher Đashboard</h1>
-        {accessCode ? <h1>access code: {accessCode}</h1> : null}
-        <div className="header">Recently Administered Quizzes</div>
-        <div className="recently-administered-quizzes">
-          {quizzes.length > 0 ? (
-            quizzes.map(user => (
-              <div key={user.id} className="box">
-                <h6 className="p">
-                  <strong>{user.quiz_name}</strong>
-                </h6>
-                <p>{user.description}</p>
-                <ButtonDropdown
-                  direction="right"
-                  isOpen={dropdownOpen}
-                  toggle={() => {
-                    setDropDownOpen(!dropdownOpen);
-                  }}
-                >
-                  <DropdownToggle>
-                    <i
-                      className="fas fa-ellipsis-v"
-                      style={{
-                        cursor: "pointer",
-                        float: "right",
-                        color: "black",
-                        marginRight: "1rem"
-                      }}
-                    />
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>
-                      <Link to={`edit/quiz/${user.id}`}>edit quiz</Link>
-                    </DropdownItem>
-                    <DropdownItem
-                      onClick={() => {
-                        setModal(!modal);
-                      }}
-                    >
-                      <p>add quiz to folder</p>
-                      <Modal isOpen={modal}>
-                        <ModalHeader>Add quiz to folder</ModalHeader>
-                        <ModalBody>
-                          <form onSubmit={e => handleSubmit(e, user.id)}>
-                            <select
-                              value={formData.folderId}
-                              onChange={onChange}
-                              className="text-box"
-                              name="folderId"
+      <>
+      <div className="mobile">
+        <TeacherNavigation />
+        <div className="dash">
+          <Folders />
+  
+          <button className="button" onClick={access}>
+            get access code
+          </button>
+  
+          <h1 className="title">Teacher Đashboard</h1>
+          {accessCode ? <h1>access code: {accessCode}</h1> : null}
+          <div className="header">Recently Administered Quizzes</div>
+          <div className="recently-administered-quizzes">
+            {quizzes.length > 0 ? (
+              quizzes.map(user => (
+                <div key={user.id} className="box">
+                  <h6 className="p">
+                    <strong>{user.quiz_name}</strong>
+                  </h6>
+                  <p>{user.description}</p>
+                  <ButtonDropdown
+                    direction="right"
+                    isOpen={dropdownOpen}
+                    toggle={() => {
+                      setDropDownOpen(!dropdownOpen);
+                    }}
+                  >
+                    <DropdownToggle>
+                      <i
+                        className="fas fa-ellipsis-v"
+                        style={{
+                          cursor: "pointer",
+                          float: "right",
+                          color: "black",
+                          marginRight: "1rem"
+                        }}
+                      />
+                    </DropdownToggle>
+                    <DropdownMenu>
+                      <DropdownItem>
+                        <Link to={`edit/quiz/${user.id}`}>edit quiz</Link>
+                      </DropdownItem>
+                      <DropdownItem
+                        onClick={() => {
+                          setModal(!modal);
+                        }}
+                      >
+                        <p>add quiz to folder</p>
+                        <Modal isOpen={modal}>
+                          <ModalHeader>Add quiz to folder</ModalHeader>
+                          <ModalBody>
+                            <form onSubmit={e => handleSubmit(e, user.id)}>
+                              <select
+                                value={formData.folderId}
+                                onChange={onChange}
+                                className="text-box"
+                                name="folderId"
+                              >
+                                {console.log(folders, user.id)}
+  
+                                {folders.map(folder => (
+                                  <option value={folder.id}>
+                                    {console.log(folder.id)}
+                                    {folder.folder_name}
+                                  </option>
+                                ))}
+                              </select>
+  
+                              <button type="submit">add</button>
+                            </form>
+                            <button
+                              onClick={() => {
+                                setModal(!modal);
+                              }}
                             >
-                              {console.log(folders, user.id)}
-
-                              {folders.map(folder => (
-                                <option value={folder.id}>
-                                  {console.log(folder.id)}
-                                  {folder.folder_name}
-                                </option>
-                              ))}
-                            </select>
-
-                            <button type="submit">add</button>
-                          </form>
-                          <button
-                            onClick={() => {
-                              setModal(!modal);
-                            }}
-                          >
-                            Cancel
-                          </button>
-                        </ModalBody>
-                      </Modal>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <p>delete quiz</p>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </ButtonDropdown>
-              </div>
-            ))
-          ) : (
-            <p>no created quizzes</p>
-          )}
+                              Cancel
+                            </button>
+                          </ModalBody>
+                        </Modal>
+                      </DropdownItem>
+                      <DropdownItem>
+                        <p>delete quiz</p>
+                      </DropdownItem>
+                    </DropdownMenu>
+                  </ButtonDropdown>
+                </div>
+              ))
+            ) : (
+              <p>no created quizzes</p>
+            )}
+          </div>
         </div>
       </div>
-    </>
-  );
-}
+      </>
+    );
+  }
 
 export default TeacherDashboard;
