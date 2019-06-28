@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import TeacherNavigation from "./Navigation/TeacherNavigation.js";
+import QuizCards from "../Cards/QuizCards.js";
 import "./teacherDashboard.css";
 import { Button } from "reactstrap";
 import Folders from "../InfoComponents/Folders";
@@ -63,25 +64,6 @@ function TeacherDashboard(props) {
     console.log(formData.folderId);
   };
 
-  const handleSubmit = async (e, quizId) => {
-    e.preventDefault();
-    console.log(quizId, Number(formData.folderId));
-
-    const ids = {
-      quiz_id: quizId
-    };
-
-    const results = await axios.post(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/addquiz/${Number(
-        formData.folderId
-      )}`,
-      ids
-    );
-
-    console.log(results);
-    console.log(results.data);
-  };
   const deleteQuiz = async id => {
     const res = await axios.delete(
       `${process.env.REACT_APP_BE_URL ||
@@ -105,79 +87,11 @@ function TeacherDashboard(props) {
         <div className="recently-administered-quizzes">
           {quizzes.length > 0 ? (
             quizzes.map(user => (
-              <div key={user.id} className="box">
-                <ButtonDropdown
-                  direction="right"
-                  isOpen={dropdownOpen}
-                  toggle={() => {
-                    setDropDownOpen(!dropdownOpen);
-                  }}
-                >
-                  <DropdownToggle>
-                    <i
-                      className="fas fa-ellipsis-v"
-                      style={{
-                        cursor: "pointer",
-                        float: "right",
-                        color: "black",
-                        marginRight: "1rem"
-                      }}
-                    />
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem>
-                      <Link to={`edit/quiz/${user.id}`}>edit quiz</Link>
-                    </DropdownItem>
-                    <DropdownItem
-                      onClick={() => {
-                        setModal(!modal);
-                      }}
-                    >
-                      <p>add quiz to folder</p>
-                      <Modal isOpen={modal}>
-                        <ModalHeader>Add quiz to folder</ModalHeader>
-                        <ModalBody>
-                          <form onSubmit={e => handleSubmit(e, user.id)}>
-                            <select
-                              value={formData.folderId}
-                              onChange={onChange}
-                              className="text-box"
-                              name="folderId"
-                            >
-                              {console.log(folders, user.id)}
-
-                              {folders.map(folder => (
-                                <option value={folder.id}>
-                                  {console.log(folder.id)}
-                                  {folder.folder_name}
-                                </option>
-                              ))}
-                            </select>
-
-                            <button type="submit">add</button>
-                          </form>
-                          <button
-                            onClick={() => {
-                              setModal(!modal);
-                            }}
-                          >
-                            Cancel
-                          </button>
-                        </ModalBody>
-                      </Modal>
-                    </DropdownItem>
-                    <DropdownItem>
-                      <button onClick={() => deleteQuiz(user.id)}>
-                        delete quiz
-                      </button>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </ButtonDropdown>
-                <h6 className="p">
-                  <strong>{user.quiz_name}</strong>
-                </h6>
-                <p>{user.description}</p>
-              </div>
+              <QuizCards
+                folderId={formData.folderId}
+                folders={folders}
+                quizzes={user}
+              />
             ))
           ) : (
             <p>no created quizzes</p>

@@ -1,10 +1,11 @@
 .box {
+  padding-top: 10px;
   height: 184px;
   width: 192px;
   border-radius: 4px;
   background-color: #ffffff;
-  margin: 1%;
-  box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
+  display: flex;
+  justify-content: flex-start;
 }
 
 /* .box + .box {
@@ -32,8 +33,6 @@
   transition: all 150ms ease;
   margin: 14px 0 0 14px;
 }
-
-
 
 .white {
   color: white;
@@ -75,7 +74,6 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-
 }
 
 .dash {
