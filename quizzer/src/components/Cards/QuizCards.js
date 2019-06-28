@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Modal, Dropdown, ModalHeader, ModalBody } from "reactstrap";
+import "./quizCard.css";
 
 class QuizCards extends Component {
   constructor(props) {
@@ -54,20 +55,22 @@ class QuizCards extends Component {
     return (
       <>
         <div key={quizzes.id} className="box">
-          <i
-            onClick={() =>
-              this.setState({
-                showContactInfo: !this.state.showContactInfo
-              })
-            }
-            className="fas fa-ellipsis-v"
-            style={{
-              cursor: "pointer",
-              float: "right",
-              color: "black",
-              marginRight: "1rem"
-            }}
-          />
+          <div className="corner">
+            <i
+              onClick={() =>
+                this.setState({
+                  showContactInfo: !this.state.showContactInfo
+                })
+              }
+              className="fas fa-ellipsis-v"
+              style={{
+                cursor: "pointer",
+                float: "right",
+                color: "black",
+                marginRight: "1rem"
+              }}
+            />
+          </div>
           {showContactInfo ? (
             <div>
               {" "}
