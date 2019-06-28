@@ -1,21 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import TeacherNavigation from "./Navigation/TeacherNavigation.js";
 import QuizCards from "../Cards/QuizCards.js";
 import "./teacherDashboard.css";
-import { Button } from "reactstrap";
 import Folders from "../InfoComponents/Folders";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Modal,
-  Dropdown,
-  ModalHeader,
-  ModalBody
-} from "reactstrap";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
@@ -45,30 +33,14 @@ function TeacherDashboard(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result);
-      console.log(result.data);
-      console.log(folder.data);
       setQuizzes(result.data);
       setFolders(folder.data.folders);
     };
     fetchData();
-  }, []);
+  }, [quizzes]);
 
   const access = () => {
     setAccessCode(localStorage.getItem("access_code"));
-  };
-
-  const onChange = e => {
-    console.log(formData.folderId);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData.folderId);
-  };
-
-  const deleteQuiz = async id => {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
-    );
   };
 
   return (

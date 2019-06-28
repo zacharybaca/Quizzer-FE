@@ -29,6 +29,13 @@ class QuizCards extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  async deleteQuiz(id) {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
+    );
+  }
+
   async handleSubmit(e, quizId) {
     e.preventDefault();
     console.log(quizId, Number(this.state.folderId));
@@ -100,7 +107,9 @@ class QuizCards extends Component {
                   </form>
                 </ModalBody>
               </Modal>
-              <button>delete quiz</button>
+              <button onClick={this.deleteQuiz.bind(this, quizzes.id)}>
+                delete quiz
+              </button>
             </div>
           ) : null}
 
