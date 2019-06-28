@@ -17,8 +17,8 @@ const EditQuiz = props => {
   // set the state for the Questions
 
   const [questionInfo, setQuestionInfo] = useState([]);
-  const [showContactInfo, setShowContactInfo] = useState(false);
-  const [showQuestion, setShowQuestion] = useState(false);
+  const [showContactInfo, setShowContactInfo] = useState(true);
+  const [showQuestion, setShowQuestion] = useState(true);
   const [Eachquestion, setQuestion] = useState({
     category: "Math",
     type: 1,

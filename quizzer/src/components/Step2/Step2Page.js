@@ -87,10 +87,10 @@ class Step2Page extends Component {
               return (
                 <button
                   class="plan"
-                  style={{
-                    // change color?
-                    backgroundColor: "#d8d8d8"
-                  }}
+                  // style={{
+                  //   // change color?
+                  //   backgroundColor: "#d8d8d8"
+                  // }}
                   onClick={() => this.switchPlan(plan)}
                 >
                   {plan}
