@@ -169,7 +169,7 @@ class AddQuestion extends React.Component {
             </div>
             <br />
             <br />
-            <label>Correct Answer</label>
+            <label>Correct Answer(Choose A, B, C, or D)</label>
             <br />
             <input
               name="correct_answer"
