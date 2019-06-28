@@ -74,12 +74,13 @@ class QuizCards extends Component {
           {showContactInfo ? (
             <div>
               {" "}
-              <Link to={`edit/quiz/${quizzes.id}`}>edit quiz</Link>
+             <Link to={`edit/quiz/${quizzes.id}`}> <button>edit quiz</button></Link>
+
               <button color="danger" onClick={this.toggle}>
-                add quiz to folder
+                add to folder
               </button>
               <Modal isOpen={modal} toggle={this.toggle}>
-                <ModalHeader>Add quiz to folder</ModalHeader>
+                <ModalHeader>Add to quiz folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={this.handleSubmit.bind(this, quizzes.id)}>
                     <select
