@@ -25,9 +25,9 @@ class QuizCards extends Component {
     }));
   }
 
-  onChange(e) {
+  onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
-  }
+  };
 
   async deleteQuiz(id) {
     const res = await axios.delete(
@@ -88,7 +88,7 @@ class QuizCards extends Component {
               <Modal isOpen={modal} toggle={this.toggle}>
                 <ModalHeader>Add quiz to folder</ModalHeader>
                 <ModalBody>
-                  <form onSubmit={this.handleSubmit.bind(this, quizzes.id)}>
+                  <form onSubmit={e => this.handleSubmit(e, quizzes.id)}>
                     <select
                       value={folderId}
                       className="text-box"
@@ -96,10 +96,7 @@ class QuizCards extends Component {
                       onChange={this.onChange}
                     >
                       {folders.map(folder => (
-                        <option value={folder.id}>
-                          {console.log(folder.id)}
-                          {folder.folder_name}
-                        </option>
+                        <option value={folder.id}>{folder.folder_name}</option>
                       ))}
                     </select>
 
