@@ -13,3 +13,71 @@
 .button {
   margin: 5px;
 }
+
+.quizform {
+  padding-top: 5rem;
+  padding-left: 3.2rem;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 3px solid #e6ebf1;
+  width: 100%;
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-left:256px;
+}
+
+.label {
+	height: 20px;
+	width: 117.39px;
+	color: #000000;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+}
+
+.text-box {
+	height: 44px;
+	width: 288px;
+	border-radius: 4px;
+  background-color: #FFFFFF;
+  margin-right:16px;
+}
+
+.add-quiz-text-box {
+	height: 92px;
+	width: 544px;
+	border-radius: 4px;	
+	background-color: #FFFFFF;
+	font-family: "Open Sans";	
+	font-size: 1.4rem;	
+	line-height: 20px;
+  }
+
+  .submit-button {
+    margin-top:24px;
+  }
+
+  .question-text-box {
+width: 592px;
+height:110px;
+  }
+
+
+.answers{
+  display:flex;
+  justify-content: space-evenly;
+}
+
+.answers.text-box{
+  width:500px;
+}
+
+/* .button {
+} */
+
+.submit-button {
+  margin-top:24px;
+}

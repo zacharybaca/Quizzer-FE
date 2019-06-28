@@ -17,8 +17,8 @@ const EditQuiz = props => {
   // set the state for the Questions
 
   const [questionInfo, setQuestionInfo] = useState([]);
-  const [showContactInfo, setShowContactInfo] = useState(false);
-  const [showQuestion, setShowQuestion] = useState(false);
+  const [showContactInfo, setShowContactInfo] = useState(true);
+  const [showQuestion, setShowQuestion] = useState(true);
   const [Eachquestion, setQuestion] = useState({
     category: "Math",
     type: 1,
@@ -146,18 +146,22 @@ const EditQuiz = props => {
       <TeacherNavigation />
       <div className="main">
         <div className="choices">
-          <form onSubmit={e => onSubmit(e)}>
+          <form className="answers" onSubmit={e => onSubmit(e)}>
             <input
               name="quiz_name"
               onChange={e => onChange(e)}
               value={quiz_name}
               type="text"
+              className="text-box"
+
             />
             <input
               name="description"
               value={description}
               onChange={e => onChange(e)}
               type="text"
+              className="text-box"
+
             />
             <button type="submit" className="button">
               update quiz
@@ -179,6 +183,7 @@ const EditQuiz = props => {
                       key={question.id}
                       onSubmit={e => handleSubmit(e, question.id)}
                     >
+                    <div className="top-info">
                       <label>
                         Category {console.log("data in form", question)}
                       </label>
@@ -209,22 +214,26 @@ const EditQuiz = props => {
                         <option value={1}>Standard</option>
                         <option value={2}>Remedial</option>
                       </select>
+                      </div>
 
                       <br />
                       <br />
-                      <label>
+                      <label className="question">
                         Question{console.log("q_content", question.Q_content)}
                       </label>
                       <br />
                       <input
                         name="Q_content"
-                        className="text-box"
+                        className="question-text-box"
                         type="text"
                         onChange={e => handleChanges(e, question.id, idx)}
                         value={Eachquestion[idx].Q_content}
                       />
                       <br />
                       <br />
+
+                      <div className="answers">
+                      <div className="AB">
                       <label>A</label>
                       <br />
                       <input
@@ -245,8 +254,11 @@ const EditQuiz = props => {
                         type="text"
                         value={question.B}
                       />
+                      </div>
                       <br />
                       <br />
+                      
+                      <div className="CD">
                       <label>C</label>
                       <br />
                       <input
@@ -267,6 +279,8 @@ const EditQuiz = props => {
                         type="text"
                         value={question.D}
                       />
+                       </div>
+                      </div>
                       <br />
                       <br />
                       <label>Correct Answer</label>
@@ -290,7 +304,7 @@ const EditQuiz = props => {
                         value={question.points}
                       />
                       <br />
-                      <button type="submit">update Question</button>
+                      <button className="submit-button" type="submit">update Question</button>
                     </form>
                   ) : null
                 )
