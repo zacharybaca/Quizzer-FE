@@ -130,9 +130,9 @@ function Folders(props) {
                       onChange={e => onChanges(e)}
                     />
 
-                    <button type="submit">Create</button>
+                    <button className="create">Create</button>
                   </form>
-                  <button
+                  <button className="create">
                     onClick={() => {
                       setModal(!modal);
                     }}

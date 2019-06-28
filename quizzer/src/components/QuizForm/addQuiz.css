@@ -41,7 +41,8 @@
   }
 
   .submit-button {
-    margin-top:24px;
+    margin-left: 24px;
+    border-radius: 4px;
   }
 
   .question-text-box {
