@@ -71,6 +71,7 @@ class AddQuestion extends React.Component {
       <div>
         <div>
           <form onSubmit={this.handleSubmit}>
+            <div className="top-info">
             <label>Category</label>
             <br />
             <select
@@ -94,10 +95,14 @@ class AddQuestion extends React.Component {
               onChange={this.onChange}
               className="text-box"
               name="type"
+              
+              
             >
               <option value={1}>Standard</option>
               <option value={2}>Remedial</option>
             </select>
+
+            </div>
 
             <br />
             <br />
@@ -105,13 +110,16 @@ class AddQuestion extends React.Component {
             <br />
             <input
               name="Q_content"
-              className="text-box"
+              className="question-text-box"
               type="text"
               value={this.state.Q_content}
               onChange={this.onChange}
             />
             <br />
             <br />
+            <div className="answers">
+
+            <div className="AB">
             <label>A</label>
             <br />
             <input
@@ -132,8 +140,11 @@ class AddQuestion extends React.Component {
               value={this.state.B}
               onChange={this.onChange}
             />
+            </div>
             <br />
             <br />
+
+            <div className="CD">
             <label>C</label>
             <br />
             <input
@@ -154,6 +165,8 @@ class AddQuestion extends React.Component {
               value={this.state.D}
               onChange={this.onChange}
             />
+            </div>
+            </div>
             <br />
             <br />
             <label>Correct Answer</label>
@@ -177,7 +190,7 @@ class AddQuestion extends React.Component {
               onChange={this.onChange}
             />
             <br />
-            <button type="submit">Add Question</button>
+            <button className="submit-button" type="submit">Add Question</button>
           </form>
           <button onClick={this.finish}>Complete Quiz</button>
         </div>
