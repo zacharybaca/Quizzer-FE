@@ -33,14 +33,11 @@ function TeacherDashboard(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result);
-      console.log(result.data);
-      console.log(folder.data);
       setQuizzes(result.data);
       setFolders(folder.data.folders);
     };
     fetchData();
-  }, []);
+  }, [quizzes]);
 
   const access = () => {
     setAccessCode(localStorage.getItem("access_code"));
