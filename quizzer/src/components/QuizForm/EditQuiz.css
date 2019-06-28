@@ -13,6 +13,10 @@
 .button {
   margin: 5px;
 }
+.top-edits {
+  display:flex;
+ justify-content: center;
+}
 
 .quizform {
   padding-top: 5rem;
@@ -63,6 +67,8 @@
   .question-text-box {
 width: 592px;
 height:110px;
+border-radius: 4px;	
+
   }
 
 

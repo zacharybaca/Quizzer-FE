@@ -59,7 +59,7 @@ class AddQuiz extends React.Component {
     return (
       <>
       <Folders></Folders>
-      <div className="quizform">
+      <div className="add-quizform">
         {this.state.quiz_id === null ? (
           <div>
             <form onSubmit={this.handleSubmit}>

@@ -146,7 +146,10 @@ const EditQuiz = props => {
       <TeacherNavigation />
       <div className="main">
         <div className="choices">
+          <div className="top-edits">
           <form className="answers" onSubmit={e => onSubmit(e)}>
+          <label className='label'>Quiz Name</label>
+              <br />
             <input
               name="quiz_name"
               onChange={e => onChange(e)}
@@ -154,6 +157,10 @@ const EditQuiz = props => {
               type="text"
               className="text-box"
             />
+            <br />
+            <br />
+              <label className="label">Quiz Description</label>
+            <br />
             <input
               name="description"
               value={description}
@@ -165,6 +172,7 @@ const EditQuiz = props => {
               update quiz
             </button>
           </form>
+          </div>
           <h2>
             show questions
             <i

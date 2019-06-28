@@ -1,4 +1,4 @@
-.quizform {
+.add-quizform {
   padding-top: 5rem;
   padding-left: 3.2rem;
   margin-bottom: 40px;
@@ -47,6 +47,8 @@
   .question-text-box {
 width: 592px;
 height:110px;
+border-radius: 4px;	
+
   }
 
 
