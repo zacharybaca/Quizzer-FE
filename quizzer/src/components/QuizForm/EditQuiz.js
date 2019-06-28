@@ -17,8 +17,8 @@ const EditQuiz = props => {
   // set the state for the Questions
 
   const [questionInfo, setQuestionInfo] = useState([]);
-  const [showContactInfo, setShowContactInfo] = useState(true);
-  const [showQuestion, setShowQuestion] = useState(true);
+  const [showContactInfo, setShowContactInfo] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
   const [Eachquestion, setQuestion] = useState({
     category: "Math",
     type: 1,
@@ -156,7 +156,6 @@ const EditQuiz = props => {
               value={quiz_name}
               type="text"
               className="text-box"
-
             />
             <br />
             <br />
@@ -168,7 +167,6 @@ const EditQuiz = props => {
               onChange={e => onChange(e)}
               type="text"
               className="text-box"
-
             />
             <button type="submit" className="button">
               update quiz
@@ -191,37 +189,37 @@ const EditQuiz = props => {
                       key={question.id}
                       onSubmit={e => handleSubmit(e, question.id)}
                     >
-                    <div className="top-info">
-                      <label>
-                        Category {console.log("data in form", question)}
-                      </label>
-                      <br />
-                      <select
-                        value={Eachquestion[idx].category}
-                        className="text-box"
-                        name="category"
-                        onChange={e => handleChanges(e, question.id, idx)}
-                      >
-                        <option value="Math">Math</option>
-                        <option value="Science">Science</option>
-                        <option value="English">English</option>
-                        <option value="History">History</option>
-                        <option value="Spanish">Spanish</option>
-                      </select>
-                      <br />
-                      <br />
-                      <label>Type</label>
+                      <div className="top-info">
+                        <label>
+                          Category {console.log("data in form", question)}
+                        </label>
+                        <br />
+                        <select
+                          value={Eachquestion[idx].category}
+                          className="text-box"
+                          name="category"
+                          onChange={e => handleChanges(e, question.id, idx)}
+                        >
+                          <option value="Math">Math</option>
+                          <option value="Science">Science</option>
+                          <option value="English">English</option>
+                          <option value="History">History</option>
+                          <option value="Spanish">Spanish</option>
+                        </select>
+                        <br />
+                        <br />
+                        <label>Type</label>
 
-                      <br />
-                      <select
-                        onChange={e => handleChanges(e, question.id, idx)}
-                        value={question.type}
-                        className="text-box"
-                        name="type"
-                      >
-                        <option value={1}>Standard</option>
-                        <option value={2}>Remedial</option>
-                      </select>
+                        <br />
+                        <select
+                          onChange={e => handleChanges(e, question.id, idx)}
+                          value={question.type}
+                          className="text-box"
+                          name="type"
+                        >
+                          <option value={1}>Standard</option>
+                          <option value={2}>Remedial</option>
+                        </select>
                       </div>
 
                       <br />
@@ -241,53 +239,53 @@ const EditQuiz = props => {
                       <br />
 
                       <div className="answers">
-                      <div className="AB">
-                      <label>A</label>
-                      <br />
-                      <input
-                        onChange={e => handleChanges(e, question.id, idx)}
-                        name="A"
-                        className="text-box"
-                        type="text"
-                        value={question.A}
-                      />
-                      <br />
-                      <br />
-                      <label>B</label>
-                      <br />
-                      <input
-                        onChange={e => handleChanges(e, question.id, idx)}
-                        name="B"
-                        className="text-box"
-                        type="text"
-                        value={question.B}
-                      />
-                      </div>
-                      <br />
-                      <br />
-                      
-                      <div className="CD">
-                      <label>C</label>
-                      <br />
-                      <input
-                        onChange={e => handleChanges(e, question.id, idx)}
-                        name="C"
-                        className="text-box"
-                        type="text"
-                        value={question.C}
-                      />
-                      <br />
-                      <br />
-                      <label>D</label>
-                      <br />
-                      <input
-                        onChange={e => handleChanges(e, question.id, idx)}
-                        name="D"
-                        className="text-box"
-                        type="text"
-                        value={question.D}
-                      />
-                       </div>
+                        <div className="AB">
+                          <label>A</label>
+                          <br />
+                          <input
+                            onChange={e => handleChanges(e, question.id, idx)}
+                            name="A"
+                            className="text-box"
+                            type="text"
+                            value={question.A}
+                          />
+                          <br />
+                          <br />
+                          <label>B</label>
+                          <br />
+                          <input
+                            onChange={e => handleChanges(e, question.id, idx)}
+                            name="B"
+                            className="text-box"
+                            type="text"
+                            value={question.B}
+                          />
+                        </div>
+                        <br />
+                        <br />
+
+                        <div className="CD">
+                          <label>C</label>
+                          <br />
+                          <input
+                            onChange={e => handleChanges(e, question.id, idx)}
+                            name="C"
+                            className="text-box"
+                            type="text"
+                            value={question.C}
+                          />
+                          <br />
+                          <br />
+                          <label>D</label>
+                          <br />
+                          <input
+                            onChange={e => handleChanges(e, question.id, idx)}
+                            name="D"
+                            className="text-box"
+                            type="text"
+                            value={question.D}
+                          />
+                        </div>
                       </div>
                       <br />
                       <br />
@@ -312,7 +310,9 @@ const EditQuiz = props => {
                         value={question.points}
                       />
                       <br />
-                      <button className="submit-button" type="submit">update Question</button>
+                      <button className="submit-button" type="submit">
+                        update Question
+                      </button>
                     </form>
                   ) : null
                 )
