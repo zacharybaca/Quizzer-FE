@@ -1,6 +1,6 @@
 .sidebar {
   height: 100%;
-  width: 17%;
+  width: 224px;
   position: fixed;
 
   top: 64px;
@@ -8,4 +8,7 @@
   background-color: #fff;
   overflow-x: hidden;
   padding-top: 20px;
+  padding-left: 24px;
 }
+
+
