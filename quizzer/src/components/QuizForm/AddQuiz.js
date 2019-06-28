@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import AddQuestion from "./AddQuestion";
 import { Redirect } from "react-router-dom";
+import Folders from '../InfoComponents/Folders'
 
 class AddQuiz extends React.Component {
   state = {
@@ -56,11 +57,13 @@ class AddQuiz extends React.Component {
 
   render() {
     return (
+      <>
+      <Folders></Folders>
       <div className="quizform">
         {this.state.quiz_id === null ? (
           <div>
             <form onSubmit={this.handleSubmit}>
-              <label>Quiz Name</label>
+              <label className='label'>Quiz Name</label>
               <br />
               <input
                 className="text-box"
@@ -79,7 +82,7 @@ class AddQuiz extends React.Component {
                 onChange={this.addQuizDescription}
               />
               <br />
-              <button type="submit">Add Quiz</button>
+              <button className="submit-button" type="submit">Add Quiz</button>
             </form>
             <br />
           </div>
@@ -96,6 +99,7 @@ class AddQuiz extends React.Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

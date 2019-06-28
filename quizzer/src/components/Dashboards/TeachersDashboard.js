@@ -82,6 +82,12 @@ function TeacherDashboard(props) {
     console.log(results);
     console.log(results.data);
   };
+  const deleteQuiz = async id => {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
+    );
+  };
 
   return (
     <>
@@ -100,10 +106,6 @@ function TeacherDashboard(props) {
           {quizzes.length > 0 ? (
             quizzes.map(user => (
               <div key={user.id} className="box">
-                <h6 className="p">
-                  <strong>{user.quiz_name}</strong>
-                </h6>
-                <p>{user.description}</p>
                 <ButtonDropdown
                   direction="right"
                   isOpen={dropdownOpen}
@@ -165,10 +167,16 @@ function TeacherDashboard(props) {
                       </Modal>
                     </DropdownItem>
                     <DropdownItem>
-                      <p>delete quiz</p>
+                      <button onClick={() => deleteQuiz(user.id)}>
+                        delete quiz
+                      </button>
                     </DropdownItem>
                   </DropdownMenu>
                 </ButtonDropdown>
+                <h6 className="p">
+                  <strong>{user.quiz_name}</strong>
+                </h6>
+                <p>{user.description}</p>
               </div>
             ))
           ) : (

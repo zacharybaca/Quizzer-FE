@@ -1,5 +1,5 @@
 .App {
-  font-family: sans-serif;
+  font-family: "Open Sans";
   text-align: center;
   width: 157px;
   background-color: #ffffff;
@@ -103,10 +103,6 @@
   line-height: 20px;
 }
 
-.add-quiz-text-box {
-  height: 92px;
-  width: 544px;
-}
 
 .add-question {
   margin-bottom: 200px;
@@ -116,7 +112,6 @@
 .main-question-container {
   display: flex;
   margin-bottom: -400px;
-  margin-left: 555px;
 }
 
 .main-question-button {
@@ -127,13 +122,6 @@
   background-color: gray;
   height: 40px;
   width: 224px;
-}
-
-body,
-html {
-  background-color: #f6f9fc;
-  font-size: 18px;
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif !important;
 }
 
 h1 {
