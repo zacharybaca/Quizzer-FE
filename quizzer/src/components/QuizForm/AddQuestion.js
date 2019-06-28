@@ -117,8 +117,8 @@ class AddQuestion extends React.Component {
             />
             <br />
             <br />
+            
             <div className="answers">
-
             <div className="AB">
             <label>A</label>
             <br />
