@@ -25,6 +25,24 @@ class QuizCards extends Component {
     }));
   }
 
+  async assignQuiz(e, quizId) {
+    e.preventDefault();
+    const { quizzes } = this.state;
+
+    const quizData = {
+      quiz_name: quizzes.quiz_name,
+      description: quizzes.quiz_name,
+      assigned: true
+    };
+    const res = await axios.put(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`,
+      quizData
+    );
+
+    console.log(res.data);
+  }
+
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -81,8 +99,10 @@ class QuizCards extends Component {
           {showContactInfo ? (
             <div>
               {" "}
-             <Link to={`edit/quiz/${quizzes.id}`}> <button>edit quiz</button></Link>
-
+              <Link to={`edit/quiz/${quizzes.id}`}>
+                {" "}
+                <button>edit quiz</button>
+              </Link>
               <button color="danger" onClick={this.toggle}>
                 add to folder
               </button>
@@ -107,6 +127,9 @@ class QuizCards extends Component {
               </Modal>
               <button onClick={this.deleteQuiz.bind(this, quizzes.id)}>
                 delete quiz
+              </button>
+              <button onClick={e => this.assignQuiz(e, quizzes.id)}>
+                assign quiz
               </button>
             </div>
           ) : null}
