@@ -25,7 +25,7 @@ class QuizCards extends Component {
     }));
   }
 
-  onSubmit = async (e, quizId) => {
+  async assignQuiz(e, quizId) {
     e.preventDefault();
     const { quizzes } = this.state;
 
@@ -39,7 +39,9 @@ class QuizCards extends Component {
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`,
       quizData
     );
-  };
+
+    console.log(res.data);
+  }
 
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -126,7 +128,7 @@ class QuizCards extends Component {
               <button onClick={this.deleteQuiz.bind(this, quizzes.id)}>
                 delete quiz
               </button>
-              <button onClick={this.onSubmit.bind(this, quizzes.id)}>
+              <button onClick={e => this.assignQuiz(e, quizzes.id)}>
                 assign quiz
               </button>
             </div>
