@@ -40,23 +40,25 @@ function StudentsDashboard(props) {
         <div className="header2">Assigned Quizzes</div>
         <div className="assigned-quizzes">
           {quizzes.length > 0 ? (
-            quizzes.map(user => (
-              <div key={user.id} className="box">
-                {console.log(user)}
-                <h6 className="p">
-                  <strong>{user.quiz_name}</strong>
-                </h6>
-                <p>Assigned By: {user.name}</p>
-                <p>{user.description}</p>
-                <p>10 Main Questions</p>
-                <p>10 Remedial Questions</p>
-                <Button color="purple">
-                  <Link to={`quiz/${user.id}`}>
-                    <p className="p">take quiz</p>
-                  </Link>
-                </Button>
-              </div>
-            ))
+            quizzes.map(user =>
+              user.assigned ? (
+                <div key={user.id} className="box">
+                  {console.log(user)}
+                  <h6 className="p">
+                    <strong>{user.quiz_name}</strong>
+                  </h6>
+                  <p>Assigned By: {user.name}</p>
+                  <p>{user.description}</p>
+                  <p>10 Main Questions</p>
+                  <p>10 Remedial Questions</p>
+                  <Button color="purple">
+                    <Link to={`quiz/${user.id}`}>
+                      <p className="p">take quiz</p>
+                    </Link>
+                  </Button>
+                </div>
+              ) : null
+            )
           ) : (
             <p className="header3">
               No quizzes at this time, try again later...
