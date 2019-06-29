@@ -57,7 +57,6 @@ const EditQuiz = props => {
       );
 
       //setting database data to state with hooks
-      console.log(res.data);
 
       // useState
       setComponentData({
@@ -93,16 +92,11 @@ const EditQuiz = props => {
     setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
 
   const handleChanges = (e, id, idx) => {
-    console.log("id given to handleChanges", id);
-    console.log("data", Eachquestion);
-
     const array = Eachquestion;
 
     array[idx][e.target.name] = e.target.value;
 
     setQuestion([...array]);
-
-    console.log("changed data", Eachquestion);
   };
 
   // onSubmit Quiz & Questions
@@ -119,13 +113,12 @@ const EditQuiz = props => {
       quizData
     );
 
-    console.log(res);
     props.history.push("/teachersDashboard");
   };
 
   const handleSubmit = async (e, id) => {
     e.preventDefault();
-    console.log("question id", id);
+
     Eachquestion.map(question => {
       if (question.id === id) {
         const res = axios.put(

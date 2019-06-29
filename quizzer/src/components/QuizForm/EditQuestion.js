@@ -57,9 +57,7 @@ const EditQuestion = props => {
 
           <br />
           <br />
-          <label className="question">
-            Question{console.log("q_content", question.Q_content)}
-          </label>
+          <label className="question">Question</label>
           <br />
           <input
             name="Q_content"

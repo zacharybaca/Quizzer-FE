@@ -96,7 +96,7 @@ function AddQuiz(props) {
           <br />
           <div className="main-question-container">
             {display ? <AddQuestion quizId={quiz_id} /> : null}
-            {console.log(quiz_id)}
+
             {quiz_id !== null ? (
               display ? null : (
                 <button
