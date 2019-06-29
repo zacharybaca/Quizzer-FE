@@ -24,12 +24,16 @@ class AddQuestion extends React.Component {
   }
 
   componentDidMount() {
+    console.log("quiz id", this.state.quiz_id);
     const { quiz_id } = this.state;
 
     axios(
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quiz_id}`
-    ).then(res => this.setState({ questions: res.data }));
+    ).then(res => {
+      this.setState({ questions: res.data });
+      console.log(res);
+    });
   }
 
   onChange = event => {

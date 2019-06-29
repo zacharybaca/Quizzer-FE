@@ -7,7 +7,7 @@ import "./EditQuiz.css";
 const EditQuiz = props => {
   const [componentData, setComponentData] = useState({
     data: "",
-    quizId: "",
+    quizId: props.match.params.id,
     questionId: ""
   });
   const [quizInfo, setQuizInfo] = useState({
@@ -63,7 +63,6 @@ const EditQuiz = props => {
       setComponentData({
         ...componentData,
         data: res.data.quiz[0],
-        quizId: res.data.quiz[0].quiz_id,
         questionId: res.data.quiz[0].id
       });
       setQuizInfo({

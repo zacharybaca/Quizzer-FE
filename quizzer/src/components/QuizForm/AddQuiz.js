@@ -1,30 +1,29 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddQuestion from "./AddQuestion";
 import { Redirect } from "react-router-dom";
 import Folders from "../InfoComponents/Folders";
 
-class AddQuiz extends Component {
-  state = {
+function AddQuiz(props) {
+  const [display, setDisplay] = useState(false);
+  const [quizInfo, setQuizInfo] = useState({
     quiz_name: "",
     quiz_description: "",
     quiz_id: null,
     createQuestion: false
-  };
+  });
 
-  addQuizName = event => {
-    this.setState({ quiz_name: event.target.value });
-  };
+  const { quiz_name, quiz_description, quiz_id } = quizInfo;
 
-  addQuizDescription = event => {
-    this.setState({ quiz_description: event.target.value });
-  };
+  const onChange = e =>
+    setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
 
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
+
     const quiz = {
-      quiz_name: this.state.quiz_name,
-      description: this.state.quiz_description,
+      quiz_name: quiz_name,
+      description: quiz_description,
       teacher_id: localStorage.getItem("id")
     };
 
@@ -39,71 +38,81 @@ class AddQuiz extends Component {
         }
       )
       .then(res => {
-        this.setState({
+        setQuizInfo({
           quiz_id: res.data.id
         });
       });
-    this.setState({
+    setQuizInfo({
       quiz_name: "",
       quiz_description: ""
     });
   };
 
-  openQuestion() {
-    this.setState({
+  const openQuestion = () => {
+    setQuizInfo({
       createQuestion: true
     });
-  }
+  };
 
-  render() {
-    return (
-      <>
-        <Folders />
-        <div className="add-quizform">
-          {this.state.quiz_id === null ? (
-            <div>
-              <form onSubmit={this.handleSubmit}>
-                <label className="label">Quiz Name</label>
-                <br />
-                <input
-                  className="text-box"
-                  type="text"
-                  value={this.state.quiz_name}
-                  onChange={this.addQuizName}
-                />
-                <br />
-                <br />
-                <label className="add-quiz-label">Add Quiz Description</label>
-                <br />
-                <input
-                  className="add-quiz-text-box"
-                  type="text"
-                  value={this.state.quiz_description}
-                  onChange={this.addQuizDescription}
-                />
-                <br />
-                <button className="submit-button" type="submit">
-                  Add Quiz
-                </button>
-              </form>
-              <br />
-            </div>
-          ) : (
-            <></>
-          )}
+  return (
+    <>
+      <Folders />
+      <div className="add-quizform">
+        {quiz_id === null ? (
           <div>
+            <form onSubmit={e => handleSubmit(e)}>
+              <label className="label">Quiz Name</label>
+              <br />
+              <input
+                name="quiz_name"
+                className="text-box"
+                type="text"
+                value={quiz_name}
+                onChange={e => onChange(e)}
+              />
+              <br />
+              <br />
+              <label className="add-quiz-label">Add Quiz Description</label>
+              <br />
+              <input
+                name="quiz_description"
+                className="add-quiz-text-box"
+                type="text"
+                value={quiz_description}
+                onChange={e => onChange(e)}
+              />
+              <br />
+              <button className="submit-button" type="submit">
+                Add Quiz
+              </button>
+            </form>
             <br />
-            <br />
-            <div className="main-question-container">
-              {this.state.quiz_id !== null ? (
-                <AddQuestion quizId={this.state.quiz_id} />
-              ) : null}
-            </div>
+          </div>
+        ) : (
+          <></>
+        )}
+        <div>
+          <br />
+          <br />
+          <div className="main-question-container">
+            {display ? <AddQuestion quizId={quiz_id} /> : null}
+            {console.log(quiz_id)}
+            {quiz_id !== null ? (
+              display ? null : (
+                <button
+                  onClick={() => {
+                    setDisplay(!display);
+                  }}
+                >
+                  add question
+                </button>
+              )
+            ) : null}
           </div>
         </div>
-      </>
-    );
-  }
+      </div>
+    </>
+  );
 }
 
 export default AddQuiz;

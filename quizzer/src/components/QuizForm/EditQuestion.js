@@ -15,7 +15,7 @@ const EditQuestion = props => {
   return (
     <div>
       <h2>
-        question {question.id}
+        Question {index + 1}
         <i
           onClick={() => setShowContactInfo(!showContactInfo)}
           className="fas fa-sort-down"
@@ -28,7 +28,7 @@ const EditQuestion = props => {
             <label>Category</label>
             <br />
             <select
-              value={Eachquestion.category}
+              value={question.category}
               className="text-box"
               name="category"
               onChange={e => handleChanges(e, question.id, index)}
@@ -66,7 +66,7 @@ const EditQuestion = props => {
             className="question-text-box"
             type="text"
             onChange={e => handleChanges(e, question.id, index)}
-            value={Eachquestion.Q_content}
+            value={question.Q_content}
           />
           <br />
           <br />
