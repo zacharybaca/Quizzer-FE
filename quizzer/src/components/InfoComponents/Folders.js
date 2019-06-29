@@ -46,7 +46,7 @@ function Folders(props) {
       });
     };
     fetchData();
-  }, [setFolders]);
+  }, []);
 
   // const toggle = () => {
   //   setReactStrap({

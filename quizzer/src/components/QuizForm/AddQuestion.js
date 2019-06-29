@@ -53,8 +53,6 @@ function AddQuestion(props) {
           process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quiz_id}`
       );
 
-      console.log(res);
-
       setQuestions(
         res.data.quiz.map(question => ({
           category: question.category,
@@ -75,10 +73,12 @@ function AddQuestion(props) {
 
   const handleChanges = (e, id, idx) => {
     const array = questions;
+    console.log(id, idx);
 
     array[idx][e.target.name] = e.target.value;
 
     setQuestions([...array]);
+    console.log(questions);
   };
 
   const onSubmit = async (e, id) => {
