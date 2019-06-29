@@ -1,235 +1,155 @@
-// import React, { useState, useEffect } from "react";
-// import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
-// import axios from "axios";
-// import "./EditQuiz.css";
+const EditQuestion = props => {
+  const [showContactInfo, setShowContactInfo] = useState(false);
+  const { question, index, Eachquestion } = props;
 
-// const EditQuestion = props => {
-//   const [componentData, setComponentData] = useState({
-//     data: "",
-//     quizId: "",
-//     questionId: ""
-//   });
-// //   const [quizInfo, setQuizInfo] = useState({
-// //     quiz_name: '' ,
-// //     description: '' 
-// //   })
-//   // set the state for the Questions
-//   const [questionInfo, setQuestionInfo] = useState({
-//     id: '' ,
-//     category: '',
-//     type: '' ,
-//     Q_content: '',
-//     A: '' ,
-//     B: '',
-//     C: '' ,
-//     D: '',
-//     correct_answer: '' ,
-//     points: '',
-//     quiz_id: '' ,
-//   })
+  const handleSubmit = (e, id) => {
+    props.handleSubmit(e, id);
+  };
 
-//   // declared variable
-//   const { quizId, data } = componentData;
-// //   const {quiz_name, description} = quizInfo
-//   const {id, category,type, Q_content, A, B, C, D, correct_answer, points, quiz_id} = questionInfo
+  const handleChanges = (e, id, idx) => {
+    props.handleChanges(e, id, idx);
+  };
+  return (
+    <div>
+      <h2>
+        question {question.id}
+        <i
+          onClick={() => setShowContactInfo(!showContactInfo)}
+          className="fas fa-sort-down"
+          style={{ cursor: "pointer" }}
+        />
+      </h2>
+      {showContactInfo ? (
+        <form key={question.id} onSubmit={e => handleSubmit(e, question.id)}>
+          <div className="top-info">
+            <label>Category</label>
+            <br />
+            <select
+              value={Eachquestion.category}
+              className="text-box"
+              name="category"
+              onChange={e => handleChanges(e, question.id, index)}
+            >
+              <option value="Math">Math</option>
+              <option value="Science">Science</option>
+              <option value="English">English</option>
+              <option value="History">History</option>
+              <option value="Spanish">Spanish</option>
+            </select>
+            <br />
+            <br />
+            <label>Type</label>
 
+            <br />
+            <select
+              onChange={e => handleChanges(e, question.id, index)}
+              value={question.type}
+              className="text-box"
+              name="type"
+            >
+              <option value={1}>Standard</option>
+              <option value={2}>Remedial</option>
+            </select>
+          </div>
 
-//   //takes place instead of componentDidMount
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const { id } = props.match.params;
+          <br />
+          <br />
+          <label className="question">
+            Question{console.log("q_content", question.Q_content)}
+          </label>
+          <br />
+          <input
+            name="Q_content"
+            className="question-text-box"
+            type="text"
+            onChange={e => handleChanges(e, question.id, index)}
+            value={Eachquestion.Q_content}
+          />
+          <br />
+          <br />
 
-//       const res = await axios(
-//         `${process.env.REACT_APP_BE_URL ||
-//           process.env.REACT_APP_BE_LOCAL}/api/quest/question${id}`
-//       );
-   
-      
-//       //setting database data to state with hooks
-//       // useState
-//       setComponentData({
-//         ...componentData,
-//         data: res.data.quiz[0],
-//         quizId: res.data.quiz[0].quiz_id,
-//         questionId: res.data.quiz[0].id
-//       });
-//     //   setQuizInfo({
-//     //     ...quizInfo,
-//     //     quiz_name: res.data.quiz[0].quiz_name,
-//     //     description: res.data.quiz[0].description
-//     //   })
-//       // useState for Questions
-//       setQuestionInfo({
-//         ...questionInfo,
-//         id: res.data.quiz[0].id,
-//         category: res.data.quiz[0].category,
-//         type: res.data.quiz[0].type,
-//         Q_content: res.data.quiz[0].Q_content,
-//         A: res.data.quiz[0].A,
-//         B: res.data.quiz[0].B,
-//         C: res.data.quiz[0].C,
-//         D: res.data.quiz[0].D,
-//         correct_answer: res.data.quiz[0].correct_answer,
-//         points: res.data.quiz[0].points,
-//         points: res.data.quiz[0].points,
-//         quiz_id: res.data.quiz[0].quiz_id,
-//       })
-//     };
-//     fetchData();
-//   }, []);
+          <div className="answers">
+            <div className="AB">
+              <label>A</label>
+              <br />
+              <input
+                onChange={e => handleChanges(e, question.id, index)}
+                name="A"
+                className="text-box"
+                type="text"
+                value={question.A}
+              />
+              <br />
+              <br />
+              <label>B</label>
+              <br />
+              <input
+                onChange={e => handleChanges(e, question.id, index)}
+                name="B"
+                className="text-box"
+                type="text"
+                value={question.B}
+              />
+            </div>
+            <br />
+            <br />
 
-//   // update Quiz title & description
-// //   const updateQuiz = async () => {
-// //     const res = await axios.put(
-// //       `${process.env.REACT_APP_BE_URL ||
-// //         process.env.REACT_APP_BE_LOCAL}/api/quest/question${quizId}`
-// //     );
-// //   };
+            <div className="CD">
+              <label>C</label>
+              <br />
+              <input
+                onChange={e => handleChanges(e, question.id, index)}
+                name="C"
+                className="text-box"
+                type="text"
+                value={question.C}
+              />
+              <br />
+              <br />
+              <label>D</label>
+              <br />
+              <input
+                onChange={e => handleChanges(e, question.id, index)}
+                name="D"
+                className="text-box"
+                type="text"
+                value={question.D}
+              />
+            </div>
+          </div>
+          <br />
+          <br />
+          <label>Correct Answer</label>
+          <br />
+          <input
+            onChange={e => handleChanges(e, question.id, index)}
+            name="correct_answer"
+            className="text-box"
+            type="text"
+            value={question.correct_answer}
+          />
+          <br />
+          <br />
+          <label>Points</label>
+          <br />
+          <input
+            onChange={e => handleChanges(e, question.id, index)}
+            name="points"
+            className="text-box"
+            type="text"
+            value={question.points}
+          />
+          <br />
+          <button className="submit-button" type="submit">
+            update Question
+          </button>
+        </form>
+      ) : null}
+    </div>
+  );
+};
 
-// //   const onChange = e => setQuizInfo({...quizInfo, [e.target.name]: e.target.value})
-
-//    // update Questions
-//    const updateQuestion = async () => {
-//     const res = await axios.put(
-//       `${process.env.REACT_APP_BE_URL ||
-//         process.env.REACT_APP_BE_LOCAL}/api/quest/question/${quizId}`
-//     );
-//   };
-//   const onChange = e => setQuestionInfo({...questionInfo, [e.target.id]: e.target.value});
-
-
-// //   const deleteQuiz = async () => {
-// //     const res = await axios.delete(
-// //       `${process.env.REACT_APP_BE_URL ||
-// //         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`
-// //     );
-// //     props.history.push("/teachersDashboard");
-// //   };
-
-//       // onSubmit Quiz & Questions
-//   const onSubmit = async e => {
-//     e.preventDefault();
-
-//     const quizData = {
-//     //   quiz_name,
-//     //   description,
-//       id,
-//       category,
-//       type,
-//       Q_content,
-//       A,
-//       B,
-//       C,
-//       D,
-//       correct_answer,
-//       points,
-//       quiz_id,
-//     }
-//     const res = await axios.put(
-//       `${process.env.REACT_APP_BE_URL ||
-//         process.env.REACT_APP_BE_LOCAL}/api/quest/question${quizId}`, quizData
-//     );
-
-   
-
-//     console.log(res)
-//   }
-
-
- 
-
-//   return (
-//     <>
-//       {/* {console.log('here',data)} */}
-//       <TeacherNavigation />
-//       <div className="main">
-//         <div className="choices">
-          
-//           {/* <form onSubmit={e => onSubmit(e)}>
-//             <input 
-//             name='quiz_name'
-//             onChange={e => onChange(e)}
-//             value={quiz_name}
-//             type='text'/>
-//              <input 
-//              name='description'
-//             value={description}
-//             onChange={e => onChange(e)}
-//             type='text'/>
-//             <button type='submit' className="button" >
-//               update quiz
-//             </button>
-//           </form> */}
-
-//           {/* onSubmit form for Questions */}
-//           <form onSubmit={e => onSubmit(e)}>
-//             <input 
-//             name='id'
-//             onChange={e => onChange(e)}
-//             value={id}
-//             type='text'/>
-//              <input 
-//              name='category'
-//              onChange={e => onChange(e)}
-//             value={category}
-//             type='text'/>
-//           <input 
-//             name='type'
-//             onChange={e => onChange(e)}
-//             value={type}
-//             type='text'/>
-//           <input 
-//              name='Q_content'
-//              onChange={e => onChange(e)}
-//             value={Q_content}
-//             type='text'/>
-//           <input 
-//             name='A'
-//             onChange={e => onChange(e)}
-//             value={A}
-//             type='text'/>
-//             <input 
-//              name='B'
-//             onChange={e => onChange(e)}
-//             value={B}
-//             type='text'/>
-//             <input 
-//             name='C'
-//             onChange={e => onChange(e)}
-//             value={id}
-//             type='text'/>
-//              <input 
-//              name='D'
-//             onChange={e => onChange(e)}
-//             value={D}
-//             type='text'/>
-//           <input 
-//             name='correct_answer'
-//             onChange={e => onChange(e)}
-//             value={correct_answer}
-//             type='text'/>
-//              <input 
-//              name='points'
-//             onChange={e => onChange(e)}
-//             value={points}
-//             type='text'/>
-         
-//             <button type='submit' className="button" >
-//               update quiz
-//             </button>
-//           </form>
-
-//           <div>
-            
-//             {/* <button className="button" onClick={deleteQuiz}>
-//               delete quiz
-//             </button> */}
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default EditQuestion;
+export default EditQuestion;

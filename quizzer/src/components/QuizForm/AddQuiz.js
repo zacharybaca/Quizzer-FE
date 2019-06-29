@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import AddQuestion from "./AddQuestion";
 import { Redirect } from "react-router-dom";
-import Folders from '../InfoComponents/Folders'
+import Folders from "../InfoComponents/Folders";
 
-class AddQuiz extends React.Component {
+class AddQuiz extends Component {
   state = {
     quiz_name: "",
     quiz_description: "",
@@ -58,47 +58,49 @@ class AddQuiz extends React.Component {
   render() {
     return (
       <>
-      <Folders></Folders>
-      <div className="add-quizform">
-        {this.state.quiz_id === null ? (
+        <Folders />
+        <div className="add-quizform">
+          {this.state.quiz_id === null ? (
+            <div>
+              <form onSubmit={this.handleSubmit}>
+                <label className="label">Quiz Name</label>
+                <br />
+                <input
+                  className="text-box"
+                  type="text"
+                  value={this.state.quiz_name}
+                  onChange={this.addQuizName}
+                />
+                <br />
+                <br />
+                <label className="add-quiz-label">Add Quiz Description</label>
+                <br />
+                <input
+                  className="add-quiz-text-box"
+                  type="text"
+                  value={this.state.quiz_description}
+                  onChange={this.addQuizDescription}
+                />
+                <br />
+                <button className="submit-button" type="submit">
+                  Add Quiz
+                </button>
+              </form>
+              <br />
+            </div>
+          ) : (
+            <></>
+          )}
           <div>
-            <form onSubmit={this.handleSubmit}>
-              <label className='label'>Quiz Name</label>
-              <br />
-              <input
-                className="text-box"
-                type="text"
-                value={this.state.quiz_name}
-                onChange={this.addQuizName}
-              />
-              <br />
-              <br />
-              <label className="add-quiz-label">Add Quiz Description</label>
-              <br />
-              <input
-                className="add-quiz-text-box"
-                type="text"
-                value={this.state.quiz_description}
-                onChange={this.addQuizDescription}
-              />
-              <br />
-              <button className="submit-button" type="submit">Add Quiz</button>
-            </form>
             <br />
-          </div>
-        ) : (
-          <></>
-        )}
-        <div>
-          <br />
-          <br />
-          <div className="main-question-container">
-            {this.state.quiz_id !== null ? (
-              <AddQuestion quizId={this.state.quiz_id} />
-            ) : null}
+            <br />
+            <div className="main-question-container">
+              {this.state.quiz_id !== null ? (
+                <AddQuestion quizId={this.state.quiz_id} />
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
       </>
     );
   }
