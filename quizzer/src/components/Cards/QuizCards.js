@@ -138,6 +138,7 @@ class QuizCards extends Component {
             <strong>{quizzes.quiz_name}</strong>
           </h6>
           <p>{quizzes.description}</p>
+          {quizzes.assigned ? <h5>assigned</h5> : null}
         </div>
       </>
     );

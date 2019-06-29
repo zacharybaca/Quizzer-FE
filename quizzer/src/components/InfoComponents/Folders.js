@@ -25,9 +25,11 @@ function Folders(props) {
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const [dropdownFile, setDropDownFile] = useState(false);
   const [folderHolder, setFolders] = useState({
-    folderName: "",
     folders: [],
     quizzes: []
+  });
+  const [folderName, setFolderName] = useState({
+    name: ""
   });
 
   useEffect(() => {
@@ -39,14 +41,16 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result.data);
+
       setFolders({
         folders: result.data.folders,
         quizzes: result.data.quizzes
       });
     };
     fetchData();
-  }, []);
+  }, [folderHolder]);
+
+  const { folders, quizzes } = folderHolder;
 
   // const toggle = () => {
   //   setReactStrap({
@@ -73,15 +77,14 @@ function Folders(props) {
   };
 
   const onChanges = event =>
-    setFolders({ ...folderHolder, [event.target.name]: event.target.value });
+    setFolderName({ ...folderName, [event.target.name]: event.target.value });
 
   const handleSubmit = event => {
     event.preventDefault();
-    const { folderName } = folderHolder;
 
     const folder = {
       teacher_id: localStorage.getItem("id"),
-      folder_name: folderName
+      folder_name: folderName.name
     };
 
     axios
@@ -94,8 +97,6 @@ function Folders(props) {
 
     setModal(!modal);
   };
-
-  const { folders, quizzes } = folderHolder;
 
   return (
     <div className="sidebar">
@@ -123,10 +124,10 @@ function Folders(props) {
                 <ModalBody>
                   <form onSubmit={handleSubmit}>
                     <input
-                      name="folderName"
+                      name="name"
                       placeholder="enter folder name"
                       type="text"
-                      value={folderHolder.folderName}
+                      value={folderName.name}
                       onChange={e => onChanges(e)}
                     />
 
