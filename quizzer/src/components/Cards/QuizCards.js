@@ -17,7 +17,6 @@ class QuizCards extends Component {
     };
 
     this.toggle = this.toggle.bind(this);
-    console.log(this.props.folders);
   }
 
   toggle() {

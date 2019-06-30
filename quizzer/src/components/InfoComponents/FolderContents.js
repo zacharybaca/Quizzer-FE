@@ -1,18 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
+import QuizContents from "./QuizContents";
 
 const FolderContents = props => {
   const [showContactInfo, setShowContactInfo] = useState(false);
-
-  const onDeleteClick = async id => {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
-    );
-
-    console.log(res);
-  };
 
   const deleteFolder = async id => {
     const res = await axios.delete(
@@ -35,18 +26,7 @@ const FolderContents = props => {
           <p onClick={() => deleteFolder(folder.id)}>remove folder</p>
           {quizzes.map(quiz =>
             quiz.folder_name === folder.folder_name ? (
-              <div>
-                <i
-                  className="fas fa-times"
-                  style={{
-                    cursor: "pointer",
-                    float: "right",
-                    color: "red"
-                  }}
-                  onClick={() => onDeleteClick(quiz.id)}
-                />{" "}
-                <p>{quiz.quiz_name}</p>
-              </div>
+              <QuizContents quiz={quiz} />
             ) : null
           )}
         </div>
