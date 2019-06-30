@@ -67,7 +67,9 @@ function Folders(props) {
         folder
       )
       .then(res => {});
-
+    setFolderName({
+      name: ""
+    });
     setModal(!modal);
   };
 
@@ -116,7 +118,7 @@ function Folders(props) {
                 </ModalBody>
               </Modal>
             </DropdownItem>
-            <DropdownItem>Get access code</DropdownItem>
+            <DropdownItem onClick={props.access}>Get access code</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
       </div>

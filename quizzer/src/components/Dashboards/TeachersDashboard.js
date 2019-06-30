@@ -7,7 +7,7 @@ import Folders from "../InfoComponents/Folders";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
-  const [accessCode, setAccessCode] = useState(null);
+  const [accessCode, setAccessCode] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const [dropdownFile, setDropDownFile] = useState(false);
   const [modal, setModal] = useState(false);
@@ -40,21 +40,19 @@ function TeacherDashboard(props) {
   }, [quizzes]);
 
   const access = () => {
-    setAccessCode(localStorage.getItem("access_code"));
+    setAccessCode(!accessCode);
   };
 
   return (
     <>
       <TeacherNavigation />
       <div className="dash">
-        <Folders />
-
-        <button className="button" onClick={access}>
-          get access code
-        </button>
+        <Folders access={access} />
 
         <h1 className="title">Teacher Đashboard</h1>
-        {accessCode ? <h1>access code: {accessCode}</h1> : null}
+        {accessCode ? (
+          <h1>access code: {localStorage.getItem("access_code")}</h1>
+        ) : null}
         <div className="header">Recently Administered Quizzes</div>
         <div className="recently-administered-quizzes">
           {quizzes.length > 0 ? (
