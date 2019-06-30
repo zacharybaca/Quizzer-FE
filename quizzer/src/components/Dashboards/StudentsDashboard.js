@@ -50,8 +50,6 @@ function StudentsDashboard(props) {
                           </h6>
                           <p>Assigned By: {user.name}</p>
                           <p>{user.description}</p>
-                          <p>10 Main Questions</p>
-                          <p>10 Remedial Questions</p>
                           <Button color="purple">
                             <Link to={`quiz/${user.id}`}>
                               <p className="p">take quiz</p>
