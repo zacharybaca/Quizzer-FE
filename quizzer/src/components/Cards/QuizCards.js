@@ -13,10 +13,11 @@ class QuizCards extends Component {
       quizzes: this.props.quizzes,
       showContactInfo: false,
       modal: false,
-      folderId: this.props.folderId
+      folderId: ""
     };
 
     this.toggle = this.toggle.bind(this);
+    console.log(this.props.folders);
   }
 
   toggle() {
@@ -39,8 +40,6 @@ class QuizCards extends Component {
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`,
       quizData
     );
-
-    console.log(res.data);
   }
 
   onChange = e => {
@@ -56,7 +55,7 @@ class QuizCards extends Component {
 
   async handleSubmit(e, quizId) {
     e.preventDefault();
-    console.log(quizId, Number(this.state.folderId));
+    console.log(quizId, this.state.folderId);
 
     const ids = {
       quiz_id: quizId
@@ -69,9 +68,6 @@ class QuizCards extends Component {
       )}`,
       ids
     );
-
-    console.log(results);
-    console.log(results.data);
   }
 
   render() {
