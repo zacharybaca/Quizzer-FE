@@ -14,13 +14,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import FolderContents from "./FolderContents.js";
 import "./folders.css";
 
 function Folders(props) {
-  // const [reactstrap, setReactStrap] = useState({
-  //   dropdownOpen: false,
-  //   modal: false
-  // });
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const [dropdownFile, setDropDownFile] = useState(false);
@@ -51,30 +48,6 @@ function Folders(props) {
   }, [folderHolder]);
 
   const { folders, quizzes } = folderHolder;
-
-  // const toggle = () => {
-  //   setReactStrap({
-  //     ...reactstrap,
-  //     dropdownOpen: !dropdownOpen
-  //   });
-  // };
-  //
-  // const togglepopup = () => {
-  //   setReactStrap({
-  //     ...reactstrap,
-  //     modal: !modal
-  //   });
-  // };
-
-  const onDeleteClick = async id => {
-    console.log(id);
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
-    );
-
-    console.log(res);
-  };
 
   const onChanges = event =>
     setFolderName({ ...folderName, [event.target.name]: event.target.value });
@@ -151,27 +124,7 @@ function Folders(props) {
         <div>
           {folders.length > 0 ? (
             folders.map(folder => (
-              <div key={folder.id}>
-                <button>{folder.folder_name}</button>
-
-                {quizzes.map(quiz =>
-                  quiz.folder_name === folder.folder_name ? (
-                    <div>
-                      {" "}
-                      <i
-                        className="fas fa-times"
-                        style={{
-                          cursor: "pointer",
-                          float: "right",
-                          color: "red"
-                        }}
-                        onClick={() => onDeleteClick(quiz.id)}
-                      />{" "}
-                      <p>{quiz.quiz_name}</p>
-                    </div>
-                  ) : null
-                )}
-              </div>
+              <FolderContents folder={folder} quizzes={quizzes} />
             ))
           ) : (
             <div>no folders made</div>
