@@ -13,7 +13,7 @@ class QuizCards extends Component {
       quizzes: this.props.quizzes,
       showContactInfo: false,
       modal: false,
-      folderId: this.props.folderId
+      folderId: ""
     };
 
     this.toggle = this.toggle.bind(this);
@@ -23,6 +23,22 @@ class QuizCards extends Component {
     this.setState(prevState => ({
       modal: !prevState.modal
     }));
+  }
+
+  async assignQuiz(e, quizId) {
+    e.preventDefault();
+    const { quizzes } = this.state;
+
+    const quizData = {
+      quiz_name: quizzes.quiz_name,
+      description: quizzes.quiz_name,
+      assigned: true
+    };
+    const res = await axios.put(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`,
+      quizData
+    );
   }
 
   onChange = e => {
@@ -38,7 +54,7 @@ class QuizCards extends Component {
 
   async handleSubmit(e, quizId) {
     e.preventDefault();
-    console.log(quizId, Number(this.state.folderId));
+    console.log(quizId, this.state.folderId);
 
     const ids = {
       quiz_id: quizId
@@ -51,9 +67,6 @@ class QuizCards extends Component {
       )}`,
       ids
     );
-
-    console.log(results);
-    console.log(results.data);
   }
 
   render() {
@@ -81,8 +94,10 @@ class QuizCards extends Component {
           {showContactInfo ? (
             <div>
               {" "}
-             <Link to={`edit/quiz/${quizzes.id}`}> <button>edit quiz</button></Link>
-
+              <Link to={`edit/quiz/${quizzes.id}`}>
+                {" "}
+                <button>edit quiz</button>
+              </Link>
               <button color="danger" onClick={this.toggle}>
                 add to folder
               </button>
@@ -108,6 +123,9 @@ class QuizCards extends Component {
               <button onClick={this.deleteQuiz.bind(this, quizzes.id)}>
                 delete quiz
               </button>
+              <button onClick={e => this.assignQuiz(e, quizzes.id)}>
+                assign quiz
+              </button>
             </div>
           ) : null}
 
@@ -115,6 +133,7 @@ class QuizCards extends Component {
             <strong>{quizzes.quiz_name}</strong>
           </h6>
           <p>{quizzes.description}</p>
+          {quizzes.assigned ? <h5>assigned</h5> : null}
         </div>
       </>
     );

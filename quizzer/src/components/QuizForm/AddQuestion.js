@@ -1,47 +1,126 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./addQuiz.css";
 import { Redirect } from "react-router-dom";
+import EditQuestion from "./EditQuestion.js";
 
-class AddQuestion extends React.Component {
-  constructor(props) {
-    super(props);
+function AddQuestion(props) {
+  const [questions, setQuestions] = useState({
+    category: "Math",
+    type: 1,
+    Q_content: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    correct_answer: "",
+    points: "",
+    id: ""
+  });
+  const [questionInfo, setQuestionInfo] = useState({
+    category: "Math",
+    type: 1,
+    Q_content: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    correct_answer: "",
+    points: "",
+    quiz_id: props.quizId
+  });
 
-    this.state = {
-      category: "Math",
-      type: 1,
-      Q_content: "",
-      A: "",
-      B: "",
-      C: "",
-      D: "",
-      correct_answer: "",
-      points: "",
-      quiz_id: this.props.quizId
+  const {
+    category,
+    type,
+    Q_content,
+    A,
+    B,
+    C,
+    D,
+    correct_answer,
+    points,
+    quiz_id
+  } = questionInfo;
+
+  //takes place instead of componentDidMount
+  useEffect(() => {
+    const fetchData = async () => {
+      const { quiz_id } = questionInfo;
+
+      const res = await axios(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quiz_id}`
+      );
+
+      setQuestions(
+        res.data.quiz.map(question => ({
+          category: question.category,
+          type: question.type,
+          Q_content: question.Q_content,
+          A: question.A,
+          B: question.B,
+          C: question.C,
+          D: question.D,
+          correct_answer: question.correct_answer,
+          points: question.points,
+          id: question.id
+        }))
+      );
     };
-  }
+    fetchData();
+  }, [questions]);
 
-  onChange = event => {
-    this.setState({ [event.target.name]: event.target.value });
+  const handleChanges = (e, id, idx) => {
+    const array = questions;
+    console.log(id, idx);
+
+    array[idx][e.target.name] = e.target.value;
+
+    setQuestions([...array]);
+    console.log(questions);
   };
 
-  finish = () => {
-    this.props.history.push("/teachersDashboard");
+  const onSubmit = async (e, id) => {
+    e.preventDefault();
+
+    questions.map(question => {
+      if (question.id === id) {
+        const res = axios.put(
+          `${process.env.REACT_APP_BE_URL ||
+            process.env.REACT_APP_BE_LOCAL}/api/quest/question/${id}`,
+          question
+        );
+
+        console.log(res);
+      }
+    });
   };
 
-  handleSubmit = event => {
+  const onChange = event => {
+    setQuestionInfo({
+      ...questionInfo,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const finish = () => {
+    props.history.push("/teachersDashboard");
+  };
+
+  const handleSubmit = event => {
     event.preventDefault();
     const question = {
-      category: this.state.category,
-      type: this.state.type,
-      Q_content: this.state.Q_content,
-      A: this.state.A,
-      B: this.state.B,
-      C: this.state.C,
-      D: this.state.D,
-      correct_answer: this.state.correct_answer,
-      points: this.state.points,
-      quiz_id: this.state.quiz_id
+      category,
+      type,
+      Q_content,
+      A,
+      B,
+      C,
+      D,
+      correct_answer,
+      points,
+      quiz_id
     };
 
     axios
@@ -54,7 +133,7 @@ class AddQuestion extends React.Component {
         console.log(res);
         console.log(res.data);
       });
-    this.setState({
+    setQuestionInfo({
       category: "Math",
       type: 1,
       Q_content: "",
@@ -63,20 +142,32 @@ class AddQuestion extends React.Component {
       C: "",
       D: "",
       correct_answer: "",
-      points: ""
+      points: "",
+      quiz_id: props.quizId
     });
   };
-  render() {
-    return (
+
+  return (
+    <div>
+      {questions.length > 0
+        ? questions.map((question, idx) => (
+            <EditQuestion
+              Eachquestion={questions}
+              question={question}
+              index={idx}
+              handleSubmit={onSubmit}
+              handleChanges={handleChanges}
+            />
+          ))
+        : null}
       <div>
-        <div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="top-info">
+        <form onSubmit={e => handleSubmit(e)}>
+          <div className="top-info">
             <label>Category</label>
             <br />
             <select
-              value={this.state.category}
-              onChange={this.onChange}
+              value={category}
+              onChange={e => onChange(e)}
               className="text-box"
               name="category"
             >
@@ -91,112 +182,110 @@ class AddQuestion extends React.Component {
             <label>Type</label>
             <br />
             <select
-              value={this.state.type}
-              onChange={this.onChange}
+              value={type}
+              onChange={e => onChange(e)}
               className="text-box"
               name="type"
-              
-              
             >
               <option value={1}>Standard</option>
               <option value={2}>Remedial</option>
             </select>
+          </div>
 
-            </div>
+          <br />
+          <br />
+          <label className="question">Question</label>
+          <br />
+          <input
+            name="Q_content"
+            className="question-text-box"
+            type="text"
+            value={Q_content}
+            onChange={e => onChange(e)}
+          />
+          <br />
+          <br />
 
-            <br />
-            <br />
-            <label className="question">Question</label>
-            <br />
-            <input
-              name="Q_content"
-              className="question-text-box"
-              type="text"
-              value={this.state.Q_content}
-              onChange={this.onChange}
-            />
-            <br />
-            <br />
-            
-            <div className="answers">
+          <div className="answers">
             <div className="AB">
-            <label>A</label>
-            <br />
-            <input
-              name="A"
-              className="text-box"
-              type="text"
-              value={this.state.A}
-              onChange={this.onChange}
-            />
-            <br />
-            <br />
-            <label>B</label>
-            <br />
-            <input
-              name="B"
-              className="text-box"
-              type="text"
-              value={this.state.B}
-              onChange={this.onChange}
-            />
+              <label>A</label>
+              <br />
+              <input
+                name="A"
+                className="text-box"
+                type="text"
+                value={A}
+                onChange={e => onChange(e)}
+              />
+              <br />
+              <br />
+              <label>B</label>
+              <br />
+              <input
+                name="B"
+                className="text-box"
+                type="text"
+                value={B}
+                onChange={e => onChange(e)}
+              />
             </div>
             <br />
             <br />
 
             <div className="CD">
-            <label>C</label>
-            <br />
-            <input
-              name="C"
-              className="text-box"
-              type="text"
-              value={this.state.C}
-              onChange={this.onChange}
-            />
-            <br />
-            <br />
-            <label>D</label>
-            <br />
-            <input
-              name="D"
-              className="text-box"
-              type="text"
-              value={this.state.D}
-              onChange={this.onChange}
-            />
+              <label>C</label>
+              <br />
+              <input
+                name="C"
+                className="text-box"
+                type="text"
+                value={C}
+                onChange={e => onChange(e)}
+              />
+              <br />
+              <br />
+              <label>D</label>
+              <br />
+              <input
+                name="D"
+                className="text-box"
+                type="text"
+                value={D}
+                onChange={e => onChange(e)}
+              />
             </div>
-            </div>
-            <br />
-            <br />
-            <label>Correct Answer(Choose A, B, C, or D)</label>
-            <br />
-            <input
-              name="correct_answer"
-              className="text-box"
-              type="text"
-              value={this.state.correct_answer}
-              onChange={this.onChange}
-            />
-            <br />
-            <br />
-            <label>Points</label>
-            <br />
-            <input
-              name="points"
-              className="text-box"
-              type="text"
-              value={this.state.points}
-              onChange={this.onChange}
-            />
-            <br />
-            <button className="submit-button" type="submit">Add Question</button>
-          </form>
-          <button onClick={this.finish}>Complete Quiz</button>
-        </div>
+          </div>
+          <br />
+          <br />
+          <label>Correct Answer</label>
+          <br />
+          <input
+            name="correct_answer"
+            className="text-box"
+            type="text"
+            value={correct_answer}
+            onChange={e => onChange(e)}
+          />
+          <br />
+          <br />
+          <label>Points</label>
+          <br />
+          <input
+            name="points"
+            className="text-box"
+            type="text"
+            value={points}
+            onChange={e => onChange(e)}
+          />
+          <br />
+          <button className="submit-button" type="submit">
+            Add Question
+          </button>
+        </form>
+        <button onClick={finish}>Complete Quiz</button>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default AddQuestion;
