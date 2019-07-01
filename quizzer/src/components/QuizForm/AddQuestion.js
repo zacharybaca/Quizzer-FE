@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./addQuiz.css";
 import { Redirect } from "react-router-dom";
-import EditQuestion from "./EditQuestion.js";
+import ShowQuestions from "./ShowQuestions.js";
 
 function AddQuestion(props) {
   const [questions, setQuestions] = useState({
@@ -151,7 +151,7 @@ function AddQuestion(props) {
     <div>
       {questions.length > 0
         ? questions.map((question, idx) => (
-            <EditQuestion
+            <ShowQuestions
               Eachquestion={questions}
               question={question}
               index={idx}
@@ -259,13 +259,18 @@ function AddQuestion(props) {
           <br />
           <label>Correct Answer</label>
           <br />
-          <input
-            name="correct_answer"
-            className="text-box"
-            type="text"
+          <select
             value={correct_answer}
             onChange={e => onChange(e)}
-          />
+            className="text-box"
+            name="correct_answer"
+          >
+            <option value={A}>A</option>
+            <option value={B}>B</option>
+            <option value={C}>C</option>
+            <option value={D}>D</option>
+          </select>
+
           <br />
           <br />
           <label>Points</label>
