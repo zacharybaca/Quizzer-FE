@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const QuizContents = props => {
@@ -12,6 +13,22 @@ const QuizContents = props => {
 
     console.log(res);
   };
+
+  const assignQuiz = async (e, quizId) => {
+    e.preventDefault();
+
+    const quizData = {
+      quiz_name: quiz.quiz_name,
+      description: quiz.description,
+      assigned: true
+    };
+    const res = await axios.put(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quiz.id}`,
+      quizData
+    );
+  };
+
   return (
     <div>
       <p onClick={() => setShowContactInfo(!showContactInfo)}>
@@ -30,8 +47,10 @@ const QuizContents = props => {
           />
           <p>remove from folder</p>
           <div>
-            <p>assign quiz</p>
-            <p>edit quiz</p>
+            <Link to={`edit/quiz/${quiz.id}`}>
+              <button>edit quiz</button>
+            </Link>
+            <button onClick={e => assignQuiz(e, quiz.id)}>assign quiz</button>
           </div>
         </div>
       ) : null}
