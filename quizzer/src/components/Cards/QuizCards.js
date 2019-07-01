@@ -67,6 +67,9 @@ class QuizCards extends Component {
       )}`,
       ids
     );
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   render() {

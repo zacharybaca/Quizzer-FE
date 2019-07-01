@@ -53,7 +53,7 @@ function TeacherDashboard(props) {
         {accessCode ? (
           <h1>access code: {localStorage.getItem("access_code")}</h1>
         ) : null}
-        <div className="header">Recently Administered Quizzes</div>
+        <div className="header">Recently Created Quizzes</div>
         <div className="recently-administered-quizzes">
           {quizzes.length > 0 ? (
             quizzes.map(user => (

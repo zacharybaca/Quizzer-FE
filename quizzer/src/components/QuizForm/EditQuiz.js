@@ -293,13 +293,18 @@ const EditQuiz = props => {
                           <br />
                           <label>Correct Answer</label>
                           <br />
-                          <input
-                            onChange={e => handleChanges(e, question.id, index)}
-                            name="correct_answer"
-                            className="text-box"
-                            type="text"
+                          <select
                             value={question.correct_answer}
-                          />
+                            onChange={e => handleChanges(e, question.id, index)}
+                            className="text-box"
+                            name="correct_answer"
+                          >
+                            <option value={question.A}>A</option>
+                            <option value={question.B}>B</option>
+                            <option value={question.C}>C</option>
+                            <option value={question.D}>D</option>
+                          </select>
+
                           <br />
                           <br />
                           <label>Points</label>
