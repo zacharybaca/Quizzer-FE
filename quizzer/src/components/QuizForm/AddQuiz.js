@@ -75,7 +75,7 @@ function AddQuiz(props) {
               <label className="add-quiz-label">Add Quiz Description</label>
               <br />
               <input
-                maxlength="80"
+                
                 name="quiz_description"
                 className="add-quiz-text-box"
                 type="text"
