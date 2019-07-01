@@ -77,7 +77,7 @@ class QuizCards extends Component {
     const { folders } = this.props;
     return (
       <>
-        <div key={quizzes.id} className="box">
+        <div key={quizzes.id} className={`box ${this.state.showContactInfo ? 'no-hover-state': null}`}>
           <div className="corner">
             <i
               onClick={() =>
@@ -85,13 +85,8 @@ class QuizCards extends Component {
                   showContactInfo: !this.state.showContactInfo
                 })
               }
-              className="fas fa-ellipsis-v"
-              style={{
-                cursor: "pointer",
-                float: "right",
-                color: "black",
-                marginRight: "1rem"
-              }}
+              className="fas fa-ellipsis-v three-dots"
+             
             />
           </div>
           {showContactInfo ? (

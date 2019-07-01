@@ -1,12 +1,47 @@
 /* Card Content */
+.box {
+  position: relative;
+  font-family: "Open Sans";
+  height: 184px;
+  width: 192px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  /* justify-content: flex-start;
+  align-items: flex-start; */
+  margin-bottom: 24px;
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
+}
+
+.box:hover {
+  box-shadow: 0 2px 4px 0 #6369D1;
+}
+
+.three-dots {
+  cursor: "pointer";
+  float: "right";
+  color: "black";
+  margin-right: 1rem;
+}
+
+.three-dots:hover {
+  color: #6369D1;
+}
+
+.no-hover-state:hover {
+  box-shadow: none;
+}
 
 .corner {
   margin-top: 16px;
   display: flex;
   width: 100%;
   justify-content: flex-end;
-  
-}
+  }
+
+
 
 .card-content .p {
   font-weight: bold;
@@ -32,15 +67,18 @@
 .card-assigned {
   position:absolute;
   top:4px;
-  margin-left: -24px;
+  margin-left: -16px;
   width: 192px;
   display:flex;
+  font-size:12px;
   font-weight:bold;
   justify-content: center;
   color: #226F54;
   text-transform: Uppercase;
 	
 }
+
+/* Buttons/Dropdown Menu */
  .submit{
    margin-left:24px;
  }
@@ -53,8 +91,6 @@
   height: 40px;
   width: 192px;
   line-height: 40px;
-  padding: 0 14px;
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   color: black;
   border-radius: 4px;
   font-size: 15px;
@@ -65,5 +101,4 @@
   text-decoration: none;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
-  margin-top: 10px;
  }

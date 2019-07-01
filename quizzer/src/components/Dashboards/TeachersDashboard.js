@@ -7,6 +7,7 @@ import Folders from "../InfoComponents/Folders";
 
 function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
+  const [deleteIcon, setDeleteIcon] = useState(false);
   const [accessCode, setAccessCode] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const [dropdownFile, setDropDownFile] = useState(false);
@@ -20,7 +21,6 @@ function TeacherDashboard(props) {
     folderId: ""
   });
 
-  
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +39,6 @@ function TeacherDashboard(props) {
         )}`
       );
 
-      
       //setting database data to state with hooks
       setQuizzes(result.data);
       setFoldersHolder({
@@ -55,17 +54,29 @@ function TeacherDashboard(props) {
     setAccessCode(!accessCode);
   };
 
+  const deleteFolder = async id => {
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/folder/delete/${id}`
+    );
+
+    console.log(res);
+  };
+
+  const someHandler = () => {
+    setDeleteIcon(!deleteIcon)
+  }
+
   return (
     <>
       <TeacherNavigation />
       <div className="dash">
         <Folders access={access} />
 
-        
         {accessCode ? (
           <h1>access code: {localStorage.getItem("access_code")}</h1>
         ) : null}
-        <div className="recent-header">Recently Made Quizzes</div>
+        <div className="dashboard-header">Recently Made Quizzes</div>
         <div className="recently-made-quizzes">
           {quizzes.length > 0 ? (
             quizzes.map(user => (
@@ -80,24 +91,37 @@ function TeacherDashboard(props) {
           )}
         </div>
         {folderHolder.folders.length > 0 ? (
-            folderHolder.folders.map(folder => (
+          folderHolder.folders.map(folder => (
             <div>
-                <div className="folder-name-header"><button>{folder.folder_name}</button></div>
-              {  folderHolder.quizzes.map(quiz =>
+              <div className="folder-name-header">
+                <div>
+                  <div className="dashboard-header">
+                    Folder: {folder.folder_name}{" "}
+                    <i
+                      className="move fas fa-trash fa-xs"
+                      id="some-div"
+                      onMouseEnter={someHandler}
+                      onMouseLeave={someHandler}
+                      onClick={() => deleteFolder(folder.id)}
+                    />
+                    
+                  </div>
+                </div>
+              </div>
+              {folderHolder.quizzes.map(quiz =>
                 quiz.folder_name === folder.folder_name ? (
                   <QuizCards
-                folderId={formData.folderId}
-                folders={folders}
-                quizzes={quiz}
-              />
+                    folderId={formData.folderId}
+                    folders={folders}
+                    quizzes={quiz}
+                  />
                 ) : null
               )}
             </div>
-             
-            ))
-          ) : (
-            <div>no folders made</div>
-          )}
+          ))
+        ) : (
+          <div>no folders made</div>
+        )}
       </div>
     </>
   );
