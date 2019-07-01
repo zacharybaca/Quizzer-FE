@@ -77,7 +77,7 @@ class QuizCards extends Component {
     const { folders } = this.props;
     return (
       <>
-        <div key={quizzes.id} className="box">
+        <div key={quizzes.id} className={`box ${this.state.showContactInfo ? 'no-hover-state': null}`}>
           <div className="corner">
             <i
               onClick={() =>

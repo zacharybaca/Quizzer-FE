@@ -128,7 +128,7 @@ button {
   height: 40px;
   width: 192px;
   line-height: 40px;
-  padding: 0 14px;
+  padding: 0 16px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   color: #fff;
   border-radius: 4px;
@@ -140,7 +140,7 @@ button {
   text-decoration: none;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
-  margin-top: 10px;
+  margin-top: 24px;
 }
 
 button:hover {
