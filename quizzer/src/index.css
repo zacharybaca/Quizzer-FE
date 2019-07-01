@@ -51,11 +51,12 @@ table {
 body {
   margin: 0;
   font-family: "Open Sans";
+  background-color:black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Open Sans",
     monospace;
-}
+} */

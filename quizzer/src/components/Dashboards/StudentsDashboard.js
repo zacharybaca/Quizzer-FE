@@ -35,7 +35,7 @@ function StudentsDashboard(props) {
         </Link>
       </button>
       <div>
-        <h1 className="header1">Student Đashboard</h1>
+      
         <div className="header2">Assigned Quizzes</div>
         <div className="assigned-quizzes">
           {quizzes.length > 0 ? (

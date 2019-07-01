@@ -12,9 +12,15 @@ function TeacherDashboard(props) {
   const [dropdownFile, setDropDownFile] = useState(false);
   const [modal, setModal] = useState(false);
   const [folders, setFolders] = useState([]);
+  const [folderHolder, setFoldersHolder] = useState({
+    folders: [],
+    quizzes: []
+  });
   const [formData, setFormData] = useState({
     folderId: ""
   });
+
+  
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -32,8 +38,14 @@ function TeacherDashboard(props) {
           "id"
         )}`
       );
+
+      
       //setting database data to state with hooks
       setQuizzes(result.data);
+      setFoldersHolder({
+        folders: folder.data.folders,
+        quizzes: folder.data.quizzes
+      });
       setFolders(folder.data.folders);
     };
     fetchData();
@@ -49,12 +61,12 @@ function TeacherDashboard(props) {
       <div className="dash">
         <Folders access={access} />
 
-        <h1 className="title">Teacher Đashboard</h1>
+        
         {accessCode ? (
           <h1>access code: {localStorage.getItem("access_code")}</h1>
         ) : null}
-        <div className="header">Recently Created Quizzes</div>
-        <div className="recently-administered-quizzes">
+        <div className="recent-header">Recently Made Quizzes</div>
+        <div className="recently-made-quizzes">
           {quizzes.length > 0 ? (
             quizzes.map(user => (
               <QuizCards
@@ -67,6 +79,25 @@ function TeacherDashboard(props) {
             <p>no created quizzes</p>
           )}
         </div>
+        {folderHolder.folders.length > 0 ? (
+            folderHolder.folders.map(folder => (
+            <div>
+                <div className="folder-name-header"><button>{folder.folder_name}</button></div>
+              {  folderHolder.quizzes.map(quiz =>
+                quiz.folder_name === folder.folder_name ? (
+                  <QuizCards
+                folderId={formData.folderId}
+                folders={folders}
+                quizzes={quiz}
+              />
+                ) : null
+              )}
+            </div>
+             
+            ))
+          ) : (
+            <div>no folders made</div>
+          )}
       </div>
     </>
   );

@@ -1,16 +1,3 @@
-.App {
-  font-family: "Open Sans";
-  text-align: center;
-  width: 157px;
-  background-color: #ffffff;
-}
-
-
-.options {
-  cursor: pointer;
-  border: 2px solid black;
-  padding: 10px;
-}
 
 .App-header {
   background-color: #282c34;
@@ -27,18 +14,18 @@
   color: #61dafb;
 }
 
-.header {
+/* .header {
   display: flex;
   align-items: center;
   height: 64px;
   width: 1300px;  
-}
+} */
 
-.sidebar-nav {
+/* .sidebar-nav {
   height: 960px;
   width: 224px;
   border: solid black 8px;
-}
+} */
 
 .new-quiz {
   height: 40px;
@@ -139,6 +126,7 @@ button {
   outline: 0;
   display: inline-block;
   height: 40px;
+  width: 192px;
   line-height: 40px;
   padding: 0 14px;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);

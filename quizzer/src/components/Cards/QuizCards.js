@@ -95,17 +95,17 @@ class QuizCards extends Component {
             />
           </div>
           {showContactInfo ? (
-            <div>
+            <div className='move'>
               {" "}
               <Link to={`edit/quiz/${quizzes.id}`}>
                 {" "}
-                <button>edit quiz</button>
+                <button className='dropdownbutton'>edit quiz</button>
               </Link>
-              <button color="danger" onClick={this.toggle}>
+              <button className='dropdownbutton' onClick={this.toggle}>
                 add to folder
               </button>
               <Modal isOpen={modal} toggle={this.toggle}>
-                <ModalHeader>Add to quiz folder</ModalHeader>
+                <ModalHeader >Add to quiz folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={e => this.handleSubmit(e, quizzes.id)}>
                     <select
@@ -123,20 +123,27 @@ class QuizCards extends Component {
                   </form>
                 </ModalBody>
               </Modal>
-              <button onClick={this.deleteQuiz.bind(this, quizzes.id)}>
+              <button className='dropdownbutton' onClick={this.deleteQuiz.bind(this, quizzes.id)}>
                 delete quiz
               </button>
-              <button onClick={e => this.assignQuiz(e, quizzes.id)}>
+              <button className='dropdownbutton' onClick={e => this.assignQuiz(e, quizzes.id)}>
                 assign quiz
               </button>
             </div>
           ) : null}
-
-          <h6 className="p">
-            <strong>{quizzes.quiz_name}</strong>
+          {!showContactInfo ? (
+            <div className="card-content">
+               <h6 className="p">
+            {quizzes.quiz_name}
           </h6>
+         
+          <div className="card-description">
           <p>{quizzes.description}</p>
-          {quizzes.assigned ? <h5>assigned</h5> : null}
+          </div>
+          {quizzes.assigned ? <div className="card-assigned">assigned</div> : null}
+            </div>
+          ) : null}
+         
         </div>
       </>
     );
