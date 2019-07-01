@@ -23,7 +23,6 @@ const FolderContents = props => {
       </button>
       {showContactInfo ? (
         <div>
-          <p onClick={() => deleteFolder(folder.id)}>remove folder</p>
           {quizzes.map(quiz =>
             quiz.folder_name === folder.folder_name ? (
               <QuizContents quiz={quiz} />

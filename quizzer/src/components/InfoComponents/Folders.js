@@ -10,10 +10,7 @@ import {
   ModalHeader,
   ModalBody
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import FolderContents from "./FolderContents.js";
 import "./folders.css";
 

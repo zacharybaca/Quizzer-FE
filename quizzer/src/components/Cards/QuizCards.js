@@ -85,13 +85,8 @@ class QuizCards extends Component {
                   showContactInfo: !this.state.showContactInfo
                 })
               }
-              className="fas fa-ellipsis-v"
-              style={{
-                cursor: "pointer",
-                float: "right",
-                color: "black",
-                marginRight: "1rem"
-              }}
+              className="fas fa-ellipsis-v three-dots"
+             
             />
           </div>
           {showContactInfo ? (
