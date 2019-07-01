@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./addQuiz.css";
 import { Redirect } from "react-router-dom";
-import EditQuestion from "./EditQuestion.js";
+import ShowQuestions from "./ShowQuestions.js";
 
 function AddQuestion(props) {
   const [questions, setQuestions] = useState({
@@ -151,7 +151,7 @@ function AddQuestion(props) {
     <div>
       {questions.length > 0
         ? questions.map((question, idx) => (
-            <EditQuestion
+            <ShowQuestions
               Eachquestion={questions}
               question={question}
               index={idx}

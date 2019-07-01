@@ -142,7 +142,6 @@ const EditQuiz = props => {
     <>
       <TeacherNavigation />
       <div>
-        {" "}
         <div className="top-edits">
           <form className="answers" onSubmit={e => onSubmit(e)}>
             <label className="label">Quiz Name</label>
