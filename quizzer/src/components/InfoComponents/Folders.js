@@ -92,20 +92,21 @@ function Folders(props) {
             >
               New Folder
               <Modal isOpen={modal}>
-                <ModalHeader>Add Folder</ModalHeader>
+                <ModalHeader>Create a Folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={handleSubmit}>
                     <input
                       name="name"
-                      placeholder="enter folder name"
+                      className="folder-name"
+                      placeholder="Enter folder name"
                       type="text"
                       value={folderName.name}
                       onChange={e => onChanges(e)}
                     />
 
-                    <button type="submit">Create</button>
+                    <button className="create-folder" type="submit">Create</button>
                   </form>
-                  <button
+                  <button className="cancel-folder"
                     onClick={() => {
                       setModal(!modal);
                     }}

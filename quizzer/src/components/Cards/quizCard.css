@@ -43,13 +43,14 @@
 
 
 
-.card-content .p {
+.card-content .given-name {
   font-weight: bold;
   text-transform: uppercase;
   width: 152px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow:hidden;
+  margin-bottom:8px;
 }
 
 .card-content {
@@ -58,10 +59,9 @@
 }
 
 .card-description {
-  text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
   width: 152px;
+  height: 88px;
 }
 
 .card-assigned {
@@ -79,7 +79,7 @@
 }
 
 /* Buttons/Dropdown Menu */
- .submit{
+ .submit {
    margin-left:24px;
  }
 

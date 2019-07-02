@@ -130,6 +130,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.025em;
   background-color: #6369D1;
+  opacity: 0.5;
   text-decoration: none;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
