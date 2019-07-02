@@ -16,10 +16,8 @@ const EditQuiz = props => {
   });
   // set the state for the Questions
 
-  const [questionInfo, setQuestionInfo] = useState([]);
+  
   const [chosenQuestion, setChosenQuestion] = useState(0);
-  const [showContactInfo, setShowContactInfo] = useState(false);
-  const [showQuestion, setShowQuestion] = useState(false);
   const [Eachquestion, setQuestion] = useState({
     category: "Math",
     type: 1,
@@ -33,19 +31,8 @@ const EditQuiz = props => {
     id: ""
   });
 
-  const { quizId, data, questionId } = componentData;
+  const { quizId } = componentData;
   const { quiz_name, description } = quizInfo;
-  const {
-    category,
-    type,
-    Q_content,
-    A,
-    B,
-    C,
-    D,
-    correct_answer,
-    points
-  } = Eachquestion;
 
   //takes place instead of componentDidMount
   useEffect(() => {
@@ -70,7 +57,7 @@ const EditQuiz = props => {
         quiz_name: res.data.quiz[0].quiz_name,
         description: res.data.quiz[0].description
       });
-      setQuestionInfo(res.data.quiz);
+   
       setQuestion(
         res.data.quiz.map(question => ({
           category: question.category,

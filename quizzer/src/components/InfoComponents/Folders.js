@@ -6,7 +6,6 @@ import {
   DropdownMenu,
   DropdownItem,
   Modal,
-  Dropdown,
   ModalHeader,
   ModalBody
 } from "reactstrap";
@@ -17,7 +16,6 @@ import "./folders.css";
 function Folders(props) {
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
-  const [dropdownFile, setDropDownFile] = useState(false);
   const [folderHolder, setFolders] = useState({
     folders: [],
     quizzes: []
@@ -104,9 +102,12 @@ function Folders(props) {
                       onChange={e => onChanges(e)}
                     />
 
-                    <button className="create-folder" type="submit">Create</button>
+                    <button className="create-folder" type="submit">
+                      Create
+                    </button>
                   </form>
-                  <button className="cancel-folder"
+                  <button
+                    className="cancel-folder"
                     onClick={() => {
                       setModal(!modal);
                     }}

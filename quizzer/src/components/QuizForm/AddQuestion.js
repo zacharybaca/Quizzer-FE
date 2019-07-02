@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./addQuiz.css";
-import { Redirect } from "react-router-dom";
-import ShowQuestions from "./ShowQuestions.js";
+import EditQuestion from "./EditQuestion.js";
 
 function AddQuestion(props) {
+  const [chosenQuestion, setChosenQuestion] = useState(null);
   const [questions, setQuestions] = useState({
     category: "Math",
     type: 1,
@@ -97,6 +97,10 @@ function AddQuestion(props) {
     });
   };
 
+  const filterQuestions = idx => {
+    setChosenQuestion(idx);
+  };
+
   const onChange = event => {
     setQuestionInfo({
       ...questionInfo,
@@ -149,17 +153,146 @@ function AddQuestion(props) {
 
   return (
     <div>
-      {questions.length > 0
-        ? questions.map((question, idx) => (
-            <ShowQuestions
-              Eachquestion={questions}
-              question={question}
-              index={idx}
-              handleSubmit={onSubmit}
-              handleChanges={handleChanges}
-            />
-          ))
-        : null}
+      <div>
+        {questions.length > 0
+          ? questions.map((question, index) =>
+              chosenQuestion === index ? (
+                <div className="question">
+                  <form
+                    key={question.id}
+                    onSubmit={e => handleSubmit(e, question.id)}
+                  >
+                    <div className="top-info">
+                      <label>Category</label>
+                      <br />
+                      <select
+                        value={question.category}
+                        className="text-box"
+                        name="category"
+                        onChange={e => handleChanges(e, question.id, index)}
+                      >
+                        <option value="Math">Math</option>
+                        <option value="Science">Science</option>
+                        <option value="English">English</option>
+                        <option value="History">History</option>
+                        <option value="Spanish">Spanish</option>
+                      </select>
+                      <br />
+                      <br />
+                      <label>Type</label>
+
+                      <br />
+                      <select
+                        onChange={e => handleChanges(e, question.id, index)}
+                        value={question.type}
+                        className="text-box"
+                        name="type"
+                      >
+                        <option value={1}>Standard</option>
+                        <option value={2}>Remedial</option>
+                      </select>
+                    </div>
+
+                    <br />
+                    <br />
+                    <label className="question">Question</label>
+                    <br />
+                    <input
+                      name="Q_content"
+                      className="question-text-box"
+                      type="text"
+                      onChange={e => handleChanges(e, question.id, index)}
+                      value={question.Q_content}
+                    />
+                    <br />
+                    <br />
+
+                    <div className="answers">
+                      <div className="AB">
+                        <label>A</label>
+                        <br />
+                        <input
+                          onChange={e => handleChanges(e, question.id, index)}
+                          name="A"
+                          className="text-box"
+                          type="text"
+                          value={question.A}
+                        />
+                        <br />
+                        <br />
+                        <label>B</label>
+                        <br />
+                        <input
+                          onChange={e => handleChanges(e, question.id, index)}
+                          name="B"
+                          className="text-box"
+                          type="text"
+                          value={question.B}
+                        />
+                      </div>
+                      <br />
+                      <br />
+
+                      <div className="CD">
+                        <label>C</label>
+                        <br />
+                        <input
+                          onChange={e => handleChanges(e, question.id, index)}
+                          name="C"
+                          className="text-box"
+                          type="text"
+                          value={question.C}
+                        />
+                        <br />
+                        <br />
+                        <label>D</label>
+                        <br />
+                        <input
+                          onChange={e => handleChanges(e, question.id, index)}
+                          name="D"
+                          className="text-box"
+                          type="text"
+                          value={question.D}
+                        />
+                      </div>
+                    </div>
+                    <br />
+                    <br />
+                    <label>Correct Answer</label>
+                    <br />
+                    <select
+                      value={question.correct_answer}
+                      onChange={e => handleChanges(e, question.id, index)}
+                      className="text-box"
+                      name="correct_answer"
+                    >
+                      <option value={question.A}>A</option>
+                      <option value={question.B}>B</option>
+                      <option value={question.C}>C</option>
+                      <option value={question.D}>D</option>
+                    </select>
+
+                    <br />
+                    <br />
+                    <label>Points</label>
+                    <br />
+                    <input
+                      onChange={e => handleChanges(e, question.id, index)}
+                      name="points"
+                      className="text-box"
+                      type="text"
+                      value={question.points}
+                    />
+                    <br />
+                    <button className="submit-button" type="submit">
+                      update Question
+                    </button>
+                  </form>
+                </div>
+              ) : null
+            )
+          : null}
+      </div>
       <div>
         <form onSubmit={e => handleSubmit(e)}>
           <div className="top-info">
@@ -288,6 +421,48 @@ function AddQuestion(props) {
           </button>
         </form>
         <button onClick={finish}>Complete Quiz</button>
+      </div>
+      <div className="questions-box">
+        <div>
+          <h6>Main Questions</h6>
+          {questions.length > 0
+            ? questions.map((question, idx) =>
+                question.type === 1 ? (
+                  <div>
+                    <EditQuestion
+                      chosen={chosenQuestion}
+                      filterQuestions={filterQuestions}
+                      Eachquestion={questions}
+                      handleSubmit={handleSubmit}
+                      handleChanges={handleChanges}
+                      question={question}
+                      index={idx}
+                    />
+                  </div>
+                ) : null
+              )
+            : null}
+        </div>
+        <div>
+          <h6>Remedial Questions</h6>
+          {questions.length > 0
+            ? questions.map((question, idx) =>
+                question.type !== 1 ? (
+                  <div className="question">
+                    <EditQuestion
+                      chosen={chosenQuestion}
+                      filterQuestions={filterQuestions}
+                      Eachquestion={questions}
+                      handleSubmit={handleSubmit}
+                      handleChanges={handleChanges}
+                      question={question}
+                      index={idx}
+                    />
+                  </div>
+                ) : null
+              )
+            : null}
+        </div>
       </div>
     </div>
   );

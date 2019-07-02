@@ -1,23 +1,15 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import "./EditQuiz.css";
 
 const EditQuestion = props => {
   const [showContactInfo, setShowContactInfo] = useState(false);
-  const { question, index, Eachquestion } = props;
-
-  const handleSubmit = (e, id) => {
-    props.handleSubmit(e, id);
-  };
+  const { index } = props;
 
   const filter = () => {
     setShowContactInfo(!showContactInfo);
     props.filterQuestions(index);
   };
 
-  const handleChanges = (e, id, idx) => {
-    props.handleChanges(e, id, idx);
-  };
   return (
     <div>
       <h2

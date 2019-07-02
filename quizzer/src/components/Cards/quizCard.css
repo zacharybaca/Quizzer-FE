@@ -18,7 +18,11 @@
 .box:hover {
   box-shadow: 0 2px 4px 0 #6369D1;
 }
-
+.menu-icon {
+  height: 24px;
+  width: 24px;
+  margin-right:8px;
+}
 .three-dots {
   cursor: "pointer";
   float: "right";

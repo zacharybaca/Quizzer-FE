@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TeacherNavigation from "./Navigation/TeacherNavigation.js";
 import QuizCards from "../Cards/QuizCards.js";
-import { Modal,  ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalBody } from "reactstrap";
 import "./teacherDashboard.css";
 import Folders from "../InfoComponents/Folders";
 
@@ -10,15 +10,12 @@ function TeacherDashboard(props) {
   const [quizzes, setQuizzes] = useState([]);
   const [deleteIcon, setDeleteIcon] = useState(false);
   const [accessCode, setAccessCode] = useState(false);
-  const [dropdownOpen, setDropDownOpen] = useState(false);
-  const [dropdownFile, setDropDownFile] = useState(false);
-  const [modal, setModal] = useState(false);
   const [folders, setFolders] = useState([]);
   const [folderHolder, setFoldersHolder] = useState({
     folders: [],
     quizzes: []
   });
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     folderId: ""
   });
 
@@ -65,8 +62,8 @@ function TeacherDashboard(props) {
   };
 
   const someHandler = () => {
-    setDeleteIcon(!deleteIcon)
-  }
+    setDeleteIcon(!deleteIcon);
+  };
 
   return (
     <>
@@ -74,12 +71,11 @@ function TeacherDashboard(props) {
       <div className="dash">
         <Folders access={access} />
         <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
-                <ModalBody>
-                <h1>access code: {localStorage.getItem("access_code")}</h1>
-                </ModalBody>
-              </Modal>
+          <ModalBody>
+            <h1>access code: {localStorage.getItem("access_code")}</h1>
+          </ModalBody>
+        </Modal>
 
-       
         <div className="dashboard-header">Recently Made Quizzes</div>
         <div className="recently-made-quizzes">
           {quizzes.length > 0 ? (
@@ -108,20 +104,19 @@ function TeacherDashboard(props) {
                       onMouseLeave={someHandler}
                       onClick={() => deleteFolder(folder.id)}
                     />
-                    
                   </div>
                 </div>
               </div>
               <div className="recently-made-quizzes">
-              {folderHolder.quizzes.map(quiz =>
-                quiz.folder_name === folder.folder_name ? (
-                  <QuizCards
-                    folderId={formData.folderId}
-                    folders={folders}
-                    quizzes={quiz}
-                  />
-                ) : null
-              )}
+                {folderHolder.quizzes.map(quiz =>
+                  quiz.folder_name === folder.folder_name ? (
+                    <QuizCards
+                      folderId={formData.folderId}
+                      folders={folders}
+                      quizzes={quiz}
+                    />
+                  ) : null
+                )}
               </div>
             </div>
           ))
