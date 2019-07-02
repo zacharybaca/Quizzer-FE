@@ -67,7 +67,7 @@ function TeacherDashboard(props) {
 
   return (
     <>
-      <TeacherNavigation />
+      <TeacherNavigation access={access} />
       <div className="dash">
         <Folders access={access} />
         <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
