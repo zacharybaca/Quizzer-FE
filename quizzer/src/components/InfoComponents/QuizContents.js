@@ -9,15 +9,7 @@ const QuizContents = props => {
   const [modal, setModal] = useState(false);
   const [showContactInfo, setShowContactInfo] = useState(false);
   const { quiz } = props;
-  const onDeleteClick = async id => {
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
-    );
-
-    console.log(res);
-  };
-
+ 
   const assignQuiz = async (e, quizId) => {
     e.preventDefault();
 
@@ -33,6 +25,15 @@ const QuizContents = props => {
     );
   };
 
+  const removeQuiz = async (e, id) => {
+    e.preventDefault()
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
+    
+    );
+  }
+
   return (
     <div>
       <p
@@ -43,12 +44,12 @@ const QuizContents = props => {
       >
         {quiz.quiz_name}
       </p>
-      <Modal isOpen={modal}>
+      <Modal isOpen={modal} toggle={() => setModal(!modal)}> 
         <ModalHeader>Quiz</ModalHeader>
         <ModalBody>
           <div>
             <div className='modal-quiz'>
-              <button className="modal-box">remove from folder</button>
+              <button onClick={e => removeQuiz(e, quiz.id)} className="modal-box">remove from folder</button>
 
               <Link to={`edit/quiz/${quiz.id}`}>
                 <button className="modal-box">edit quiz</button>
