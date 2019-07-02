@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Modal, Dropdown, ModalHeader, ModalBody } from "reactstrap";
+import { Modal, ModalHeader, ModalBody } from "reactstrap";
+import { ReactComponent as Logo } from "./dots-to-close.svg";
 import "./quizCard.css";
 
 class QuizCards extends Component {
@@ -13,7 +13,8 @@ class QuizCards extends Component {
       quizzes: this.props.quizzes,
       showContactInfo: false,
       modal: false,
-      folderId: ""
+      folderId: "",
+      assign: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -34,11 +35,14 @@ class QuizCards extends Component {
       description: quizzes.quiz_name,
       assigned: true
     };
-    const res = await axios.put(
+    await axios.put(
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`,
       quizData
     );
+
+    this.setState({ assign: !this.state.assign });
+    this.setState({ showContactInfo: !this.state.showContactInfo });
   }
 
   onChange = e => {
@@ -46,7 +50,7 @@ class QuizCards extends Component {
   };
 
   async deleteQuiz(id) {
-    const res = await axios.delete(
+    await axios.delete(
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
     );
@@ -60,13 +64,16 @@ class QuizCards extends Component {
       quiz_id: quizId
     };
 
-    const results = await axios.post(
+    await axios.post(
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/folder/addquiz/${Number(
         this.state.folderId
       )}`,
       ids
     );
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
 
   render() {
@@ -74,31 +81,31 @@ class QuizCards extends Component {
     const { folders } = this.props;
     return (
       <>
-        <div key={quizzes.id} className="box">
+        <div
+          key={quizzes.id}
+          className={`box ${
+            this.state.showContactInfo ? "no-hover-state" : null
+          }`}
+        >
           <div className="corner">
-            <i
+            <div
               onClick={() =>
                 this.setState({
                   showContactInfo: !this.state.showContactInfo
                 })
               }
-              className="fas fa-ellipsis-v"
-              style={{
-                cursor: "pointer",
-                float: "right",
-                color: "black",
-                marginRight: "1rem"
-              }}
-            />
+            >
+              <Logo className="menu-icon" />
+            </div>
           </div>
           {showContactInfo ? (
-            <div>
+            <div className="quiz-cards">
               {" "}
               <Link to={`edit/quiz/${quizzes.id}`}>
                 {" "}
-                <button>edit quiz</button>
+                <button className="dropdownbutton">edit quiz</button>
               </Link>
-              <button color="danger" onClick={this.toggle}>
+              <button className="dropdownbutton" onClick={this.toggle}>
                 add to folder
               </button>
               <Modal isOpen={modal} toggle={this.toggle}>
@@ -120,20 +127,32 @@ class QuizCards extends Component {
                   </form>
                 </ModalBody>
               </Modal>
-              <button onClick={this.deleteQuiz.bind(this, quizzes.id)}>
+              <button
+                className="dropdownbutton"
+                onClick={this.deleteQuiz.bind(this, quizzes.id)}
+              >
                 delete quiz
               </button>
-              <button onClick={e => this.assignQuiz(e, quizzes.id)}>
+              <button
+                className="dropdownbutton"
+                onClick={e => this.assignQuiz(e, quizzes.id)}
+              >
                 assign quiz
               </button>
             </div>
           ) : null}
+          {!showContactInfo ? (
+            <div className="card-content">
+              <h6 className="given-name">{quizzes.quiz_name}</h6>
 
-          <h6 className="p">
-            <strong>{quizzes.quiz_name}</strong>
-          </h6>
-          <p>{quizzes.description}</p>
-          {quizzes.assigned ? <h5>assigned</h5> : null}
+              <div className="card-description">
+                <p>{quizzes.description}</p>
+              </div>
+              {quizzes.assigned || this.state.assign ? (
+                <div className="card-assigned">assigned</div>
+              ) : null}
+            </div>
+          ) : null}
         </div>
       </>
     );

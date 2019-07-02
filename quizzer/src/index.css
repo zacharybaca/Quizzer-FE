@@ -48,14 +48,17 @@ table {
 }
 
 
+
+
 body {
   margin: 0;
   font-family: "Open Sans";
+  background-color: #F4F6F7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: "Open Sans", source-code-pro, Menlo, Monaco, Consolas,
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Open Sans",
     monospace;
-}
+} */

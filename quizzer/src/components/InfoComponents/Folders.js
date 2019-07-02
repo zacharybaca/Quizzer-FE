@@ -6,21 +6,16 @@ import {
   DropdownMenu,
   DropdownItem,
   Modal,
-  Dropdown,
   ModalHeader,
   ModalBody
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import FolderContents from "./FolderContents.js";
 import "./folders.css";
 
 function Folders(props) {
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
-  const [dropdownFile, setDropDownFile] = useState(false);
   const [folderHolder, setFolders] = useState({
     folders: [],
     quizzes: []
@@ -94,21 +89,25 @@ function Folders(props) {
               }}
             >
               New Folder
-              <Modal isOpen={modal}>
-                <ModalHeader>Add Folder</ModalHeader>
+              <Modal isOpen={modal} toggle={() => setModal(!modal)}>
+                <ModalHeader>Create a Folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={handleSubmit}>
                     <input
                       name="name"
-                      placeholder="enter folder name"
+                      className="folder-name"
+                      placeholder="Enter folder name"
                       type="text"
                       value={folderName.name}
                       onChange={e => onChanges(e)}
                     />
 
-                    <button className="create">Create</button>
+                    <button className="create-folder" type="submit">
+                      Create
+                    </button>
                   </form>
-                  <button className="create">
+                  <button
+                    className="cancel-folder"
                     onClick={() => {
                       setModal(!modal);
                     }}

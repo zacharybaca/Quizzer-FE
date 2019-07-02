@@ -18,10 +18,12 @@ const AccessCode = props => {
     console.log("success");
 
     const res = await axios.post(
-      `${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/profile/addstudent`,
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/profile/addstudent`,
       formData
     );
     console.log(res);
+    props.history.push("/studentsDashboard");
     // await setFormData({ access_code: "" });
   };
 

@@ -14,8 +14,8 @@
   margin: 5px;
 }
 .top-edits {
-  display:flex;
- justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .quizform {
@@ -29,61 +29,78 @@
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
-  margin-left:256px;
+  margin-left: 256px;
 }
 
 .label {
-	height: 20px;
-	width: 117.39px;
-	color: #000000;
-	font-family: "Open Sans";
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 20px;
+  height: 20px;
+  width: 117.39px;
+  color: #000000;
+  font-family: "Open Sans";
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
 }
 
 .text-box {
-	height: 44px;
-	width: 288px;
-	border-radius: 4px;
-  background-color: #FFFFFF;
-  margin-right:16px;
+  height: 44px;
+  width: 288px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  margin-right: 16px;
 }
 
 .add-quiz-text-box {
-	height: 92px;
-	width: 544px;
-	border-radius: 4px;	
-	background-color: #FFFFFF;
-	font-family: "Open Sans";	
-	font-size: 1.4rem;	
-	line-height: 20px;
-  }
+  height: 92px;
+  width: 544px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  font-family: "Open Sans";
+  font-size: 1.4rem;
+  line-height: 20px;
+}
 
-  .submit-button {
-    margin-top:24px;
-  }
+.submit-button {
+  margin-top: 24px;
+}
 
-  .question-text-box {
-width: 592px;
-height:110px;
-border-radius: 4px;	
+.question-text-box {
+  width: 592px;
+  height: 110px;
+  border-radius: 4px;
+}
 
-  }
-
-
-.answers{
-  display:flex;
+.answers {
+  display: flex;
   justify-content: space-evenly;
 }
 
-.answers.text-box{
-  width:500px;
+.answers.text-box {
+  width: 500px;
 }
 
 /* .button {
 } */
 
 .submit-button {
-  margin-top:24px;
+  margin-top: 24px;
+}
+
+.questions-box {
+  display: flex;
+  margin-bottom: 34rem;
+  padding-left: 2rem;
+}
+
+.clicked {
+  font-weight: bold;
+}
+
+.edit-questions {
+  display: flex;
+  align-items: flex-end;
+}
+
+.question {
+  left: auto;
 }

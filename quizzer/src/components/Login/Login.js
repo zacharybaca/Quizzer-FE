@@ -5,7 +5,7 @@ import { GoogleLogin } from "react-google-login";
 import logo from "./logopurple.svg";
 
 function Login(props) {
-  const [signedIn, setSignedIn] = useState();
+  const [signIn, setSignedIn] = useState();
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
