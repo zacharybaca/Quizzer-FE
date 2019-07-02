@@ -97,6 +97,7 @@ function Folders(props) {
                   <form onSubmit={handleSubmit}>
                     <input
                       name="name"
+                      className="folder-name"
                       placeholder="Enter folder name"
                       type="text"
                       value={folderName.name}

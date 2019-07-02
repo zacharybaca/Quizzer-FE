@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TeacherNavigation from "./Navigation/TeacherNavigation.js";
 import QuizCards from "../Cards/QuizCards.js";
+import { Modal,  ModalHeader, ModalBody } from "reactstrap";
 import "./teacherDashboard.css";
 import Folders from "../InfoComponents/Folders";
 
@@ -72,10 +73,13 @@ function TeacherDashboard(props) {
       <TeacherNavigation />
       <div className="dash">
         <Folders access={access} />
+        <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
+                <ModalBody>
+                <h1>access code: {localStorage.getItem("access_code")}</h1>
+                </ModalBody>
+              </Modal>
 
-        {accessCode ? (
-          <h1>access code: {localStorage.getItem("access_code")}</h1>
-        ) : null}
+       
         <div className="dashboard-header">Recently Made Quizzes</div>
         <div className="recently-made-quizzes">
           {quizzes.length > 0 ? (

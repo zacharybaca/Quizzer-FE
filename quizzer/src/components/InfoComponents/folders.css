@@ -36,13 +36,18 @@
   .modal-box:hover {
     box-shadow: 0 2px 4px 0 #6369D1;
   }
-
+  .folder-name{
+    height: 44px;
+    width: 184px;
+  }
   .create-folder{
+    margin-top:16px;
     margin-left:16px;
   }
 
-  /* .cancel-folder{
+  .cancel-folder{
+    margin-top:16px;
    
-  } */
+  }
 
   

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Modal, Dropdown, ModalHeader, ModalBody } from "reactstrap";
+import { Modal,  ModalHeader, ModalBody } from "reactstrap";
 import "./quizCard.css";
 
 class QuizCards extends Component {
@@ -13,7 +13,8 @@ class QuizCards extends Component {
       quizzes: this.props.quizzes,
       showContactInfo: false,
       modal: false,
-      folderId: ""
+      folderId: "",
+      assign: false
     };
 
     this.toggle = this.toggle.bind(this);
@@ -39,6 +40,8 @@ class QuizCards extends Component {
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quizId}`,
       quizData
     );
+
+    this.setState({assign: !this.state.assign})
   }
 
   onChange = e => {
@@ -135,7 +138,7 @@ class QuizCards extends Component {
           <div className="card-description">
           <p>{quizzes.description}</p>
           </div>
-          {quizzes.assigned ? <div className="card-assigned">assigned</div> : null}
+          {quizzes.assigned || this.state.assign ? <div className="card-assigned">assigned</div> : null}
             </div>
           ) : null}
          
