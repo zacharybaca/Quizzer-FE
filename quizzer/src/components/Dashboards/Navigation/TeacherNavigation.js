@@ -47,33 +47,31 @@ class TeacherNavigation extends Component {
           </div>
         ) : null}
         <div>
-        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle className="bradius">
-            <h2 className='logo-btn'>Profile</h2>
-            <DropdownMenu className="menu">
-              <DropdownItem className='dropdown'>
-                {" "}
-                <Link to="/">
-                  <div className="click" onClick={this.logout}>
-                    Log Out
-                  </div>
-                </Link>
-              </DropdownItem>
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle className="bradius">
+              <h2 className="logo-btn">Profile</h2>
+              <DropdownMenu className="menu">
+                <DropdownItem className="dropdown">
+                  {" "}
+                  <Link to="/">
+                    <div className="click" onClick={this.logout}>
+                      Log Out
+                    </div>
+                  </Link>
+                </DropdownItem>
 
-              <DropdownItem className='dropdown'>
-                <Link  to="/step1">
-                <div className="click">
-                    Billing
-                  </div>
-                </Link>
-              </DropdownItem>
+                <DropdownItem className="dropdown">
+                  <Link to="/step1">
+                    <div className="click">Billing</div>
+                  </Link>
+                </DropdownItem>
 
-              <DropdownItem className='dropdown'  onClick={this.props.access}>
-                Get access code
-              </DropdownItem>
-            </DropdownMenu>
-          </DropdownToggle>
-        </Dropdown>
+                <DropdownItem className="dropdown" onClick={this.props.access}>
+                  Get access code
+                </DropdownItem>
+              </DropdownMenu>
+            </DropdownToggle>
+          </Dropdown>
         </div>
       </div>
     );
