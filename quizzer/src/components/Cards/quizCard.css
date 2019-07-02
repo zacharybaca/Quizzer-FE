@@ -69,15 +69,22 @@
 }
 
 .card-assigned {
+  margin-top:4px;
+  margin-left:-8px;
   position:absolute;
   top:4px;
-  margin-left: -16px;
-  width: 192px;
   display:flex;
   font-size:12px;
   font-weight:bold;
+  line-height: 16px;	
+  text-align: center;
   justify-content: center;
-  color: #226F54;
+  align-items:center;
+  height: 24px;	
+  width: 80px;	
+  border-radius: 4px;	
+  background-color: #226F54;
+  color: white;
   text-transform: Uppercase;
 	
 }

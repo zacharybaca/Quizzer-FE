@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
 import EditQuestion from "./EditQuestion";
-import AddQuestion from "./AddQuestion";
+import Question from "./Question";
 import Folders from "../InfoComponents/Folders";
 import axios from "axios";
 import "./EditQuiz.css";
@@ -199,7 +199,7 @@ const EditQuiz = props => {
                               </select>
                             </div>
                             <div>
-                              <label>Type</label>
+                              <label>Type of Question</label>
                               <br />
 
                               <select
@@ -210,8 +210,8 @@ const EditQuiz = props => {
                                 className="selectors"
                                 name="type"
                               >
-                                <option value={1}>Standard</option>
-                                <option value={2}>Remedial</option>
+                                <option value={1}>Main</option>
+                                <option value={2}>Follow-Up</option>
                               </select>
                             </div>
                           </div>
@@ -341,7 +341,7 @@ const EditQuiz = props => {
 
                         <div className="add-question-button">
                           {display ? (
-                            <AddQuestion quizId={props.match.params.id} />
+                            <Question quizId={props.match.params.id} />
                           ) : null}
 
                           {display ? null : (
