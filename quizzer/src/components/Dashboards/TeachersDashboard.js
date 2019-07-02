@@ -112,6 +112,7 @@ function TeacherDashboard(props) {
                   </div>
                 </div>
               </div>
+              <div className="recently-made-quizzes">
               {folderHolder.quizzes.map(quiz =>
                 quiz.folder_name === folder.folder_name ? (
                   <QuizCards
@@ -121,6 +122,7 @@ function TeacherDashboard(props) {
                   />
                 ) : null
               )}
+              </div>
             </div>
           ))
         ) : (

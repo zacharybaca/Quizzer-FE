@@ -91,7 +91,7 @@ function Folders(props) {
               }}
             >
               New Folder
-              <Modal isOpen={modal}>
+              <Modal isOpen={modal} toggle={() => setModal(!modal)}>
                 <ModalHeader>Create a Folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={handleSubmit}>

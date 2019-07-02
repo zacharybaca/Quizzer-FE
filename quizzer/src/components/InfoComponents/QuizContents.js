@@ -44,7 +44,7 @@ const QuizContents = props => {
       >
         {quiz.quiz_name}
       </p>
-      <Modal isOpen={modal}>
+      <Modal isOpen={modal} toggle={() => setModal(!modal)}> 
         <ModalHeader>Quiz</ModalHeader>
         <ModalBody>
           <div>
