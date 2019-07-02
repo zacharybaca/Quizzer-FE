@@ -20,7 +20,13 @@
   border-radius: 4px;
 }
 
-
+label {
+    height: 20px;	
+    font-family: "Open Sans";	
+    font-size: 14px;	
+    font-weight: bold;	
+    line-height: 20px;
+}
 .bigger-text {
   font-weight:bold;
   width:104px;
@@ -34,16 +40,17 @@
 
 
 .name-description {
+  margin-top:24px;
   width: 416px;
   display: flex;
   flex-direction:column;
-  margin-bottom:16px;
+  margin-bottom:24px;
 }
 
 .category-type {
   display: flex;
   justify-content: space-evenly;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   width: 416px;
 }
 
@@ -56,7 +63,7 @@
 .question-text-box {
   width: 416px;
   height: 160px;
-
+  margin-bottom: 16px;
 }
 
 .answers {
@@ -103,6 +110,10 @@
 .update-button {
   margin-top:16px;
   border-radius: 4px;
+  background-color: rgb(213,193,194);
+}
+
+.update-button:hover {
   background-color: #B88E8D;
 }
 
