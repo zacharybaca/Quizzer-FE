@@ -14,7 +14,7 @@ const EditQuestion = props => {
     <div>
       <h2
         onClick={filter}
-        className={`${props.chosen === index ? "clicked" : null}`}
+        className={`regular-text ${props.chosen === index ? "clicked" : null}`}
       >
         Question {index + 1}
       </h2>

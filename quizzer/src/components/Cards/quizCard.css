@@ -104,6 +104,7 @@
   background-color: white;
   text-decoration: none;
   -webkit-transition: all 150ms ease;
+  opacity: 1 !important;
   transition: all 150ms ease;
   margin: 0 !important;
  }

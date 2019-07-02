@@ -117,7 +117,6 @@ function Folders(props) {
                 </ModalBody>
               </Modal>
             </DropdownItem>
-            <DropdownItem onClick={props.access}>Get access code</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
       </div>

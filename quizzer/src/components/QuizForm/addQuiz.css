@@ -12,22 +12,14 @@
   margin-left:256px;
 }
 
-.label {
-	height: 20px;
-	width: 117.39px;
-	color: #000000;
-	font-family: "Open Sans";
-	font-size: 14px;
-	font-weight: bold;
-	line-height: 20px;
-}
+
 
 .text-box {
 	height: 44px;
 	width: 288px;
 	border-radius: 4px;
   background-color: #FFFFFF;
-  margin-right:16px;
+  
 }
 
 .add-quiz-text-box {
@@ -40,11 +32,6 @@
 	line-height: 20px;
   }
 
-  .submit-button {
-    margin-left: 24px;
-    border-radius: 4px;
-  }
-
   .question-text-box {
 width: 592px;
 height:110px;
@@ -53,15 +40,3 @@ border-radius: 4px;
   }
 
 
-.answers{
-  display:flex;
-  justify-content: space-evenly;
-}
-
-.answers.text-box{
-  width:500px;
-}
-
-.button {
-  margin-top:50px;
-}

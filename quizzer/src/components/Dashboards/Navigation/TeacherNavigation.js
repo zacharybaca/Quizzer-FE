@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import {
   Dropdown,
   DropdownToggle,
-  DropdownMenu
+  DropdownMenu,
+  DropdownItem
 } from "reactstrap";
 import "./TeacherNavigation.css";
 
@@ -14,7 +15,8 @@ class TeacherNavigation extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      modal: false
     };
   }
 
@@ -44,17 +46,35 @@ class TeacherNavigation extends Component {
             </Link>
           </div>
         ) : null}
-
+        <div>
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <DropdownToggle className="bradius">
+            <h2 className='logo-btn'>Profile</h2>
             <DropdownMenu className="menu">
-              <Link to = '/'> 
-                <div className="click" onClick={this.logout}>Log Out</div> 
-              </Link>
-              <Link className="click" to = '/step1'>Billing</Link>
+              <DropdownItem className='dropdown'>
+                {" "}
+                <Link to="/">
+                  <div className="click" onClick={this.logout}>
+                    Log Out
+                  </div>
+                </Link>
+              </DropdownItem>
+
+              <DropdownItem className='dropdown'>
+                <Link  to="/step1">
+                <div className="click">
+                    Billing
+                  </div>
+                </Link>
+              </DropdownItem>
+
+              <DropdownItem className='dropdown'  onClick={this.props.access}>
+                Get access code
+              </DropdownItem>
             </DropdownMenu>
           </DropdownToggle>
         </Dropdown>
+        </div>
       </div>
     );
   }
