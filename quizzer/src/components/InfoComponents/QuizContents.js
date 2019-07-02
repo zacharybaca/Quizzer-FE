@@ -4,6 +4,7 @@ import axios from "axios";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import "./folders.css";
 
+
 const QuizContents = props => {
   const [modal, setModal] = useState(false);
   const [showContactInfo, setShowContactInfo] = useState(false);
@@ -35,6 +36,7 @@ const QuizContents = props => {
   return (
     <div>
       <p
+        className='quiz-icon'
         onClick={() => {
           setModal(!modal);
         }}

@@ -90,7 +90,7 @@ class QuizCards extends Component {
             />
           </div>
           {showContactInfo ? (
-            <div className='move'>
+            <div className='quiz-cards'>
               {" "}
               <Link to={`edit/quiz/${quizzes.id}`}>
                 {" "}
@@ -128,7 +128,7 @@ class QuizCards extends Component {
           ) : null}
           {!showContactInfo ? (
             <div className="card-content">
-               <h6 className="p">
+               <h6 className="given-name">
             {quizzes.quiz_name}
           </h6>
          

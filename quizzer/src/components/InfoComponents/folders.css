@@ -6,6 +6,18 @@
     justify-content: center;
 }
 
+.quiz-icon {
+    padding: 18px 0;
+    margin: 42px 0;
+}
+
+.quiz-icon:hover {
+    color: white;
+    width: 192px;
+    opacity: 0.50;
+    background-color: #363648;
+}
+
 .modal-box {
     position: relative;
     font-family: "Open Sans";
@@ -24,3 +36,13 @@
   .modal-box:hover {
     box-shadow: 0 2px 4px 0 #6369D1;
   }
+
+  .create-folder{
+    margin-left:16px;
+  }
+
+  /* .cancel-folder{
+   
+  } */
+
+  
