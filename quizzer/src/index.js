@@ -6,8 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import StripePage from "../src/components/StripePage/StripePage";
-import Step2Page from "../src/components/Step2/Step2Page";
+
 
 ReactDOM.render(
   <Router>

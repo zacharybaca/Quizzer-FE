@@ -4,12 +4,10 @@ import axios from "axios";
 import { Modal, ModalHeader, ModalBody } from "reactstrap";
 import "./folders.css";
 
-
 const QuizContents = props => {
   const [modal, setModal] = useState(false);
-  const [showContactInfo, setShowContactInfo] = useState(false);
   const { quiz } = props;
- 
+
   const assignQuiz = async (e, quizId) => {
     e.preventDefault();
 
@@ -18,7 +16,7 @@ const QuizContents = props => {
       description: quiz.description,
       assigned: true
     };
-    const res = await axios.put(
+    await axios.put(
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${quiz.id}`,
       quizData
@@ -26,30 +24,34 @@ const QuizContents = props => {
   };
 
   const removeQuiz = async (e, id) => {
-    e.preventDefault()
-    const res = await axios.delete(
+    e.preventDefault();
+    await axios.delete(
       `${process.env.REACT_APP_BE_URL ||
         process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
-    
     );
-  }
+  };
 
   return (
     <div>
       <p
-        className='quiz-icon'
+        className="quiz-icon"
         onClick={() => {
           setModal(!modal);
         }}
       >
         {quiz.quiz_name}
       </p>
-      <Modal isOpen={modal} toggle={() => setModal(!modal)}> 
+      <Modal isOpen={modal} toggle={() => setModal(!modal)}>
         <ModalHeader>Quiz</ModalHeader>
         <ModalBody>
           <div>
-            <div className='modal-quiz'>
-              <button onClick={e => removeQuiz(e, quiz.id)} className="modal-box">remove from folder</button>
+            <div className="modal-quiz">
+              <button
+                onClick={e => removeQuiz(e, quiz.id)}
+                className="modal-box"
+              >
+                remove from folder
+              </button>
 
               <Link to={`edit/quiz/${quiz.id}`}>
                 <button className="modal-box">edit quiz</button>

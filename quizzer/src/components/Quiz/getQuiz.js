@@ -4,7 +4,10 @@ import axios from "axios";
 class getQuiz extends Component {
   componentDidMount() {
     axios
-      .get(`${process.env.REACT_APP_BE_URL || process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`)
+      .get(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`
+      )
       .then(response => console.log(response))
       .catch(err => console.log(err));
   }

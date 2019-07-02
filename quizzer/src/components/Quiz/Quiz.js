@@ -71,15 +71,13 @@ class Quiz extends React.Component {
     const {
       standardQ,
       questionCount,
-      QuizData,
       currentQuestion,
       userAnswer,
       answers,
       score,
       remedialQ,
       remedialCounter,
-      remedialSubject,
-      wrongAnswer
+      remedialSubject
     } = this.state;
 
     let arr = this.state.remedialSubject;
@@ -88,7 +86,6 @@ class Quiz extends React.Component {
     let scoreTracker = score;
     let questionCounter = currentQuestion + 1;
     let nextQuestion = standardQ[questionCounter];
-    let wrong = wrongAnswer;
 
     if (userAnswer === answers) {
       const currentSubject = standardQ[currentQuestion].category;

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 
 const ShowQuestions = props => {
   const [showContactInfo, setShowContactInfo] = useState(false);
-  const { question, index, Eachquestion } = props;
+  const { question, index } = props;
 
   const handleSubmit = (e, id) => {
     props.handleSubmit(e, id);

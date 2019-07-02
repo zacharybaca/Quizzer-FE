@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import AddQuestion from "./AddQuestion";
-import { Redirect } from "react-router-dom";
 import Folders from "../InfoComponents/Folders";
 
 function AddQuiz(props) {
@@ -27,8 +26,6 @@ function AddQuiz(props) {
       teacher_id: localStorage.getItem("id")
     };
 
-    const teacher_id = localStorage.getItem("id");
-
     axios
       .post(
         `${process.env.REACT_APP_BE_URL ||
@@ -45,12 +42,6 @@ function AddQuiz(props) {
     setQuizInfo({
       quiz_name: "",
       quiz_description: ""
-    });
-  };
-
-  const openQuestion = () => {
-    setQuizInfo({
-      createQuestion: true
     });
   };
 
@@ -75,7 +66,6 @@ function AddQuiz(props) {
               <label className="add-quiz-label">Add Quiz Description</label>
               <br />
               <input
-                
                 name="quiz_description"
                 className="add-quiz-text-box"
                 type="text"

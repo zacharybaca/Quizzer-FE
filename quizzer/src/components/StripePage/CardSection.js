@@ -1,26 +1,20 @@
 // CardSection.js
-import React from 'react';
-import {CardElement} from 'react-stripe-elements';
+import React from "react";
+import { CardElement } from "react-stripe-elements";
 import "./stripe.css";
 
 class CardSection extends React.Component {
   render() {
     return (
-      <label >
+      <label>
         <h2>Add payment Option</h2>
-        <CardElement 
-        style={{base: {fontSize: '16px'}}} />
+        <CardElement style={{ base: { fontSize: "16px" } }} />
       </label>
-      
     );
   }
 }
 
-
-
 export default CardSection;
-
-
 
 // original working
 // class CardSection extends React.Component {
@@ -28,11 +22,11 @@ export default CardSection;
 //     return (
 //       <label >
 //         <h2>Add payment Option</h2>
-//         <CardElement 
-//         // className="box" 
+//         <CardElement
+//         // className="box"
 //         style={{base: {fontSize: '16px'}}} />
 //       </label>
-      
+
 //     );
 //   }
 // }

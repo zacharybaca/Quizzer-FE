@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import {
   Dropdown,
   DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  DropdownMenu
 } from "reactstrap";
 import "./TeacherNavigation.css";
 

@@ -9,14 +9,12 @@ import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 import Questions from "./components/QuizForm/AddQuestion";
 import EditQuiz from "./components/QuizForm/EditQuiz";
-import EditQuestion from "./components/QuizForm/EditQuestion";
 
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
 // import Quiz2 from "./components/Quiz/Quiz2";
 import Quiz from "./components/Quiz/Quiz";
-import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
 
 function App(props) {
@@ -42,8 +40,6 @@ function App(props) {
       <Protected exact path="/edit/quiz/:id" component={EditQuiz} />
 
       <Protected exact path="/quiz/:id" component={Quiz} />
-
-      <Protected exact path="/quizData" component={QuizData} />
 
       <Route exact path="/step1" component={Step2Page} />
       <Route exact path="/step2" component={StripePage} />
