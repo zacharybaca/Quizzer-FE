@@ -6,7 +6,8 @@ import StudentNavigation from "./Navigation/StudentNavigation.js";
 import { Button } from "reactstrap";
 
 function StudentsDashboard(props) {
-  const [quizzes, takeQuizzes] = useState([]);
+  const [quizzes, takeQuizzes] = useState({ completed: false });
+  const [completedQuizzes, setCompletedQuizzes] = useState([]);
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -20,6 +21,7 @@ function StudentsDashboard(props) {
       //setting database data to state with hooks
       console.log(result.data);
       takeQuizzes(result.data.quizzes);
+      setCompletedQuizzes(result.data.completedQuizzes);
     };
     fetchData();
   }, [takeQuizzes]);
@@ -33,30 +35,45 @@ function StudentsDashboard(props) {
         </Link>
       </button>
       <div>
-        {console.log(quizzes)}
-        <h1 className="header1">Student Đashboard</h1>
+      
         <div className="header2">Assigned Quizzes</div>
         <div className="assigned-quizzes">
           {quizzes.length > 0 ? (
-            quizzes.map(user => (
+            quizzes.map(user =>
+              user.assigned ? (
+                <div key={user.id} className="box">
+                  <h6 className="p">
+                    <strong>{user.quiz_name}</strong>
+                  </h6>
+                  <p>Assigned By: {user.name}</p>
+                  <p>{user.description}</p>
+                  <Button color="purple">
+                    <Link to={`quiz/${user.id}`}>
+                      <p className="p">take quiz</p>
+                    </Link>
+                  </Button>
+                </div>
+              ) : null
+            )
+          ) : (
+            <p className="header3">
+              No quizzes at this time, try again later...
+            </p>
+          )}
+        </div>
+        <div className="header2">Completed Quizzes</div>
+        <div className="assigned-quizzes">
+          {completedQuizzes.length > 0 ? (
+            completedQuizzes.map(user => (
               <div key={user.id} className="box">
-                {console.log(user)}
                 <h6 className="p">
                   <strong>{user.quiz_name}</strong>
                 </h6>
-                <p>Assigned By: {user.name}</p>
                 <p>{user.description}</p>
-                <p>10 Main Questions</p>
-                <p>10 Remedial Questions</p>
-                <Button color="purple">
-                  <Link to={`quiz/${user.id}`}>
-                    <p className="p">take quiz</p>
-                  </Link>
-                </Button>
               </div>
             ))
           ) : (
-            <p className="header3">No quizzes at this time, try again later...</p>
+            <p className="header3">No quizzes completed</p>
           )}
         </div>
       </div>

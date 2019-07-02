@@ -1,17 +1,16 @@
 import React from "react";
 import "./App.css";
 import { Route } from "react-router-dom";
-import User from "./components/user";
 import Login from "./components/Login/Login";
 import AccessCode from "./components/InfoComponents/accessCode";
-import Student from "./components/student";
-import Teacher from "./components/teacher";
 import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
 import TeachersDashboard from "./components/Dashboards/TeachersDashboard";
 import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 import Questions from "./components/QuizForm/AddQuestion";
 import EditQuiz from "./components/QuizForm/EditQuiz";
+import EditQuestion from "./components/QuizForm/EditQuestion";
+
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
@@ -24,8 +23,13 @@ function App(props) {
   //console.log(props)
   return (
     <>
+<<<<<<< HEAD
       <div className="App">
         <Route exact path="/" render = {props => <Login {...props} history={props.history} />} />
+=======
+      <div>
+        <Route exact path="/" component={Login} />
+>>>>>>> 0563322846c7452701d97f119cfd3e7b0d15c97e
       </div>
 
       <Protected
@@ -39,9 +43,6 @@ function App(props) {
         component={TeachersDashboard}
       />
       <Protected exact path="/addclass" component={AccessCode} />
-      <Protected exact path="/users" component={User} />
-      <Protected exact path="/students" component={Student} />
-      <Protected exact path="/teachers" component={Teacher} />
       <Protected exact path="/quizzes" component={QuizForm} />
       <Protected exact path="/questions" component={Questions} />
       <Protected exact path="/edit/quiz/:id" component={EditQuiz} />

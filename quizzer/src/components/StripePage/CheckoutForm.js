@@ -6,14 +6,17 @@ import CardSection from './CardSection';
 import { Link } from 'react-router-dom';
 import "./stripe.css";
 import "./checkout.css";
-
+import history from '../../history'
 
 
 class CheckoutForm extends React.Component {
+  constructor(props){
+    super(props)
+  }
 
   handleSubmit = (ev) => {
     // We don't want to let default form submission happen here, which would refresh the page.
-    ev.preventDefault();
+     ev.preventDefault();
 
     // Within the context of `Elements`, this call to createPaymentMethod knows from which Element to
     // create the PaymentMethod, since there's only one in this group.
@@ -55,10 +58,19 @@ class CheckoutForm extends React.Component {
         })
       }).then((res) => res.json()).then((response) => {
         console.log('response', response)
-        alert(`Thank you for doing business with us!` );
+        if(response.success){
+          alert(`Thank you for doing business with us!` );
+          console.log('props here:', this.props)
+          history.push("/teachersDashboard")
+          //this.props.history.push("/teachersDashboard");
+        
+        } else {
+          alert(`Please enter valid card credentials!` );
+        }
+        
       });
       console.log('here:', this.props)
-      //this.props.history.push('/teachersDashboard')
+     // 
     })
 
     // token type can optionally be inferred if there is only one one Element
@@ -84,8 +96,9 @@ class CheckoutForm extends React.Component {
       <form class="Checkout" onSubmit={this.handleSubmit}>
         {/* <AddressSection /> */}
         <CardSection />
-        <Link to="/teachersDashboard">
         <button class="button" type="submit">Confirm order</button>
+         <Link to="/step2">
+            <button class="button">next</button>
           </Link>
         <Link to='/step1' ><button class="button">back</button></Link>
       </form>

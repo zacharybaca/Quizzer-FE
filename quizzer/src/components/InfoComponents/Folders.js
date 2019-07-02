@@ -10,24 +10,20 @@ import {
   ModalHeader,
   ModalBody
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import FolderContents from "./FolderContents.js";
 import "./folders.css";
 
 function Folders(props) {
-  // const [reactstrap, setReactStrap] = useState({
-  //   dropdownOpen: false,
-  //   modal: false
-  // });
   const [modal, setModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
   const [dropdownFile, setDropDownFile] = useState(false);
   const [folderHolder, setFolders] = useState({
-    folderName: "",
     folders: [],
     quizzes: []
+  });
+  const [folderName, setFolderName] = useState({
+    name: ""
   });
 
   useEffect(() => {
@@ -39,49 +35,26 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result.data);
+
       setFolders({
         folders: result.data.folders,
         quizzes: result.data.quizzes
       });
     };
     fetchData();
-  }, [setFolders]);
+  }, [folderHolder]);
 
-  // const toggle = () => {
-  //   setReactStrap({
-  //     ...reactstrap,
-  //     dropdownOpen: !dropdownOpen
-  //   });
-  // };
-  //
-  // const togglepopup = () => {
-  //   setReactStrap({
-  //     ...reactstrap,
-  //     modal: !modal
-  //   });
-  // };
-
-  const onDeleteClick = async id => {
-    console.log(id);
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
-    );
-
-    console.log(res);
-  };
+  const { folders, quizzes } = folderHolder;
 
   const onChanges = event =>
-    setFolders({ ...folderHolder, [event.target.name]: event.target.value });
+    setFolderName({ ...folderName, [event.target.name]: event.target.value });
 
   const handleSubmit = event => {
     event.preventDefault();
-    const { folderName } = folderHolder;
 
     const folder = {
       teacher_id: localStorage.getItem("id"),
-      folder_name: folderName
+      folder_name: folderName.name
     };
 
     axios
@@ -91,11 +64,11 @@ function Folders(props) {
         folder
       )
       .then(res => {});
-
+    setFolderName({
+      name: ""
+    });
     setModal(!modal);
   };
-
-  const { folders, quizzes } = folderHolder;
 
   return (
     <div className="sidebar">
@@ -118,21 +91,22 @@ function Folders(props) {
               }}
             >
               New Folder
-              <Modal isOpen={modal}>
-                <ModalHeader>Add Folder</ModalHeader>
+              <Modal isOpen={modal} toggle={() => setModal(!modal)}>
+                <ModalHeader>Create a Folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={handleSubmit}>
                     <input
-                      name="folderName"
-                      placeholder="enter folder name"
+                      name="name"
+                      className="folder-name"
+                      placeholder="Enter folder name"
                       type="text"
-                      value={folderHolder.folderName}
+                      value={folderName.name}
                       onChange={e => onChanges(e)}
                     />
 
-                    <button type="submit">Create</button>
+                    <button className="create-folder" type="submit">Create</button>
                   </form>
-                  <button
+                  <button className="cancel-folder"
                     onClick={() => {
                       setModal(!modal);
                     }}
@@ -142,7 +116,7 @@ function Folders(props) {
                 </ModalBody>
               </Modal>
             </DropdownItem>
-            <DropdownItem>Get access code</DropdownItem>
+            <DropdownItem onClick={props.access}>Get access code</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
       </div>
@@ -150,27 +124,7 @@ function Folders(props) {
         <div>
           {folders.length > 0 ? (
             folders.map(folder => (
-              <div key={folder.id}>
-                <button>{folder.folder_name}</button>
-
-                {quizzes.map(quiz =>
-                  quiz.folder_name === folder.folder_name ? (
-                    <div>
-                      {" "}
-                      <i
-                        className="fas fa-times"
-                        style={{
-                          cursor: "pointer",
-                          float: "right",
-                          color: "red"
-                        }}
-                        onClick={() => onDeleteClick(quiz.id)}
-                      />{" "}
-                      <p>{quiz.quiz_name}</p>
-                    </div>
-                  ) : null
-                )}
-              </div>
+              <FolderContents folder={folder} quizzes={quizzes} />
             ))
           ) : (
             <div>no folders made</div>

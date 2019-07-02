@@ -1,0 +1,105 @@
+/* Card Content */
+.box {
+  position: relative;
+  font-family: "Open Sans";
+  height: 184px;
+  width: 192px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  /* align-content: center; */
+  /* justify-content: flex-start;
+  align-items: flex-start; */
+  margin-bottom: 24px;
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
+}
+
+.box:hover {
+  box-shadow: 0 2px 4px 0 #6369D1;
+}
+
+.three-dots {
+  cursor: "pointer";
+  float: "right";
+  color: "black";
+  margin-right: 1rem;
+}
+
+.three-dots:hover {
+  color: #6369D1;
+}
+
+.no-hover-state:hover {
+  box-shadow: none;
+}
+
+.corner {
+  margin-top: 16px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  }
+
+
+
+.card-content .given-name {
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 152px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow:hidden;
+  margin-bottom:8px;
+}
+
+.card-content {
+  font-family: "Open-Sans";
+  margin-left: 16px;
+}
+
+.card-description {
+  overflow: hidden;
+  width: 152px;
+  height: 88px;
+}
+
+.card-assigned {
+  position:absolute;
+  top:4px;
+  margin-left: -16px;
+  width: 192px;
+  display:flex;
+  font-size:12px;
+  font-weight:bold;
+  justify-content: center;
+  color: #226F54;
+  text-transform: Uppercase;
+	
+}
+
+/* Buttons/Dropdown Menu */
+ .submit {
+   margin-left:24px;
+ }
+
+ .dropdownbutton {
+  white-space: nowrap;
+  border: 0;
+  outline: 0;
+  display: inline-block;
+  height: 40px;
+  width: 192px;
+  line-height: 40px;
+  color: black;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  background-color: white;
+  text-decoration: none;
+  -webkit-transition: all 150ms ease;
+  transition: all 150ms ease;
+  margin: 0 !important;
+ }

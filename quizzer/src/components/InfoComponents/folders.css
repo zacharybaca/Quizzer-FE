@@ -1,11 +1,53 @@
-.sidebar {
-  height: 100%;
-  width: 17%;
-  position: fixed;
 
-  top: 64px;
-  left: 0;
-  background-color: #fff;
-  overflow-x: hidden;
-  padding-top: 20px;
+.modal-quiz {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.quiz-icon {
+    padding: 18px 0;
+    margin: 42px 0;
+}
+
+.quiz-icon:hover {
+    color: white;
+    width: 192px;
+    opacity: 0.50;
+    background-color: #363648;
+}
+
+.modal-box {
+    position: relative;
+    font-family: "Open Sans";
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: BLACK;
+    display: flex;
+    flex-direction: column;
+    /* align-content: center; */
+    /* justify-content: flex-start;
+    align-items: flex-start; */
+    margin-bottom: 24px;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
+  }
+  
+  .modal-box:hover {
+    box-shadow: 0 2px 4px 0 #6369D1;
+  }
+  .folder-name{
+    height: 44px;
+    width: 184px;
+  }
+  .create-folder{
+    margin-top:16px;
+    margin-left:16px;
+  }
+
+  .cancel-folder{
+    margin-top:16px;
+   
+  }
+
+  
