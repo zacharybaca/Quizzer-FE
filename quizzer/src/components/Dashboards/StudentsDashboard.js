@@ -28,8 +28,9 @@ function StudentsDashboard(props) {
 
   return (
     <div>
-      <div className="sidebar">
+      
       <StudentNavigation />
+      <div className="sidebar">
       <button className="button">
         <Link className="white" to="/addclass">
           add class
