@@ -7,6 +7,7 @@ import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
 
 function AddQuestion(props) {
   const [chosenQuestion, setChosenQuestion] = useState(null);
+  const [closeEdit, setCloseEdit] = useState(true)
   const [createdQuestions, setCreatedQuestions] = useState([]);
   const [questions, setQuestions] = useState({
     category: "Math",
@@ -100,6 +101,8 @@ function AddQuestion(props) {
         
       }
     });
+
+    setCloseEdit(!closeEdit)
   };
 
   const filterQuestions = idx => {
@@ -164,178 +167,183 @@ function AddQuestion(props) {
      <Folders />
     <div className="add-quizform">
       <div>
-        {createdQuestions.length > 0
-          ? createdQuestions.map((question, index) =>
-              chosenQuestion === index ? (
-                <div className="question">
-                <form
-                  key={question.id}
-                  onSubmit={e => onSubmit(e, question.id)}
-                >
-                  <div className="category-type">
-                    <div>
-                      <label>Category</label>
+        {closeEdit ? (
+          createdQuestions.length > 0 ? (
+            
+               createdQuestions.map((question, index) =>
+                  chosenQuestion === index ? (
+                    <div className="question">
+                    <form
+                      key={question.id}
+                      onSubmit={e => onSubmit(e, question.id)}
+                    >
+                      <div className="category-type">
+                        <div>
+                          <label>Category</label>
+                          <br />
+    
+                          <select
+                            value={question.category}
+                            className="selectors"
+                            name="category"
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                          >
+                            <option value="Math">Math</option>
+                            <option value="Science">Science</option>
+                            <option value="English">English</option>
+                            <option value="History">History</option>
+                            <option value="Spanish">Spanish</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label>Type of Question</label>
+                          <br />
+    
+                          <select
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            value={question.type}
+                            className="selectors"
+                            name="type"
+                          >
+                            <option value={1}>Main</option>
+                            <option value={2}>Follow-Up</option>
+                          </select>
+                        </div>
+                      </div>
+    
+                      <div className="question-field">
+                        <label className="question">Write a Question</label>
+                        <br />
+                        <input
+                          name="Q_content"
+                          className="question-text-box"
+                          type="text"
+                          onChange={e =>
+                            handleChanges(e, question.id, index)
+                          }
+                          value={question.Q_content}
+                        />
+                      </div>
+    
+                      <div className="answers">
+                        <div className="AB">
+                          <label>A</label>
+                          <br />
+                          <input
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            name="A"
+                            className="text-box"
+                            type="text"
+                            value={question.A}
+                          />
+                          <br />
+                          <br />
+                          <label>B</label>
+                          <br />
+                          <input
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            name="B"
+                            className="text-box"
+                            type="text"
+                            value={question.B}
+                          />
+                        </div>
+                        <br />
+                        <br />
+    
+                        <div className="CD">
+                          <label>C</label>
+                          <br />
+                          <input
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            name="C"
+                            className="text-box"
+                            type="text"
+                            value={question.C}
+                          />
+                          <br />
+                          <br />
+                          <label>D</label>
+                          <br />
+                          <input
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            name="D"
+                            className="text-box"
+                            type="text"
+                            value={question.D}
+                          />
+                        </div>
+                      </div>
                       <br />
-
-                      <select
-                        value={question.category}
-                        className="selectors"
-                        name="category"
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                      >
-                        <option value="Math">Math</option>
-                        <option value="Science">Science</option>
-                        <option value="English">English</option>
-                        <option value="History">History</option>
-                        <option value="Spanish">Spanish</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label>Type of Question</label>
+    
+                      <div className="answer-points">
+                        <div>
+                          <label>Correct Answer</label>
+                          <br />
+    
+                          <select
+                            value={question.correct_answer}
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            className="selector"
+                            name="correct_answer"
+                          >
+                            <option value={question.A}>A</option>
+                            <option value={question.B}>B</option>
+                            <option value={question.C}>C</option>
+                            <option value={question.D}>D</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label>Points</label>
+                          <br />
+                          <select
+                            value={question.points}
+                            onChange={e =>
+                              handleChanges(e, question.id, index)
+                            }
+                            className="selector"
+                            name="points"
+                          >
+                            <option value={1}>1</option>
+                            <option value={2}>2</option>
+                            <option value={3}>3</option>
+                            <option value={4}>4</option>
+                            <option value={5}>5</option>
+                            <option value={6}>6</option>
+                            <option value={7}>7</option>
+                            <option value={8}>8</option>
+                            <option value={9}>9</option>
+                            <option value={10}>10</option>
+                          </select>
+                        </div>
+                      </div>
+    
                       <br />
-
-                      <select
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        value={question.type}
-                        className="selectors"
-                        name="type"
-                      >
-                        <option value={1}>Main</option>
-                        <option value={2}>Follow-Up</option>
-                      </select>
-                    </div>
+                      <button className="update-button" type="submit">
+                        UPDATE QUESTION
+                      </button>
+                    </form>
                   </div>
-
-                  <div className="question-field">
-                    <label className="question">Write a Question</label>
-                    <br />
-                    <input
-                      name="Q_content"
-                      className="question-text-box"
-                      type="text"
-                      onChange={e =>
-                        handleChanges(e, question.id, index)
-                      }
-                      value={question.Q_content}
-                    />
-                  </div>
-
-                  <div className="answers">
-                    <div className="AB">
-                      <label>A</label>
-                      <br />
-                      <input
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        name="A"
-                        className="text-box"
-                        type="text"
-                        value={question.A}
-                      />
-                      <br />
-                      <br />
-                      <label>B</label>
-                      <br />
-                      <input
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        name="B"
-                        className="text-box"
-                        type="text"
-                        value={question.B}
-                      />
-                    </div>
-                    <br />
-                    <br />
-
-                    <div className="CD">
-                      <label>C</label>
-                      <br />
-                      <input
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        name="C"
-                        className="text-box"
-                        type="text"
-                        value={question.C}
-                      />
-                      <br />
-                      <br />
-                      <label>D</label>
-                      <br />
-                      <input
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        name="D"
-                        className="text-box"
-                        type="text"
-                        value={question.D}
-                      />
-                    </div>
-                  </div>
-                  <br />
-
-                  <div className="answer-points">
-                    <div>
-                      <label>Correct Answer</label>
-                      <br />
-
-                      <select
-                        value={question.correct_answer}
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        className="selector"
-                        name="correct_answer"
-                      >
-                        <option value={question.A}>A</option>
-                        <option value={question.B}>B</option>
-                        <option value={question.C}>C</option>
-                        <option value={question.D}>D</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label>Points</label>
-                      <br />
-                      <select
-                        value={question.points}
-                        onChange={e =>
-                          handleChanges(e, question.id, index)
-                        }
-                        className="selector"
-                        name="points"
-                      >
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
-                        <option value={7}>7</option>
-                        <option value={8}>8</option>
-                        <option value={9}>9</option>
-                        <option value={10}>10</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <br />
-                  <button className="update-button" type="submit">
-                    UPDATE QUESTION
-                  </button>
-                </form>
-              </div>
-              ) : null
-            )
-          : null}
+                  ) : null
+                )
+              : null
+          ) : null
+        ) : null }
+       
       </div>
       <div className="middle-container">
         <div className="edit-questions">
@@ -488,7 +496,9 @@ function AddQuestion(props) {
           </div>
         </div>
         <div className="question-navigation">
+        
           <div className="question-nav-content">
+            
             <div>
               <div className="bigger-text">Main Questions</div>
 
