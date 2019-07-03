@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import logo from "../../../logowhite.svg";
 import { Link } from "react-router-dom";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu
-} from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import "./TeacherNavigation.css";
 
 class TeacherNavigation extends Component {

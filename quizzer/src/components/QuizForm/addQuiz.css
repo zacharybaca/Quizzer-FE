@@ -1,4 +1,4 @@
-.add-quizform {
+.add-quizform { 
   padding-top: 5rem;
   padding-left: 3.2rem;
   margin-bottom: 40px;
@@ -24,7 +24,7 @@
 
 .add-quiz-text-box {
 	height: 92px;
-	width: 544px;
+	width: 444px;
 	border-radius: 4px;	
 	background-color: #FFFFFF;
 	font-family: "Open Sans";	

@@ -46,6 +46,8 @@ const EditQuiz = props => {
           process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
       );
 
+      console.log(res.data);
+
       //setting database data to state with hooks
 
       // useState
