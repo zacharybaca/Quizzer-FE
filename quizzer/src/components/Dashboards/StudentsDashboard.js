@@ -28,12 +28,15 @@ function StudentsDashboard(props) {
 
   return (
     <div>
+      <div className="sidebar">
       <StudentNavigation />
       <button className="button">
         <Link className="white" to="/addclass">
           add class
         </Link>
       </button>
+      </div>
+    
       <div className="dash">
         <div className="dashboard-header">Assigned Quizzes</div>
         <div className="assigned-quizzes">
@@ -55,12 +58,14 @@ function StudentsDashboard(props) {
               ) : null
             )
           ) : (
-            <p className="header3">
-              No quizzes at this time, try again later...
+            <p className="Student-empty">
+              You do not have any assigned quizzes at this time.
             </p>
           )}
         </div>
+
         <div className="dashboard-header">Completed Quizzes</div>
+
         <div className="completed-quizzes">
           {completedQuizzes.length > 0 ? (
             completedQuizzes.map(user => (
@@ -72,7 +77,7 @@ function StudentsDashboard(props) {
               </div>
             ))
           ) : (
-            <p className="header3">No quizzes completed</p>
+            <p className="student-empty">No quizzes completed</p>
           )}
         </div>
       </div>
