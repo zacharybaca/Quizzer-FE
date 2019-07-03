@@ -51,6 +51,7 @@ table {
 
 
 body {
+  max-width:1440px;
   margin: 0;
   font-family: "Open Sans";
   background-color: #F4F6F7;

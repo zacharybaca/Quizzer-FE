@@ -16,3 +16,19 @@
   transform: translateY(-1px) !important;
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08) !important;
 }
+
+.message {
+  width: 400px !important;
+}
+
+.given-question {
+  margin-top:64px;
+  margin-bottom:16px;
+  font-size: 3.2rem;
+}
+
+.submit-answer {
+  border-radius: 4px;
+  margin-top: 32px;
+
+}

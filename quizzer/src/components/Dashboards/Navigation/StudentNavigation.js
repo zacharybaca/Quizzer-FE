@@ -44,6 +44,7 @@ class StudentNavigation extends React.Component {
 
         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
           <DropdownToggle className="bradius">
+          <h2 className="logo-btn">Profile</h2>
             <DropdownMenu className="menu">
               <Link to="/">
                 <div className="click" onClick={this.logout}>
