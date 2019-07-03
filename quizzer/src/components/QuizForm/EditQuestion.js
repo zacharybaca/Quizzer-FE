@@ -8,7 +8,7 @@ const EditQuestion = props => {
   const filter = () => {
     setShowContactInfo(!showContactInfo);
     props.filterQuestions(index);
-    props.closeEditForm()
+   
   };
 
   return (

@@ -14,7 +14,6 @@ import AddQuestion from "./components/QuizForm/AddQuestion";
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
 
-// import Quiz2 from "./components/Quiz/Quiz2";
 import Quiz from "./components/Quiz/Quiz";
 import getQuiz from "./components/Quiz/getQuiz";
 
