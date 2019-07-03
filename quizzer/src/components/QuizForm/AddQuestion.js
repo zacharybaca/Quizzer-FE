@@ -32,7 +32,7 @@ function AddQuestion(props) {
     C: "",
     D: "",
     correct_answer: "",
-    points: "",
+    points: 1,
     quiz_id: props.match.params.id
   });
 
@@ -78,6 +78,10 @@ function AddQuestion(props) {
     };
     fetchData();
   }, []);
+
+  const closeEditForm = () => {
+    setCloseEdit(!closeEdit);
+  }
 
   const handleChanges = (e, id, idx) => {
     const array = createdQuestions;
@@ -151,7 +155,7 @@ function AddQuestion(props) {
       C: "",
       D: "",
       correct_answer: "",
-      points: "",
+      points: 1,
       quiz_id: props.match.params.id
     });
   };
@@ -166,7 +170,7 @@ function AddQuestion(props) {
         <div>
           {closeEdit
             ? createdQuestions.length > 0
-              ? (createdQuestions.map((question, index) =>
+              ? createdQuestions.map((question, index) =>
                   chosenQuestion === index ? (
                     <div className="question">
                       <form
@@ -295,7 +299,7 @@ function AddQuestion(props) {
                               className="selector"
                               name="correct_answer"
                             >
-                              <option value={question.A}>A</option>
+                              <option defaultValue={question.A}>A</option>
                               <option value={question.B}>B</option>
                               <option value={question.C}>C</option>
                               <option value={question.D}>D</option>
@@ -333,7 +337,7 @@ function AddQuestion(props) {
                       </form>
                     </div>
                   ) : null
-                ): null)
+                )
               : null
             : null}
         </div>
@@ -504,6 +508,7 @@ function AddQuestion(props) {
                       question.type === 1 ? (
                         <div>
                           <EditQuestion
+                          closeEditForm={closeEditForm}
                             chosen={chosenQuestion}
                             filterQuestions={filterQuestions}
                             Eachquestion={questions}
@@ -527,6 +532,7 @@ function AddQuestion(props) {
                       question.type !== 1 ? (
                         <div className="question">
                           <EditQuestion
+                          closeEditForm={closeEditForm}
                             chosen={chosenQuestion}
                             filterQuestions={filterQuestions}
                             Eachquestion={questions}

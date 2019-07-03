@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from "./dots-to-close.svg";
 import "./quizCard.css";
 
 class QuizCards extends Component {
+  
   constructor(props) {
     super(props);
 
@@ -13,12 +14,13 @@ class QuizCards extends Component {
       quizzes: this.props.quizzes,
       showContactInfo: false,
       modal: false,
-      folderId: "",
+      folderId: '',
       assign: false
     };
 
     this.toggle = this.toggle.bind(this);
   }
+
 
   toggle() {
     this.setState(prevState => ({
@@ -59,6 +61,7 @@ class QuizCards extends Component {
   async handleSubmit(e, quizId) {
     e.preventDefault();
     console.log(quizId, this.state.folderId);
+    
 
     const ids = {
       quiz_id: quizId
@@ -79,6 +82,7 @@ class QuizCards extends Component {
   render() {
     const { quizzes, showContactInfo, modal, folderId } = this.state;
     const { folders } = this.props;
+    
     return (
       <>
         <div
