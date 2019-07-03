@@ -12,6 +12,8 @@ function AddQuiz(props) {
     createQuestion: false
   });
 
+ 
+
   const { quiz_name, quiz_description, quiz_id } = quizInfo;
 
   const onChange = e =>
