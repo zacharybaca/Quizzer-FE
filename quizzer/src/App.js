@@ -23,13 +23,8 @@ function App(props) {
   //console.log(props)
   return (
     <>
-<<<<<<< HEAD
-      <div className="App">
-        <Route exact path="/" render = {props => <Login {...props} history={props.history} />} />
-=======
       <div>
         <Route exact path="/" component={Login} />
->>>>>>> 0563322846c7452701d97f119cfd3e7b0d15c97e
       </div>
 
       <Protected
