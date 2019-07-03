@@ -27,7 +27,7 @@ class StudentNavigation extends React.Component {
 
   render() {
     return (
-      <div className="homepage">
+      <div className="nav-bar">
         {localStorage.getItem("token") ? (
           <div>
             <Link to="/studentsDashboard">

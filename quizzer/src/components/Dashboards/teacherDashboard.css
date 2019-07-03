@@ -46,9 +46,9 @@
 }
 
 
-/* .box + .box {
-  margin: 0 16 0 16px;
- } */
+.box + .box {
+  margin: 0 0 0 24px;
+ }
 
 /* .button {
   white-space: nowrap;

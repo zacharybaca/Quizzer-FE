@@ -32,7 +32,7 @@ class TeacherNavigation extends Component {
   };
   render() {
     return (
-      <div className="homepage">
+      <div className="nav-bar">
         {localStorage.getItem("token") ? (
           <div>
             <Link to="/teachersDashboard">
