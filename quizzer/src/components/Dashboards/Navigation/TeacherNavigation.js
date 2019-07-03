@@ -48,9 +48,18 @@ class TeacherNavigation extends Component {
         ) : null}
         <div>
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+
             <DropdownToggle className="bradius">
               <h2 className="logo-btn">Profile</h2>
               <DropdownMenu className="menu">
+              <DropdownItem className="dropdown" onClick={this.props.access}>
+                  Get access code
+                </DropdownItem>
+                <DropdownItem className="dropdown">
+                  <Link to="/step1">
+                    <div className="dropdown">Billing</div>
+                  </Link>
+                </DropdownItem>
                 <DropdownItem className="dropdown">
                   {" "}
                   <Link to="/">
@@ -58,16 +67,6 @@ class TeacherNavigation extends Component {
                       Log Out
                     </div>
                   </Link>
-                </DropdownItem>
-
-                <DropdownItem className="dropdown">
-                  <Link to="/step1">
-                    <div className="click">Billing</div>
-                  </Link>
-                </DropdownItem>
-
-                <DropdownItem className="dropdown" onClick={this.props.access}>
-                  Get access code
                 </DropdownItem>
               </DropdownMenu>
             </DropdownToggle>

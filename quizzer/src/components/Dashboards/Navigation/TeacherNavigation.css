@@ -33,7 +33,7 @@
 }
 
 .menu {
-  height: 80px;
+  height: 240px;
   width: 216px;
   border-radius: 4px;
   background-color: white;
@@ -42,14 +42,16 @@
 .dropdown {
   opacity: 1 !important;
 }
-
+.dropdown-menu {
+  box-shadow: none !important;
+  border:none !important;
+  height: 176px !important;
+}
 .click {
   color: red;
 }
 
 .click:hover {
   color: black;
-  opacity: 1 !important;
-  background-color: white !important;
   text-decoration: none !important;
 }

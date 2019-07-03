@@ -57,10 +57,11 @@
   white-space: nowrap;
   overflow:hidden;
   margin-bottom:8px;
+  font-family: "Open Sans" !important;
 }
 
 .card-content {
-  font-family: "Open-Sans";
+  font-family: "Open-Sans" !important;
   margin-left: 16px;
 }
 
@@ -68,6 +69,7 @@
   overflow: hidden;
   width: 152px;
   height: 88px;
+  font-family: "Open Sans" !important;
 }
 
 .card-assigned {
@@ -88,7 +90,7 @@
   background-color: #226F54;
   color: white;
   text-transform: Uppercase;
-	
+	font-family: "Open Sans" !important;
 }
 
 /* Buttons/Dropdown Menu */
