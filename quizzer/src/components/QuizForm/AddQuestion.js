@@ -454,6 +454,7 @@ function AddQuestion(props) {
                         className="selector"
                         name="correct_answer"
                       >
+                        <option>Choose correct answer</option>
                         <option value={A}>A</option>
                         <option value={B}>B</option>
                         <option value={C}>C</option>

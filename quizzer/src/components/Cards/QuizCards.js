@@ -122,6 +122,7 @@ class QuizCards extends Component {
                       name="folderId"
                       onChange={this.onChange}
                     >
+                      <option>choose your folder</option>
                       {folders.map(folder => (
                         <option value={folder.id}>{folder.folder_name}</option>
                       ))}
