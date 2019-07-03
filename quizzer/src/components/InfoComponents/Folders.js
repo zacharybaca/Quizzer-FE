@@ -81,7 +81,7 @@ function Folders (props) {
     setFolderName({
       name: ""
     });
-    props.history.push('/quizzes')
+   
   };
 
   const handleSubmits = event => {
@@ -106,18 +106,18 @@ function Folders (props) {
           quiz_id: res.data.id
         });
       });
-    setQuizInfo({
-      quiz_name: "",
-      quiz_description: ""
-    });
-
+    
     setRedirect(!redirect)
   };
 
 
   return (
     <div className="sidebar">
-     
+      {quiz_id !== null ? (
+      redirect ? (
+        <Redirect to={`/createdquiz/${quiz_id}`} />
+      ) : null
+      ) : null}
       <div>
         <ButtonDropdown
           direction="right"

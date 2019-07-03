@@ -12,7 +12,7 @@ function AddQuiz(props) {
     createQuestion: false
   });
 
-  console.log(props)
+ 
 
   const { quiz_name, quiz_description, quiz_id } = quizInfo;
 
