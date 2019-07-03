@@ -1,4 +1,4 @@
-
+/* 
 h1 {
   color: #32325d;
   font-weight: 400;
@@ -8,34 +8,37 @@ h1 {
   padding: 0;
   display: flex;
   justify-content: center;
-}
+} */
 
 .assigned-quizzes {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+}
+.completed-quizzes {
   display: flex;
-  height: 232px;
-  width: 960px;
-  padding: 1%;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 
 
-.header2 { 
+/* .header2 { 
 	color: #000000;
 	font-size: 20px; 
   line-height: 28px;
   padding: 1%;  
-  padding-left: 550px;
+  padding: 1% 1% 1% 540px;
 
-} 
+}  */
 
-.header3 {
-  line-height: .5;
-  font-size: 15px;
-  padding-left: 500px;
-
+.student-empty {
+  font-size: 16px;
+  margin-top:48px;
 }
 
-.box {
+/* .box {
   height: 188px;
   width: 192px;
   border-radius: 4px;
@@ -71,9 +74,9 @@ h1 {
   color: white;
 }
 
-.header1 {
+/* .header1 {
   display: flex;
   align-items: center;
   height: 64px;
   width: 1300px;  
-}
+} */

@@ -87,6 +87,15 @@
   padding: 5px;
   text-transform: uppercase;
 }
+/* .btn-secondary {
+  background-color: #FFFFFF;	
+  box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
+  color:Black;
+  height: 40px;	
+  width: 120px;	
+  border: 1px solid #6369D1;	
+  border-radius: 4px;
+} */
 
 
 
@@ -109,8 +118,8 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-
 }
+
 .folder-name-header {
   display:flex;
   width:100%;
