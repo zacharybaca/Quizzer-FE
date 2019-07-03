@@ -102,7 +102,12 @@
   color: #DA2C38;
 }
 
-
+.empty {
+  margin-top:48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 
 .title {
   display: flex;
