@@ -3,7 +3,7 @@
     border-radius: 50%;
 }
 
-.homepage{ 
+/* .nav-bar{ 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -11,7 +11,7 @@
     height: 64px;
     width: 100%;
     background-color: #363648;
-}
+} */
 
 .menu {
     height: 50px;
