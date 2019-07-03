@@ -266,6 +266,7 @@ function Question(props) {
                       className="selector"
                       name="correct_answer"
                     >
+                      <option>choose correct answer</option>
                       <option value={A}>A</option>
                       <option value={B}>B</option>
                       <option value={C}>C</option>

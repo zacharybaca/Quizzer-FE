@@ -4,10 +4,19 @@ import { Link } from "react-router-dom";
 import "./studentDashboard.css";
 import StudentNavigation from "./Navigation/StudentNavigation.js";
 import { Button } from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState({ completed: false });
+  const [accessCode, setAccessCode] = useState(false);
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
+  const [formData, setFormData] = useState({
+    access_code: "",
+    student_id: localStorage.getItem("id")
+  });
+
+  const { access_code } = formData;
+
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -26,14 +35,44 @@ function StudentsDashboard(props) {
     fetchData();
   }, [takeQuizzes]);
 
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    console.log("success");
+
+    const res = await axios.post(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/profile/addstudent`,
+      formData
+    );
+    console.log(res);
+    setAccessCode(!accessCode)
+    // await setFormData({ access_code: "" });
+  };
+
   return (
     <div>
       <div className="sidebar">
       <StudentNavigation />
-      <button className="button">
-        <Link className="white" to="/addclass">
+      <button onClick={() => setAccessCode(!accessCode)} className="button">
+      <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
+      <ModalHeader>Add a class</ModalHeader>
+          <ModalBody>
+          <form onSubmit={e => onSubmit(e)}>
+        <input
+          value={access_code}
+          onChange={e => onChange(e)}
+          type="text"
+          placeholder="enter access code..."
+          name="access_code"
+        />
+        <input type="submit" className="button" value="Submit" />
+      </form>
+          </ModalBody>
+          </Modal>
           add class
-        </Link>
       </button>
       </div>
     

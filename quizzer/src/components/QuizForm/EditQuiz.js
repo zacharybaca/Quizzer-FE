@@ -304,6 +304,7 @@ const EditQuiz = props => {
                                 className="selector"
                                 name="correct_answer"
                               >
+                                <option>choose correct answer</option>
                                 <option value={question.A}>A</option>
                                 <option value={question.B}>B</option>
                                 <option value={question.C}>C</option>
