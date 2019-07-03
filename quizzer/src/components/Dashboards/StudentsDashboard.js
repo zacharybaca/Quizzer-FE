@@ -34,8 +34,8 @@ function StudentsDashboard(props) {
           add class
         </Link>
       </button>
-      <div>
-        <div className="header2">Assigned Quizzes</div>
+      <div className="dash">
+        <div className="dashboard-header">Assigned Quizzes</div>
         <div className="assigned-quizzes">
           {quizzes.length > 0 ? (
             quizzes.map(user =>
@@ -60,8 +60,8 @@ function StudentsDashboard(props) {
             </p>
           )}
         </div>
-        <div className="header2">Completed Quizzes</div>
-        <div className="assigned-quizzes">
+        <div className="dashboard-header">Completed Quizzes</div>
+        <div className="completed-quizzes">
           {completedQuizzes.length > 0 ? (
             completedQuizzes.map(user => (
               <div key={user.id} className="box">
