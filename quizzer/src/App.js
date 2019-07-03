@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Login from "./components/Login/Login";
 import AccessCode from "./components/InfoComponents/accessCode";
 import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
