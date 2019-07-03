@@ -9,7 +9,7 @@ import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 import Questions from "./components/QuizForm/AddQuestion";
 import EditQuiz from "./components/QuizForm/EditQuiz";
-import AddQuestion from './components/QuizForm/AddQuestion'
+import AddQuestion from "./components/QuizForm/AddQuestion";
 
 import StripePage from "../src/components/StripePage/StripePage";
 import Step2Page from "./components/Step2/Step2Page";
