@@ -54,9 +54,11 @@ function StudentsDashboard(props) {
 
   
   return (
+    <>
     <div>
+    <StudentNavigation />
+      <div className="sidebar">
       
-      <StudentNavigation />
       <button onClick={() => setAccessCode(!accessCode)} className="button">
       <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
       <ModalHeader>Add a class</ModalHeader>
@@ -122,6 +124,7 @@ function StudentsDashboard(props) {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
