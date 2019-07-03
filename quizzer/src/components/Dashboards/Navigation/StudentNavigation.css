@@ -3,7 +3,7 @@
     border-radius: 50%;
 }
 
-.student-nav{ 
+.nav-bar{ 
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
