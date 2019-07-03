@@ -4,10 +4,12 @@ import "./addQuiz.css";
 import EditQuestion from "./EditQuestion.js";
 import Folders from "../InfoComponents/Folders";
 import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
+import { Redirect } from "react-router-dom";
 
 function AddQuestion(props) {
   const [chosenQuestion, setChosenQuestion] = useState(null);
   const [closeEdit, setCloseEdit] = useState(true);
+  const [dashboard, setDashboard] = useState(false);
   const [createdQuestions, setCreatedQuestions] = useState([]);
   const [questions, setQuestions] = useState({
     category: "Math",
@@ -483,7 +485,14 @@ function AddQuestion(props) {
                   </button>
                 </form>
               </div>
+              <button
+                className="submit-button"
+                onClick={() => setDashboard(!dashboard)}
+              >
+                Complete Quiz
+              </button>
             </div>
+            {dashboard ? <Redirect to="/teachersDashboard" /> : null}
           </div>
           <div className="question-navigation">
             <div className="question-nav-content">

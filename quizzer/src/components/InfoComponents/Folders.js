@@ -15,7 +15,7 @@ import { Link, Redirect, withRouter } from "react-router-dom";
 import FolderContents from "./FolderContents.js";
 import "./folders.css";
 
-function Folders (props) {
+function Folders(props) {
   const [modal, setModal] = useState(false);
   const [quizModal, setQuizModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
@@ -59,7 +59,6 @@ function Folders (props) {
   const onChange = e =>
     setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
 
-
   const onChanges = event =>
     setFolderName({ ...folderName, [event.target.name]: event.target.value });
 
@@ -81,7 +80,6 @@ function Folders (props) {
     setFolderName({
       name: ""
     });
-   
   };
 
   const handleSubmits = event => {
@@ -106,17 +104,16 @@ function Folders (props) {
           quiz_id: res.data.id
         });
       });
-    
-    setRedirect(!redirect)
-  };
 
+    setRedirect(!redirect);
+  };
 
   return (
     <div className="sidebar">
       {quiz_id !== null ? (
-      redirect ? (
-        <Redirect to={`/createdquiz/${quiz_id}`} />
-      ) : null
+        redirect ? (
+          <Redirect to={`/createdquiz/${quiz_id}`} />
+        ) : null
       ) : null}
       <div>
         <ButtonDropdown
@@ -128,39 +125,42 @@ function Folders (props) {
         >
           <DropdownToggle caret>+ NEW</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem onClick={() => setQuizModal(!quizModal)}>add quiz
-            <Modal isOpen={quizModal} toggle={() => setQuizModal(!quizModal)}>
+            <DropdownItem onClick={() => setQuizModal(!quizModal)}>
+              add quiz
+              <Modal isOpen={quizModal} toggle={() => setQuizModal(!quizModal)}>
                 <ModalHeader>Add Quiz</ModalHeader>
                 <ModalBody>
-                <div>
-            <form onSubmit={e => handleSubmits(e)}>
-              <label className="label">Quiz Name</label>
-              <br />
-              <input
-                name="quiz_name"
-                className="text-box"
-                type="text"
-                value={quiz_name}
-                onChange={e => onChange(e)}
-              />
-              <br />
-              <br />
-              <label className="add-quiz-label">Add Quiz Description</label>
-              <br />
-              <input
-                name="quiz_description"
-                className="add-quiz-text-box"
-                type="text"
-                value={quiz_description}
-                onChange={e => onChange(e)}
-              />
-              <br />
-              <button className="submit-button" type="submit">
-                Add Quiz
-              </button>
-            </form>
-            <br />
-          </div>
+                  <div>
+                    <form onSubmit={e => handleSubmits(e)}>
+                      <label className="label">Quiz Name</label>
+                      <br />
+                      <input
+                        name="quiz_name"
+                        className="text-box"
+                        type="text"
+                        value={quiz_name}
+                        onChange={e => onChange(e)}
+                      />
+                      <br />
+                      <br />
+                      <label className="add-quiz-label">
+                        Add Quiz Description
+                      </label>
+                      <br />
+                      <input
+                        name="quiz_description"
+                        className="add-quiz-text-box"
+                        type="text"
+                        value={quiz_description}
+                        onChange={e => onChange(e)}
+                      />
+                      <br />
+                      <button className="submit-button" type="submit">
+                        Add Quiz
+                      </button>
+                    </form>
+                    <br />
+                  </div>
                 </ModalBody>
               </Modal>
             </DropdownItem>
