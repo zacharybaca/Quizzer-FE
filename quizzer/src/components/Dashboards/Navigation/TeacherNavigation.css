@@ -42,7 +42,11 @@
 .dropdown {
   opacity: 1 !important;
 }
-
+.dropdown-menu {
+  box-shadow: none !important;
+  border:none !important;
+  height: 176px !important;
+}
 .click {
   color: red;
 }

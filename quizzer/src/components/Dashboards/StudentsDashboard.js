@@ -58,7 +58,7 @@ function StudentsDashboard(props) {
     <StudentNavigation />
       <div className="sidebar">
       
-      <button onClick={() => setAccessCode(!accessCode)} className="button">
+      <button onClick={() => setAccessCode(!accessCode)} className="add-class-button">
       <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
       <ModalHeader>Add a class</ModalHeader>
           <ModalBody>
@@ -70,7 +70,8 @@ function StudentsDashboard(props) {
           placeholder="enter access code..."
           name="access_code"
         />
-        <input type="submit" className="button" value="Submit" />
+        <button type="submit" className="submit-code" value="Submit">Submit Code</button>
+        
       </form>
           </ModalBody>
           </Modal>
