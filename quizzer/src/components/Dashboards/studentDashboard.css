@@ -30,6 +30,14 @@ h1 {
   color: #fff;
 }
 
+.alert-green {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--success-color);
+  color: #fff;
+}
+
 .student-quiz-card .card-content {
   margin-top: 16px;
 }
