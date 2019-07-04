@@ -11,13 +11,15 @@
 .quiz-icon {
     padding: 18px 0;
     margin: 42px 0;
+    
 }
 
 .quiz-icon:hover {
     color: white;
     width: 192px;
-    opacity: 0.50;
+    opacity: 0.25;
     background-color: #363648;
+    border-radius:4px;
 }
 
 .modal-box {
@@ -28,9 +30,25 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 24px;
+    align-items: center;
+    padding-top: 8px;
     box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
   }
-  
+  .model-cancel {
+
+    margin-top:24px;
+    position: relative;
+    border-radius: 4px;
+    background-color: #ffffff;
+    color: BLACK;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    align-items: center;
+    padding-top: 8px;
+    box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
+
+  }
   .modal-box:hover {
     box-shadow: 0 2px 4px 0 #6369D1;
   }
