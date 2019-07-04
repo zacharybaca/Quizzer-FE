@@ -55,6 +55,7 @@
   .folder-name{
     height: 44px;
     width: 184px;
+    border-radius: 4px;
   }
   .create-folder{
     margin-top:16px;
