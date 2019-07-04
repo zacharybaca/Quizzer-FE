@@ -85,17 +85,21 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <>
+      <div className="checkout-container">
+      <div className="checkout-page">
         {this.state.paid ? <Redirect to="teachersDashboard" /> : null}
         <form class="Checkout" onSubmit={this.handleSubmit}>
           {/* <AddressSection /> */}
           <CardSection />
-          <button class="button" type="submit">
-            Confirm order
+          <button class="confirm-button" type="submit">
+            Confirm Order
           </button>
           <Link to="/step1">
-            <button class="button">back</button>
+            <button class="back-button">Back</button>
           </Link>
         </form>
+        </div>
+      </div>
       </>
     );
   }

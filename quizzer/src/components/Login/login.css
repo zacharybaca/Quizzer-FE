@@ -39,6 +39,7 @@
 }
 .state {
   background-color: #ea4334;
+  margin-bottom:16px;
 }
 .text {
   height: 44px;
@@ -51,5 +52,8 @@
 }
 .margin {
   padding-right: 10px;
+}
+.login-img{
+margin-bottom:24px;
 }
 

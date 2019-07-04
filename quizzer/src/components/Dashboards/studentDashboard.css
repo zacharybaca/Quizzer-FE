@@ -19,6 +19,7 @@
   margin-bottom: 0px;
 }
 .student-quiz-card .card-description {
+  margin-top: 8px;
   height: 80px;
   margin-bottom: 0px;
 }
@@ -37,6 +38,10 @@
   box-shadow: none;
   padding: 0px;
   margin-top:-24px;
+}
+
+.take-quiz:hover {
+  background-color: rgb(247,248,249)
 }
 
 /* Dashboard */

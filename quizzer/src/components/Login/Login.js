@@ -59,7 +59,7 @@ function Login(props) {
   return (
     <div className="background">
       <div className="login-box">
-        <img className="img" src={logo} height="35" alt="Logo White" />
+        <img className="login-img" src={logo} height="35" alt="Logo White" />
         {registered ? (
           <div className="alert-green">
             Thank You For Registering, Please Log In.
