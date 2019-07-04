@@ -9,6 +9,7 @@ import { Modal, ModalBody, ModalHeader } from "reactstrap";
 function StudentsDashboard(props) {
   const [quizzes, takeQuizzes] = useState({ completed: false });
   const [accessCode, setAccessCode] = useState(false);
+  const [error, setError] = useState(false);
   const [completedQuizzes, setCompletedQuizzes] = useState([]);
   const [formData, setFormData] = useState({
     access_code: "",
@@ -41,14 +42,19 @@ function StudentsDashboard(props) {
   const onSubmit = async e => {
     e.preventDefault();
     console.log("success");
+    try {
+      const res = await axios.post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/profile/addstudent`,
+        formData
+      );
+      console.log(res);
 
-    const res = await axios.post(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/profile/addstudent`,
-      formData
-    );
-    console.log(res);
-    setAccessCode(!accessCode);
+      setAccessCode(!accessCode);
+    } catch (err) {
+      console.log(err);
+      setError(true);
+    }
     // await setFormData({ access_code: "" });
   };
 
@@ -67,6 +73,11 @@ function StudentsDashboard(props) {
             >
               <ModalHeader>Add a class</ModalHeader>
               <ModalBody>
+                {error ? (
+                  <div className="alert">
+                    User is already assigned to that teacher
+                  </div>
+                ) : null}
                 <form onSubmit={e => onSubmit(e)}>
                   <input
                     value={access_code}
