@@ -6,8 +6,8 @@ import "./stripe.css";
 class CardSection extends React.Component {
   render() {
     return (
-      <label>
-        <h2>Add payment Option</h2>
+      <label className="credit-card-ask">
+        <h2>Add Card Number Below</h2>
         <CardElement style={{ base: { fontSize: "16px" } }} />
       </label>
     );

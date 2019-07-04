@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TeacherNavigation from "../../components/Dashboards/Navigation/TeacherNavigation";
+import "../StripePage/stripe.css";
 
 // this is where customer selects a Plan via Stripe
 class Step2Page extends Component {
@@ -9,7 +10,8 @@ class Step2Page extends Component {
 
     this.state = {
       coupon: "",
-      currentPlan: "bronze"
+      currentPlan: "",
+      selectedPlan: false
     };
 
     this.onCouponChange = this.onCouponChange.bind(this);
@@ -56,6 +58,8 @@ class Step2Page extends Component {
           `Thank you for selecting the ${currentPlan} plan for all your testing needs, its our best seller!`
         );
       });
+
+    this.setState({ selectedPlan: !this.state.selectedPlan });
   }
 
   render() {
@@ -65,56 +69,75 @@ class Step2Page extends Component {
     console.log("currentPlan", currentPlan);
 
     const plans = [
-      "bronze"
+      "Free",
+      "Pro"
       // 'silver', 'gold'
     ];
 
     return (
       <div>
         <TeacherNavigation />
-        <div>
-          <input
-            type="text"
-            placeholder="Coupon"
-            value={coupon}
-            onChange={this.onCouponChange}
-          />
-        </div>
-        <div>
-          <h1>Plans</h1>
-          {plans.map(plan => {
-            if (currentPlan === plan) {
-              return (
-                <button
-                  class="plan"
-                  // style={{
-                  //   // change color?
-                  //   backgroundColor: "#d8d8d8"
-                  // }}
-                  onClick={() => this.switchPlan(plan)}
-                >
-                  {plan}
+        <div className="stripe-plans">
+          <div>
+            <h1 className="header-stripe">Subscription Plans</h1>
+            <div className="plan-options">
+              {plans.map(plan => {
+                if (currentPlan === plan) {
+                  return (
+                    <div>
+                      <div className="plans-for-teacher">
+                        <button
+                          onClick={() => this.switchPlan(plan)}
+                          className="selected-plan"
+                        >
+                          {plan}
+                        </button>
+                        <p>
+                          {plan === "Pro"
+                            ? "Unlimited created quizzes"
+                            : "10 created quizzes"}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+                return (
+                  <>
+                    <div>
+                      <div className="plans-for-teacher">
+                        <button
+                          onClick={() => this.switchPlan(plan)}
+                          className={`${plan === "Pro" ? "gold" : "bronze"}`}
+                        >
+                          {plan}
+                        </button>
+                        <p>
+                          {plan === "Pro"
+                            ? "Unlimited created quizzes"
+                            : "10 created quizzes"}
+                        </p>
+                      </div>
+                    </div>
+                  </>
+                );
+              })}
+            </div>
+          </div>
+          <div className="stripe-next-buttons">
+            {!this.state.selectedPlan ? (
+              <Link to="/step2">
+                <button class="choose-button" onClick={this.nextStep}>
+                  Choose
                 </button>
-              );
-            }
-            return (
-              <button
-                style={{
-                  backgroundColor: "#ffffff"
-                }}
-              >
-                {plan}
-              </button>
-            );
-          })}
-        </div>
-        <div>
-          <button class="button" onClick={this.nextStep}>
-            select
-          </button>
-          <Link to="/step2">
-            <button class="button">next</button>
-          </Link>
+              </Link>
+            ) : null}
+
+            {this.state.selectedPlan ? (
+              <Link to="/step2">
+                <button class="choose-button-next">Next</button>
+              </Link>
+            ) : null}
+          </div>
         </div>
       </div>
     );

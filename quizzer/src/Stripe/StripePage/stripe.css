@@ -1,5 +1,56 @@
-  /* stripe */
-/*   
+/* stripe */
+
+.header-stripe {
+  text-align: center;
+}
+.plan-options {
+  margin-top: 48px;
+  display: flex;
+  width: 600px;
+  justify-content: space-evenly;
+}
+.plans-for-teacher {
+  display: flex;
+  flex-flow: column-reverse;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.gold {
+  border-radius:4px;
+  background: dodgerblue;
+}
+.bronze {
+  border-radius:4px;
+  color: black;
+  background: white;
+  border: 1px solid black;
+}
+
+.selected-plan {
+  border-radius:4px;
+  /* background: #daa520; */
+  border: 2px #daa520;
+}
+.choose-button{
+  background-color:black;
+  border-radius:4px;
+}
+
+.stripe-plans {
+  display: flex;
+  margin-top: 120px;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.stripe-next-buttons {
+  margin-top: 40px;
+}
+/*
   h1 {
     color: #32325d;
     font-weight: 400;
@@ -8,23 +59,21 @@
     margin: 20px 0;
     padding: 0;
   } */
-  
-  /* .Checkout {
+
+/* .Checkout {
     margin: 0 auto;
     max-width: 800px;
     box-sizing: border-box;
     padding: 0 5px;
   } */
 
-  
-  /* form {
+/* form {
     margin-bottom: 40px;
     padding-bottom: 40px;
     border-bottom: 3px solid #e6ebf1;
   } */
-  
-  
-  /* .StripeElement {
+
+/* .StripeElement {
     display: block;
     margin: 10px 0 20px 0;
     width: 450px;
@@ -33,7 +82,7 @@
     border-radius: 4px;
     background: white;
   }
-  
+
   .StripeElement--focus {
     box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px, rgba(0, 0, 0, 0.0784314) 0px 1px 3px;
     -webkit-transition: all 150ms ease;

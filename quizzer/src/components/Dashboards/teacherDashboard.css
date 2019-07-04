@@ -1,6 +1,6 @@
 /* SideBar */
 
-#new-button {
+/* #new-button {
   background-color: #FFFFFF !important;	
   box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
   color:Black !important;
@@ -9,9 +9,9 @@
   border: 1px solid #6369D1;	
   border-radius: 4px;
   font-weight: bold;
-}
+} */
 
-/* .btn-secondary {
+.btn-secondary {
   background-color: #FFFFFF;	
   box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
   color:Black;
@@ -20,7 +20,7 @@
   border: 1px solid #6369D1;	
   border-radius: 4px;
   font-weight: bold;
-} */
+}
 
 .new-quiz {
   height: 40px;
@@ -84,11 +84,13 @@
 /* Empty State */
 
 .empty {
-  margin-top:48px;
+  height:160px;
+  margin-top:24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
 }
+
 
 
 #some-div:hover {

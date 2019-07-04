@@ -58,7 +58,6 @@ function StudentsDashboard(props) {
     // await setFormData({ access_code: "" });
   };
 
-  
   return (
     <>
       <div>
@@ -81,6 +80,7 @@ function StudentsDashboard(props) {
                 ) : null}
                 <form onSubmit={e => onSubmit(e)}>
                   <input
+                    className="access-code-input"
                     value={access_code}
                     onChange={e => onChange(e)}
                     type="text"
@@ -159,11 +159,12 @@ function StudentsDashboard(props) {
                 <div key={user.id} className="box">
                   {console.log(user)}
                   <div className="card-content">
+                    <div className="card-completed">completed</div>
                     <h6 className="given-name">
                       <strong>{user.quiz_name}</strong>
                     </h6>
                     <p className="quiz-description">{user.description}</p>
-                    <div className="card-completed">completed</div>
+                    
                   </div>
                 </div>
               ))
