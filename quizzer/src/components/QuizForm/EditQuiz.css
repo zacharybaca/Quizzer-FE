@@ -22,7 +22,6 @@
 
 label {
     height: 20px;	
-    font-family: "Open Sans";	
     font-size: 14px;	
     font-weight: bold;	
     line-height: 20px;
@@ -88,9 +87,6 @@ label {
   width: 42px;
 }
 
-.submit-button {
-  margin-top: 24px;
-}
 
 .questions-box {
   display: flex;
@@ -122,7 +118,7 @@ label {
 }
 .clicked {
   font-weight: bold;
-  opacity: 1 !important;
+  opacity: 1 ;
 }
 
 

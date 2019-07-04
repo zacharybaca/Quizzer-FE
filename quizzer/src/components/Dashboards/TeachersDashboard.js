@@ -134,7 +134,7 @@ function TeacherDashboard(props) {
           ) : (
             <div className="empty">
               <Modal isOpen={quizModal} toggle={() => setQuizModal(!quizModal)}>
-                <ModalHeader>Add Quiz</ModalHeader>
+                <ModalHeader>Create Quiz</ModalHeader>
                 <ModalBody>
                   <div>
                     <form onSubmit={e => handleSubmits(e)}>
@@ -169,7 +169,7 @@ function TeacherDashboard(props) {
                   </div>
                 </ModalBody>
               </Modal>
-              <p className="empty-title h5">You have not made any quizzes</p>
+              <p className="empty-title">You have not made any quizzes</p>
               <p className="empty-subtitle">
                 Click the button to create your first quiz.
               </p>

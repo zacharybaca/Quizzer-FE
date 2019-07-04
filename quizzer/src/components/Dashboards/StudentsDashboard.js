@@ -105,7 +105,7 @@ function StudentsDashboard(props) {
                 user.assigned ? (
                   completedQuizzes.length > 0 ? (
                     completedQuizzes.map(quiz =>
-                      !quiz.completed ? (
+                      !quiz.completed || quiz.quiz_name !== user.quiz_name ? (
                         <div key={user.id} className="box">
                           {console.log(quiz.id, user.id)}
                           <div className="card-content">
@@ -169,7 +169,7 @@ function StudentsDashboard(props) {
               ))
             ) : (
               <p className="student-complete-empty">
-                You have not completed any quizzes
+                You have not completed any quizzes.
               </p>
             )}
           </div>

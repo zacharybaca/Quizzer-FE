@@ -3,11 +3,14 @@ import React from "react";
 import { injectStripe } from "react-stripe-elements";
 // import AddressSection from './AddressSection';
 import CardSection from "./CardSection";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./stripe.css";
 import "./checkout.css";
 
 class CheckoutForm extends React.Component {
+  state = {
+    paid: false
+  };
   handleSubmit = ev => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -56,7 +59,10 @@ class CheckoutForm extends React.Component {
         .then(res => res.json())
         .then(response => {
           console.log("response", response);
-          alert(`Thank you for doing business with us!`);
+          const a = window.confirm(`Thank you for doing business with us!`);
+          if (a) {
+            this.setState({ paid: !this.state.paid });
+          }
         });
     });
 
@@ -78,16 +84,19 @@ class CheckoutForm extends React.Component {
 
   render() {
     return (
-      <form class="Checkout" onSubmit={this.handleSubmit}>
-        {/* <AddressSection /> */}
-        <CardSection />
-        <button class="button" type="submit">
-          Confirm order
-        </button>
-        <Link to="/step1">
-          <button class="button">back</button>
-        </Link>
-      </form>
+      <>
+        {this.state.paid ? <Redirect to="teachersDashboard" /> : null}
+        <form class="Checkout" onSubmit={this.handleSubmit}>
+          {/* <AddressSection /> */}
+          <CardSection />
+          <button class="button" type="submit">
+            Confirm order
+          </button>
+          <Link to="/step1">
+            <button class="button">back</button>
+          </Link>
+        </form>
+      </>
     );
   }
 }

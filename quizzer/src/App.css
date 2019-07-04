@@ -9,25 +9,6 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-/* 
-.App-link {
-  color: #61dafb;
-} */
-
-/* .header {
-  display: flex;
-  align-items: center;
-  height: 64px;
-  width: 1300px;  
-} */
-
-/* .sidebar-nav {
-  height: 960px;
-  width: 224px;
-  border: solid black 8px;
-} */
-
-
 
 .logo {
   color: white;
@@ -53,7 +34,7 @@
   height: 20px;
   width: 156px;
   color: #000000;
-  font-family: "Open Sans";
+  
   font-size: 16px;
   font-weight: bold;
   line-height: 24px;
@@ -70,16 +51,18 @@
 }
 
 .text-box {
-  height: 44px;
-  width: 288px;
-  border-radius:4px;
+	height: 44px;
+	width: 288px;
+	border-radius: 4px;
+  background-color: #FFFFFF;
+ 
 }
 
 .add-quiz-label {
   height: 20px;
   width: 544px;
   color: #000000;
-  font-family: "Open Sans";
+ 
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -90,11 +73,6 @@
   margin-bottom: 200px;
   margin-left: 550px;
 }
-
-/* .main-question-container {
-  display: flex;
-  margin-bottom: -400px;
-} */
 
 .main-question-button {
   text-align: center;
@@ -113,6 +91,7 @@ h1 {
   font-size: 40px;
   margin: 20px 0;
   padding: 0;
+  
 }
 
 button {

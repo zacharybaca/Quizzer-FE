@@ -50,27 +50,29 @@ const QuizContents = props => {
                 onClick={e => removeQuiz(e, quiz.id)}
                 className="modal-box"
               >
-                remove from folder
+                Remove from Folder
               </button>
 
               <Link to={`edit/quiz/${quiz.id}`}>
-                <button className="modal-box">edit quiz</button>
+                <button className="modal-box">Edit Quiz</button>
               </Link>
               <button
                 className="modal-box"
                 onClick={e => assignQuiz(e, quiz.id)}
               >
-                assign quiz
-              </button>
-            </div>
-            <button
-              className="modal-box"
+                Assign Quiz
+              </button> 
+              
+              <button
+              className="modal-cancel"
               onClick={() => {
                 setModal(!modal);
               }}
             >
-              cancel
+              Cancel
             </button>
+            </div>
+           
           </div>
         </ModalBody>
       </Modal>
