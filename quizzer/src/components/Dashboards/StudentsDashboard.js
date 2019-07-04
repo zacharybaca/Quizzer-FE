@@ -75,7 +75,7 @@ function StudentsDashboard(props) {
               <ModalBody>
                 {error ? (
                   <div className="alert">
-                    User is already assigned to that teacher
+                    User is already assigned to that teacher.
                   </div>
                 ) : null}
                 <form onSubmit={e => onSubmit(e)}>
