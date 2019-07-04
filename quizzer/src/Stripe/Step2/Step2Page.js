@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
+import TeacherNavigation from "../../components/Dashboards/Navigation/TeacherNavigation";
 
 // this is where customer selects a Plan via Stripe
 class Step2Page extends Component {

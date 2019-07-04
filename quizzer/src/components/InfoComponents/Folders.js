@@ -119,6 +119,7 @@ function Folders(props) {
       ) : null}
       <div>
         <ButtonDropdown
+          tag='div'
           direction="right"
           isOpen={dropdownOpen}
           toggle={() => {
@@ -128,9 +129,9 @@ function Folders(props) {
           <DropdownToggle caret>+ NEW</DropdownToggle>
           <DropdownMenu>
             <DropdownItem onClick={() => setQuizModal(!quizModal)}>
-              add quiz
+              Create Quiz
               <Modal isOpen={quizModal} toggle={() => setQuizModal(!quizModal)}>
-                <ModalHeader>Add Quiz</ModalHeader>
+                <ModalHeader>Create a Quiz</ModalHeader>
                 <ModalBody>
                   <div>
                     <form onSubmit={e => handleSubmits(e)}>

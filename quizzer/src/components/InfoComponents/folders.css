@@ -6,6 +6,8 @@
     justify-content: center;
 }
 
+
+
 .quiz-icon {
     padding: 18px 0;
     margin: 42px 0;
@@ -20,15 +22,11 @@
 
 .modal-box {
     position: relative;
-    font-family: "Open Sans";
     border-radius: 4px;
     background-color: #ffffff;
     color: BLACK;
     display: flex;
     flex-direction: column;
-    /* align-content: center; */
-    /* justify-content: flex-start;
-    align-items: flex-start; */
     margin-bottom: 24px;
     box-shadow: 0 0 1px 1px rgba(0,0,0,0.02), 0 4px 6px 1px rgba(0,0,0,0.06);
   }
