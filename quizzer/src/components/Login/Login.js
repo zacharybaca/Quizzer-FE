@@ -62,7 +62,7 @@ function Login(props) {
         <img className="img" src={logo} height="35" alt="Logo White" />
         {registered ? (
           <div className="alert-green">
-            thank you for Registering, Please log in.
+            Thank You For Registering, Please Log In.
           </div>
         ) : null}
 
