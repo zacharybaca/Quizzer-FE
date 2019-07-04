@@ -75,27 +75,29 @@ function StudentsDashboard(props) {
       </form>
           </ModalBody>
           </Modal>
-          add class
+          Join a Class
       </button>
       </div>
     
       <div className="dash">
         <div className="dashboard-header">Assigned Quizzes</div>
-        <div className="assigned-quizzes">
+        <div className="student-quiz-card">
           {quizzes.length > 0 ? (
             quizzes.map(user =>
               user.assigned ? (
                 <div key={user.id} className="box">
-                  <h6 className="p">
+                  <div className="card-content">
+                  <h6 className="given-name">
                     <strong>{user.quiz_name}</strong>
                   </h6>
-                  <p>Assigned By: {user.name}</p>
-                  <p>{user.description}</p>
+                  <p className="assigned-by">Assigned By: {user.name}</p>
+                  <p className="card-description">{user.description}</p>
                   <Button color="purple">
                     <Link to={`quiz/${user.id}`}>
-                      <p className="p">take quiz</p>
+                      <p className="quiz-link">Take Quiz</p>
                     </Link>
                   </Button>
+                  </div>
                 </div>
               ) : null
             )

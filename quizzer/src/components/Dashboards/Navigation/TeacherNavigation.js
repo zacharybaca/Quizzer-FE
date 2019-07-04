@@ -55,11 +55,7 @@ class TeacherNavigation extends Component {
               <DropdownItem className="dropdown" onClick={this.props.access}>
                   Get access code
                 </DropdownItem>
-                <DropdownItem className="dropdown">
-                  <Link to="/step1">
-                    <div className="dropdown">Billing</div>
-                  </Link>
-                </DropdownItem>
+                
                 <DropdownItem className="dropdown">
                   {" "}
                   <Link to="/">

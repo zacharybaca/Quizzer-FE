@@ -8,6 +8,8 @@
   width: 120px;	
   border: 1px solid #6369D1;	
   border-radius: 4px;
+  font-family: "Open Sans" !important;
+  font-weight: bold;
 }
 
 .new-quiz {
