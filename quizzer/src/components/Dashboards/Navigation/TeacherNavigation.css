@@ -9,17 +9,17 @@
 }
 
 .bradius {
-  display:flex;
+  display: flex;
   justify-content: center;
-  background-color: #363648 ;
+  background-color: #363648;
   position: absolute;
-  width: 120px ;
-  height: 40px ;
+  width: 120px;
+  height: 40px;
   background-size: contain;
   background-position: center;
-  margin-top: -4px ;
-  color: white ;
-  border: none ;
+  margin-top: -4px;
+  color: white;
+  border: none;
 }
 
 .logo-btn {
@@ -30,7 +30,6 @@
   font-weight: bold;
 }
 
-
 .menu {
   height: auto;
   width: 216px;
@@ -39,20 +38,20 @@
 }
 
 .dropdown {
-  opacity: 1 ;
+  opacity: 1;
   color: black;
 }
 .dropdown-menu {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-  border: none ;
+  border: none;
 }
 
 .dropdown-item {
-  box-shadow: none ;
+  box-shadow: none;
 }
 
 .dropdown-item:hover {
-  box-shadow: none ;
+  box-shadow: none;
 }
 .click {
   color: red;
@@ -60,5 +59,5 @@
 
 .click:hover {
   color: black;
-  text-decoration: none ;
+  text-decoration: none;
 }
