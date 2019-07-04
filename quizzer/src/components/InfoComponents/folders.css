@@ -15,10 +15,10 @@
 }
 
 .quiz-icon:hover {
-    color: white;
+    color: black;
     width: 192px;
-    opacity: 0.25;
-    background-color: #363648;
+    
+    background-color: rgb(247, 248, 249);
     border-radius:4px;
 }
 
