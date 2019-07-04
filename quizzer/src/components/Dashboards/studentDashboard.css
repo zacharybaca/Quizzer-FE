@@ -40,8 +40,13 @@
 }
 
 /* Dashboard */
-
-
+.access-code-input {
+  border-radius:4px;
+  height:44px;
+}
+.submit-code {
+  margin-left:16px;
+}
 .assigned-quizzes {
   display: flex;
   width: 100%;
@@ -70,7 +75,8 @@
 
 
 .card-completed {
-  position: absolute;
+  margin-left:-4px;
+  margin-bottom:8px;
   display: flex;
   font-size: 12px;
   font-weight: bold;

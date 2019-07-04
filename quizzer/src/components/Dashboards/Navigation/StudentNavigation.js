@@ -47,7 +47,7 @@ class StudentNavigation extends React.Component {
             <h2 className="logo-btn">Profile</h2>
             <DropdownMenu className="menu">
               <Link to="/">
-                <div className="click" onClick={this.logout}>
+                <div className="click-log-out" onClick={this.logout}>
                   Log Out
                 </div>
               </Link>
