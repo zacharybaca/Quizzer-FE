@@ -90,13 +90,13 @@ function StudentsDashboard(props) {
                   <h6 className="given-name">
                     <strong>{user.quiz_name}</strong>
                   </h6>
-                  <p className="assigned-by">Assigned By: {user.name}</p>
+                  <p className="assigned-by">Assigned by: {user.name}</p>
                   <p className="card-description">{user.description}</p>
-                  <Button color="purple">
+                  <button className="take-quiz">
                     <Link to={`quiz/${user.id}`}>
                       <p className="quiz-link">Take Quiz</p>
                     </Link>
-                  </Button>
+                  </button>
                   </div>
                 </div>
               ) : null
@@ -109,21 +109,25 @@ function StudentsDashboard(props) {
         </div>
 
         <div className="dashboard-header">Completed Quizzes</div>
-
-        <div className="completed-quizzes">
+      <div className="student-quiz-card">
+       
           {completedQuizzes.length > 0 ? (
             completedQuizzes.map(user => (
+              
               <div key={user.id} className="box">
-                <h6 className="p">
+                 <div className="card-content">
+                <h6 className="given-name">
                   <strong>{user.quiz_name}</strong>
                 </h6>
-                <p>{user.description}</p>
+                <p className="quiz-description">{user.description}</p>
               </div>
+        </div>
             ))
           ) : (
-            <p className="student-empty">No quizzes completed</p>
+            <p className="student-complete-empty">You have not completed any quizzes</p>
           )}
-        </div>
+        
+      </div>
       </div>
     </div>
     </>
