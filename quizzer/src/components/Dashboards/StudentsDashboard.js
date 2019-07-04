@@ -48,88 +48,121 @@ function StudentsDashboard(props) {
       formData
     );
     console.log(res);
-    setAccessCode(!accessCode)
+    setAccessCode(!accessCode);
     // await setFormData({ access_code: "" });
   };
 
   return (
     <>
-    <div>
-    <StudentNavigation />
-      <div className="sidebar">
-      
-      <button onClick={() => setAccessCode(!accessCode)} className="add-class-button">
-      <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
-      <ModalHeader>Add a class</ModalHeader>
-          <ModalBody>
-          <form onSubmit={e => onSubmit(e)}>
-        <input
-          value={access_code}
-          onChange={e => onChange(e)}
-          type="text"
-          placeholder="enter access code..."
-          name="access_code"
-        />
-        <button type="submit" className="submit-code" value="Submit">Submit Code</button>
-        
-      </form>
-          </ModalBody>
-          </Modal>
-          Join a Class
-      </button>
-      </div>
-    
-      <div className="dash">
-        <div className="dashboard-header">Assigned Quizzes</div>
-        <div className="student-quiz-card">
-          {quizzes.length > 0 ? (
-            quizzes.map(user =>
-              user.assigned ? (
-                <div key={user.id} className="box">
-                  <div className="card-content">
-                  <h6 className="given-name">
-                    <strong>{user.quiz_name}</strong>
-                  </h6>
-                  <p className="assigned-by">Assigned by: {user.name}</p>
-                  <p className="card-description">{user.description}</p>
-                  <button className="take-quiz">
-                    <Link to={`quiz/${user.id}`}>
-                      <p className="quiz-link">Take Quiz</p>
-                    </Link>
+      <div>
+        <StudentNavigation />
+        <div className="sidebar">
+          <button
+            onClick={() => setAccessCode(!accessCode)}
+            className="add-class-button"
+          >
+            <Modal
+              isOpen={accessCode}
+              toggle={() => setAccessCode(!accessCode)}
+            >
+              <ModalHeader>Add a class</ModalHeader>
+              <ModalBody>
+                <form onSubmit={e => onSubmit(e)}>
+                  <input
+                    value={access_code}
+                    onChange={e => onChange(e)}
+                    type="text"
+                    placeholder="enter access code..."
+                    name="access_code"
+                  />
+                  <button type="submit" className="submit-code" value="Submit">
+                    Submit Code
                   </button>
-                  </div>
-                </div>
-              ) : null
-            )
-          ) : (
-            <p className="Student-empty">
-              You do not have any assigned quizzes at this time.
-            </p>
-          )}
+                </form>
+              </ModalBody>
+            </Modal>
+            Join a Class
+          </button>
         </div>
 
-        <div className="dashboard-header">Completed Quizzes</div>
-      <div className="student-quiz-card">
-       
-          {completedQuizzes.length > 0 ? (
-            completedQuizzes.map(user => (
-              
-              <div key={user.id} className="box">
-                 <div className="card-content">
-                <h6 className="given-name">
-                  <strong>{user.quiz_name}</strong>
-                </h6>
-                <p className="quiz-description">{user.description}</p>
-              </div>
+        <div className="dash">
+          <div className="dashboard-header">Assigned Quizzes</div>
+          <div className="student-quiz-card">
+            {quizzes.length > 0 ? (
+              quizzes.map(user =>
+                user.assigned ? (
+                  completedQuizzes.length > 0 ? (
+                    completedQuizzes.map(quiz =>
+                      !quiz.completed ? (
+                        <div key={user.id} className="box">
+                          {console.log(quiz.id, user.id)}
+                          <div className="card-content">
+                            <h6 className="given-name">
+                              <strong>{user.quiz_name}</strong>
+                            </h6>
+                            <p className="assigned-by">
+                              Assigned by: {user.name}
+                            </p>
+                            <p className="card-description">
+                              {user.description}
+                            </p>
+                            <button className="take-quiz">
+                              <Link to={`quiz/${user.id}`}>
+                                <p className="quiz-link">Take Quiz</p>
+                              </Link>
+                            </button>
+                          </div>
+                        </div>
+                      ) : null
+                    )
+                  ) : (
+                    <div key={user.id} className="box">
+                      <div className="card-content">
+                        <h6 className="given-name">
+                          <strong>{user.quiz_name}</strong>
+                        </h6>
+                        <p className="assigned-by">Assigned by: {user.name}</p>
+                        <p className="card-description">{user.description}</p>
+                        <button className="take-quiz">
+                          <Link to={`quiz/${user.id}`}>
+                            <p className="quiz-link">Take Quiz</p>
+                          </Link>
+                        </button>
+                      </div>
+                    </div>
+                  )
+                ) : null
+              )
+            ) : (
+              <p className="Student-empty">
+                You do not have any assigned quizzes at this time.
+              </p>
+            )}
+          </div>
+
+          <div className="dashboard-header">Completed Quizzes</div>
+          <div className="student-quiz-card">
+            {completedQuizzes.length > 0 ? (
+              completedQuizzes.map(user => (
+                <div key={user.id} className="box">
+                  {console.log(user)}
+                  <div className="card-content">
+                    <h6 className="given-name">
+                      <strong>{user.quiz_name}</strong>
+                    </h6>
+                    <p className="quiz-description">{user.description}</p>
+                    <div className="card-completed">completed</div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p className="student-complete-empty">
+                You have not completed any quizzes
+              </p>
+            )}
+          </div>
         </div>
-            ))
-          ) : (
-            <p className="student-complete-empty">You have not completed any quizzes</p>
-          )}
-        
       </div>
-      </div>
-    </div>
     </>
   );
 }

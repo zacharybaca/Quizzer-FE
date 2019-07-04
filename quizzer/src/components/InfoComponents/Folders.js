@@ -81,7 +81,7 @@ function Folders(props) {
       name: ""
     });
 
-    setModal(!modal)
+    setModal(!modal);
   };
 
   const handleSubmits = event => {
@@ -189,7 +189,6 @@ function Folders(props) {
                       Create
                     </button>
                   </form>
-                  
                 </ModalBody>
               </Modal>
             </DropdownItem>
@@ -198,11 +197,11 @@ function Folders(props) {
       </div>
       <div>
         <div>
-          {folders.length > 0 ? (
-            folders.map(folder => (
-              <FolderContents folder={folder} quizzes={quizzes} />
-            ))
-          ) : null}
+          {folders.length > 0
+            ? folders.map(folder => (
+                <FolderContents folder={folder} quizzes={quizzes} />
+              ))
+            : null}
         </div>
       </div>
     </div>

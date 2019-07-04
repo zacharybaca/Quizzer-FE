@@ -1,4 +1,4 @@
-/* 
+/*
 h1 {
   color: #32325d;
   font-weight: 400;
@@ -9,6 +9,11 @@ h1 {
   display: flex;
   justify-content: center;
 } */
+.student-quiz-card {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
 
 .student-quiz-card .card-content {
   margin-top: 16px;
@@ -17,31 +22,28 @@ h1 {
   margin-bottom: 0px;
 }
 .student-quiz-card .card-description {
-  height:80px;
+  height: 80px;
   margin-bottom: 0px;
 }
 .assigned-by {
   font-size: 14px;
-  opacity: .75;
-  margin-bottom:0px;
-  
+  opacity: 0.75;
+  margin-bottom: 0px;
 }
 .take-quiz {
   margin-left: 28px;
-  background-color:white;
+  background-color: white;
   color: black;
   font-family: "Open Sans";
   /* border:none; */
   width: 104px;
-  box-shadow:none;
-  padding:0px
-
+  box-shadow: none;
+  padding: 0px;
 }
 .assigned-quizzes {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
 }
 .completed-quizzes {
   display: flex;
@@ -51,18 +53,36 @@ h1 {
 
 .submit-code
 
-/* .header2 { 
+/* .header2 {
 	color: #000000;
-	font-size: 20px; 
+	font-size: 20px;
   line-height: 28px;
-  padding: 1%;  
+  padding: 1%;
   padding: 1% 1% 1% 540px;
 
 }  */
 
+.card-completed {
+  position: absolute;
+  display: flex;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 16px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 85px;
+  border-radius: 4px;
+  background-color: #226f54;
+  color: white;
+  text-transform: Uppercase;
+  font-family: "Open Sans" !important;
+}
+
 .student-empty {
   font-size: 16px;
-  margin-top:48px;
+  margin-top: 48px;
 }
 .student-complete-empty {
   padding-top: 24px;
@@ -107,5 +127,5 @@ h1 {
   display: flex;
   align-items: center;
   height: 64px;
-  width: 1300px;  
+  width: 1300px;
 } */

@@ -7,7 +7,7 @@
   background-position: center;
   margin-top: -4px !important;
   color: white !important;
-  border:none !important;
+  border: none !important;
 }
 
 .logo-btn {
@@ -15,9 +15,9 @@
   color: white;
   /* height: 80px; */
   text-align: center;
- margin-bottom: 0px;
- font-family: "Open Sans" !important;
- font-weight: bold;
+  margin-bottom: 0px;
+  font-family: "Open Sans" !important;
+  font-weight: bold;
 }
 
 .nav-bar {
@@ -43,21 +43,21 @@
 
 .dropdown {
   opacity: 1 !important;
-  color:black;
+  color: black;
 }
 .dropdown-menu {
-  box-shadow: 0 4px 6px rgba(50,50,93,.11),0 1px 3px rgba(0,0,0,.08) !important;
-  border:none !important;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  border: none !important;
   height: 176px !important;
   font-family: "Open Sans" !important;
 }
 
 .dropdown-item {
-  box-shadow:none !important;
+  box-shadow: none !important;
 }
 
 .dropdown-item:hover {
-  box-shadow:none !important;
+  box-shadow: none !important;
 }
 .click {
   color: red;
