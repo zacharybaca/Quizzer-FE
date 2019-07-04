@@ -174,7 +174,9 @@ function TeacherDashboard(props) {
                 Click the button to create your first quiz.
               </p>
               <div className="empty-action">
-                <button onClick={() => setQuizModal(!quizModal)}>Create a Quiz</button>
+                <button onClick={() => setQuizModal(!quizModal)}>
+                  Create a Quiz
+                </button>
               </div>
             </div>
           )}

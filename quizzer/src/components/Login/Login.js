@@ -6,6 +6,7 @@ import logo from "./logopurple.svg";
 
 function Login(props) {
   const [signIn, setSignedIn] = useState();
+  const [registered, setRegistered] = useState(false);
   const responseGoogle = response => {
     console.log(response);
     localStorage.setItem("token", response.Zi.id_token);
@@ -21,6 +22,7 @@ function Login(props) {
       )
       .then(res => {
         console.log(res.data);
+        setRegistered(true);
         localStorage.setItem("access_code", res.data[0].access_code);
         localStorage.setItem("id", res.data[0].id);
         setSignedIn(res.data.id);
@@ -44,6 +46,7 @@ function Login(props) {
         }
       )
       .then(res => {
+        setRegistered(true);
         console.log("hello", res.data);
         localStorage.setItem("id", res.data[0].id);
         props.history.push("/studentsDashboard");
@@ -57,6 +60,11 @@ function Login(props) {
     <div className="background">
       <div className="login-box">
         <img className="img" src={logo} height="35" alt="Logo White" />
+        {registered ? (
+          <div className="alert-green">
+            Thank You For Registering, Please Log In.
+          </div>
+        ) : null}
 
         <div>
           <h2 className="log-in">Login as Teacher</h2>

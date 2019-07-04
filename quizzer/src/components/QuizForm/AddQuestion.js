@@ -81,7 +81,7 @@ function AddQuestion(props) {
 
   const closeEditForm = () => {
     setCloseEdit(!closeEdit);
-  }
+  };
 
   const handleChanges = (e, id, idx) => {
     const array = createdQuestions;
@@ -509,7 +509,7 @@ function AddQuestion(props) {
                       question.type === 1 ? (
                         <div>
                           <EditQuestion
-                          closeEditForm={closeEditForm}
+                            closeEditForm={closeEditForm}
                             chosen={chosenQuestion}
                             filterQuestions={filterQuestions}
                             Eachquestion={questions}
@@ -533,7 +533,7 @@ function AddQuestion(props) {
                       question.type !== 1 ? (
                         <div className="question">
                           <EditQuestion
-                          closeEditForm={closeEditForm}
+                            closeEditForm={closeEditForm}
                             chosen={chosenQuestion}
                             filterQuestions={filterQuestions}
                             Eachquestion={questions}

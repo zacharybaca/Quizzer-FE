@@ -206,34 +206,33 @@ class Quiz extends React.Component {
         <div className="align">
           <div className="given-question">{questions}</div>
           <span> {`Question ${currentQuestion} out of ${questionCount}`}</span>
-        
 
-        {options.map(option => (
-          <p
-            key={option.id}
-            className={`ui floating message
+          {options.map(option => (
+            <p
+              key={option.id}
+              className={`ui floating message
                   ${userAnswer === option ? "selected" : null}
                   `}
-            onClick={() => this.checkAnswer(option)}
-          >
-            {option}
-          </p>
-        ))}
-        
-        {currentQuestion - 1 < questionCount && (
-          <button
-            className="submit-answer"
-            disabled={this.state.disabled}
-            onClick={this.nextQuestionHandler}
-          >
-            Submit Answer
-          </button>
-        )}
-        {currentQuestion  === questionCount + 1  && (
-          <button className="submit-answer" onClick={this.finishHandler}>
-            Submit Answer
-          </button>
-        )}
+              onClick={() => this.checkAnswer(option)}
+            >
+              {option}
+            </p>
+          ))}
+
+          {currentQuestion - 1 < questionCount && (
+            <button
+              className="submit-answer"
+              disabled={this.state.disabled}
+              onClick={this.nextQuestionHandler}
+            >
+              Submit Answer
+            </button>
+          )}
+          {currentQuestion === questionCount + 1 && (
+            <button className="submit-answer" onClick={this.finishHandler}>
+              Submit Answer
+            </button>
+          )}
         </div>
       </div>
     );
