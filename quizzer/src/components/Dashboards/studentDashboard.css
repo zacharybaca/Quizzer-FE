@@ -10,6 +10,33 @@ h1 {
   justify-content: center;
 } */
 
+.student-quiz-card .card-content {
+  margin-top: 16px;
+}
+.student-quiz-card .given-name {
+  margin-bottom: 0px;
+}
+.student-quiz-card .card-description {
+  height:80px;
+  margin-bottom: 0px;
+}
+.assigned-by {
+  font-size: 14px;
+  opacity: .75;
+  margin-bottom:0px;
+  
+}
+.take-quiz {
+  margin-left: 28px;
+  background-color:white;
+  color: black;
+  font-family: "Open Sans";
+  /* border:none; */
+  width: 104px;
+  box-shadow:none;
+  padding:0px
+
+}
 .assigned-quizzes {
     display: flex;
     width: 100%;
@@ -37,7 +64,9 @@ h1 {
   font-size: 16px;
   margin-top:48px;
 }
-
+.student-complete-empty {
+  padding-top: 24px;
+}
 /* .box {
   height: 188px;
   width: 192px;
