@@ -179,11 +179,11 @@ const Quiz = props => {
       <StudentNavigation />
       {end ? (
         <div className="align">
-          <h2>
+          <h2 id='quiz-title-score'>
             Completed Quiz final score is {points} points out of {totalScore}{" "}
             points possible.
           </h2>
-          <h3>You got a {letter}</h3>
+          <h3 id='quiz-letter-score'>Your letter grade is : {letter}</h3>
           <p>The Correct Answer's were: </p>
           <ul>
             {allQuestion.map((item, index) => (
@@ -192,7 +192,7 @@ const Quiz = props => {
               </li>
             ))}
           </ul>
-          <button onClick={returnToDash}>return to dashboard</button>
+          <button onClick={returnToDash}>Finish</button>
         </div>
       ) : (
         <div className="align">

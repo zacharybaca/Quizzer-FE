@@ -34,7 +34,7 @@ function StudentsDashboard(props) {
       setCompletedQuizzes(result.data.completedQuizzes);
     };
     fetchData();
-  }, [takeQuizzes]);
+  }, []);
 
   const onChange = e =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -164,7 +164,6 @@ function StudentsDashboard(props) {
                       <strong>{user.quiz_name}</strong>
                     </h6>
                     <p className="quiz-description">{user.description}</p>
-                    
                   </div>
                 </div>
               ))

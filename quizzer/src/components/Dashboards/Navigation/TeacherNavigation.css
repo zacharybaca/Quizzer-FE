@@ -11,15 +11,15 @@
 .bradius {
   display: flex;
   justify-content: center;
-  background-color: #363648;
+  background-color: #363648 !important;
   position: absolute;
   width: 120px;
   height: 40px;
   background-size: contain;
   background-position: center;
   margin-top: -4px;
-  color: white;
-  border: none;
+  color: white !important;
+  border: none !important;
 }
 
 .logo-btn {

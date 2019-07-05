@@ -7,7 +7,7 @@ class CardSection extends React.Component {
   render() {
     return (
       <label className="credit-card-ask">
-        <h2>Add Card Number Below</h2>
+        <h2 id="card-info-below">Add Card Number Below</h2>
         <CardElement style={{ base: { fontSize: "16px" } }} />
       </label>
     );
