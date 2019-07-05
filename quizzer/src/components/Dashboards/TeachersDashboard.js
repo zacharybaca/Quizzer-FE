@@ -112,7 +112,7 @@ function TeacherDashboard(props) {
         <Folders access={access} />
         <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
           <ModalBody>
-            <h1>Access Code: {localStorage.getItem("access_code")}</h1>
+            <h1>Please have student input this class code in their dashboard: {localStorage.getItem("access_code")}</h1>
           </ModalBody>
         </Modal>
 

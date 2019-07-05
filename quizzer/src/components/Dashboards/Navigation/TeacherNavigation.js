@@ -52,7 +52,7 @@ class TeacherNavigation extends Component {
               <h2 className="logo-btn">Profile</h2>
               <DropdownMenu className="menu">
                 <DropdownItem className="dropdown" onClick={this.props.access}>
-                  Get access code
+                  Invite Student
                 </DropdownItem>
                 <DropdownItem className="dropdown">
                   <Link to="step1">Billing</Link>

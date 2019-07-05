@@ -122,13 +122,13 @@ class QuizCards extends Component {
                       name="folderId"
                       onChange={this.onChange}
                     >
-                      <option>choose your folder</option>
+                      <option>Choose Your Folder</option>
                       {folders.map(folder => (
                         <option value={folder.id}>{folder.folder_name}</option>
                       ))}
                     </select>
 
-                    <button type="submit">add</button>
+                    <button type="submit">Add</button>
                   </form>
                 </ModalBody>
               </Modal>
@@ -136,13 +136,13 @@ class QuizCards extends Component {
                 className="dropdownbutton"
                 onClick={this.deleteQuiz.bind(this, quizzes.id)}
               >
-                delete quiz
+                Delete Quiz
               </button>
               <button
                 className="dropdownbutton"
                 onClick={e => this.assignQuiz(e, quizzes.id)}
               >
-                assign quiz
+                Assign Quiz
               </button>
             </div>
           ) : null}
@@ -154,7 +154,7 @@ class QuizCards extends Component {
                 <p>{quizzes.description}</p>
               </div>
               {quizzes.assigned || this.state.assign ? (
-                <div className="card-assigned">assigned</div>
+                <div className="card-assigned">Assigned</div>
               ) : null}
             </div>
           ) : null}

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TeacherNavigation from "../../components/Dashboards/Navigation/TeacherNavigation";
+import Folders from '../../components/InfoComponents/Folders'
+import axios from 'axios';
 import "../StripePage/stripe.css";
 
 // this is where customer selects a Plan via Stripe
@@ -11,12 +13,26 @@ class Step2Page extends Component {
     this.state = {
       coupon: "",
       currentPlan: "",
-      selectedPlan: false
+      selectedPlan: false,
+      isPaid: null
     };
 
     this.onCouponChange = this.onCouponChange.bind(this);
     this.switchPlan = this.switchPlan.bind(this);
     this.nextStep = this.nextStep.bind(this);
+  }
+
+  componentDidMount() {
+    const id = localStorage.getItem("id");
+
+    axios(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/profile/teacher/${id}`
+    )
+      .then(res =>
+        this.setState({isPaid: res.data.isPaid})
+      )
+      .catch(err => console.error(err));
   }
 
   onCouponChange(event) {
@@ -73,7 +89,20 @@ class Step2Page extends Component {
       "Pro"
       // 'silver', 'gold'
     ];
+    
+    if (this.state.isPaid) {
+     return (
+       <div>
+         <TeacherNavigation />
+         <Folders />
+         <div className='current-plan'>
+           <h1>Your plan is Pro</h1>
+         </div>
+       </div>
+     )
+    }
 
+  
     return (
       <div>
         <TeacherNavigation />

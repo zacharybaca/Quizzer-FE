@@ -95,7 +95,7 @@ function AddQuiz(props) {
                     setDisplay(!display);
                   }}
                 >
-                  add question
+                  Add Question
                 </button>
               )
             ) : null}
