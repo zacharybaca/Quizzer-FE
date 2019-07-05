@@ -18,6 +18,7 @@
   background-color:white;
   margin-left: 104px;
   border-radius: 4px;
+  margin-bottom:32px;
 }
 
 label {
@@ -38,6 +39,7 @@ label {
   font-size: 14px;	
   padding-top: 8px;
   padding-left: 8px;
+  cursor: pointer;
 }
 
 
@@ -104,6 +106,7 @@ label {
 .add-question-button {
   border-radius: 4px;
   margin-top: 32px;
+  margin-bottom:32px;
 }
 
 .update-button {

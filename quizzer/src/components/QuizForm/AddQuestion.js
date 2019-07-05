@@ -288,7 +288,7 @@ function AddQuestion(props) {
 
                         <div className="answer-points">
                           <div>
-                            <label>Correct Answer</label>
+                            <label>Choose Correct Answer</label>
                             <br />
 
                             <select
@@ -365,7 +365,7 @@ function AddQuestion(props) {
                       </select>
                     </div>
                     <div>
-                      <label>Type</label>
+                      <label>Question Type</label>
                       <br />
 
                       <select
@@ -375,7 +375,7 @@ function AddQuestion(props) {
                         name="type"
                       >
                         <option value={1}>Standard</option>
-                        <option value={2}>Remedial</option>
+                        <option value={2}>Follow-Up</option>
                       </select>
                     </div>
                   </div>
@@ -454,7 +454,7 @@ function AddQuestion(props) {
                         className="selector"
                         name="correct_answer"
                       >
-                        <option>Choose correct answer</option>
+                        <option>Choose Correct Answer</option>
                         <option value={A}>A</option>
                         <option value={B}>B</option>
                         <option value={C}>C</option>
@@ -486,7 +486,7 @@ function AddQuestion(props) {
 
                   <br />
                   <button className="submit-button" type="submit">
-                    Add Question
+                    Add a Question
                   </button>
                 </form>
               </div>
@@ -494,7 +494,7 @@ function AddQuestion(props) {
                 className="submit-button"
                 onClick={() => setDashboard(!dashboard)}
               >
-                Complete Quiz
+                Save Quiz
               </button>
             </div>
             {dashboard ? <Redirect to="/teachersDashboard" /> : null}

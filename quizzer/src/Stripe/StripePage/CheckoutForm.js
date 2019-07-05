@@ -4,13 +4,35 @@ import { injectStripe } from "react-stripe-elements";
 // import AddressSection from './AddressSection';
 import CardSection from "./CardSection";
 import { Redirect, Link } from "react-router-dom";
+import axios from "axios";
 import "./stripe.css";
 import "./checkout.css";
 
 class CheckoutForm extends React.Component {
   state = {
-    paid: false
+    paid: false,
+    accessCode: "",
+    email: "",
+    name: ""
   };
+
+  componentDidMount() {
+    const id = localStorage.getItem("id");
+
+    axios(
+      `${process.env.REACT_APP_BE_URL ||
+        process.env.REACT_APP_BE_LOCAL}/api/profile/teacher/${id}`
+    )
+      .then(res =>
+        this.setState({
+          accessCode: res.data.accessCode,
+          email: res.data.email,
+          name: res.data.name
+        })
+      )
+      .catch(err => console.error(err));
+  }
+
   handleSubmit = ev => {
     // We don't want to let default form submission happen here, which would refresh the page.
     ev.preventDefault();
@@ -39,9 +61,23 @@ class CheckoutForm extends React.Component {
 
     this.props.stripe.createToken({}).then(({ token }) => {
       console.log("Received Stripe token:", token);
+      const id = localStorage.getItem('id')
+      const data = {
+        access_code: this.state.accessCode,
+        name: this.state.name,
+        email: this.state.email,
+        isPaid: true
+      };
 
       // heruko: https://labs13-quizzer.herokuapp.com/api/stripe/customer/create
       // fetch('http://localhost:8000/api/stripe/customer/create', {
+      axios
+        .put(
+          `${process.env.REACT_APP_BE_URL ||
+            process.env.REACT_APP_BE_LOCAL}/api/profile/teacher/${id}`, data
+        )
+        .then(res => console.log(res.data))
+        .catch(err => console.error(err));
 
       fetch(
         `${process.env.REACT_APP_BE_URL ||
@@ -85,21 +121,21 @@ class CheckoutForm extends React.Component {
   render() {
     return (
       <>
-      <div className="checkout-container">
-      <div className="checkout-page">
-        {this.state.paid ? <Redirect to="teachersDashboard" /> : null}
-        <form class="Checkout" onSubmit={this.handleSubmit}>
-          {/* <AddressSection /> */}
-          <CardSection />
-          <button class="confirm-button" type="submit">
-            Confirm Order
-          </button>
-          <Link to="/step1">
-            <button class="back-button">Back</button>
-          </Link>
-        </form>
+        <div className="checkout-container">
+          <div className="checkout-page">
+            {this.state.paid ? <Redirect to="teachersDashboard" /> : null}
+            <form class="Checkout" onSubmit={this.handleSubmit}>
+              {/* <AddressSection /> */}
+              <CardSection />
+              <button class="confirm-button" type="submit">
+                Confirm Order
+              </button>
+              <Link to="/step1">
+                <button class="back-button">Back</button>
+              </Link>
+            </form>
+          </div>
         </div>
-      </div>
       </>
     );
   }

@@ -223,7 +223,7 @@ const Quiz = props => {
           )}
           {currentQuestion === questionCount - 1 && (
             <button onClick={finishHandler} className="submit-answer">
-              Submit Quiz
+              Finish Quiz
             </button>
           )}
         </div>
