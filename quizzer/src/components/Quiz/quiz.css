@@ -32,3 +32,11 @@
   margin-top: 32px;
 
 }
+
+#quiz-title-score {
+  font-size: 2.5rem;
+}
+
+#quiz-letter-score {
+  font-size: 2.5rem;
+}

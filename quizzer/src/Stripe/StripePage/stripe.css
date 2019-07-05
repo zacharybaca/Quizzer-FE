@@ -3,6 +3,10 @@
 .header-stripe {
   text-align: center;
 }
+#card-info-below {
+  font-size: 2.5rem !important;
+}
+
 .plan-options {
   margin-top: 48px;
   display: flex;
