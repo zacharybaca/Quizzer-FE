@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import TeacherNavigation from "./Navigation/TeacherNavigation.js";
+import { Redirect } from "react-router-dom";
+import QuizCards from "../Cards/QuizCards.js";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 import "./teacherDashboard.css";
-import { Button } from "reactstrap";
 import Folders from "../InfoComponents/Folders";
-import {
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Modal,
-  Dropdown,
-  ModalHeader,
-  ModalBody
-} from "reactstrap";
 
 function TeacherDashboard(props) {
+  const [quizInfo, setQuizInfo] = useState({
+    quiz_name: "",
+    quiz_description: "",
+    quiz_id: null,
+    createQuestion: false
+  });
   const [quizzes, setQuizzes] = useState([]);
-  const [accessCode, setAccessCode] = useState(null);
-  const [dropdownOpen, setDropDownOpen] = useState(false);
-  const [dropdownFile, setDropDownFile] = useState(false);
-  const [modal, setModal] = useState(false);
+  const [deleteIcon, setDeleteIcon] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const [accessCode, setAccessCode] = useState(false);
+  const [quizModal, setQuizModal] = useState(false);
   const [folders, setFolders] = useState([]);
-  const [formData, setFormData] = useState({
+  const [folderHolder, setFoldersHolder] = useState({
+    folders: [],
+    quizzes: []
+  });
+  const [formData] = useState({
     folderId: ""
   });
+
+  const { quiz_name, quiz_description, quiz_id } = quizInfo;
+
   //takes place instead of componentDidMount
   useEffect(() => {
     const fetchData = async () => {
@@ -43,140 +47,171 @@ function TeacherDashboard(props) {
           "id"
         )}`
       );
+
       //setting database data to state with hooks
-      console.log(result);
-      console.log(result.data);
-      console.log(folder.data);
       setQuizzes(result.data);
+      setFoldersHolder({
+        folders: folder.data.folders,
+        quizzes: folder.data.quizzes
+      });
       setFolders(folder.data.folders);
     };
     fetchData();
-  }, []);
+  }, [quizzes]);
 
   const access = () => {
-    setAccessCode(localStorage.getItem("access_code"));
+    setAccessCode(!accessCode);
   };
 
-  const onChange = e => {
-    console.log(formData.folderId);
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData.folderId);
-  };
+  const handleSubmits = event => {
+    event.preventDefault();
 
-  const handleSubmit = async (e, quizId) => {
-    e.preventDefault();
-    console.log(quizId, Number(formData.folderId));
-
-    const ids = {
-      quiz_id: quizId
+    const quiz = {
+      quiz_name: quiz_name,
+      description: quiz_description,
+      teacher_id: localStorage.getItem("id")
     };
 
-    const results = await axios.post(
+    axios
+      .post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`,
+        {
+          quiz
+        }
+      )
+      .then(res => {
+        setQuizInfo({
+          quiz_id: res.data.id
+        });
+      });
+
+    setRedirect(!redirect);
+  };
+
+  const onChange = e =>
+    setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
+
+  const deleteFolder = async id => {
+    const res = await axios.delete(
       `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/addquiz/${Number(
-        formData.folderId
-      )}`,
-      ids
+        process.env.REACT_APP_BE_LOCAL}/api/folder/delete/${id}`
     );
 
-    console.log(results);
-    console.log(results.data);
+    console.log(res);
+  };
+
+  const someHandler = () => {
+    setDeleteIcon(!deleteIcon);
   };
 
   return (
-      <>
-      <div className="mobile">
-        <TeacherNavigation />
-        <div className="dash">
-          <Folders />
-  
-          <button className="button" onClick={access}>
-            get access code
-          </button>
-  
-          <h1 className="title">Teacher Đashboard</h1>
-          {accessCode ? <h1>access code: {accessCode}</h1> : null}
-          <div className="header">Recently Administered Quizzes</div>
-          <div className="recently-administered-quizzes">
-            {quizzes.length > 0 ? (
-              quizzes.map(user => (
-                <div key={user.id} className="box">
-                  <h6 className="p">
-                    <strong>{user.quiz_name}</strong>
-                  </h6>
-                  <p>{user.description}</p>
-                  <ButtonDropdown
-                    direction="right"
-                    isOpen={dropdownOpen}
-                    toggle={() => {
-                      setDropDownOpen(!dropdownOpen);
-                    }}
-                  >
-                    <DropdownToggle>
-                      <i
-                        className="fas fa-ellipsis-v"
-                        style={{
-                          cursor: "pointer",
-                          float: "right",
-                          color: "black",
-                          marginRight: "1rem"
-                        }}
+    <>
+      <TeacherNavigation access={access} />
+      <div className="dash">
+        <Folders access={access} />
+        <Modal isOpen={accessCode} toggle={() => setAccessCode(!accessCode)}>
+          <ModalBody>
+            <h1>Please have student input this class code in their dashboard: {localStorage.getItem("access_code")}</h1>
+          </ModalBody>
+        </Modal>
+
+        <div className="dashboard-header">Recently Made Quizzes</div>
+        {quiz_id !== null ? (
+          redirect ? (
+            <Redirect to={`/createdquiz/${quiz_id}`} />
+          ) : null
+        ) : null}
+        <div className="recently-made-quizzes">
+          {quizzes.length > 0 ? (
+            quizzes.map(user => (
+              <QuizCards
+                folderId={formData.folderId}
+                folders={folders}
+                quizzes={user}
+              />
+            ))
+          ) : (
+            <div className="empty">
+              <Modal isOpen={quizModal} toggle={() => setQuizModal(!quizModal)}>
+                <ModalHeader>Create Quiz</ModalHeader>
+                <ModalBody>
+                  <div>
+                    <form onSubmit={e => handleSubmits(e)}>
+                      <label className="label">Quiz Name</label>
+                      <br />
+                      <input
+                        name="quiz_name"
+                        className="text-box"
+                        type="text"
+                        value={quiz_name}
+                        onChange={e => onChange(e)}
                       />
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem>
-                        <Link to={`edit/quiz/${user.id}`}>edit quiz</Link>
-                      </DropdownItem>
-                      <DropdownItem
-                        onClick={() => {
-                          setModal(!modal);
-                        }}
-                      >
-                        <p>add quiz to folder</p>
-                        <Modal isOpen={modal}>
-                          <ModalHeader>Add quiz to folder</ModalHeader>
-                          <ModalBody>
-                            <form onSubmit={e => handleSubmit(e, user.id)}>
-                              <select
-                                value={formData.folderId}
-                                onChange={onChange}
-                                className="text-box"
-                                name="folderId"
-                              >
-                                {console.log(folders, user.id)}
-  
-                                {folders.map(folder => (
-                                  <option value={folder.id}>
-                                    {console.log(folder.id)}
-                                    {folder.folder_name}
-                                  </option>
-                                ))}
-                              </select>
-  
-                              <button type="submit">add</button>
-                            </form>
-                            <button
-                              onClick={() => {
-                                setModal(!modal);
-                              }}
-                            >
-                              Cancel
-                            </button>
-                          </ModalBody>
-                        </Modal>
-                      </DropdownItem>
-                      <DropdownItem>
-                        <p>delete quiz</p>
-                      </DropdownItem>
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </div>
-              ))
-            ) : (
-              <p>no created quizzes</p>
-            )}
-          </div>
+                      <br />
+                      <br />
+                      <label className="add-quiz-label">
+                        Add Quiz Description
+                      </label>
+                      <br />
+                      <input
+                        name="quiz_description"
+                        className="add-quiz-text-box"
+                        type="text"
+                        value={quiz_description}
+                        onChange={e => onChange(e)}
+                      />
+                      <br />
+                      <button className="submit-button" type="submit">
+                        Add Quiz
+                      </button>
+                    </form>
+                    <br />
+                  </div>
+                </ModalBody>
+              </Modal>
+              <p className="empty-title">You have not made any quizzes</p>
+              <p className="empty-subtitle">
+                Click the button to create your first quiz.
+              </p>
+              <div className="empty-action">
+                <button onClick={() => setQuizModal(!quizModal)}>
+                  Create a Quiz
+                </button>
+              </div>
+            </div>
+          )}
         </div>
+        {folderHolder.folders.length > 0
+          ? folderHolder.folders.map(folder => (
+              <div>
+                <div className="folder-name-header">
+                  <div>
+                    <div className="dashboard-header">
+                      Folder: {folder.folder_name}{" "}
+                      <i
+                        className="move fas fa-trash fa-xs"
+                        id="some-div"
+                        onMouseEnter={someHandler}
+                        onMouseLeave={someHandler}
+                        onClick={() => deleteFolder(folder.id)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="recently-made-quizzes">
+                  {folderHolder.quizzes.map(quiz =>
+                    quiz.folder_name === folder.folder_name ? (
+                      <QuizCards
+                        folderId={formData.folderId}
+                        folders={folders}
+                        quizzes={quiz}
+                      />
+                    ) : null
+                  )}
+                </div>
+              </div>
+            ))
+          : null}
       </div>
       </>
     );

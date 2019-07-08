@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import Protected from "../Protected/Protected";
+import QuizForm from "../QuizForm/QuizForm";
 import axios from "axios";
 import {
   ButtonDropdown,
@@ -6,29 +8,33 @@ import {
   DropdownMenu,
   DropdownItem,
   Modal,
-  Dropdown,
   ModalHeader,
   ModalBody
 } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
-import { faFolder } from "@fortawesome/free-solid-svg-icons";
-import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { Link, Redirect, withRouter } from "react-router-dom";
+import FolderContents from "./FolderContents.js";
 import "./folders.css";
 
 function Folders(props) {
-  // const [reactstrap, setReactStrap] = useState({
-  //   dropdownOpen: false,
-  //   modal: false
-  // });
   const [modal, setModal] = useState(false);
+  const [quizModal, setQuizModal] = useState(false);
   const [dropdownOpen, setDropDownOpen] = useState(false);
-  const [dropdownFile, setDropDownFile] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const [folderHolder, setFolders] = useState({
-    folderName: "",
     folders: [],
     quizzes: []
   });
+  const [folderName, setFolderName] = useState({
+    name: ""
+  });
+  const [quizInfo, setQuizInfo] = useState({
+    quiz_name: "",
+    quiz_description: "",
+    quiz_id: null,
+    createQuestion: false
+  });
+
+  const { quiz_name, quiz_description, quiz_id } = quizInfo;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,49 +45,29 @@ function Folders(props) {
         )}`
       );
       //setting database data to state with hooks
-      console.log(result.data);
+
       setFolders({
         folders: result.data.folders,
         quizzes: result.data.quizzes
       });
     };
     fetchData();
-  }, [setFolders]);
+  }, [folderHolder]);
 
-  // const toggle = () => {
-  //   setReactStrap({
-  //     ...reactstrap,
-  //     dropdownOpen: !dropdownOpen
-  //   });
-  // };
-  //
-  // const togglepopup = () => {
-  //   setReactStrap({
-  //     ...reactstrap,
-  //     modal: !modal
-  //   });
-  // };
+  const { folders, quizzes } = folderHolder;
 
-  const onDeleteClick = async id => {
-    console.log(id);
-    const res = await axios.delete(
-      `${process.env.REACT_APP_BE_URL ||
-        process.env.REACT_APP_BE_LOCAL}/api/folder/removequiz/${id}`
-    );
-
-    console.log(res);
-  };
+  const onChange = e =>
+    setQuizInfo({ ...quizInfo, [e.target.name]: e.target.value });
 
   const onChanges = event =>
-    setFolders({ ...folderHolder, [event.target.name]: event.target.value });
+    setFolderName({ ...folderName, [event.target.name]: event.target.value });
 
   const handleSubmit = event => {
     event.preventDefault();
-    const { folderName } = folderHolder;
 
     const folder = {
       teacher_id: localStorage.getItem("id"),
-      folder_name: folderName
+      folder_name: folderName.name
     };
 
     axios
@@ -91,16 +77,49 @@ function Folders(props) {
         folder
       )
       .then(res => {});
+    setFolderName({
+      name: ""
+    });
 
     setModal(!modal);
   };
 
-  const { folders, quizzes } = folderHolder;
+  const handleSubmits = event => {
+    event.preventDefault();
+
+    const quiz = {
+      quiz_name: quiz_name,
+      description: quiz_description,
+      teacher_id: localStorage.getItem("id")
+    };
+
+    axios
+      .post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes`,
+        {
+          quiz
+        }
+      )
+      .then(res => {
+        setQuizInfo({
+          quiz_id: res.data.id
+        });
+      });
+
+    setRedirect(!redirect);
+  };
 
   return (
     <div className="sidebar">
+      {quiz_id !== null ? (
+        redirect ? (
+          <Redirect to={`/createdquiz/${quiz_id}`} />
+        ) : null
+      ) : null}
       <div>
         <ButtonDropdown
+          tag='div'
           direction="right"
           isOpen={dropdownOpen}
           toggle={() => {
@@ -109,8 +128,44 @@ function Folders(props) {
         >
           <DropdownToggle caret>+ NEW</DropdownToggle>
           <DropdownMenu>
-            <DropdownItem>
-              <Link to="/quizzes">New Quiz</Link>
+            <DropdownItem onClick={() => setQuizModal(!quizModal)}>
+              Create Quiz
+              <Modal isOpen={quizModal} toggle={() => setQuizModal(!quizModal)}>
+                <ModalHeader>Create a Quiz</ModalHeader>
+                <ModalBody>
+                  <div>
+                    <form onSubmit={e => handleSubmits(e)}>
+                      <label className="label">Quiz Name</label>
+                      <br />
+                      <input
+                        name="quiz_name"
+                        className="text-box"
+                        type="text"
+                        value={quiz_name}
+                        onChange={e => onChange(e)}
+                      />
+                      <br />
+                      <br />
+                      <label className="add-quiz-label">
+                        Add Quiz Description
+                      </label>
+                      <br />
+                      <input
+                        name="quiz_description"
+                        className="add-quiz-text-box"
+                        type="text"
+                        value={quiz_description}
+                        onChange={e => onChange(e)}
+                      />
+                      <br />
+                      <button className="submit-button" type="submit">
+                        Add Quiz
+                      </button>
+                    </form>
+                    <br />
+                  </div>
+                </ModalBody>
+              </Modal>
             </DropdownItem>
             <DropdownItem
               onClick={() => {
@@ -118,63 +173,36 @@ function Folders(props) {
               }}
             >
               New Folder
-              <Modal isOpen={modal}>
-                <ModalHeader>Add Folder</ModalHeader>
+              <Modal isOpen={modal} toggle={() => setModal(!modal)}>
+                <ModalHeader>Create a Folder</ModalHeader>
                 <ModalBody>
                   <form onSubmit={handleSubmit}>
                     <input
-                      name="folderName"
-                      placeholder="enter folder name"
+                      name="name"
+                      className="folder-name"
+                      placeholder="Enter folder name"
                       type="text"
-                      value={folderHolder.folderName}
+                      value={folderName.name}
                       onChange={e => onChanges(e)}
                     />
 
-                    <button type="submit">Create</button>
+                    <button className="create-folder" type="submit">
+                      Create
+                    </button>
                   </form>
-                  <button
-                    onClick={() => {
-                      setModal(!modal);
-                    }}
-                  >
-                    Cancel
-                  </button>
                 </ModalBody>
               </Modal>
             </DropdownItem>
-            <DropdownItem>Get access code</DropdownItem>
           </DropdownMenu>
         </ButtonDropdown>
       </div>
       <div>
         <div>
-          {folders.length > 0 ? (
-            folders.map(folder => (
-              <div key={folder.id}>
-                <button>{folder.folder_name}</button>
-
-                {quizzes.map(quiz =>
-                  quiz.folder_name === folder.folder_name ? (
-                    <div>
-                      {" "}
-                      <i
-                        className="fas fa-times"
-                        style={{
-                          cursor: "pointer",
-                          float: "right",
-                          color: "red"
-                        }}
-                        onClick={() => onDeleteClick(quiz.id)}
-                      />{" "}
-                      <p>{quiz.quiz_name}</p>
-                    </div>
-                  ) : null
-                )}
-              </div>
-            ))
-          ) : (
-            <div>no folders made</div>
-          )}
+          {folders.length > 0
+            ? folders.map(folder => (
+                <FolderContents folder={folder} quizzes={quizzes} />
+              ))
+            : null}
         </div>
       </div>
     </div>

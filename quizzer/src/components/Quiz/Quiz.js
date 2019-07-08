@@ -1,168 +1,131 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 import StudentNavigation from "../Dashboards/Navigation/StudentNavigation.js";
 import "./quiz.css";
-//Noted issue Q'a start at 0 not 1 an thus points are only counted from 1 not 0
 
-class Quiz extends React.Component {
-  state = {
-    userAnswer: null,
-    currentQuestion: 1,
-    options: [],
-    answers: "",
-    quizEnd: false,
-    score: 0,
-    disabled: true,
-    wrongAnswer: false,
-    QuizData: [],
-    standardQ: [],
-    remedialQ: [],
-    remedialSubject: [],
-    remedialCounter: 0,
-    questionCount: null
-  };
+const Quiz = props => {
+  const [options, setOptions] = useState([]);
+  const [standardQuestions, setStandardQuestions] = useState([]);
+  const [followUpQuestions, setFollowUpQuestions] = useState([]);
+  const [allQuestion, setAllQuestions] = useState([]);
+  const [userAnswer, setUserAnswer] = useState("");
+  const [disabled, setDisabled] = useState(true);
+  const [score, setScore] = useState(null);
+  const [points, setPoints] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [totalScore, setTotalScore] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [questionCount, setQuestionCount] = useState(null);
+  const [followUpCount, setFollowUpCount] = useState(0);
+  const [questions, setQuestions] = useState([]);
+  const [isFollowUp, setIsFollowUp] = useState(false);
+  const [end, setEnd] = useState(false);
+  const [returnDash, setReturn] = useState(false);
+  const [letter, setLetter] = useState("");
 
-  componentDidMount() {
-    // this.loadQuiz();
-    const { id } = this.props.match.params;
-    const standard = [];
-    const remedial = [];
+  useEffect(() => {
+    const fetchData = async () => {
+      const { id } = props.match.params;
+      const standard = [];
+      const remedial = [];
 
-    axios
-      .get(
+      const result = await axios(
         `${process.env.REACT_APP_BE_URL ||
           process.env.REACT_APP_BE_LOCAL}/api/quiz/quizzes/${id}`
-      )
-      .then(res => {
-        console.log(res);
-        const options = [
-          res.data.quiz[0].A,
-          res.data.quiz[0].B,
-          res.data.quiz[0].C,
-          res.data.quiz[0].D
-        ];
+      );
+      //setting database data to state with hooks
+      const options = [
+        result.data.quiz[0].A,
+        result.data.quiz[0].B,
+        result.data.quiz[0].C,
+        result.data.quiz[0].D
+      ];
+      setOptions(options);
 
-        res.data.quiz.forEach(question =>
-          question.type === 1
-            ? standard.push(question)
-            : remedial.push(question)
-        );
-        const arr = remedial.filter(question => {
-          return question.category === standard[0].category;
-        });
+      result.data.quiz.forEach(question =>
+        question.type === 1 ? standard.push(question) : remedial.push(question)
+      );
+      setScore(result.data.quiz[0].points);
+      setTotalScore(result.data.quiz[0].points);
+      setAnswer(result.data.quiz[0].correct_answer);
+      setQuestions(result.data.quiz[0].Q_content);
+      setFollowUpQuestions(remedial);
+      setStandardQuestions(standard);
+      setQuestionCount(standard.length);
+      setAllQuestions(result.data.quiz);
+    };
+    fetchData();
+  }, []);
 
-        this.setState({
-          options: options,
-          questions: res.data.quiz[0].Q_content,
-          answers: res.data.quiz[0].correct_answer,
-          QuizData: res.data.quiz,
-          standardQ: standard,
-          remedialQ: remedial,
-          questionCount: standard.length,
-          remedialSubject: arr
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
-  nextQuestionHandler = () => {
-    const {
-      standardQ,
-      questionCount,
-      QuizData,
-      currentQuestion,
-      userAnswer,
-      answers,
-      score,
-      remedialQ,
-      remedialCounter,
-      remedialSubject,
-      wrongAnswer
-    } = this.state;
-
-    let arr = this.state.remedialSubject;
-    let rCount = this.state.remedialCounter;
-    let qCount = questionCount;
-    let scoreTracker = score;
+  const nextQuestionHandler = () => {
     let questionCounter = currentQuestion + 1;
-    let nextQuestion = standardQ[questionCounter];
-    let wrong = wrongAnswer;
+    let nextQuestion = standardQuestions[questionCounter];
+    let rCount = followUpCount;
+    let totalPoints = points;
+    let totalScoreInAll = 0;
+    countTotalScore();
 
-    if (userAnswer === answers) {
-      const currentSubject = standardQ[currentQuestion].category;
-      console.log("question", nextQuestion);
-      console.log("question we are on", questionCounter);
-      console.log("how many questions counted", questionCount);
-      const nextSubject = nextQuestion.category;
-      console.log("if question is correct the subject will be", nextSubject);
+    if (userAnswer === answer) {
+      console.log(questionCounter);
+      nextQuestion = standardQuestions[questionCounter];
+      totalPoints += score;
 
-      if (currentSubject !== nextSubject) {
-        console.log("does these subjects match", currentSubject, nextSubject);
-        rCount = 0;
-        arr = remedialQ.filter(question => {
-          return question.category === nextSubject;
-        });
+      console.log("score points", score);
+      if (rCount > 0) {
+        nextQuestion = standardQuestions[questionCounter - rCount];
+        console.log(questionCounter);
       }
-      scoreTracker++;
-    } else if (rCount < remedialSubject.length - 1) {
+      setIsFollowUp(false);
+    } else if (rCount < followUpQuestions.length) {
+      console.log(rCount, followUpQuestions.length);
+      console.log(questionCounter);
+
+      nextQuestion = followUpQuestions[rCount];
+      setQuestionCount(questionCount + 1);
       rCount++;
-      nextQuestion = remedialSubject[remedialCounter];
+      setFollowUpCount(rCount);
+      setIsFollowUp(true);
+      console.log(rCount);
     } else {
-      const currentSubject = standardQ[currentQuestion].category;
-      const nextSubject = nextQuestion.category;
-
-      if (currentSubject !== nextSubject) {
-        arr = remedialQ.filter(question => {
-          return question.category === nextSubject;
-        });
-      }
-      rCount = 0;
+      nextQuestion = standardQuestions[questionCounter - rCount];
+      console.log(questionCounter - rCount + 1);
+      setIsFollowUp(false);
     }
+    console.log("score at end of func", score);
+    totalScoreInAll += score;
 
-    const choices = [
+    const options = [
       nextQuestion.A,
       nextQuestion.B,
       nextQuestion.C,
       nextQuestion.D
     ];
-
-    this.setState({
-      questions: nextQuestion.Q_content,
-      options: choices,
-      answers: nextQuestion.correct_answer,
-      currentQuestion: questionCounter,
-      score: scoreTracker,
-      disabled: true,
-      remedialSubject: arr,
-      remedialCounter: rCount,
-      questionCount: qCount
-    });
+    console.log("all points", totalScoreInAll);
+    setScore(nextQuestion.points);
+    setFollowUpCount(rCount);
+    setCurrentQuestion(questionCounter);
+    setQuestions(nextQuestion.Q_content);
+    setAnswer(nextQuestion.correct_answer);
+    setOptions(options);
+    setPoints(totalPoints);
   };
 
   //check answer
-  checkAnswer = correct_answer => {
-    this.setState({
-      userAnswer: correct_answer,
-      disabled: false
-    });
+  const checkAnswer = correct_answer => {
+    setUserAnswer(correct_answer);
+    setDisabled(false);
   };
 
-  finishHandler = () => {
-    const { id } = this.props.match.params;
+  const finishHandler = () => {
+    const { id } = props.match.params;
     const data = {
       completed: true,
       quiz_id: id,
       student_id: localStorage.getItem("id")
     };
-    console.log(
-      "finish quiz",
-      this.state.currentQuestion,
-      "=",
-      this.state.questionCount
-    );
-    if (this.state.currentQuestion === this.state.questionCount - 1) {
+
+    if (currentQuestion === questionCount - 1) {
       axios
         .post(
           `${process.env.REACT_APP_BE_URL ||
@@ -170,75 +133,103 @@ class Quiz extends React.Component {
           data
         )
         .then(res => console.log(res));
-      this.setState({
-        quizEnd: true
-      });
+      letterGrade();
+      setEnd(true);
     }
   };
 
-  render() {
-    const {
-      QuizData,
-      questions,
-      options,
-      currentQuestion,
-      userAnswer,
-      quizEnd,
-      questionCount
-    } = this.state;
+  const returnToDash = () => {
+    setReturn(true);
+  };
 
-    if (quizEnd) {
-      return (
-        <div>
-          <StudentNavigation />
-          <h2>Completed Quiz final score is {this.state.score} points</h2>
+  const countTotalScore = () => {
+    let combinedScore = score;
+    console.log("countTotalScore func");
+    console.log(score);
+    console.log(totalScore);
+
+    combinedScore += totalScore;
+    console.log(combinedScore);
+    setTotalScore(combinedScore);
+    console.log(totalScore);
+  };
+
+  const letterGrade = () => {
+    let score = (points / totalScore) * 100;
+
+    if (score <= 100 && score >= 98) setLetter("A+");
+    else if (score <= 97 && score >= 93) setLetter("A");
+    else if (score <= 92 && score >= 90) setLetter("A-");
+    else if (score <= 89 && score >= 88) setLetter("B+");
+    else if (score <= 87 && score >= 83) setLetter("B");
+    else if (score <= 82 && score >= 80) setLetter("B-");
+    else if (score <= 79 && score >= 78) setLetter("C+");
+    else if (score <= 77 && score >= 73) setLetter("C");
+    else if (score <= 72 && score >= 70) setLetter("C-");
+    else if (score <= 69 && score >= 68) setLetter("D+");
+    else if (score <= 67 && score >= 63) setLetter("D");
+    else if (score <= 62 && score >= 60) setLetter("D-");
+    else if (score <= 59 && score >= 0) setLetter("F");
+    else setLetter("INVALID SCORE");
+  };
+
+  return (
+    <div>
+      {returnDash ? <Redirect to="/studentsDashboard" /> : null}
+      <StudentNavigation />
+      {end ? (
+        <div className="align">
+          <h2 id='quiz-title-score'>
+            Completed Quiz final score is {points} points out of {totalScore}{" "}
+            points possible.
+          </h2>
+          <h3 id='quiz-letter-score'>Your letter grade is : {letter}</h3>
           <p>The Correct Answer's were: </p>
           <ul>
-            {QuizData.map((item, index) => (
+            {allQuestion.map((item, index) => (
               <li className="ui floating message options" key={index}>
                 {item.correct_answer}
               </li>
             ))}
           </ul>
+          <button onClick={returnToDash}>Finish</button>
         </div>
-      );
-    }
-    return (
-      <div className="mobile">
-        <StudentNavigation />
+      ) : (
         <div className="align">
-          <h2>{questions}</h2>
-          <span> {`Questions ${currentQuestion} out of ${questionCount}`}</span>
+          {isFollowUp ? <div className="given-question">Follow-Up</div> : null}
+          <div className="given-question">{questions}</div>
+          <span>{`Question ${currentQuestion +
+            1} out of ${questionCount}`}</span>
+          <span>{`Worth ${score} ${score > 1 ? "points" : "point"}`}</span>
+          {options.map(option => (
+            <p
+              key={option.id}
+              className={`ui floating message
+                    ${userAnswer === option ? "selected" : null}
+                    `}
+              onClick={() => checkAnswer(option)}
+            >
+              {option}
+            </p>
+          ))}
+          {currentQuestion < questionCount - 1 && (
+            <button
+              className="submit-answer"
+              disabled={disabled}
+              onClick={nextQuestionHandler}
+            >
+              Submit Answer
+            </button>
+          )}
+          {currentQuestion === questionCount - 1 && (
+            <button onClick={finishHandler} className="submit-answer">
+              Finish Quiz
+            </button>
+          )}
         </div>
+      )}
+    </div>
+  );
+};
 
-        {options.map(option => (
-          <p
-            key={option.id}
-            className={`ui floating message
-                  ${userAnswer === option ? "selected" : null}
-                  `}
-            onClick={() => this.checkAnswer(option)}
-          >
-            {option}
-          </p>
-        ))}
-
-        {currentQuestion < questionCount - 1 && (
-          <button
-            className="new"
-            disabled={this.state.disabled}
-            onClick={this.nextQuestionHandler}
-          >
-            Next
-          </button>
-        )}
-        {currentQuestion === questionCount - 1 && (
-          <button className="new" onClick={this.finishHandler}>
-            Finish
-          </button>
-        )}
-      </div>
-    );
-  }
-}
 export default Quiz;

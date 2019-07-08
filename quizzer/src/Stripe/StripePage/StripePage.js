@@ -1,9 +1,8 @@
 import React from "react";
-import { render } from "react-dom";
 import { StripeProvider } from "react-stripe-elements";
 import "./stripe.css";
 import MyStoreCheckout from "./MyStoreCheckout";
-import TeacherNavigation from "../Dashboards/Navigation/TeacherNavigation";
+import TeacherNavigation from "../../components/Dashboards/Navigation/TeacherNavigation";
 
 const StripePage = () => {
   return (

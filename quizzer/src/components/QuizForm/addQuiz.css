@@ -1,30 +1,39 @@
-.quizform {
+.add-quizform { 
   padding-top: 5rem;
-  padding-left: 5rem;
+  padding-left: 3.2rem;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 3px solid #e6ebf1;
+  width: 100%;
+  color: #000000;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-left:256px;
 }
 
-@media(max-width: 500px) {
-  .quizform, .text-box, .add-quiz-label, .add-quiz-text-box {
-    padding: 1%;
-    width: 90%;
-    text-align: center;
-    background: #6772e5;
-  }
-  .mobile, .Qmobile {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 95%;
-    padding: 1%;
-    text-align: center;
-    background: #6772e5;
-    margin-left: 10px;
-    border: 1px solid red;
-  }
-};
 
-@media(min-width: 1000px) {
-  .quizform {
-    background: #008b8b;
+.text-box {
+	height: 44px;
+	width: 288px;
+	border-radius: 4px;
+  background-color: #FFFFFF;
+}
+
+.add-quiz-text-box {
+	height: 92px;
+	width: 444px;
+	border-radius: 4px;	
+	background-color: #FFFFFF;
+	font-size: 1.4rem;	
+	line-height: 20px;
   }
-};
+
+  .question-text-box {
+width: 592px;
+height:110px;
+border-radius: 4px;	
+
+  }
+
+
