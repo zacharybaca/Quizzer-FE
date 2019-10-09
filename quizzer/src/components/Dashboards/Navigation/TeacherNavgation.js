@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import logo from "../../../logowhite.svg";
 import { Link } from "react-router-dom";
-import {
-  Dropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
-} from "reactstrap";
+import { Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 import "./TeacherNavigation.css";
 
 class TeacherNavigation extends Component {
@@ -31,7 +26,7 @@ class TeacherNavigation extends Component {
   };
   render() {
     return (
-      <div className="homepage">
+      <div className="nav-bar">
         {localStorage.getItem("token") ? (
           <div>
             <Link to="/teachersDashboard">

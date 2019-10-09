@@ -15,7 +15,8 @@ class TeacherNavigation extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      modal: false
     };
   }
 
@@ -31,7 +32,7 @@ class TeacherNavigation extends Component {
   };
   render() {
     return (
-      <div className="homepage">
+      <div className="nav-bar">
         {localStorage.getItem("token") ? (
           <div>
             <Link to="/teachersDashboard">
@@ -45,17 +46,30 @@ class TeacherNavigation extends Component {
             </Link>
           </div>
         ) : null}
+        <div>
+          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+            <DropdownToggle className="bradius">
+              <h2 className="logo-btn">Profile</h2>
+              <DropdownMenu className="menu">
+                <DropdownItem className="dropdown" onClick={this.props.access}>
+                  Invite Student
+                </DropdownItem>
+                <DropdownItem className="dropdown">
+                  <Link to="step1">Billing</Link>
+                </DropdownItem>
 
-        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-          <DropdownToggle className="bradius">
-            <DropdownMenu className="menu">
-              <Link to = '/'> 
-                <div className="click" onClick={this.logout}>Log Out</div> 
-              </Link>
-              <Link className="click" to = '/step1'>Billing</Link>
-            </DropdownMenu>
-          </DropdownToggle>
-        </Dropdown>
+                <DropdownItem className="dropdown">
+                  {" "}
+                  <Link to="/">
+                    <div className="click" onClick={this.logout}>
+                      Log Out
+                    </div>
+                  </Link>
+                </DropdownItem>
+              </DropdownMenu>
+            </DropdownToggle>
+          </Dropdown>
+        </div>
       </div>
     );
   }

@@ -30,7 +30,6 @@ const AccessCode = props => {
   return (
     <div>
       <StudentNavigation />
-      {console.log("I am rendering")}
       <form onSubmit={e => onSubmit(e)}>
         <input
           value={access_code}

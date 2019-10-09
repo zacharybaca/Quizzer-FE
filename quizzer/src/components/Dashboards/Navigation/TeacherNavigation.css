@@ -1,16 +1,4 @@
-.bradius {
-  background-color: white !important;
-  position: absolute;
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 50% !important;
-  background-image: url(./icons8-user-24.png);
-  background-size: contain;
-  background-position: center;
-  margin-top:0px;
-}
-
-.homepage {
+.nav-bar {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -20,23 +8,56 @@
   background-color: #363648;
 }
 
-.moved {
-  margin-right: 490px;
+.bradius {
+  display: flex;
+  justify-content: center;
+  background-color: #363648 !important;
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  background-size: contain;
+  background-position: center;
+  margin-top: -4px;
+  color: white !important;
+  border: none !important;
+}
+
+.logo-btn {
+  z-index: 1354;
+  color: white;
+  text-align: center;
+  margin-bottom: 0px;
+  font-weight: bold;
 }
 
 .menu {
-  height: 80px;
+  height: auto;
   width: 216px;
   border-radius: 4px;
   background-color: white;
 }
 
+.dropdown {
+  opacity: 1;
+  color: black;
+}
+.dropdown-menu {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: none;
+}
+
+.dropdown-item {
+  box-shadow: none;
+}
+
+.dropdown-item:hover {
+  box-shadow: none;
+}
 .click {
   color: red;
 }
 
 .click:hover {
   color: black;
-  opacity: 0.25;
-  background-color: #363648;
+  text-decoration: none;
 }

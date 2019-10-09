@@ -10,32 +10,14 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-/* .header {
-  display: flex;
-  align-items: center;
-  height: 64px;
-  width: 1300px;  
-} */
-
-/* .sidebar-nav {
-  height: 960px;
-  width: 224px;
-  border: solid black 8px;
-} */
-
-
-
 .logo {
   color: white;
   font-size: 24px;
   font-weight: bold;
   line-height: 32px;
   text-align: center;
-    margin-right: 800px;
+  position:absolute;
+  left:48px;
 
 }
 
@@ -52,7 +34,7 @@
   height: 20px;
   width: 156px;
   color: #000000;
-  font-family: "Open Sans";
+  
   font-size: 16px;
   font-weight: bold;
   line-height: 24px;
@@ -69,15 +51,18 @@
 }
 
 .text-box {
-  height: 44px;
-  width: 288px;
+	height: 44px;
+	width: 288px;
+	border-radius: 4px;
+  background-color: #FFFFFF;
+ 
 }
 
 .add-quiz-label {
   height: 20px;
   width: 544px;
   color: #000000;
-  font-family: "Open Sans";
+ 
   font-size: 14px;
   font-weight: bold;
   line-height: 20px;
@@ -87,11 +72,6 @@
 .add-question {
   margin-bottom: 200px;
   margin-left: 550px;
-}
-
-.main-question-container {
-  display: flex;
-  margin-bottom: -400px;
 }
 
 .main-question-button {
@@ -111,6 +91,7 @@ h1 {
   font-size: 40px;
   margin: 20px 0;
   padding: 0;
+  
 }
 
 button {
@@ -129,8 +110,8 @@ button {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.025em;
-  background-color: #6369D1;
-  opacity: 0.5;
+  background-color: rgb(161, 166,224);
+  opacity: 1;
   text-decoration: none;
   -webkit-transition: all 150ms ease;
   transition: all 150ms ease;
@@ -144,4 +125,3 @@ button:hover {
   transform: translateY(-1px);
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
-

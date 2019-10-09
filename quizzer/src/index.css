@@ -3,6 +3,13 @@
    License: none (public domain)
 */
 
+body {
+	margin: 0;
+	background-color: #F4F6F7;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+  }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -21,6 +28,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
+	font-family: "Open-Sans","Helvetica";
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -48,13 +56,9 @@ table {
 }
 
 
-body {
-  margin: 0;
-  font-family: "Open Sans";
-  background-color: #F4F6F7;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+
+
+
 
 /* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Open Sans",

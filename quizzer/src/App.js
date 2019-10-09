@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import Login from "./components/Login/Login";
 import AccessCode from "./components/InfoComponents/accessCode";
 import StudentsDashboard from "./components/Dashboards/StudentsDashboard";
@@ -9,14 +9,12 @@ import Protected from "./components/Protected/Protected";
 import QuizForm from "./components/QuizForm/QuizForm";
 import Questions from "./components/QuizForm/AddQuestion";
 import EditQuiz from "./components/QuizForm/EditQuiz";
-import EditQuestion from "./components/QuizForm/EditQuestion";
+import AddQuestion from "./components/QuizForm/AddQuestion";
 
-import StripePage from "../src/components/StripePage/StripePage";
-import Step2Page from "./components/Step2/Step2Page";
+import StripePage from "./Stripe/StripePage/StripePage";
+import Step2Page from "./Stripe/Step2/Step2Page";
 
-// import Quiz2 from "./components/Quiz/Quiz2";
 import Quiz from "./components/Quiz/Quiz";
-import QuizData from "./components/Quiz/QuizData";
 import getQuiz from "./components/Quiz/getQuiz";
 
 function App(props) {
@@ -41,10 +39,8 @@ function App(props) {
       <Protected exact path="/quizzes" component={QuizForm} />
       <Protected exact path="/questions" component={Questions} />
       <Protected exact path="/edit/quiz/:id" component={EditQuiz} />
-
+      <Protected exact path="/createdquiz/:id" component={AddQuestion} />
       <Protected exact path="/quiz/:id" component={Quiz} />
-
-      <Protected exact path="/quizData" component={QuizData} />
 
       <Route exact path="/step1" component={Step2Page} />
       <Route exact path="/step2" component={StripePage} />

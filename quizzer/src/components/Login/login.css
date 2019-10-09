@@ -11,7 +11,6 @@
 .quizzer {
   height: 32px;
   color: #0038fb;
-  font-family: "Open Sans";
   font-size: 32px;
   font-weight: bold;
   line-height: 32px;
@@ -21,7 +20,6 @@
   height: 32px;
   width: 312px;
   color: #000000;
-  font-family: "Open Sans";
   font-size: 24px;
   font-weight: bold;
   line-height: 32px;
@@ -41,18 +39,21 @@
 }
 .state {
   background-color: #ea4334;
+  margin-bottom:16px;
 }
 .text {
   height: 44px;
   width: 316px;
   display: flex;
   color: #ffffff;
-  font-family: "Open Sans";
   font-size: 18px;
   font-weight: bold;
   line-height: 18px;
 }
 .margin {
   padding-right: 10px;
+}
+.login-img{
+margin-bottom:24px;
 }
 
