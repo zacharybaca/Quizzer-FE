@@ -179,11 +179,11 @@ const Quiz = props => {
       <StudentNavigation />
       {end ? (
         <div className="align">
-          <h2 id='quiz-title-score'>
+          <h2 id="quiz-title-score">
             Completed Quiz final score is {points} points out of {totalScore}{" "}
             points possible.
           </h2>
-          <h3 id='quiz-letter-score'>Your letter grade is : {letter}</h3>
+          <h3 id="quiz-letter-score">Your letter grade is : {letter}</h3>
           <p>The Correct Answer's were: </p>
           <ul>
             {allQuestion.map((item, index) => (
@@ -223,7 +223,7 @@ const Quiz = props => {
           )}
           {currentQuestion === questionCount - 1 && (
             <button onClick={finishHandler} className="submit-answer">
-              Finish Quiz
+              Finish Quiz Test
             </button>
           )}
         </div>
