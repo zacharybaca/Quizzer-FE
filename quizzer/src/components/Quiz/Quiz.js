@@ -11,8 +11,9 @@ const Quiz = props => {
   const [allQuestion, setAllQuestions] = useState([]);
   const [userAnswer, setUserAnswer] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [score, setScore] = useState(null);
+  const [score, setScore] = useState([0]);
   const [points, setPoints] = useState(0);
+  const [totalPointsTest, setTotalPointsTest] = useState(0);
   const [answer, setAnswer] = useState("");
   const [totalScore, setTotalScore] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -23,6 +24,8 @@ const Quiz = props => {
   const [end, setEnd] = useState(false);
   const [returnDash, setReturn] = useState(false);
   const [letter, setLetter] = useState("");
+
+  const [newTotalScore, setnewTotalScore] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,72 +46,86 @@ const Quiz = props => {
       ];
       setOptions(options);
 
-      result.data.quiz.forEach(question =>
-        question.type === 1 ? standard.push(question) : remedial.push(question)
-      );
+      let ntotalScore = 0;
+      result.data.quiz.forEach(question => {
+        question.type === 1 ? standard.push(question) : remedial.push(question);
+        if (question.type == 1) {
+          ntotalScore += question.points;
+        }
+      });
+
+      setnewTotalScore(ntotalScore);
+
       setScore(result.data.quiz[0].points);
-      setTotalScore(result.data.quiz[0].points);
+      setTotalScore(ntotalScore);
       setAnswer(result.data.quiz[0].correct_answer);
       setQuestions(result.data.quiz[0].Q_content);
       setFollowUpQuestions(remedial);
       setStandardQuestions(standard);
-      setQuestionCount(standard.length);
+      setQuestionCount(result.data.quiz.length);
       setAllQuestions(result.data.quiz);
     };
     fetchData();
   }, []);
 
-  const nextQuestionHandler = () => {
+  const nextQuestionHandler = async () => {
     let questionCounter = currentQuestion + 1;
     let nextQuestion = standardQuestions[questionCounter];
     let rCount = followUpCount;
     let totalPoints = points;
+    console.log("totalPoints", totalPoints);
+    setTotalPointsTest(totalPoints);
     let totalScoreInAll = 0;
-    countTotalScore();
+    const { id } = props.match.params;
+
+    // setTotalScore(questionCounter);
 
     if (userAnswer === answer) {
-      console.log(questionCounter);
       nextQuestion = standardQuestions[questionCounter];
       totalPoints += score;
 
-      console.log("score points", score);
       if (rCount > 0) {
         nextQuestion = standardQuestions[questionCounter - rCount];
-        console.log(questionCounter);
       }
+
       setIsFollowUp(false);
     } else if (rCount < followUpQuestions.length) {
-      console.log(rCount, followUpQuestions.length);
-      console.log(questionCounter);
-
       nextQuestion = followUpQuestions[rCount];
-      setQuestionCount(questionCount + 1);
+      setQuestionCount(questionCount);
       rCount++;
       setFollowUpCount(rCount);
       setIsFollowUp(true);
-      console.log(rCount);
     } else {
       nextQuestion = standardQuestions[questionCounter - rCount];
       console.log(questionCounter - rCount + 1);
       setIsFollowUp(false);
     }
     console.log("score at end of func", score);
-    totalScoreInAll += score;
 
-    const options = [
-      nextQuestion.A,
-      nextQuestion.B,
-      nextQuestion.C,
-      nextQuestion.D
-    ];
-    console.log("all points", totalScoreInAll);
-    setScore(nextQuestion.points);
+    if (typeof nextQuestion !== "undefined") {
+      const options = [
+        nextQuestion.A,
+        nextQuestion.B,
+        nextQuestion.C,
+        nextQuestion.D
+      ];
+
+      setScore(nextQuestion.points);
+      setAnswer(nextQuestion.correct_answer);
+      setQuestions(nextQuestion.Q_content);
+      setOptions(options);
+    }
+
     setFollowUpCount(rCount);
     setCurrentQuestion(questionCounter);
-    setQuestions(nextQuestion.Q_content);
-    setAnswer(nextQuestion.correct_answer);
-    setOptions(options);
     setPoints(totalPoints);
+
+    totalScoreInAll += score;
+
+    if (typeof nextQuestion === "undefined") {
+      finishHandler();
+      return;
+    }
   };
 
   //check answer
@@ -125,17 +142,17 @@ const Quiz = props => {
       student_id: localStorage.getItem("id")
     };
 
-    if (currentQuestion === questionCount - 1) {
-      axios
-        .post(
-          `${process.env.REACT_APP_BE_URL ||
-            process.env.REACT_APP_BE_LOCAL}/api/quiz/student/completedtest`,
-          data
-        )
-        .then(res => console.log(res));
-      letterGrade();
-      setEnd(true);
-    }
+    //if (currentQuestion === questionCount - 1) {
+    axios
+      .post(
+        `${process.env.REACT_APP_BE_URL ||
+          process.env.REACT_APP_BE_LOCAL}/api/quiz/student/completedtest`,
+        data
+      )
+      .then(res => console.log(res));
+    letterGrade();
+    setEnd(true);
+    //}
   };
 
   const returnToDash = () => {
@@ -143,19 +160,13 @@ const Quiz = props => {
   };
 
   const countTotalScore = () => {
-    let combinedScore = score;
-    console.log("countTotalScore func");
-    console.log(score);
-    console.log(totalScore);
-
-    combinedScore += totalScore;
-    console.log(combinedScore);
-    setTotalScore(combinedScore);
-    console.log(totalScore);
+    let combinedScore = totalScore;
+    console.log("totalScore", totalScore);
+    // setTotalScore(combinedScore);
   };
 
   const letterGrade = () => {
-    let score = (points / totalScore) * 100;
+    setScore(newTotalScore);
 
     if (score <= 100 && score >= 98) setLetter("A+");
     else if (score <= 97 && score >= 93) setLetter("A");
@@ -173,6 +184,13 @@ const Quiz = props => {
     else setLetter("INVALID SCORE");
   };
 
+  // function myFunction() {
+  //   const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  //   return score.reduce(reducer);
+  // }
+
+  // falert(ntotalScore);
+
   return (
     <div>
       {returnDash ? <Redirect to="/studentsDashboard" /> : null}
@@ -180,8 +198,8 @@ const Quiz = props => {
       {end ? (
         <div className="align">
           <h2 id="quiz-title-score">
-            Completed Quiz final score is {points} points out of {totalScore}{" "}
-            points possible.
+            Completed Quiz final score is {points} points out of {score} points
+            possible.
           </h2>
           <h3 id="quiz-letter-score">Your letter grade is : {letter}</h3>
           <p>The Correct Answer's were: </p>
@@ -212,18 +230,12 @@ const Quiz = props => {
               {option}
             </p>
           ))}
-          {currentQuestion < questionCount - 1 && (
-            <button
-              className="submit-answer"
-              disabled={disabled}
-              onClick={nextQuestionHandler}
-            >
-              Submit Answer
-            </button>
+          {currentQuestion < questionCount && (
+            <button onClick={nextQuestionHandler}>Submit Answer</button>
           )}
           {currentQuestion === questionCount - 1 && (
             <button onClick={finishHandler} className="submit-answer">
-              Finish Quiz Test
+              Finish Quiz
             </button>
           )}
         </div>
